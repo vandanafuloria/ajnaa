@@ -13,96 +13,60 @@ import SocialProofBadge from './SocialProofBadge';
 import productImage1 from './assets/product/SPP_8830.jpg';
 import productImage2 from './assets/product/SPP_8834.jpg';
 import productImage3 from './assets/product/SPP_8844.jpg';
-import pdp1 from './assets/pdp_1.png';
-import pdp2 from './assets/pdp_2.png';
-import pdp3 from './assets/pdp_3.png';
+import product1 from './assets/product1.png';
+import product2 from './assets/product2.png';
 
-// Product review images from product folder
-// So True — Product review images
-import stP1 from './assets/So True/Product/1.png';
-import stP2 from './assets/So True/Product/2.png';
-import stP3 from './assets/So True/Product/3.png';
-import stP4 from './assets/So True/Product/4.png';
-import stP5 from './assets/So True/Product/5.png';
-import stP6 from './assets/So True/Product/6.png';
-import stP7 from './assets/So True/Product/7.png';
-import stP8 from './assets/So True/Product/8.png';
-import stP9 from './assets/So True/Product/9.png';
-import stP10 from './assets/So True/Product/10.png';
-import stP11 from './assets/So True/Product/11.png';
-import stP12 from './assets/So True/Product/12.png';
-import stP13 from './assets/So True/Product/13.png';
-import stP14 from './assets/So True/Product/14.png';
-import stP15 from './assets/So True/Product/15.png';
-import stP16 from './assets/So True/Product/16.png';
-import stP17 from './assets/So True/Product/17.png';
-import stP18 from './assets/So True/Product/18.png';
-import stP19 from './assets/So True/Product/19.png';
-import stP20 from './assets/So True/Product/20.png';
-
-// So True — Brand review images
-import stB1 from './assets/So True/Brand/1.png';
-import stB2 from './assets/So True/Brand/2.png';
-import stB3 from './assets/So True/Brand/3.png';
-import stB4 from './assets/So True/Brand/4.png';
-import stB5 from './assets/So True/Brand/5.png';
-import stB6 from './assets/So True/Brand/6.png';
-import stB7 from './assets/So True/Brand/7.png';
-import stB8 from './assets/So True/Brand/8.png';
-import stB9 from './assets/So True/Brand/9.png';
-import stB10 from './assets/So True/Brand/10.png';
-import stB11 from './assets/So True/Brand/11.png';
-import stB12 from './assets/So True/Brand/12.png';
-import stB13 from './assets/So True/Brand/13.png';
-import stB14 from './assets/So True/Brand/14.png';
-import stB15 from './assets/So True/Brand/15.png';
-import stB16 from './assets/So True/Brand/16.png';
-import stB17 from './assets/So True/Brand/17.png';
-import stB18 from './assets/So True/Brand/18.png';
-import stB19 from './assets/So True/Brand/19.png';
-import stB20 from './assets/So True/Brand/20.png';
+// Brand Images — review photos
+import bi1 from './assets/Brand Images/1.png';
+import bi2 from './assets/Brand Images/2.png';
+import bi3 from './assets/Brand Images/3.png';
+import bi4 from './assets/Brand Images/4.png';
+import bi5 from './assets/Brand Images/5.png';
+import bi6 from './assets/Brand Images/6.png';
+import bi7 from './assets/Brand Images/7.png';
+import bi8 from './assets/Brand Images/8.png';
+import bi9 from './assets/Brand Images/9.png';
+import bi10 from './assets/Brand Images/10.png';
+import bi11 from './assets/Brand Images/11.png';
+import bi12 from './assets/Brand Images/12.png';
 
 import reviewData from '../review.json';
 
 // Image arrays for review cycling
-const ST_PRODUCT_IMGS = [
-  stP1, stP2, stP3, stP4, stP5, stP6, stP7, stP8, stP9, stP10,
-  stP11, stP12, stP13, stP14, stP15, stP16, stP17, stP18, stP19, stP20,
-];
-const ST_BRAND_IMGS = [
-  stB1, stB2, stB3, stB4, stB5, stB6, stB7, stB8, stB9, stB10,
-  stB11, stB12, stB13, stB14, stB15, stB16, stB17, stB18, stB19, stB20,
-];
+// Product reviews: 1 → 12 (ascending)
+const ST_PRODUCT_IMGS = [bi1, bi2, bi3, bi4, bi5, bi6, bi7, bi8, bi9, bi10, bi11, bi12];
+// Brand reviews: 12 → 1 (descending)
+const ST_BRAND_IMGS = [bi12, bi11, bi10, bi9, bi8, bi7, bi6, bi5, bi4, bi3, bi2, bi1];
 
 function getReviewTitle(text) {
   const first = text.split(/[.!,]/)[0].trim();
   return first.length > 5 ? first : text.substring(0, 50);
 }
 
-// Import store images
-import storeImage1 from './assets/store.png';
-import storeImage2 from './assets/store2.png';
-import storeImage3 from './assets/store3.png';
-import storeImage4 from './assets/store5.png';
 
 // Brand Name
 const BRAND_NAME = "wordofmouth";
 
 // Product Images Array - All product images
 const PRODUCT_IMAGES = [
-  "https://www.sotrue.in/cdn/shop/files/1_7_5a7c7fbe-f6e3-4603-8cfd-2ef6482ace8a.jpg?v=1762521956&width=1000",
+  "https://thebaeshop.com/cdn/shop/files/11_755a3607-c9cb-4454-a07f-5a1e20e2d454.jpg?v=1771311357&width=1000",
+  "https://thebaeshop.com/cdn/shop/files/5_a829b020-8293-4669-a908-e2b74c0793eb.jpg?v=1771311357&width=1000",
+  "https://thebaeshop.com/cdn/shop/files/4_f576be0a-7134-47dc-8131-9279cc3e46ee.jpg?v=1771311357&width=1000",
+  "https://thebaeshop.com/cdn/shop/files/2_6fa6df98-2639-4302-9159-e1569bbbe8bb.jpg?v=1771311357&width=1000",
+  "https://thebaeshop.com/cdn/shop/files/3_d8c07677-5f85-4974-aea2-4ea281ed5c82.jpg?v=1771311357&width=1000",
+  "https://thebaeshop.com/cdn/shop/files/6_801394e4-f984-4d22-b7f8-e1aba3f4b469.jpg?v=1771311357&width=1000",
 ];
 
 // Product Video
-const PRODUCT_VIDEO = 'https://www.sotrue.in/cdn/shop/files/quinn_k2kbh4h0kkk9dmhkiv4y16kb.mp4#t=0.1';
+const PRODUCT_VIDEO = 'https://static.zegsuapps.com/user-data/instagenie/bf98230ee1c9d00319d98ef61cde61afc2efbd63.mp4#t=0.1';
 
 // Product Details
-const PRODUCT_NAME = "3-in-1 Illuminating Strobe Cream Combo | Pack of 3";
-const PRODUCT_PRICE = 299;
-const PRODUCT_ORIGINAL_PRICE = 599;
-const PRODUCT_DISCOUNT = 50;
-const PRODUCT_SKU = "DS-KOHL-001";
-const PRODUCT_DESCRIPTION = "Intensely pigmented 3-in-1 waterproof kohl pencil — define, line, and smudge with ease. Long-lasting 24-hour wear formula with a smooth, creamy texture. Comes with a precision sharpener for the perfect line every time.";
+const PRODUCT_NAME = "Bae Bag — Personalised Vegan Leather Pouch";
+const PRODUCT_PRICE = 1699;
+const PRODUCT_ORIGINAL_PRICE = 1999;
+const PRODUCT_DISCOUNT = 15;
+const PRODUCT_SKU = "TB-BAG-001";
+const PRODUCT_DESCRIPTION = "Handcrafted with premium 100% vegan leather — soft, durable, and cruelty-free. Features a smooth metal zip, satin-lined interior, and personalised name embossing. Gift-ready in an elegant magnetic box. Perfect for everyday carry, travel, and gifting.";
 const PRODUCT_COLORS = [
   { name: "Black", value: "#1a1a1a" },
 ];
@@ -148,128 +112,54 @@ const RELATED_PRODUCTS = [
   }
 ];
 
-// Best Seller Products data
-const BS_IMG_1 = 'https://www.sotrue.in/cdn/shop/files/1_7_5a7c7fbe-f6e3-4603-8cfd-2ef6482ace8a.jpg?v=1762521956&width=1000';
-const BS_IMG_2 = 'https://www.sotrue.in/cdn/shop/files/01_4d8982c5-510a-4955-8a84-8120184cc312.jpg?v=1770280818&width=1000';
-const BS_IMG_3 = 'https://www.sotrue.in/cdn/shop/files/1_1.jpg?v=1756733352&width=1000';
-const BS_IMG_4 = 'https://www.sotrue.in/cdn/shop/files/foxnut_2.jpg?v=1765440399&width=1000';
+// Best Seller Products data — same as home page
+const BS_IMG_1 = 'https://thebaeshop.com/cdn/shop/files/2_6fa6df98-2639-4302-9159-e1569bbbe8bb.jpg?v=1771311357&width=1080';
+const BS_IMG_2 = 'https://thebaeshop.com/cdn/shop/files/12_df44ffa7-3472-4888-9f08-0566995b2cda.jpg?v=1771311291&width=2000';
+const BS_IMG_3 = 'https://thebaeshop.com/cdn/shop/files/8_8dd5c96c-2111-4a49-99cc-3de41e1ca1ff.jpg?v=1771311343&width=2000';
+const BS_IMG_4 = 'https://thebaeshop.com/cdn/shop/files/6_a60ca2c3-e0e9-4282-8350-c20bc6472dda.jpg?v=1770214028&width=1080';
 
 const bestSellerProducts = [
-  {
-    id: 1,
-    image: BS_IMG_1,
-    title: 'Illuminating Strobe Cream Combo | Pack of 2',
-    currentPrice: 489,
-    originalPrice: 698,
-    rating: 4.66,
-    reviewCount: 1296,
-    isBestseller: true,
-    showQuickView: true,
-  },
-  {
-    id: 2,
-    image: BS_IMG_2,
-    title: 'Dark Spell Kohl Kajal Pencil | Intense Jet Black',
-    currentPrice: 299,
-    originalPrice: 349,
-    rating: 4.78,
-    reviewCount: 186,
-    showQuickView: true,
-  },
-  {
-    id: 3,
-    image: BS_IMG_3,
-    title: 'Daily Strobe Cream with SPF 50+ | Rose Gold',
-    currentPrice: 399,
-    originalPrice: 499,
-    rating: 4.57,
-    reviewCount: 134,
-  },
-  {
-    id: 4,
-    image: BS_IMG_4,
-    title: 'Prep & Glow Combo | Primer + Strobe Cream (Pink)',
-    currentPrice: 499,
-    originalPrice: 748,
-    rating: 4.71,
-    reviewCount: 59,
-  },
-  {
-    id: 5,
-    image: BS_IMG_1,
-    title: 'Illuminating Strobe Cream Combo | Pack of 2',
-    currentPrice: 489,
-    originalPrice: 698,
-    rating: 4.66,
-    reviewCount: 1296,
-    isBestseller: true,
-    showQuickView: true,
-  },
-  {
-    id: 6,
-    image: BS_IMG_2,
-    title: 'Dark Spell Kohl Kajal Pencil | Intense Jet Black',
-    currentPrice: 299,
-    originalPrice: 349,
-    rating: 4.78,
-    reviewCount: 186,
-    showQuickView: true,
-  },
-  {
-    id: 7,
-    image: BS_IMG_3,
-    title: 'Daily Strobe Cream with SPF 50+ | Rose Gold',
-    currentPrice: 399,
-    originalPrice: 499,
-    rating: 4.57,
-    reviewCount: 134,
-  },
-  {
-    id: 8,
-    image: BS_IMG_4,
-    title: 'Prep & Glow Combo | Primer + Strobe Cream (Pink)',
-    currentPrice: 499,
-    originalPrice: 748,
-    rating: 4.71,
-    reviewCount: 59,
-  },
+  { id: 1, image: BS_IMG_1, title: 'BAE BAG CARAMEL CRUSH', currentPrice: 1699, originalPrice: 1999, rating: 4.6, reviewCount: 312, isBestseller: true },
+  { id: 2, image: BS_IMG_2, title: 'BAE BAG VINTAGE GOLD', currentPrice: 1799, originalPrice: 2199, rating: 4.6, reviewCount: 278, isBestseller: true },
+  { id: 3, image: BS_IMG_3, title: 'BAE BAG CHERRY ROUGE', currentPrice: 1799, originalPrice: 2199, rating: 4.6, reviewCount: 245, isBestseller: true },
+  { id: 4, image: BS_IMG_4, title: 'BAE BAG GOLD RUSH', currentPrice: 1799, originalPrice: 2199, rating: 4.6, reviewCount: 198, isBestseller: true },
 ];
 
 // ============================================
 // END OF EDITABLE SECTION
 // ============================================
 
-// Dummy review templates (mix of positive and negative) for images without reviews
+// Dummy review templates for images without reviews
 const dummyReviews = [
   {
     name: 'Priya Sharma',
     rating: 5,
-    title: 'Absolutely stunning!',
-    text: 'This kurta set is absolutely beautiful! The fabric quality is excellent and the fit is perfect. The embroidery work is so detailed and elegant. I received so many compliments when I wore it. Highly recommended!',
+    title: 'Absolutely stunning bag!',
+    text: 'This personalised bae bag is absolutely beautiful! The vegan leather quality is excellent and the personalised embossing is so precise and elegant. I received so many compliments. Highly recommended!',
     date: '1/20/2025',
     type: 'product'
   },
   {
     name: 'Anjali Mehta',
     rating: 4,
-    title: 'Great quality, minor sizing issue',
-    text: 'The kurta is well-made with good fabric quality. The design is elegant and the color is vibrant. However, the sizing runs slightly small, so I would suggest ordering one size up. Overall, a good purchase!',
+    title: 'Great quality, love the colour',
+    text: 'The bag is well-made with premium vegan leather. The design is elegant and the colour is vibrant and exactly as shown. The zipper hardware is smooth and sturdy. Overall, a great purchase!',
     date: '1/18/2025',
     type: 'product'
   },
   {
     name: 'Riya Patel',
     rating: 5,
-    title: 'Perfect for special occasions',
-    text: 'I bought this for a wedding and it was perfect! The fabric is premium quality, very comfortable to wear all day. The design is elegant and the fit is flattering. Worth every penny!',
+    title: 'Perfect gift for special occasions',
+    text: 'I bought this as a birthday gift and it was perfect! The packaging is premium, the gift box is magnetic and so luxurious. The personalised name tag added such a special touch. Worth every penny!',
     date: '1/15/2025',
     type: 'product'
   },
   {
     name: 'Kavya Reddy',
-    rating: 3,
-    title: 'Decent but could be better',
-    text: 'The kurta is okay but not exceptional. The fabric quality is decent but the stitching could be better. The color is nice but doesn\'t match the images exactly. It\'s wearable but not outstanding.',
+    rating: 4,
+    title: 'Good bag, great value',
+    text: 'The bae bag is good quality. The vegan leather feels premium and the satin lining inside is so soft. The personalisation was done neatly. Very satisfied with the purchase!',
     date: '1/12/2025',
     type: 'product'
   },
@@ -277,53 +167,65 @@ const dummyReviews = [
     name: 'Meera Singh',
     rating: 5,
     title: 'Exceeded my expectations!',
-    text: 'I was pleasantly surprised by the quality of this kurta set. The fabric is soft, the design is beautiful, and the fit is perfect. The dupatta is elegant and adds to the overall look. Very satisfied with my purchase!',
+    text: 'I was pleasantly surprised by the quality of the bag. The vegan leather is soft yet durable, the design is beautiful, and the personalised embossing looks stunning. The gift packaging is also very premium.',
     date: '1/10/2025',
     type: 'product'
   },
   {
     name: 'Sneha Verma',
-    rating: 2,
-    title: 'Not satisfied with the quality',
-    text: 'The kurta didn\'t meet my expectations. The fabric feels cheap and the stitching is not up to the mark. The color faded after first wash. Would not recommend this product.',
+    rating: 5,
+    title: 'Best personalised gift brand!',
+    text: 'Ordered for my sister\'s wedding and she absolutely loved it. The vegan leather quality is top notch and the personalised name on the bag makes it so special. Delivery was fast and packaging was elegant.',
     date: '1/08/2025',
     type: 'product'
   },
   {
     name: 'Divya Nair',
     rating: 4,
-    title: 'Good value for money',
-    text: 'This kurta set offers good value for the price. The fabric is comfortable and the design is trendy. The fit is decent though it could be better. Overall, a satisfactory purchase for the price point.',
+    title: 'Great value for money',
+    text: 'The bae bag offers great value for the price. The vegan leather looks trendy and feels premium. The cruelty-free material is a big plus for me. Overall, a very satisfactory purchase!',
     date: '1/05/2025',
     type: 'product'
   },
   {
     name: 'Pooja Mehta',
     rating: 5,
-    title: 'Love it! Perfect fit and quality',
-    text: 'This is one of the best kurtas I\'ve purchased online. The quality is excellent, the fit is perfect, and the design is so elegant. I\'ve already ordered another one in a different color!',
+    title: 'Love it! Perfect personalised bag',
+    text: 'This is one of the best personalised bags I\'ve purchased online. The vegan leather quality is excellent, the personalised embossing is perfect, and the design is so elegant. Already ordered another in a different colour!',
     date: '1/03/2025',
     type: 'product'
   },
   {
     name: 'Neha Kapoor',
-    rating: 3,
-    title: 'Average product',
-    text: 'The kurta is average quality. Nothing exceptional about it. The fabric is okay, the fit is decent, but the design is quite common. It\'s wearable but nothing special.',
+    rating: 4,
+    title: 'Nice everyday bag',
+    text: 'The bae bag is a great everyday carry. The vegan leather looks premium, the interior satin lining keeps things scratch-free, and the zipper is smooth. Exactly what I was looking for!',
     date: '12/30/2024',
     type: 'product'
   },
   {
     name: 'Aarti Desai',
     rating: 5,
-    title: 'Beautiful and comfortable',
-    text: 'I absolutely love this kurta! It\'s so comfortable to wear and the design is beautiful. The fabric quality is great and it looks elegant. Perfect for both casual and formal occasions.',
+    title: 'Beautiful and functional',
+    text: 'I absolutely love my personalised bae bag! It\'s so stylish and the vegan leather quality is great. The personalised embossing looks elegant. Perfect for both daily use and gifting occasions.',
     date: '12/28/2024',
     type: 'product'
   }
 ];
 
-const ShopifyProductPage = () => {
+const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
+  // Use passed product data when available, fall back to defaults
+  const productName    = passedProduct?.title         || PRODUCT_NAME;
+  const productPrice   = passedProduct?.currentPrice  || PRODUCT_PRICE;
+  const productOriginal= passedProduct?.originalPrice || PRODUCT_ORIGINAL_PRICE;
+  const productDiscount= passedProduct?.originalPrice
+    ? Math.round(((passedProduct.originalPrice - passedProduct.currentPrice) / passedProduct.originalPrice) * 100)
+    : PRODUCT_DISCOUNT;
+  const productImages  = passedProduct?.image
+    ? [passedProduct.image, ...PRODUCT_IMAGES]
+    : PRODUCT_IMAGES;
+  const productRating  = passedProduct?.rating        || 4.6;
+  const productReviews = passedProduct?.reviewCount   || 0;
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState('S');
   const [quantity, setQuantity] = useState(1);
@@ -338,8 +240,6 @@ const ShopifyProductPage = () => {
   const [reviewsToShow, setReviewsToShow] = useState(3);
   const [brandReviewsToShow, setBrandReviewsToShow] = useState(3);
   const [isBrandAISummaryExpanded, setIsBrandAISummaryExpanded] = useState(false);
-  const [selectedStore, setSelectedStore] = useState(null);
-  const [storeView, setStoreView] = useState('store-visit');
   const [reviewLikes, setReviewLikes] = useState({});
   const [reviewReplies, setReviewReplies] = useState({});
   const [expandedReviews, setExpandedReviews] = useState({});
@@ -375,84 +275,20 @@ const ShopifyProductPage = () => {
 
   // Instagram post URLs
   const instagramPosts = [
-    'https://www.instagram.com/p/DVvm6AokmlE/',
-    'https://www.instagram.com/p/DV0wEh-Em8E/',
-    'https://www.instagram.com/p/DVa_W9DE1DT/',
-    'https://www.instagram.com/p/DVnDGUSzPd1/',
-    'https://www.instagram.com/p/DT2k8G2iWzC/',
-    'https://www.instagram.com/p/DRj6CdPjJFI/',
-    'https://www.instagram.com/reel/DUVe7ZHCU7z/',
-    'https://www.instagram.com/p/DV_uRIsk1MQ/',
+    'https://www.instagram.com/p/DWBwnwzCGz-/',
+    'https://www.instagram.com/p/DV8evfAk8WK/',
+    'https://www.instagram.com/p/DVi06_pGDZ4/',
+    'https://www.instagram.com/p/DVYgmN_mOky/',
+    'https://www.instagram.com/p/DVONcAQkxKq/',
+    'https://www.instagram.com/p/DVGjQReEtZu/',
+    'https://www.instagram.com/p/DUuX_tMk8YK/',
+    'https://www.instagram.com/p/DUDiVtxk1et/',
+    'https://www.instagram.com/p/DTfbzsAE2kt/',
+    'https://www.instagram.com/p/DTS0wspE5sx/',
+    'https://www.instagram.com/p/DSC2COMkzyQ/',
+    'https://www.instagram.com/p/DU-tK8PkxVI/',
   ];
 
-  // Store locations data
-  const storeLocations = [
-    {
-      id: 'store-1',
-      name: 'Fashion Boutique – Downtown',
-      address: '123 Fashion Street, Downtown District',
-      hours: '10:00 AM – 9:00 PM',
-      image: storeImage1,
-      phone: '+1 (555) 123-4567'
-    },
-    {
-      id: 'store-2',
-      name: 'Style Hub – Shopping Plaza',
-      address: '456 Style Avenue, Shopping Plaza',
-      hours: '11:00 AM – 8:30 PM',
-      image: storeImage2,
-      phone: '+1 (555) 234-5678'
-    },
-    {
-      id: 'store-3',
-      name: 'Design Studio – Retail Center',
-      address: '789 Design Boulevard, Retail Center',
-      hours: '10:30 AM – 9:30 PM',
-      image: storeImage3,
-      phone: '+1 (555) 345-6789'
-    },
-    {
-      id: 'store-4',
-      name: 'Collection Store – Market Square',
-      address: '321 Collection Way, Market Square',
-      hours: '11:00 AM – 9:00 PM',
-      image: storeImage4,
-      phone: '+1 (555) 456-7890'
-    }
-  ];
-
-  const storeTabOptions = [
-    { value: 'in-store', label: 'In Store' },
-    { value: 'store-visit', label: 'Store Visit' }
-  ];
-
-  // Store visits data (using placeholder for now - can be updated with actual images)
-  const storeVisits = [
-    {
-      id: 'visit-1',
-      image: storeImage1,
-      caption: 'Customer feedback at our store',
-      badge: '@wordofmouth'
-    },
-    {
-      id: 'visit-2',
-      image: storeImage2,
-      caption: 'Festive look haul from our store',
-      badge: '@wordofmouth'
-    },
-    {
-      id: 'visit-3',
-      image: storeImage3,
-      caption: 'Client reviews live from the store',
-      badge: '@wordofmouth'
-    },
-    {
-      id: 'visit-4',
-      image: storeImage4,
-      caption: 'Happy customers at our store',
-      badge: '@wordofmouth'
-    }
-  ];
 
   // Load Instagram embed script
   useEffect(() => {
@@ -502,23 +338,13 @@ const ShopifyProductPage = () => {
   }, [showInstagramModal]);
 
   
-  // Product images - using images from assets/product folder
-  const productImages = PRODUCT_IMAGES;
+  // productImages already set from passedProduct above
 
-  // Customer review images - Using So True Product folder images
-  const customerReviewImages = [
-    stP1, stP2, stP3, stP4, stP5, stP6, stP7, stP8, stP9, stP10,
-    stP11, stP12, stP13, stP14, stP15, stP16, stP17, stP18, stP19, stP20,
-    stP1, stP2, stP3, stP4, stP5, stP6, stP7, stP8, stP9, stP10,
-    stP11, stP12, stP13, stP14, stP15, stP16, stP17, stP18, stP19, stP20,
-  ];
+  // Customer review images - Brand Images 1→12
+  const customerReviewImages = [...ST_PRODUCT_IMGS];
 
   // All review images (product + brand) for modal navigation
-  const allReviewImages = [
-    ...customerReviewImages,
-    stB1, stB2, stB3, stB4, stB5, stB6, stB7, stB8, stB9, stB10,
-    stB11, stB12, stB13, stB14, stB15, stB16, stB17, stB18, stB19, stB20,
-  ];
+  const allReviewImages = [...ST_PRODUCT_IMGS, ...ST_BRAND_IMGS];
 
   // Short reviews for carousel widget — from very_small + small entries in review.json
   const shortReviewMinutes = [10, 360, 1440, 5760, 30, 120, 2880, 720, 180, 4320, 60, 240, 480, 1200, 3600];
@@ -544,7 +370,7 @@ const ShopifyProductPage = () => {
       rating: r.rating,
       title: getReviewTitle(r.review),
       text: r.review,
-      images: [ST_PRODUCT_IMGS[(i * 2) % 20], ST_PRODUCT_IMGS[(i * 2 + 1) % 20]],
+      images: [ST_PRODUCT_IMGS[(i * 2) % 12], ST_PRODUCT_IMGS[(i * 2 + 1) % 12]],
     }));
 
   // Brand Reviews — from 'mid' type entries in review.json
@@ -559,7 +385,7 @@ const ShopifyProductPage = () => {
       rating: r.rating,
       title: getReviewTitle(r.review),
       text: r.review,
-      images: [ST_BRAND_IMGS[(i * 2) % 20], ST_BRAND_IMGS[(i * 2 + 1) % 20]],
+      images: [ST_BRAND_IMGS[(i * 2) % 12], ST_BRAND_IMGS[(i * 2 + 1) % 12]],
     }));
 
   // Handle like functionality
@@ -780,7 +606,7 @@ const ShopifyProductPage = () => {
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium text-gray-900">
-            <span className="font-semibold text-[#A71499]">{socialProofItems[socialProofIndex].name}</span> {socialProofItems[socialProofIndex].action}
+            <span className="font-semibold text-[#351F31]">{socialProofItems[socialProofIndex].name}</span> {socialProofItems[socialProofIndex].action}
           </p>
           <p className="text-xs text-gray-500 mt-0.5">{socialProofItems[socialProofIndex].time}</p>
         </div>
@@ -790,8 +616,22 @@ const ShopifyProductPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 relative">
-      <ShopifyHeader brandName={BRAND_NAME} />
-      
+
+      {/* Back to Home */}
+      {onHomeClick && (
+        <div className="w-full bg-white border-b border-gray-100 px-4 py-2">
+          <button
+            onClick={onHomeClick}
+            className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 12H5M12 5l-7 7 7 7"/>
+            </svg>
+            Back to Home
+          </button>
+        </div>
+      )}
+
       {/* Product Video - Draggable floating card */}
       {showVideoCard && (
         <div
@@ -870,7 +710,7 @@ const ShopifyProductPage = () => {
                 <div className="aspect-square flex items-center justify-center p-8">
                   <img 
                     src={productImages[selectedImage] || productImages[0]} 
-                    alt={PRODUCT_NAME}
+                    alt={productName}
                     className="w-full h-full object-contain cursor-zoom-in transition-transform group-hover:scale-105"
                   />
                   
@@ -882,8 +722,8 @@ const ShopifyProductPage = () => {
                   </div>
                   
                   {/* Save Badge */}
-                  <div className="absolute top-4 left-4 bg-[#A71499] text-white text-sm font-semibold px-3 py-1 rounded-lg">
-                    SAVE 50%
+                  <div className="absolute top-4 left-4 bg-[#351F31] text-white text-sm font-semibold px-3 py-1 rounded-lg">
+                    SAVE {productDiscount}%
                   </div>
                 </div>
               </div>
@@ -902,7 +742,7 @@ const ShopifyProductPage = () => {
                   >
                     <img 
                       src={img} 
-                      alt={`${PRODUCT_NAME} view ${index + 1}`}
+                      alt={`${productName} view ${index + 1}`}
                       className="w-full h-full object-contain p-1"
                     />
                   </button>
@@ -912,239 +752,167 @@ const ShopifyProductPage = () => {
 
 
             {/* Product Details Section */}
-            <div className="flex flex-col gap-4">
-              {/* SKU */}
-              <div className="text-sm text-gray-600">
-                SKU: {PRODUCT_SKU}
+            <div className="flex flex-col gap-5 pt-2">
+
+              {/* Rating + sold count row — above title */}
+              {/* Title */}
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">{productName}</h1>
+
+              {/* Rating + sold count row — below title */}
+              <div className="flex items-center gap-2.5 flex-wrap">
+                {/* Half-star aware star row */}
+                <div className="flex items-center gap-1">
+                  {[1,2,3,4,5].map(i => {
+                    const full = i <= Math.floor(productRating);
+                    const half = !full && i === Math.ceil(productRating) && productRating % 1 >= 0.3;
+                    const clipId = `star-clip-${i}`;
+                    return (
+                      <svg key={i} width="18" height="18" viewBox="0 0 24 24" style={{ filter: full || half ? 'drop-shadow(0 1px 1px rgba(245,158,11,0.4))' : 'none' }}>
+                        <defs>{half && <clipPath id={clipId}><rect x="0" y="0" width="12" height="24"/></clipPath>}</defs>
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#e5e7eb"/>
+                        {(full || half) && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#f59e0b" clipPath={half ? `url(#${clipId})` : undefined}/>}
+                      </svg>
+                    );
+                  })}
+                  <span className="text-sm font-bold text-gray-800 ml-1">{productRating}</span>
+                </div>
+                <span className="w-px h-4 bg-gray-300 rounded"/>
+                <span className="text-sm text-gray-500"><span className="font-semibold text-gray-700">{productReviews > 0 ? productReviews : 300}</span> Reviews</span>
+                <span className="w-px h-4 bg-gray-300 rounded"/>
+                <span className="text-sm text-gray-500 flex items-center gap-1">
+                  <svg className="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd"/></svg>
+                  <span className="font-semibold text-gray-700">684</span> Sold this week
+                </span>
               </div>
 
-              {/* Product Title */}
-              <h1 className="text-2xl md:text-3xl font-normal leading-tight text-gray-900">
-                {PRODUCT_NAME}
-              </h1>
-              
-              {/* Social Proof Badge */}
-              <div className="my-4">
-                <SocialProofBadge rating={4.5} reviewCount={124} soldThisWeek={235} />
-              </div>
-
-              {/* Feature Tags */}
-              <div className="flex flex-wrap gap-2 md:gap-2.5 mb-4 md:mb-5">
-                {[
-                  { text: 'Perfect Fit' },
-                  { text: 'Premium Quality Fabric' },
-                  { text: 'Elegant Design' },
-                  { text: 'Comfortable Wear' }
-                ].map((benefit, index) => (
-                  <span key={index} className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-normal" style={{ backgroundColor: 'rgba(167,20,153,0.08)', color: '#A71499', border: '1px solid rgba(167,20,153,0.2)' }}>
-                    <svg className="w-2.5 h-2.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit.text}
+              {/* Keyword pills — below rating */}
+              <div className="flex flex-wrap gap-2">
+                {['Personalised', 'Vegan Leather', 'Gift Ready', 'Handcrafted', 'Travel Friendly'].map(kw => (
+                  <span key={kw} className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#f5f0f4] text-[#5c3a52] border border-[#e8d8e4]">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
+                    {kw}
                   </span>
                 ))}
               </div>
-              
-              {/* Pricing Section */}
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-3 flex-wrap">
-                  <span className="text-lg md:text-xl text-gray-500 line-through">
-                    Rs. {PRODUCT_ORIGINAL_PRICE.toLocaleString('en-IN')}.00
-                  </span>
-                  <span className="text-2xl md:text-3xl font-semibold text-gray-900">
-                    Rs. {PRODUCT_PRICE.toLocaleString('en-IN')}.00
-                  </span>
-                  <span className="px-2 py-1 bg-green-600 text-white text-sm font-semibold rounded">
-                    {PRODUCT_DISCOUNT}% off
-                  </span>
-                </div>
-                
-                {/* Payment Options */}
-                <div className="flex flex-col gap-1 text-sm text-gray-700">
-                  <p>or 3 Monthly Payments of Rs.{Math.round(PRODUCT_PRICE / 3).toLocaleString('en-IN')}</p>
-                  <p>0% EMI on UPI • snapmint Buy on EMI</p>
-                </div>
+
+              {/* Price */}
+              <div className="flex items-baseline gap-3 flex-wrap">
+                <span className="text-2xl md:text-3xl font-bold text-gray-900">Rs. {productPrice.toLocaleString('en-IN')}.00</span>
+                <span className="text-lg line-through" style={{ color: '#c0392b' }}>Rs. {productOriginal.toLocaleString('en-IN')}.00</span>
               </div>
 
-              {/* Size Selection */}
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-gray-900">Size:</span>
-                  <span className="text-sm text-gray-700">{selectedSize || 'S'}</span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {PRODUCT_SIZES.map((size) => (
+              {/* Save badge */}
+              <div className="inline-flex">
+                <span className="px-3 py-1.5 text-sm font-semibold text-white rounded" style={{ backgroundColor: '#2d6a2d' }}>
+                  SAVE Rs. {(productOriginal - productPrice).toLocaleString('en-IN')}.00 ({productDiscount}% OFF)
+                </span>
+              </div>
+
+              {/* Colour swatches */}
+              <div>
+                <p className="text-xs font-semibold text-gray-700 tracking-widest mb-3">AVAILABLE IN {productImages.length} COLOURS:</p>
+                <div className="flex gap-2 flex-wrap">
+                  {productImages.map((img, i) => (
                     <button
-                      key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`px-4 py-2 text-sm font-medium border-2 rounded transition-all ${
-                        (selectedSize || 'S') === size
-                          ? 'border-[#A71499] bg-[#fdf0fc] text-[#A71499]'
-                          : 'border-gray-300 text-gray-700 hover:border-gray-400'
-                      }`}
+                      key={i}
+                      onClick={() => setSelectedImage(i)}
+                      className={`w-14 h-14 rounded overflow-hidden border-2 transition-all ${selectedImage === i ? 'border-gray-900' : 'border-gray-200 hover:border-gray-400'}`}
                     >
-                      {size}
+                      <img src={img} alt={`Colour ${i+1}`} className="w-full h-full object-cover"/>
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Quantity Selector */}
-              <div className="flex items-center gap-4">
-                <span className="text-sm font-medium text-gray-900">Quantity</span>
-                <div className="flex items-center gap-2 border border-gray-300 rounded">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-3 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
-                  >
-                    -
-                  </button>
-                  <span className="px-4 py-2 text-gray-900 font-medium min-w-[3rem] text-center">
-                    {quantity}
-                  </span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="px-3 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-
-              {/* Size Chart Link */}
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              {/* Name on bag info */}
+              <div className="flex items-start gap-2 text-sm text-gray-600">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
                 </svg>
-                <button className="text-sm text-gray-700 hover:text-gray-900 transition-colors underline">
-                  Size Chart
+                <span>Please enter the name you'd like on your bag. If you have ordered more than 1, separate each name with a comma.</span>
+              </div>
+
+              {/* Name input */}
+              <input
+                type="text"
+                placeholder="NAME ON THE BAG"
+                className="w-full border border-gray-300 rounded px-4 py-4 text-sm text-gray-500 tracking-widest focus:outline-none focus:border-gray-600 bg-white"
+              />
+
+              {/* Add-ons */}
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>
+                  </svg>
+                  <span className="text-sm font-bold text-gray-900 tracking-widest">ADD-ONS</span>
+                </div>
+                {[
+                  { label: 'Gift Wrap Your Order', price: 50, img: 'https://thebaeshop.com/cdn/shop/files/2_6fa6df98-2639-4302-9159-e1569bbbe8bb.jpg?v=1771311357&width=1080' },
+                  { label: "Add A Photo & Message (We'll reach out to you for same once you order.)", price: 50, img: 'https://thebaeshop.com/cdn/shop/files/12_df44ffa7-3472-4888-9f08-0566995b2cda.jpg?v=1771311291&width=2000' },
+                ].map((addon, i) => (
+                  <div key={i} className="flex items-center gap-3 py-3 border-b border-gray-100 last:border-0">
+                    <img src={addon.img} alt={addon.label} className="w-14 h-14 rounded object-cover flex-shrink-0"/>
+                    <span className="flex-1 text-sm text-gray-800">{addon.label}</span>
+                    <span className="text-sm font-semibold text-gray-900 mr-3">₹{addon.price}.00</span>
+                    <input type="checkbox" className="w-5 h-5 rounded border-gray-400 accent-gray-800 cursor-pointer flex-shrink-0"/>
+                  </div>
+                ))}
+              </div>
+
+              {/* Quantity + Add to Cart */}
+              <div className="flex gap-3 items-stretch">
+                <div className="flex items-center border border-gray-300 rounded">
+                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-4 py-3 text-gray-600 hover:bg-gray-100 text-lg">‹</button>
+                  <span className="px-5 text-base font-medium text-gray-900">{quantity}</span>
+                  <button onClick={() => setQuantity(quantity + 1)} className="px-4 py-3 text-gray-600 hover:bg-gray-100 text-lg">›</button>
+                </div>
+                <button className="flex-1 py-3 text-white font-bold text-sm uppercase tracking-widest rounded transition-opacity hover:opacity-90" style={{ backgroundColor: '#8B1A3A' }}>
+                  ADD TO CART
                 </button>
               </div>
 
-              {/* Recent Reviews Carousel - Compact Pill */}
-              {shortReviews.length > 0 && (
-                <div className="border rounded-full px-3 py-2 mb-4 relative overflow-hidden inline-block max-w-md" style={{ backgroundColor: 'rgba(167, 20, 153, 0.06)', borderColor: 'rgba(167, 20, 153, 0.2)' }}>
-                  <div className="relative min-h-[40px] flex items-center">
-                    {shortReviews.map((review, index) => (
-                      <div
-                        key={review.id}
-                        className={`absolute inset-0 transition-all duration-500 ease-in-out flex items-center ${
-                          index === currentReviewIndex
-                            ? 'opacity-100 translate-x-0'
-                            : index < currentReviewIndex
-                            ? 'opacity-0 -translate-x-full'
-                            : 'opacity-0 translate-x-full'
-                        }`}
-                      >
-                        <div className="flex items-center gap-2 w-full">
-                          {/* Comment Icon */}
-                          <div className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(167, 20, 153, 0.1)' }}>
-                            <svg className="w-7 h-7" fill="#A71499" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-semibold text-gray-900 truncate">{review.name}</span>
-                          {review.verified && (
-                                <svg className="w-3 h-3 text-blue-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                          )}
-                              <span className="text-[10px] text-gray-500 ml-auto shrink-0">{getRelativeTime(review.minutesAgo)}</span>
-                        </div>
-                            <p className="text-xs text-gray-700 leading-tight line-clamp-1 mt-0.5">{review.text}</p>
-                          </div>
-                      </div>
+              {/* Promo banner */}
+              <div className="px-4 py-3 rounded text-sm text-gray-700" style={{ backgroundColor: '#f0eaf5' }}>
+                5% off on your first order. Use code <strong>FIRSTGIFT</strong>. Extra 5% off on all pre-paid orders.
+              </div>
+
+              {/* Free shipping */}
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-gray-700 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8zM5.5 19.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM18.5 19.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+                </svg>
+                <span className="text-sm font-bold text-gray-900">Free Shipping. Ships within 24–48 hours.</span>
+              </div>
+
+              {/* Accordion */}
+              {[
+                { key: 'details', label: 'Product Details', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2', content: PRODUCT_DESCRIPTION },
+                { key: 'shipping', label: 'Shipping Details', icon: 'M1 3h15v13H1zM16 8h4l3 3v5h-7V8z', content: 'Free shipping on all orders. Ships within 24–48 hours. Express delivery available for metro cities.' },
+                { key: 'returns', label: 'Returns & Exchanges', icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15', content: '7-day hassle-free returns. Item must be unused and in original packaging.' },
+              ].map(({ key, label, icon, content }) => (
+                <div key={key} className="border-t border-gray-200">
+                  <button
+                    onClick={() => setIsDescriptionOpen(isDescriptionOpen === key ? null : key)}
+                    className="w-full flex items-center justify-between py-4 text-sm font-semibold text-gray-900"
+                  >
+                    <div className="flex items-center gap-3">
+                      <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d={icon}/>
+                      </svg>
+                      {label}
                     </div>
-                  ))}
+                    <svg className={`w-5 h-5 text-gray-500 transition-transform ${isDescriptionOpen === key ? 'rotate-45' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16M4 12h16"/>
+                    </svg>
+                  </button>
+                  {isDescriptionOpen === key && (
+                    <div className="pb-4 text-sm text-gray-600">{content}</div>
+                  )}
                 </div>
-                </div>
-              )}
+              ))}
+              <div className="border-t border-gray-200" />
 
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-3">
-                <button className="w-full py-3 px-6 bg-black text-white rounded font-semibold text-sm uppercase hover:bg-gray-800 transition-colors">
-                  ADD TO BAG
-                </button>
-                <button className="w-full py-3 px-6 bg-black text-white rounded font-semibold text-sm uppercase hover:bg-gray-800 transition-colors">
-                  BUY IT NOW
-                </button>
-              </div>
-
-              {/* Promotional Banner */}
-              <div className="bg-green-600 text-white px-4 py-2 rounded text-sm font-medium text-center">
-                Get Additional 5% discount
-              </div>
-
-              {/* Collapsible Shipping Information */}
-              <div className="border-t border-gray-200 pt-4">
-                <button
-                  onClick={() => setIsShippingOpen(!isShippingOpen)}
-                  className="w-full flex items-center justify-between py-3 text-sm font-semibold text-gray-900 hover:text-gray-700 transition-colors"
-                >
-                  <span>SHIPPING INFORMATION</span>
-                  <svg 
-                    className={`w-5 h-5 transition-transform ${isShippingOpen ? 'rotate-180' : ''}`}
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {isShippingOpen && (
-                  <div className="pb-4 text-sm text-gray-600">
-                    <p>All products are ready to ship and are shipped within 24-48 hours. Free international shipping available for orders above Rs 20,000.</p>
-                  </div>
-                )}
-              </div>
-
-              {/* Collapsible Description */}
-              <div className="border-t border-gray-200 pt-4">
-                <button
-                  onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
-                  className="w-full flex items-center justify-between py-3 text-sm font-semibold text-gray-900 hover:text-gray-700 transition-colors"
-                >
-                  <span>DESCRIPTION</span>
-                  <svg 
-                    className={`w-5 h-5 transition-transform ${isDescriptionOpen ? 'rotate-180' : ''}`}
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {isDescriptionOpen && (
-                  <div className="pb-4 text-sm text-gray-600">
-                    <p>{PRODUCT_DESCRIPTION}</p>
-                  </div>
-                )}
-              </div>
-
-
-              {/* Social Sharing */}
-              <div className="flex items-center gap-6 pt-4 border-t border-gray-200">
-                <button className="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900 transition-colors">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                  <span>Share</span>
-                </button>
-                <button className="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900 transition-colors">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482c0 .39.045.765.127 1.124C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                  </svg>
-                  <span>Tweet</span>
-                </button>
-                <button className="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900 transition-colors">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.487.535 6.624 0 11.99-5.367 11.99-11.987C23.97 5.39 18.592.026 12.017.026L12.017 0z"/>
-                  </svg>
-                  <span>Pin it</span>
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -1152,10 +920,193 @@ const ShopifyProductPage = () => {
 
       {/* PDP Banner Images */}
       <div className="w-full bg-white">
-        <img src={pdp1} alt="" className="w-full block" />
-        <img src={pdp2} alt="" className="w-full block" />
-        <img src={pdp3} alt="" className="w-full block" />
+        <img src={product1} alt="" className="w-full block" />
+        <img src={product2} alt="" className="w-full block" />
       </div>
+
+      {/* Videos Section */}
+      {(() => {
+        const PDP_VIDEOS = [
+          'https://static.zegsuapps.com/user-data/instagenie/fcf16e7602400ff148106a4823cf11c8f36a49f6.mp4',
+          'https://static.zegsuapps.com/user-data/instagenie/ea61e7f228905000ee6a0e1eec4ae4228b334414.mp4',
+          'https://static.zegsuapps.com/user-data/instagenie/b0eed95e675c0254b1c4e1a5835bb9efae1de7b3.mp4',
+          'https://static.zegsuapps.com/user-data/instagenie/18d42e8ff21548957ccc45ca4dc1711c4889e8ac.mp4',
+          'https://static.zegsuapps.com/user-data/instagenie/bf98230ee1c9d00319d98ef61cde61afc2efbd63.mp4',
+          'https://static.zegsuapps.com/user-data/instagenie/02690b7ae3a0bcf8590cae2454cbd864ae32a23a.mp4',
+        ];
+
+        const VideoSection = () => {
+          const [activeVideo, setActiveVideo] = React.useState(null);
+          const modalVideoRef = React.useRef(null);
+          const touchStartX = React.useRef(null);
+
+          React.useEffect(() => {
+            if (activeVideo === null) return;
+            const v = modalVideoRef.current;
+            if (v) { v.currentTime = 0; v.play().catch(() => {}); }
+          }, [activeVideo]);
+
+          React.useEffect(() => {
+            const onKey = (e) => {
+              if (activeVideo === null) return;
+              if (e.key === 'Escape') setActiveVideo(null);
+              if (e.key === 'ArrowRight') setActiveVideo(i => (i + 1) % PDP_VIDEOS.length);
+              if (e.key === 'ArrowLeft') setActiveVideo(i => (i - 1 + PDP_VIDEOS.length) % PDP_VIDEOS.length);
+            };
+            window.addEventListener('keydown', onKey);
+            return () => window.removeEventListener('keydown', onKey);
+          }, [activeVideo]);
+
+          return (
+            <>
+              <div className="w-full py-12" style={{ background: '#1a0f18' }}>
+                <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+                  {/* Header */}
+                  <div className="flex items-end justify-between mb-8">
+                    <div>
+                      <p className="text-xs font-semibold tracking-[0.25em] mb-2" style={{ color: '#c9a0b8' }}>REAL PEOPLE · REAL BAGS</p>
+                      <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">See It In The Wild</h2>
+                    </div>
+                    <span className="hidden md:flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border" style={{ color: '#c9a0b8', borderColor: 'rgba(201,160,184,0.3)' }}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                      @thebaeshop.xoxo
+                    </span>
+                  </div>
+
+                  {/* Scrollable video row */}
+                  <div className="flex gap-4 overflow-x-auto pb-4" style={{ scrollbarWidth: 'none' }}>
+                    {PDP_VIDEOS.map((src, idx) => (
+                      <div
+                        key={idx}
+                        className="relative flex-shrink-0 rounded-2xl overflow-hidden group cursor-pointer"
+                        style={{ width: '160px', height: '285px', background: '#2a1525' }}
+                        onClick={() => setActiveVideo(idx)}
+                      >
+                        <video
+                          src={src}
+                          className="w-full h-full object-cover"
+                          muted
+                          autoPlay
+                          playsInline
+                          preload="auto"
+                          loop
+                        />
+                        {/* Gradient overlay */}
+                        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(26,15,24,0.75) 0%, transparent 50%)' }} />
+                        {/* Bottom label */}
+                        <div className="absolute bottom-3 left-3 right-3">
+                          <span className="text-[10px] font-semibold text-white/80 tracking-wide">#{idx + 1} The Bae Shop</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Full-screen video modal */}
+              {activeVideo !== null && (
+                <div
+                  className="fixed inset-0 z-[999] flex items-center justify-center"
+                  style={{ background: 'rgba(0,0,0,0.92)' }}
+                  onClick={() => setActiveVideo(null)}
+                >
+                  {/* Video container */}
+                  <div
+                    className="relative"
+                    style={{ width: 'min(360px, 90vw)', height: 'min(640px, 85vh)' }}
+                    onClick={e => e.stopPropagation()}
+                    onTouchStart={e => { touchStartX.current = e.touches[0].clientX; }}
+                    onTouchEnd={e => {
+                      if (touchStartX.current === null) return;
+                      const diff = touchStartX.current - e.changedTouches[0].clientX;
+                      if (Math.abs(diff) > 50) {
+                        setActiveVideo(i => diff > 0 ? (i + 1) % PDP_VIDEOS.length : (i - 1 + PDP_VIDEOS.length) % PDP_VIDEOS.length);
+                      }
+                      touchStartX.current = null;
+                    }}
+                  >
+                    <video
+                      ref={modalVideoRef}
+                      key={activeVideo}
+                      src={PDP_VIDEOS[activeVideo]}
+                      className="w-full h-full object-cover rounded-2xl"
+                      autoPlay
+                      playsInline
+                      loop
+                      controls
+                      style={{ background: '#000' }}
+                    />
+
+                    {/* Close */}
+                    <button
+                      className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center z-10"
+                      style={{ background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(6px)' }}
+                      onClick={() => setActiveVideo(null)}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                    </button>
+
+                    {/* Prev */}
+                    <button
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center z-10"
+                      style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(6px)' }}
+                      onClick={() => setActiveVideo(i => (i - 1 + PDP_VIDEOS.length) % PDP_VIDEOS.length)}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+
+                    {/* Next */}
+                    <button
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center z-10"
+                      style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(6px)' }}
+                      onClick={() => setActiveVideo(i => (i + 1) % PDP_VIDEOS.length)}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+
+                    {/* Dots */}
+                    <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5">
+                      {PDP_VIDEOS.map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setActiveVideo(i)}
+                          className="rounded-full transition-all"
+                          style={{ width: i === activeVideo ? '20px' : '6px', height: '6px', background: i === activeVideo ? 'white' : 'rgba(255,255,255,0.4)' }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          );
+        };
+
+        return <VideoSection />;
+      })()}
+
+      {/* Best Sellers Section */}
+      <section className="w-full py-12 md:py-16 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#8B4513] tracking-wide">
+              SHOP OUR BEST SELLERS
+            </h2>
+          </div>
+          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
+            <div className="flex gap-4 md:gap-6 min-w-max pb-2">
+              {bestSellerProducts.slice(0, 4).map((product) => (
+                <div
+                  key={product.id}
+                  className="w-[90vw] md:w-[380px] lg:w-[280px] flex-shrink-0 cursor-pointer"
+                >
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Reviews Section - WOM Style */}
       <div id="reviews-section" className="bg-white w-full py-12 md:py-16">
@@ -1171,49 +1122,36 @@ const ShopifyProductPage = () => {
                 <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
                   {/* Rating Score Card */}
                   <div className="text-center mb-6">
-                    <div 
+                    {/* Circle ring — 4.8/5 = 96% fill */}
+                    <div
                       className="w-32 h-32 rounded-full flex items-center justify-center mb-4 relative mx-auto"
                       style={{
-                        background: `conic-gradient(from 225deg, #A71499 0%, #A71499 65%, rgba(167, 20, 153, 0.18) 65%)`,
-                        boxShadow: `0 18px 35px rgba(167, 20, 153, 0.18)`
+                        background: `conic-gradient(#7a4f6d 0% 96%, #ede0eb 96% 100%)`,
+                        boxShadow: '0 8px 24px rgba(122,79,109,0.22)'
                       }}
                     >
-                      <div 
-                        className="absolute inset-2 rounded-full flex items-center justify-center"
-                        style={{
-                          background: '#ffffff',
-                          boxShadow: 'inset 0 1px 4px rgba(255, 255, 255, 0.6)'
-                        }}
-                      >
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-4xl font-semibold" style={{ color: '#8B6F5E' }}>4.8</span>
-                          <span className="text-lg font-medium" style={{ color: '#A6897A' }}>/5</span>
+                      <div className="absolute inset-[6px] rounded-full bg-white flex items-center justify-center">
+                        <div className="flex items-baseline gap-0.5">
+                          <span className="text-3xl font-bold" style={{ color: '#7a4f6d' }}>4.8</span>
+                          <span className="text-sm font-medium text-gray-400">/5</span>
                         </div>
                       </div>
                     </div>
-                    <div className="flex justify-center mb-2">
-                      {[...Array(5)].map((_, index) => (
-                        <svg 
-                          key={index} 
-                          className="w-5 h-5" 
-                          style={{ 
-                            fill: '#A71499',
-                            filter: 'drop-shadow(0 1px 2px rgba(167, 20, 153, 0.3))'
-                          }} 
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    {/* Stars */}
+                    <div className="flex justify-center gap-0.5 mb-2">
+                      {[1,2,3,4,5].map(i => (
+                        <svg key={i} width="18" height="18" viewBox="0 0 24 24" style={{ filter: 'drop-shadow(0 1px 1px rgba(245,158,11,0.4))' }}>
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill={i <= 4 ? '#f59e0b' : '#e5e7eb'}/>
+                          {i === 5 && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77V2z" fill="#f59e0b"/>}
                         </svg>
                       ))}
                     </div>
-                    <p className="text-sm text-gray-600 mb-3">
-                      Based on <strong>147</strong> verified reviews
-                    </p>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs border" style={{ backgroundColor: 'rgba(167, 20, 153, 0.1)', color: '#A71499', borderColor: 'rgba(167, 20, 153, 0.3)' }}>
+                    <p className="text-sm text-gray-500 mb-3">Based on <strong className="text-gray-800">147</strong> reviews</p>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border" style={{ backgroundColor: 'rgba(53,31,49,0.07)', color: '#351F31', borderColor: 'rgba(53,31,49,0.2)' }}>
                       <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                       </svg>
-                      <span>93% would buy again</span>
+                      93% would buy again
                     </div>
                   </div>
 
@@ -1228,18 +1166,19 @@ const ShopifyProductPage = () => {
                     ].map((item) => (
                       <div key={item.stars} className="flex items-center gap-2 sm:gap-3">
                         <div className="flex items-center gap-1 text-xs text-gray-600 w-8 flex-shrink-0">
-                          <svg className="w-3 h-3" style={{ color: '#A71499' }} fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          <svg className="w-3 h-3" fill="#f59e0b" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                           </svg>
                           <span>{item.stars}</span>
                         </div>
-                        <div className="flex-1 min-w-0 h-2 bg-gray-200 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full rounded-full transition-all duration-300"
-                            style={{ 
+                        <div className="flex-1 min-w-0 h-3.5 bg-gray-200 overflow-hidden" style={{ borderRadius: '1px' }}>
+                          <div
+                            className="h-full transition-all duration-300"
+                            style={{
                               width: `${item.percent}%`,
                               minWidth: '2px',
-                              backgroundColor: '#A71499'
+                              backgroundColor: '#7a4f6d',
+                              borderRadius: '1px'
                             }}
                           />
                         </div>
@@ -1275,12 +1214,12 @@ const ShopifyProductPage = () => {
                             <path d="M12 2.69c-2.5 0-4.5 2-4.5 4.5 0 1.5.7 2.8 1.7 3.7L12 18l2.8-7.1c1-0.9 1.7-2.2 1.7-3.7 0-2.5-2-4.5-4.5-4.5z" />
                           </svg>
                         ), 
-                        label: 'Say fabric quality is excellent', 
-                        value: '92%' 
+                        label: 'Love the vegan leather quality',
+                        value: '92%'
                       },
                     ].map((stat, idx) => (
                       <div key={idx} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white" style={{ color: '#A71499' }}>
+                        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white" style={{ color: '#351F31' }}>
                           {stat.icon}
                         </div>
                         <div className="flex-1">
@@ -1304,7 +1243,7 @@ const ShopifyProductPage = () => {
                     ? 'bg-white shadow-sm text-gray-900' 
                     : 'hover:text-gray-900'
                   }`}
-                  style={{ color: activeTab === 'product' ? undefined : '#A71499' }}
+                  style={{ color: activeTab === 'product' ? undefined : '#351F31' }}
                   onClick={() => setActiveTab('product')}
                 >
                   Product Reviews
@@ -1315,24 +1254,10 @@ const ShopifyProductPage = () => {
                     ? 'bg-white shadow-sm text-gray-900' 
                     : 'hover:text-gray-900'
                   }`}
-                  style={{ color: activeTab === 'brand' ? undefined : '#A71499' }}
+                  style={{ color: activeTab === 'brand' ? undefined : '#351F31' }}
                   onClick={() => setActiveTab('brand')}
                 >
                   Brand Reviews
-                </button>
-                <button 
-                  className={`flex-1 py-3 px-6 rounded-md text-sm font-medium transition-all ${
-                    activeTab === 'store' 
-                    ? 'bg-white shadow-sm text-gray-900' 
-                    : 'hover:text-gray-900'
-                  }`}
-                  style={{ color: activeTab === 'store' ? undefined : '#A71499' }}
-                  onClick={() => {
-                    setActiveTab('store');
-                    setStoreView('store-visit');
-                  }}
-                >
-                  Our Stores
                 </button>
               </div>
 
@@ -1345,7 +1270,7 @@ const ShopifyProductPage = () => {
                       <div className="flex items-center gap-2">
                         <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wider">AI INSIGHT</h3>
                       </div>
-                      <button className="px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(167, 20, 153, 0.1)', color: '#A71499' }}>Verified reviews</button>
+                      <button className="px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(53, 31, 49, 0.1)', color: '#351F31' }}>Verified reviews</button>
                     </div>
                     
                     <h4 className="text-xl font-bold text-gray-900 mb-2">Customers say</h4>
@@ -1353,13 +1278,13 @@ const ShopifyProductPage = () => {
                     <p className="text-gray-700 leading-relaxed mb-2 text-base">
                       {isAISummaryExpanded ? (
                         <>
-                          Customers love how this kurta fits perfectly and flatters all body types. The premium fabric quality and elegant design make it ideal for various occasions. The kurta drapes beautifully and maintains its shape throughout the day, making it perfect for both casual and formal events. Many customers appreciate the attention to detail in the handwork on the yoke and the way the fabric feels against the skin.
-                          <button onClick={() => setIsAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#A71499' }}>Read less</button>
+                          Customers love the personalised embossing and premium vegan leather quality of The Bae Shop bags. The name customisation is consistently praised for being precise and elegant. Many customers highlight how well the bags work as gifts — the magnetic gift box and personalised tag make unboxing a special experience. The satin-lined interior, sturdy metal zippers, and water-resistant exterior are frequently mentioned as standout features that make these bags feel truly luxurious.
+                          <button onClick={() => setIsAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#351F31' }}>Read less</button>
                         </>
                       ) : (
                         <>
-                          Customers love how this kurta fits perfectly and flatters all body types. The premium fabric quality and elegant design make it ideal for various occasions.
-                          <button onClick={() => setIsAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#A71499' }}>Read more</button>
+                          Customers love the personalised embossing and premium vegan leather quality of The Bae Shop bags. The name customisation is consistently praised for being precise and elegant.
+                          <button onClick={() => setIsAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#351F31' }}>Read more</button>
                         </>
                       )}
                     </p>
@@ -1372,9 +1297,9 @@ const ShopifyProductPage = () => {
                     {/* Frequently Mentioned */}
                     <div>
                       <p className="text-[11px] font-medium text-gray-400 mb-3 uppercase tracking-widest">Customers Frequently Mention</p>
-                      <div className="flex flex-wrap gap-2">
-                        {['Perfect Fit', 'Premium Quality', 'Elegant Design', 'Comfortable Wear', 'Flattering Silhouette'].map((item, index) => (
-                          <span key={index} className="text-xs px-3 py-1.5 rounded-full font-medium" style={{ background: 'rgba(167,20,153,0.07)', color: '#A71499', border: '1px solid rgba(167,20,153,0.18)', letterSpacing: '0.02em' }}>
+                      <div className="flex flex-wrap gap-x-4 gap-y-1.5">
+                        {['Personalised Embossing', 'Vegan Leather', 'Gift Ready', 'Premium Quality', 'Satin Lining'].map((item, index) => (
+                          <span key={index} className="text-xs font-semibold" style={{ color: '#7a4f6d' }}>
                             {item}
                           </span>
                         ))}
@@ -1442,21 +1367,23 @@ const ShopifyProductPage = () => {
                           </div>
                         ))}
                         {customerReviewImages.length > 6 && (
-                          <div 
-                            className="relative rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity bg-gray-100 flex items-center justify-center flex-shrink-0"
+                          <div
+                            className="relative rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0"
                             onClick={() => {
                               setGridModalImages(customerReviewImages);
                               setGridModalReview(null);
                               setIsGridModalOpen(true);
                             }}
-                            style={{ 
-                              width: '100px',
-                              height: '100px',
-                            }}
+                            style={{ width: '100px', height: '100px' }}
                           >
-                            <div className="text-center p-2">
-                              <div className="text-xs font-semibold text-gray-700">+{customerReviewImages.length - 6}</div>
-                              <div className="text-[10px] text-gray-500 mt-0.5">View all</div>
+                            <img
+                              src={customerReviewImages[6]}
+                              alt="more"
+                              style={{ width: '100px', height: '100px', objectFit: 'cover', display: 'block' }}
+                            />
+                            <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ backgroundColor: 'rgba(53,31,49,0.55)' }}>
+                              <div className="text-sm font-bold text-white">+{customerReviewImages.length - 6}</div>
+                              <div className="text-[10px] text-white/80 mt-0.5">View all</div>
                             </div>
                           </div>
                         )}
@@ -1489,131 +1416,64 @@ const ShopifyProductPage = () => {
                   </div>
 
                   {/* Review Cards */}
-                  <div className="space-y-0">
-                    {reviews
-                      .slice(0, reviewsToShow)
-                      .map((review, index) => {
+                  <div className="divide-y divide-gray-100">
+                    {reviews.slice(0, reviewsToShow).map((review) => {
                       const likeKey = `product-${review.id}`;
-                      const replyKey = `product-${review.id}`;
-                      const isFirst = index === 0;
-                      const isLast = index === reviewsToShow - 1;
                       return (
-                        <React.Fragment key={review.id}>
-                          {index > 0 && <div className="border-t border-gray-400"></div>}
-                          <div className={`bg-white py-6 w-full ${isFirst ? 'border-t border-gray-400' : ''} ${isLast ? 'border-b border-gray-400' : ''}`}>
-                            {/* Header with name, verification, location and time */}
-                            <div className="flex items-start justify-between mb-0">
-                              <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#f0f0f0' }}>
-                                  <svg className="w-4 h-4" style={{ color: '#9ca3af' }} fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-                                  </svg>
-                                </div>
-                                <span className="font-medium text-gray-900">{review.name}</span>
-                                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                </svg>
+                        <div key={review.id} className="py-5">
+                          {/* Top row: stars + name + date */}
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-0.5">
+                                {[1,2,3,4,5].map(i => {
+                                  const full = i <= Math.floor(review.rating);
+                                  const half = !full && i === Math.ceil(review.rating) && review.rating % 1 >= 0.3;
+                                  const cId = `rc-clip-${review.id}-${i}`;
+                                  return (
+                                    <svg key={i} width="13" height="13" viewBox="0 0 24 24">
+                                      <defs>{half && <clipPath id={cId}><rect x="0" y="0" width="12" height="24"/></clipPath>}</defs>
+                                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#e5e7eb"/>
+                                      {(full || half) && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#f59e0b" clipPath={half ? `url(#${cId})` : undefined}/>}
+                                    </svg>
+                                  );
+                                })}
                               </div>
-                              <div className="text-right">
-                                <div className="text-sm text-gray-500">{review.location}</div>
-                                <div className="text-sm text-gray-400">{getDaysAgo(review.date)}</div>
-                              </div>
+                              <span className="text-sm font-semibold text-gray-900">{review.name}</span>
+                              <svg className="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                              </svg>
                             </div>
+                            <span className="text-xs text-gray-400">{getDaysAgo(review.date)}</span>
+                          </div>
 
-                            {/* Star Rating */}
-                            <div className="flex items-center gap-1 mb-3 -mt-1">
-                              {[...Array(5)].map((_, i) => (
-                                <svg
-                                  key={i}
-                                  className="w-5 h-5"
-                                  style={{
-                                    fill: i < review.rating ? '#A71499' : '#E5E7EB',
-                                    filter: i < review.rating ? 'drop-shadow(0 1px 2px rgba(167, 20, 153, 0.3))' : 'none'
-                                  }}
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
+                          {/* Review text */}
+                          <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                            {expandedReviews[`product-${review.id}`] ? review.text : `${review.text.slice(0, 140)}...`}
+                            <button onClick={() => handleReadMore(review.id, 'product')} className="ml-1 text-xs font-medium underline text-gray-400 hover:text-gray-600">
+                              {expandedReviews[`product-${review.id}`] ? 'less' : 'more'}
+                            </button>
+                          </p>
+
+                          {/* Images */}
+                          {review.images?.length > 0 && (
+                            <div className="flex gap-2 mb-3">
+                              {review.images.map((image, imgIndex) => (
+                                <div key={imgIndex} className="w-16 h-16 rounded-lg overflow-hidden cursor-pointer flex-shrink-0 hover:opacity-80 transition-opacity"
+                                  onClick={() => { const idx = allReviewImages.indexOf(image); if (idx !== -1) handleImageClick(idx); }}>
+                                  <img src={image} alt="" className="w-full h-full object-cover"/>
+                                </div>
                               ))}
                             </div>
+                          )}
 
-                            {/* Review Content */}
-                            <p className="text-gray-700 text-base leading-relaxed mb-3">
-                              {expandedReviews[`product-${review.id}`] ? review.text : `${review.text.slice(0, 120)}...`}
-                              <button 
-                                onClick={() => handleReadMore(review.id, 'product')}
-                                className="text-gray-600 ml-2 text-sm underline hover:text-gray-800"
-                              >
-                                {expandedReviews[`product-${review.id}`] ? 'Read less' : 'Read more'}
-                              </button>
-                            </p>
-                            
-                            {/* Review Images - Show all images */}
-                            {review.images && review.images.length > 0 && (
-                              <div className="flex flex-wrap gap-2 mb-3">
-                                {review.images.map((image, imgIndex) => (
-                                  <div 
-                                    key={imgIndex}
-                                    className="relative rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
-                                    onClick={() => {
-                                      const imageIndex = allReviewImages.indexOf(image);
-                                      if (imageIndex !== -1) {
-                                        handleImageClick(imageIndex);
-                                      }
-                                    }}
-                                    style={{ 
-                                      width: '80px',
-                                      height: '80px',
-                                      flexShrink: 0
-                                    }}
-                                  >
-                                    <img 
-                                      src={image} 
-                                      alt={`Review ${review.id} image ${imgIndex + 1}`}
-                                      style={{ 
-                                        width: '100%',
-                                        height: '100%',
-                                        objectFit: 'cover',
-                                      }}
-                                    />
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                            
-                            {/* Helpful Button - Right Aligned */}
-                            <div className="flex justify-end">
-                              <button 
-                                onClick={() => handleLike(review.id, 'product')}
-                                className="text-gray-500 text-sm hover:text-gray-700 transition-colors"
-                              >
-                                Helpful ({reviewLikes[likeKey] || 4})
-                              </button>
-                            </div>
-
-                            {/* Reply Form */}
-                            {reviewReplies[replyKey] && (
-                              <div className="mt-4 pl-4 border-l-2 border-gray-200">
-                                <textarea 
-                                  className="w-full p-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
-                                  placeholder="Write a reply..."
-                                  rows="3"
-                                />
-                                <div className="flex gap-2 mt-2">
-                                  <button className="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm hover:bg-gray-800 transition-colors">
-                                    Post Reply
-                                  </button>
-                                  <button 
-                                    onClick={() => handleReply(review.id, 'product')}
-                                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200 transition-colors"
-                                  >
-                                    Cancel
-                                  </button>
-                                </div>
-                              </div>
-                            )}
+                          {/* Footer */}
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-gray-400">{review.location}</span>
+                            <button onClick={() => handleLike(review.id, 'product')} className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+                              Helpful ({reviewLikes[likeKey] || 4})
+                            </button>
                           </div>
-                        </React.Fragment>
+                        </div>
                       );
                     })}
                   </div>
@@ -1648,7 +1508,7 @@ const ShopifyProductPage = () => {
                       <div className="flex items-center gap-2">
                         <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wider">AI INSIGHT</h3>
                       </div>
-                      <button className="px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(167, 20, 153, 0.1)', color: '#A71499' }}>Verified reviews</button>
+                      <button className="px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(53, 31, 49, 0.1)', color: '#351F31' }}>Verified reviews</button>
                     </div>
                     
                     <h4 className="text-xl font-bold text-gray-900 mb-2">Customers say about the brand</h4>
@@ -1656,13 +1516,13 @@ const ShopifyProductPage = () => {
                     <p className="text-gray-700 leading-relaxed mb-2 text-base">
                       {isBrandAISummaryExpanded ? (
                         <>
-                          Customers love the brand for its consistent quality and excellent customer service. The brand is known for premium fabrics, elegant designs, and comfortable fits that flatter all body types. Many customers appreciate the brand's attention to detail and commitment to customer satisfaction. The brand has built a strong reputation for delivering stylish and well-made ethnic wear that stands the test of time. Customers frequently mention the brand's reliability, value for money, and trustworthy service.
-                          <button onClick={() => setIsBrandAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#A71499' }}>Read less</button>
+                          Customers love The Bae Shop for its consistent quality, beautiful personalisation, and thoughtful packaging. The brand is known for premium vegan leather bags, elegant designs, and a cruelty-free ethos that resonates deeply with customers. Many shoppers praise the brand for its gifting experience — the magnetic gift box, personalised name tags, and careful packing make every order feel special. Customers also frequently highlight the brand's fast delivery, helpful customer support, and great value for money across all collections.
+                          <button onClick={() => setIsBrandAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#351F31' }}>Read less</button>
                         </>
                       ) : (
                         <>
-                          Customers love the brand for its consistent quality and excellent customer service. The brand is known for premium fabrics, elegant designs, and comfortable fits that flatter all body types.
-                          <button onClick={() => setIsBrandAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#A71499' }}>Read more</button>
+                          Customers love The Bae Shop for its consistent quality, beautiful personalisation, and thoughtful packaging. The brand is known for premium vegan leather bags and a cruelty-free ethos.
+                          <button onClick={() => setIsBrandAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#351F31' }}>Read more</button>
                         </>
                       )}
                     </p>
@@ -1675,9 +1535,9 @@ const ShopifyProductPage = () => {
                     {/* Brand Keywords */}
                     <div>
                       <p className="text-[11px] font-medium text-gray-400 mb-3 uppercase tracking-widest">Brand Frequently Mentioned</p>
-                      <div className="flex flex-wrap gap-2">
-                        {['Premium Quality', 'Excellent Service', 'Reliable Brand', 'Elegant Designs', 'Comfortable Fit', 'Great Value'].map((item, index) => (
-                          <span key={index} className="text-xs px-3 py-1.5 rounded-full font-medium" style={{ background: 'rgba(167,20,153,0.07)', color: '#A71499', border: '1px solid rgba(167,20,153,0.18)', letterSpacing: '0.02em' }}>
+                      <div className="flex flex-wrap gap-x-4 gap-y-1.5">
+                        {['Cruelty-Free', 'Personalised Gifting', 'Elegant Packaging', 'Fast Delivery', 'Premium Vegan Leather', 'Great Value'].map((item, index) => (
+                          <span key={index} className="text-xs font-semibold" style={{ color: '#7a4f6d' }}>
                             {item}
                           </span>
                         ))}
@@ -1756,21 +1616,23 @@ const ShopifyProductPage = () => {
                             );
                           })}
                           {allBrandImages.length > 6 && (
-                            <div 
-                              className="relative rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity bg-gray-100 flex items-center justify-center flex-shrink-0"
+                            <div
+                              className="relative rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0"
                               onClick={() => {
                                 setGridModalImages(allBrandImages);
                                 setGridModalReview(null);
                                 setIsGridModalOpen(true);
                               }}
-                              style={{ 
-                                width: '100px',
-                                height: '100px',
-                              }}
+                              style={{ width: '100px', height: '100px' }}
                             >
-                              <div className="text-center p-2">
-                                <div className="text-xs font-semibold text-gray-700">+{allBrandImages.length - 6}</div>
-                                <div className="text-[10px] text-gray-500 mt-0.5">View all</div>
+                              <img
+                                src={allBrandImages[6]}
+                                alt="more"
+                                style={{ width: '100px', height: '100px', objectFit: 'cover', display: 'block' }}
+                              />
+                              <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ backgroundColor: 'rgba(53,31,49,0.55)' }}>
+                                <div className="text-sm font-bold text-white">+{allBrandImages.length - 6}</div>
+                                <div className="text-[10px] text-white/80 mt-0.5">View all</div>
                               </div>
                             </div>
                           )}
@@ -1804,136 +1666,66 @@ const ShopifyProductPage = () => {
                   </div>
 
                   {/* Brand Review Cards */}
-                  <div className="space-y-0">
-                    {brandReviews
-                      .slice(0, brandReviewsToShow)
-                      .map((review, index) => {
+                  <div className="divide-y divide-gray-100">
+                    {brandReviews.slice(0, brandReviewsToShow).map((review) => {
                       const likeKey = `brand-${review.id}`;
-                      const replyKey = `brand-${review.id}`;
-                      const isFirst = index === 0;
-                      const isLast = index === brandReviewsToShow - 1;
                       return (
-                        <React.Fragment key={review.id}>
-                          {index > 0 && <div className="border-t border-gray-400"></div>}
-                          <div className={`bg-white py-6 w-full ${isFirst ? 'border-t border-gray-400' : ''} ${isLast ? 'border-b border-gray-400' : ''}`}>
-                            {/* Header with name, verification, location and time */}
-                            <div className="flex items-start justify-between mb-0">
-                              <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#f0f0f0' }}>
-                                  <svg className="w-4 h-4" style={{ color: '#9ca3af' }} fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-                                  </svg>
-                                </div>
-                                <span className="font-medium text-gray-900">{review.name}</span>
-                                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                </svg>
+                        <div key={review.id} className="py-5">
+                          {/* Top row: stars + name + date */}
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-0.5">
+                                {[1,2,3,4,5].map(i => {
+                                  const full = i <= Math.floor(review.rating);
+                                  const half = !full && i === Math.ceil(review.rating) && review.rating % 1 >= 0.3;
+                                  const cId = `br-clip-${review.id}-${i}`;
+                                  return (
+                                    <svg key={i} width="13" height="13" viewBox="0 0 24 24">
+                                      <defs>{half && <clipPath id={cId}><rect x="0" y="0" width="12" height="24"/></clipPath>}</defs>
+                                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#e5e7eb"/>
+                                      {(full || half) && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#f59e0b" clipPath={half ? `url(#${cId})` : undefined}/>}
+                                    </svg>
+                                  );
+                                })}
                               </div>
-                              <div className="text-right">
-                                <div className="text-sm text-gray-500">{review.location}</div>
-                                <div className="text-sm text-gray-400">{getDaysAgo(review.date)}</div>
-                              </div>
+                              <span className="text-sm font-semibold text-gray-900">{review.name}</span>
+                              <svg className="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                              </svg>
                             </div>
+                            <span className="text-xs text-gray-400">{getDaysAgo(review.date)}</span>
+                          </div>
 
-                            {/* Star Rating */}
-                            <div className="flex items-center gap-1 mb-3 -mt-1">
-                              {[...Array(5)].map((_, i) => (
-                                <svg
-                                  key={i}
-                                  className="w-5 h-5"
-                                  style={{
-                                    fill: i < review.rating ? '#A71499' : '#E5E7EB',
-                                    filter: i < review.rating ? 'drop-shadow(0 1px 2px rgba(167, 20, 153, 0.3))' : 'none'
-                                  }}
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
+                          {/* Review text */}
+                          <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                            {expandedReviews[`brand-${review.id}`] ? review.text : `${review.text.slice(0, 140)}...`}
+                            {review.text.length > 140 && (
+                              <button onClick={() => handleReadMore(review.id, 'brand')} className="ml-1 text-xs font-medium underline text-gray-400 hover:text-gray-600">
+                                {expandedReviews[`brand-${review.id}`] ? 'less' : 'more'}
+                              </button>
+                            )}
+                          </p>
+
+                          {/* Images */}
+                          {review.images?.length > 0 && (
+                            <div className="flex gap-2 mb-3">
+                              {review.images.map((image, imgIndex) => (
+                                <div key={imgIndex} className="w-16 h-16 rounded-lg overflow-hidden cursor-pointer flex-shrink-0 hover:opacity-80 transition-opacity"
+                                  onClick={() => { const idx = allReviewImages.indexOf(image); if (idx !== -1) handleImageClick(idx); }}>
+                                  <img src={image} alt="" className="w-full h-full object-cover"/>
+                                </div>
                               ))}
                             </div>
+                          )}
 
-                            {/* Review Title */}
-                            <h3 className="font-medium text-gray-900 mb-2">{review.title}</h3>
-
-                            {/* Review Content */}
-                            <p className="text-gray-700 text-base leading-relaxed mb-3">
-                              {expandedReviews[`brand-${review.id}`] ? review.text : `${review.text.slice(0, 120)}...`}
-                              {review.text.length > 120 && (
-                                <button 
-                                  onClick={() => handleReadMore(review.id, 'brand')}
-                                  className="text-gray-600 ml-2 text-sm underline hover:text-gray-800"
-                                >
-                                  {expandedReviews[`brand-${review.id}`] ? 'Read less' : 'Read more'}
-                                </button>
-                              )}
-                            </p>
-                            
-                            {/* Brand Review Images - Show all images */}
-                            {review.images && review.images.length > 0 && (
-                              <div className="flex flex-wrap gap-2 mb-3">
-                                {review.images.map((image, imgIndex) => (
-                                  <div 
-                                    key={imgIndex}
-                                    className="relative rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
-                                    onClick={() => {
-                                      const imageIndex = allReviewImages.indexOf(image);
-                                      if (imageIndex !== -1) {
-                                        handleImageClick(imageIndex);
-                                      }
-                                    }}
-                                    style={{ 
-                                      width: '80px',
-                                      height: '80px',
-                                      flexShrink: 0
-                                    }}
-                                  >
-                                    <img 
-                                      src={image} 
-                                      alt={`Brand review ${review.id} image ${imgIndex + 1}`}
-                                      style={{ 
-                                        width: '100%',
-                                        height: '100%',
-                                        objectFit: 'cover',
-                                      }}
-                                    />
-                              </div>
-                                ))}
-                            </div>
-                            )}
-                            
-                            {/* Helpful Button - Right Aligned */}
-                            <div className="flex justify-end">
-                              <button 
-                                onClick={() => handleLike(review.id, 'brand')}
-                                className="text-gray-500 text-sm hover:text-gray-700 transition-colors"
-                              >
-                                Helpful ({reviewLikes[likeKey] || 4})
-                              </button>
-                            </div>
-
-                            {/* Reply Form */}
-                            {reviewReplies[replyKey] && (
-                              <div className="mt-4 pl-4 border-l-2 border-gray-200">
-                                <textarea 
-                                  className="w-full p-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
-                                  placeholder="Write a reply..."
-                                  rows="3"
-                                />
-                                <div className="flex gap-2 mt-2">
-                                  <button className="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm hover:bg-gray-800 transition-colors">
-                                    Post Reply
-                                  </button>
-                                  <button 
-                                    onClick={() => handleReply(review.id, 'brand')}
-                                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200 transition-colors"
-                                  >
-                                    Cancel
-                                  </button>
-                                </div>
-                              </div>
-                            )}
+                          {/* Footer */}
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-gray-400">{review.location}</span>
+                            <button onClick={() => handleLike(review.id, 'brand')} className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+                              Helpful ({reviewLikes[likeKey] || 4})
+                            </button>
                           </div>
-                        </React.Fragment>
+                        </div>
                       );
                     })}
                   </div>
@@ -1959,95 +1751,14 @@ const ShopifyProductPage = () => {
                 </div>
               )}
 
-              {/* Store Tab Content */}
-              {activeTab === 'store' && (
-                <div className="mb-8 space-y-6">
-                  <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900">Visit Our Stores</h3>
-                        <p className="text-sm text-gray-500 mt-1">Experience wordofmouth in person or see what guests are sharing from their visits.</p>
-                      </div>
-                      <div className="flex gap-2 bg-gray-100 rounded-lg p-1">
-                        {storeTabOptions.map((tab) => (
-                          <button
-                            key={tab.value}
-                            onClick={() => {
-                              setStoreView(tab.value);
-                              if (tab.value !== 'in-store') {
-                                setSelectedStore(null);
-                              }
-                            }}
-                            className={`px-3 py-2 text-xs sm:text-sm rounded-md transition-all ${
-                              storeView === tab.value ? 'bg-white shadow-sm text-gray-900' : 'hover:text-gray-900 text-gray-600'
-                            }`}
-                          >
-                            {tab.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  {storeView === 'in-store' ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      {storeLocations.map((store) => (
-                        <button
-                          key={store.id}
-                          onClick={() => setSelectedStore(store)}
-                          className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm text-left transition-transform hover:-translate-y-1 hover:shadow-lg"
-                        >
-                          <div className="relative h-56">
-                            <img
-                              src={store.image}
-                              alt={store.name}
-                              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
-                            <div className="absolute bottom-4 left-4 right-4 text-white drop-shadow">
-                              <div className="text-sm uppercase tracking-wide text-white/80">wordofmouth Store</div>
-                              <div className="text-lg font-semibold">{store.name}</div>
-                            </div>
-                          </div>
-                          <div className="p-5 space-y-2">
-                            <div className="text-sm text-gray-600">{store.address}</div>
-                            <div className="text-xs uppercase tracking-wide text-gray-400">{store.hours}</div>
-                            <div className="text-sm font-medium text-gray-800">{store.phone}</div>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {storeVisits.map((shot) => (
-                        <div
-                          key={shot.id}
-                          className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm"
-                        >
-                          <div className="aspect-3/4 overflow-hidden">
-                            <img
-                              src={shot.image}
-                              alt={shot.caption}
-                              className="h-full w-full object-cover"
-                            />
-                          </div>
-                          <div className="p-4 space-y-2">
-                            <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-[11px] font-medium text-gray-600 uppercase tracking-wide">{shot.badge}</span>
-                            <p className="text-sm text-gray-700 leading-relaxed">{shot.caption}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Floating Instagram Button */}
-      <button 
-        className="fixed bottom-0 left-0 md:bottom-5 md:left-5 w-full md:w-auto md:rounded-full rounded-none flex items-center justify-center gap-2.5 px-5 py-3 md:px-5 md:py-3 text-sm md:text-sm font-semibold text-white cursor-pointer shadow-lg z-[1000] transition-all duration-300 hover:-translate-y-0.5"
+      {/* Floating Instagram Button — icon only on mobile, pill on desktop */}
+      <button
+        className="fixed bottom-5 left-5 w-12 h-12 md:w-auto md:h-auto md:px-5 md:py-3 rounded-full flex items-center justify-center md:gap-2.5 text-sm font-semibold text-white cursor-pointer z-[1000] transition-all duration-300 hover:scale-105 active:scale-95"
         style={{
           background: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
           boxShadow: '0 4px 15px rgba(188, 24, 136, 0.4)'
@@ -2055,10 +1766,10 @@ const ShopifyProductPage = () => {
         onClick={() => setShowInstagramModal(true)}
         aria-label="See Our Instagram"
       >
-        <svg className="w-6 h-6 md:w-6 md:h-6 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="currentColor"/>
+        <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
         </svg>
-        <span className="whitespace-nowrap">See Our Instagram</span>
+        <span className="hidden md:inline whitespace-nowrap">See Our Instagram</span>
       </button>
 
       {/* Instagram Modal */}
@@ -2378,7 +2089,7 @@ const ShopifyProductPage = () => {
                     <svg width="0" height="0" style={{ position: 'absolute' }}>
                       <defs>
                         <linearGradient id="modalStarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#A71499" />
+                          <stop offset="0%" stopColor="#351F31" />
                           <stop offset="50%" stopColor="#A855A5" />
                           <stop offset="100%" stopColor="#C47BC5" />
                         </linearGradient>
@@ -2390,7 +2101,7 @@ const ShopifyProductPage = () => {
                         className="w-5 h-5"
                         style={i < selectedReview.rating ? { 
                           fill: 'url(#modalStarGradient)',
-                          filter: 'drop-shadow(0 1px 2px rgba(167, 20, 153, 0.3))'
+                          filter: 'drop-shadow(0 1px 2px rgba(53, 31, 49, 0.3))'
                         } : { fill: '#d1d5db' }}
                         viewBox="0 0 20 20"
                       >
@@ -2409,7 +2120,7 @@ const ShopifyProductPage = () => {
                   
                   {/* Review Type Badge */}
                   <div className="mt-4">
-                    <span className="inline-block px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(167, 20, 153, 0.1)', color: '#A71499' }}>
+                    <span className="inline-block px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(53, 31, 49, 0.1)', color: '#351F31' }}>
                       {selectedReview.type === 'product' ? 'Product Review' : 'Brand Review'}
                     </span>
                   </div>
@@ -2465,7 +2176,7 @@ const ShopifyProductPage = () => {
                   <svg width="0" height="0" style={{ position: 'absolute' }}>
                     <defs>
                       <linearGradient id="mobileModalStarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#A71499" />
+                        <stop offset="0%" stopColor="#351F31" />
                         <stop offset="50%" stopColor="#A855A5" />
                         <stop offset="100%" stopColor="#C47BC5" />
                       </linearGradient>
@@ -2477,7 +2188,7 @@ const ShopifyProductPage = () => {
                       className="w-4 h-4"
                       style={i < selectedReview.rating ? { 
                         fill: 'url(#mobileModalStarGradient)',
-                        filter: 'drop-shadow(0 1px 2px rgba(167, 20, 153, 0.3))'
+                        filter: 'drop-shadow(0 1px 2px rgba(53, 31, 49, 0.3))'
                       } : { fill: '#d1d5db' }}
                       viewBox="0 0 20 20"
                     >
@@ -2489,7 +2200,7 @@ const ShopifyProductPage = () => {
                   <h3 className="font-medium text-gray-900 mb-2 text-base">{selectedReview.title}</h3>
                 )}
                 <p className="text-gray-700 text-sm leading-relaxed mb-2">{selectedReview.text}</p>
-                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(167, 20, 153, 0.1)', color: '#A71499' }}>
+                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(53, 31, 49, 0.1)', color: '#351F31' }}>
                   {selectedReview.type === 'product' ? 'Product Review' : 'Brand Review'}
                 </span>
               </div>

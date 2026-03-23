@@ -5,14 +5,17 @@ import ShopifyProductPage from './ShopifyProductPage';
 // This is a wrapper App that supports both Home and Product pages
 // To use this, update your main.jsx to import ShopifyApp instead of App
 function ShopifyApp() {
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' or 'product'
+  const [currentPage, setCurrentPage] = useState('home');
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const handleProductClick = () => {
+  const handleProductClick = (product) => {
+    setSelectedProduct(product || null);
     setCurrentPage('product');
   };
 
   const handleHomeClick = () => {
     setCurrentPage('home');
+    setSelectedProduct(null);
   };
 
   return (
@@ -20,7 +23,7 @@ function ShopifyApp() {
       {currentPage === 'home' ? (
         <HomePage onProductClick={handleProductClick} />
       ) : (
-        <ShopifyProductPage onHomeClick={handleHomeClick} />
+        <ShopifyProductPage product={selectedProduct} onHomeClick={handleHomeClick} />
       )}
     </div>
   );

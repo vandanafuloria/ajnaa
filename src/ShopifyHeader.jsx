@@ -5,13 +5,11 @@ import headerPhone from './assets/header_phone.png';
 const ShopifyHeader = () => {
   return (
     <header className="w-full">
-      {/* Desktop header */}
       <img
         src={headerLap}
         alt="Header"
         className="hidden md:block w-full h-auto"
       />
-      {/* Mobile header */}
       <img
         src={headerPhone}
         alt="Header"

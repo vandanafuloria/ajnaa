@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import QuinnVideo from './QuinnVideo';
 import ShopifyHeader from './ShopifyHeader';
 import ShopifyFooter from './ShopifyFooter';
 import ProductCard from './ProductCard';
@@ -6,17 +7,12 @@ import AIBrandEngine from './AIBrandEngine';
 import LiveUserCounter from './LiveUserCounter';
 import './HomePage.css';
 
-// Import hero images for desktop/laptop
-import home1 from './assets/home_1.png';
-
-// Import hero images for mobile
-import homePhone1 from './assets/home_phone.png';
 
 // Import bestseller images
-const BS_IMG_1 = 'https://www.sotrue.in/cdn/shop/files/1_7_5a7c7fbe-f6e3-4603-8cfd-2ef6482ace8a.jpg?v=1762521956&width=1000';
-const BS_IMG_2 = 'https://www.sotrue.in/cdn/shop/files/01_4d8982c5-510a-4955-8a84-8120184cc312.jpg?v=1770280818&width=1000';
-const BS_IMG_3 = 'https://www.sotrue.in/cdn/shop/files/1_1.jpg?v=1756733352&width=1000';
-const BS_IMG_4 = 'https://www.sotrue.in/cdn/shop/files/foxnut_2.jpg?v=1765440399&width=1000';
+const BS_IMG_1 = 'https://thebaeshop.com/cdn/shop/files/2_6fa6df98-2639-4302-9159-e1569bbbe8bb.jpg?v=1771311357&width=1080';
+const BS_IMG_2 = 'https://thebaeshop.com/cdn/shop/files/12_df44ffa7-3472-4888-9f08-0566995b2cda.jpg?v=1771311291&width=2000';
+const BS_IMG_3 = 'https://thebaeshop.com/cdn/shop/files/8_8dd5c96c-2111-4a49-99cc-3de41e1ca1ff.jpg?v=1771311343&width=2000';
+const BS_IMG_4 = 'https://thebaeshop.com/cdn/shop/files/6_a60ca2c3-e0e9-4282-8350-c20bc6472dda.jpg?v=1770214028&width=1080';
 
 // Import product images for social proof
 import productImage1 from './assets/product/SPP_8830.jpg';
@@ -36,13 +32,18 @@ const LOCAL_VIDEO_URLS = [];
 
 // Fallback to external URLs if local videos are not available
 const SHOPIFY_VIDEO_URLS = [
-  'https://www.sotrue.in/cdn/shop/files/quinn_zmg0fo8cmite70k9fe5b31z0.mp4',
-  'https://www.sotrue.in/cdn/shop/files/quinn_ohuy92n624dbl9bg56tx2pxo.mp4',
-  'https://www.sotrue.in/cdn/shop/files/quinn_fdtxsn2c7vkynhfv61fb31gc.mp4',
-  'https://www.sotrue.in/cdn/shop/files/quinn_hw4rn6us9832y6cnxz84pkpy.mp4',
-  'https://www.sotrue.in/cdn/shop/files/quinn_qosb5kaxpzo9v79t1cuaee7d.mp4',
-  'https://www.sotrue.in/cdn/shop/files/quinn_we0etxwjsumo6iwoh335p1ad.mp4',
-  'https://www.sotrue.in/cdn/shop/files/quinn_mo6tckqhynzecmqcwih1x2cf.mp4',
+  'https://static.zegsuapps.com/user-data/instagenie/fcf16e7602400ff148106a4823cf11c8f36a49f6.mp4',
+  'https://static.zegsuapps.com/user-data/instagenie/ea61e7f228905000ee6a0e1eec4ae4228b334414.mp4',
+  'https://static.zegsuapps.com/user-data/instagenie/b0eed95e675c0254b1c4e1a5835bb9efae1de7b3.mp4',
+  'https://static.zegsuapps.com/user-data/instagenie/18d42e8ff21548957ccc45ca4dc1711c4889e8ac.mp4',
+  'https://static.zegsuapps.com/user-data/instagenie/bf98230ee1c9d00319d98ef61cde61afc2efbd63.mp4',
+  'https://static.zegsuapps.com/user-data/instagenie/02690b7ae3a0bcf8590cae2454cbd864ae32a23a.mp4',
+];
+
+const QUINN_VIDEO_URLS = [
+  'https://thebaeshop.com/cdn/shop/files/quinn_p44p295rhjgiqlp2zcac31qd.mp4#t=0.1',
+  'https://thebaeshop.com/cdn/shop/files/quinn_w4tf5t0mybktkhvea5jsyy9p.mp4#t=0.1',
+  'https://thebaeshop.com/cdn/shop/files/quinn_t04pe80npmig6c4c7yqaxkuh.mp4#t=0.1',
 ];
 
 const BRAND_NAME = "wordofmouth";
@@ -52,62 +53,62 @@ const bestSellerProducts = [
   {
     id: 1,
     image: BS_IMG_1,
-    title: 'Illuminating Strobe Cream Combo | Pack of 2',
-    currentPrice: 489,
-    originalPrice: 698,
-    rating: 4.66,
-    reviewCount: 1296,
+    title: 'BAE BAG CARAMEL CRUSH',
+    currentPrice: 1699,
+    originalPrice: 1999,
+    rating: 4.6,
+    reviewCount: 312,
     isBestseller: true,
-    showQuickView: true,
   },
   {
     id: 2,
     image: BS_IMG_2,
-    title: 'Dark Spell Kohl Kajal Pencil | Intense Jet Black',
-    currentPrice: 299,
-    originalPrice: 349,
-    rating: 4.78,
-    reviewCount: 186,
-    showQuickView: true,
+    title: 'BAE BAG VINTAGE GOLD',
+    currentPrice: 1799,
+    originalPrice: 2199,
+    rating: 4.6,
+    reviewCount: 278,
+    isBestseller: true,
   },
   {
     id: 3,
     image: BS_IMG_3,
-    title: 'Daily Strobe Cream with SPF 50+ | Rose Gold',
-    currentPrice: 399,
-    originalPrice: 499,
-    rating: 4.57,
-    reviewCount: 134,
+    title: 'BAE BAG CHERRY ROUGE',
+    currentPrice: 1799,
+    originalPrice: 2199,
+    rating: 4.6,
+    reviewCount: 245,
+    isBestseller: true,
   },
   {
     id: 4,
     image: BS_IMG_4,
-    title: 'Prep & Glow Combo | Primer + Strobe Cream (Pink)',
-    currentPrice: 499,
-    originalPrice: 748,
-    rating: 4.71,
-    reviewCount: 59,
+    title: 'BAE BAG GOLD RUSH',
+    currentPrice: 1799,
+    originalPrice: 2199,
+    rating: 4.6,
+    reviewCount: 198,
+    isBestseller: true,
   },
   {
     id: 5,
     image: BS_IMG_1,
-    title: 'Illuminating Strobe Cream Combo | Pack of 2',
-    currentPrice: 489,
-    originalPrice: 698,
-    rating: 4.66,
-    reviewCount: 1296,
+    title: 'BAE BAG CARAMEL CRUSH',
+    currentPrice: 1699,
+    originalPrice: 1999,
+    rating: 4.6,
+    reviewCount: 312,
     isBestseller: true,
-    showQuickView: true,
   },
   {
     id: 6,
     image: BS_IMG_2,
-    title: 'Dark Spell Kohl Kajal Pencil | Intense Jet Black',
-    currentPrice: 299,
-    originalPrice: 349,
-    rating: 4.78,
-    reviewCount: 186,
-    showQuickView: true,
+    title: 'BAE BAG VINTAGE GOLD',
+    currentPrice: 1799,
+    originalPrice: 2199,
+    rating: 4.6,
+    reviewCount: 278,
+    isBestseller: true,
   },
   {
     id: 7,
@@ -132,17 +133,16 @@ const bestSellerProducts = [
 const getRandomSoldThisWeek = (min = 180, max = 420) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
-// Video Products data - sotrue beauty products
+// Video Products data
 const videoProducts = [
   {
     id: 1,
     video: LOCAL_VIDEO_URLS[0] || SHOPIFY_VIDEO_URLS[0],
     image: BS_IMG_1,
     views: '4.0K',
-    title: 'Dark Spell Kohl Kajal',
-    currentPrice: 299,
-    originalPrice: 599,
-    discount: 50,
+    title: 'BAE BAG CARAMEL CRUSH',
+    currentPrice: 1699,
+    originalPrice: 1999,
     soldThisWeek: getRandomSoldThisWeek(),
   },
   {
@@ -150,10 +150,9 @@ const videoProducts = [
     video: LOCAL_VIDEO_URLS[1] || SHOPIFY_VIDEO_URLS[1],
     image: BS_IMG_2,
     views: '4.2K',
-    title: 'Daily Strobe SPF50+ Sunscreen',
-    currentPrice: 449,
-    originalPrice: 799,
-    discount: 44,
+    title: 'BAE BAG VINTAGE GOLD',
+    currentPrice: 1799,
+    originalPrice: 2199,
     soldThisWeek: getRandomSoldThisWeek(),
   },
   {
@@ -161,10 +160,9 @@ const videoProducts = [
     video: LOCAL_VIDEO_URLS[2] || SHOPIFY_VIDEO_URLS[2],
     image: BS_IMG_3,
     views: '3.8K',
-    title: 'Prep & Glow Skincare Combo',
-    currentPrice: 699,
-    originalPrice: 1199,
-    discount: 42,
+    title: 'BAE BAG CHERRY ROUGE',
+    currentPrice: 1799,
+    originalPrice: 2199,
     soldThisWeek: getRandomSoldThisWeek(),
   },
   {
@@ -172,43 +170,30 @@ const videoProducts = [
     video: LOCAL_VIDEO_URLS[3] || SHOPIFY_VIDEO_URLS[3],
     image: BS_IMG_4,
     views: '3.1K',
-    title: 'Strobe Cream Illuminating...',
-    currentPrice: 399,
-    originalPrice: 699,
-    discount: 43,
+    title: 'BAE BAG GOLD RUSH',
+    currentPrice: 1799,
+    originalPrice: 2199,
     soldThisWeek: getRandomSoldThisWeek(),
   },
   {
     id: 5,
     video: LOCAL_VIDEO_URLS[4] || SHOPIFY_VIDEO_URLS[4],
-    image: productImage1,
+    image: BS_IMG_1,
     views: '2.3K',
-    title: 'Dark Spell Kohl Pencil',
-    currentPrice: 299,
-    originalPrice: 599,
-    discount: 50,
+    title: 'BAE BAG CARAMEL CRUSH',
+    currentPrice: 1699,
+    originalPrice: 1999,
     soldThisWeek: getRandomSoldThisWeek(),
   },
   {
     id: 6,
     video: LOCAL_VIDEO_URLS[5] || SHOPIFY_VIDEO_URLS[5],
-    image: productImage2,
+    image: BS_IMG_2,
     views: '2.0K',
-    title: 'Waterproof Kajal Intense Black',
-    currentPrice: 249,
-    originalPrice: 499,
+    title: 'BAE BAG VINTAGE GOLD',
+    currentPrice: 1799,
+    originalPrice: 2199,
     discount: 50,
-    soldThisWeek: getRandomSoldThisWeek(),
-  },
-  {
-    id: 7,
-    video: LOCAL_VIDEO_URLS[6] || SHOPIFY_VIDEO_URLS[6],
-    image: productImage3,
-    views: '1.8K',
-    title: 'Glow Serum + Moisturizer Set',
-    currentPrice: 599,
-    originalPrice: 999,
-    discount: 40,
     soldThisWeek: getRandomSoldThisWeek(),
   },
 ];
@@ -230,11 +215,8 @@ const HomePage = ({ onProductClick }) => {
     setSelectedLookVideo(videoProducts[n]);
     setLookLiked(false);
   };
-  const [currentSlide, setCurrentSlide] = useState(0);
   const videoRefs = React.useRef({});
   const modalVideoRef = React.useRef(null);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
   const [videoMuted, setVideoMuted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const instagramCarouselRef = React.useRef(null);
@@ -295,14 +277,18 @@ const HomePage = ({ onProductClick }) => {
   
   // Instagram post URLs
   const instagramPosts = [
-    'https://www.instagram.com/p/DVvm6AokmlE/',
-    'https://www.instagram.com/p/DV0wEh-Em8E/',
-    'https://www.instagram.com/p/DVa_W9DE1DT/',
-    'https://www.instagram.com/p/DVnDGUSzPd1/',
-    'https://www.instagram.com/p/DT2k8G2iWzC/',
-    'https://www.instagram.com/p/DRj6CdPjJFI/',
-    'https://www.instagram.com/reel/DUVe7ZHCU7z/',
-    'https://www.instagram.com/p/DV_uRIsk1MQ/',
+    'https://www.instagram.com/p/DWBwnwzCGz-/',
+    'https://www.instagram.com/p/DV8evfAk8WK/',
+    'https://www.instagram.com/p/DVi06_pGDZ4/',
+    'https://www.instagram.com/p/DVYgmN_mOky/',
+    'https://www.instagram.com/p/DVONcAQkxKq/',
+    'https://www.instagram.com/p/DVGjQReEtZu/',
+    'https://www.instagram.com/p/DUuX_tMk8YK/',
+    'https://www.instagram.com/p/DUDiVtxk1et/',
+    'https://www.instagram.com/p/DTfbzsAE2kt/',
+    'https://www.instagram.com/p/DTS0wspE5sx/',
+    'https://www.instagram.com/p/DSC2COMkzyQ/',
+    'https://www.instagram.com/p/DU-tK8PkxVI/',
   ];
 
   // Load Instagram embed script
@@ -426,32 +412,6 @@ const HomePage = ({ onProductClick }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const heroImagesDesktop = [home1];
-  const heroImagesMobile = [homePhone1];
-  
-  // Use mobile images array length for mobile, desktop for larger screens
-  const heroImages = isMobile ? heroImagesMobile : heroImagesDesktop;
-  const maxSlides = isMobile ? heroImagesMobile.length : heroImagesDesktop.length;
-
-  // Detect screen size
-  useEffect(() => {
-    const checkMobile = () => {
-      const nowMobile = window.innerWidth <= 768;
-      setIsMobile(nowMobile);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Reset slide index when switching between mobile/desktop
-  useEffect(() => {
-    if (currentSlide >= maxSlides) {
-      setTimeout(() => setCurrentSlide(0), 0);
-    }
-  }, [maxSlides, currentSlide]);
-
   // Auto-play all videos
   useEffect(() => {
     videoProducts.forEach((product) => {
@@ -461,17 +421,6 @@ const HomePage = ({ onProductClick }) => {
       }
     });
   }, []);
-
-  // Auto-play carousel
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % maxSlides);
-    }, 5000); // Change slide every 5 seconds
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, maxSlides]);
 
   // Handle modal video audio when opened
   useEffect(() => {
@@ -554,76 +503,6 @@ const HomePage = ({ onProductClick }) => {
         </div>
       </div>
       
-      {/* Hero Carousel Section - Full Width */}
-      <section className="w-full relative overflow-hidden bg-white">
-        <div className="relative w-full">
-          <div className="relative w-full bg-white">
-            {(isMobile ? heroImagesMobile : heroImagesDesktop).map((image, index) => (
-              <div
-                key={index}
-                className={`w-full transition-opacity duration-[800ms] ease-in-out bg-white ${
-                  index === currentSlide ? 'opacity-100 relative z-10' : 'opacity-0 absolute top-0 left-0 z-0'
-                }`}
-              >
-                <picture>
-                  {/* Mobile images */}
-                  <source 
-                    media="(max-width: 768px)" 
-                    srcSet={heroImagesMobile[Math.min(index, heroImagesMobile.length - 1)]} 
-                  />
-                  {/* Desktop images */}
-                  <source 
-                    media="(min-width: 769px)" 
-                    srcSet={heroImagesDesktop[Math.min(index, heroImagesDesktop.length - 1)]} 
-                  />
-                  {/* Fallback image */}
-                  <img
-                    src={image}
-                    alt={`Hero slide ${index + 1}`}
-                    className="w-full h-auto object-contain object-center"
-                  />
-                </picture>
-              </div>
-            ))}
-          </div>
-
-          {/* Navigation Arrows */}
-          <button
-            className="absolute top-1/2 left-5 md:left-5 z-20 bg-white/90 hover:bg-white rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center cursor-pointer transition-all duration-300 text-gray-800 shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 -translate-y-1/2"
-            onClick={goToPrevious}
-            aria-label="Previous slide"
-          >
-            <svg className="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <button
-            className="absolute top-1/2 right-5 md:right-5 z-20 bg-white/90 hover:bg-white rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center cursor-pointer transition-all duration-300 text-gray-800 shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 -translate-y-1/2"
-            onClick={goToNext}
-            aria-label="Next slide"
-          >
-            <svg className="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-
-          {/* Dots Indicator */}
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex gap-3 items-center justify-center">
-            {(isMobile ? heroImagesMobile : heroImagesDesktop).map((_, index) => (
-              <button
-                key={index}
-                className={`transition-all duration-300 rounded-full border-2 border-white/80 outline-none focus:outline-2 focus:outline-blue-500 focus:outline-offset-2 ${
-                  index === currentSlide 
-                    ? 'w-8 h-3 bg-white border-white rounded-md' 
-                    : 'w-3 h-3 bg-white/40 hover:bg-white/70 hover:scale-125'
-                }`}
-                onClick={() => goToSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
 
 
       {/* Best Seller Section */}
@@ -637,10 +516,10 @@ const HomePage = ({ onProductClick }) => {
           <div className="overflow-x-auto -mx-4 px-4 scrollbar-hide">
             <div className="flex gap-4 md:gap-6 min-w-max">
               {bestSellerProducts.map((product) => (
-                <div 
-                  key={product.id} 
+                <div
+                  key={product.id}
                   className="w-[90vw] md:w-[380px] lg:w-[280px] flex-shrink-0 cursor-pointer"
-                  onClick={() => onProductClick && onProductClick()}
+                  onClick={() => onProductClick && onProductClick(product)}
                 >
                   <ProductCard product={product} />
                 </div>
@@ -691,6 +570,37 @@ const HomePage = ({ onProductClick }) => {
                   {/* Label */}
                   <span className="text-xs text-gray-700 text-center max-w-[140px] leading-tight line-clamp-2">
                     {product.title}
+                  </span>
+                </button>
+              ))}
+
+              {/* 2 extra pills from AS SEEN ON videos */}
+              {QUINN_VIDEO_URLS.slice(0, 2).map((url, index) => (
+                <button
+                  key={`quinn-pill-${index}`}
+                  onClick={() => setSelectedVideo({ id: `quinn-${index}`, video: url, title: 'Shop The Look', views: '' })}
+                  className="flex flex-col items-center gap-1.5 focus:outline-none"
+                >
+                  <div
+                    className="rounded-[999px] p-[2px]"
+                    style={{ background: 'linear-gradient(180deg,#c9a8d4,#e0cfe8,#ede7f3)' }}
+                  >
+                    <div className="rounded-[999px] overflow-hidden bg-gray-100"
+                      style={{ width: '140px', height: '210px' }}>
+                      <video
+                        src={url}
+                        className="w-full h-full object-cover"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="none"
+                        style={{ pointerEvents: 'none' }}
+                      />
+                    </div>
+                  </div>
+                  <span className="text-xs text-gray-700 text-center max-w-[140px] leading-tight">
+                    Shop The Look
                   </span>
                 </button>
               ))}
@@ -855,8 +765,7 @@ const HomePage = ({ onProductClick }) => {
                           e.stopPropagation();
                           console.log('Add to cart:', product);
                         }}
-                        className="w-full bg-[#7f2065] text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:bg-[#6a1a52] hover:shadow-md mt-3"
-                        style={{ marginTop: '12px' }}
+                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#5c3452', marginTop: '12px' }}
                       >
                         ADD TO CART
                       </button>
@@ -936,23 +845,17 @@ const HomePage = ({ onProductClick }) => {
                           <div className="text-black text-[13px] mb-1 line-clamp-2">{product.title}</div>
                           <div className="flex items-center gap-2 flex-wrap">
                             {product.currentPrice && (
-                              <span className="text-black">₹ {product.currentPrice.toLocaleString('en-IN')}</span>
+                              <span className="text-black font-semibold">Rs. {product.currentPrice.toLocaleString('en-IN')}.00</span>
                             )}
                             {product.originalPrice && (
-                              <span className="text-gray-500 line-through text-sm">₹ {product.originalPrice.toLocaleString('en-IN')}</span>
+                              <span className="text-gray-400 line-through text-sm">Rs. {product.originalPrice.toLocaleString('en-IN')}.00</span>
                             )}
-                          </div>
-                          {product.discount && (
-                            <div className="text-sm mt-1" style={{ color: 'rgb(21,106,5)' }}>{product.discount}% Off</div>
-                          )}
-                          <div className="text-xs mt-1.5" style={{ color: '#7f2065' }}>
-                            {product.soldThisWeek ?? 235} sold this week
                           </div>
                         </div>
                       </div>
                       <button
                         onClick={(e) => e.stopPropagation()}
-                        className="w-full bg-[#7f2065] text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:bg-[#6a1a52] hover:shadow-md mt-3"
+                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#5c3452' }}
                       >
                         ADD TO CART
                       </button>
@@ -966,6 +869,33 @@ const HomePage = ({ onProductClick }) => {
       </section>
 
 
+      {/* Quinn-Style Video Section */}
+      <section className="w-full py-10 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-[#8B4513] mb-3 tracking-wide">
+              AS SEEN ON
+            </h2>
+          </div>
+          <div className="flex justify-center gap-4 md:gap-6 flex-wrap">
+            {QUINN_VIDEO_URLS.map((url, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 rounded-2xl overflow-hidden"
+                style={{ width: '220px', height: '390px', boxShadow: '0 4px 20px rgba(0,0,0,0.12)' }}
+              >
+                <QuinnVideo
+                  src={url}
+                  borderRadius="16px"
+                  onTapLeft={index > 0 ? () => {} : undefined}
+                  onTapRight={index < QUINN_VIDEO_URLS.length - 1 ? () => {} : undefined}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Instagram Profile Section */}
       <section className="w-full py-6 md:py-10 bg-white">
         <div className="max-w-5xl mx-auto px-4 md:px-12">
@@ -976,8 +906,8 @@ const HomePage = ({ onProductClick }) => {
             {/* LEFT: Avatar */}
             <div className="flex justify-center">
               <div className="rounded-full p-[3px]" style={{ background: 'linear-gradient(45deg, #f9a825, #f06292, #ab47bc)' }}>
-                <div className="w-32 h-32 rounded-full overflow-hidden bg-[#7f2065] flex items-center justify-center">
-                  <span className="text-white font-bold text-2xl tracking-tight">sotrue</span>
+                <div className="w-32 h-32 rounded-full overflow-hidden bg-white flex items-center justify-center">
+                  <span className="text-[#4a1942] font-bold text-xl tracking-tight text-center leading-tight px-2">The<br/>Bae Shop</span>
                 </div>
               </div>
             </div>
@@ -985,19 +915,19 @@ const HomePage = ({ onProductClick }) => {
             {/* CENTER: username + stats */}
             <div className="flex flex-col items-center gap-3 text-center">
               <div className="flex items-center gap-3">
-                <a href="https://www.instagram.com/sotrue.beauty/" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/thebaeshop.xoxo/" target="_blank" rel="noopener noreferrer"
                   className="text-gray-900 font-semibold text-xl hover:opacity-70 transition-opacity">
-                  sotrue.beauty
+                  thebaeshop.xoxo
                 </a>
                 <span className="text-gray-400 text-base tracking-widest">···</span>
               </div>
               <div className="flex gap-8">
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">252</p>
+                  <p className="font-bold text-gray-900 text-base">98</p>
                   <p className="text-gray-500 text-sm">posts</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">73.5K</p>
+                  <p className="font-bold text-gray-900 text-base">1,412</p>
                   <p className="text-gray-500 text-sm">followers</p>
                 </div>
                 <div className="text-center">
@@ -1006,11 +936,11 @@ const HomePage = ({ onProductClick }) => {
                 </div>
               </div>
               <div className="flex gap-2 pt-1">
-                <a href="https://www.instagram.com/sotrue.beauty/" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/thebaeshop.xoxo/" target="_blank" rel="noopener noreferrer"
                   className="px-8 py-1.5 rounded-lg text-sm font-semibold text-white" style={{ backgroundColor: '#4f6ef7' }}>
                   Follow
                 </a>
-                <a href="https://www.instagram.com/sotrue.beauty/" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/thebaeshop.xoxo/" target="_blank" rel="noopener noreferrer"
                   className="px-6 py-1.5 rounded-lg text-sm font-semibold text-gray-800 bg-gray-100 hover:bg-gray-200 transition-colors">
                   Message
                 </a>
@@ -1024,15 +954,12 @@ const HomePage = ({ onProductClick }) => {
 
             {/* RIGHT: bio */}
             <div className="space-y-0.5">
-              <p className="text-gray-900 text-sm font-semibold">Sotrue</p>
-              <p className="text-gray-500 text-sm">Beauty, cosmetic &amp; personal care</p>
-              <p className="text-gray-800 text-sm">India's glow-first beauty brand ✨💖</p>
-              <p className="text-gray-800 text-sm">Glow Like You Own It! 🌟</p>
-              <p className="text-gray-800 text-sm">👇Shop it all till you drop here!</p>
-              <a href="https://www.sotrue.in" target="_blank" rel="noopener noreferrer"
-                className="text-[#7f2065] text-sm hover:underline inline-block">
-                www.sotrue.in and 1 more
-              </a>
+              <p className="text-gray-900 text-sm font-semibold">The Bae Shop</p>
+              <p className="text-gray-500 text-sm">Shopping &amp; retail</p>
+              <p className="text-gray-800 text-sm">Personalised gifts that feel special 💝</p>
+              <p className="text-gray-800 text-sm">Lifestyle &amp; travel organisers</p>
+              <p className="text-gray-800 text-sm">Handcrafted | Vegan Leather | Premium Materials</p>
+              <p className="text-gray-800 text-sm">👇Shop now</p>
             </div>
           </div>
 
@@ -1043,19 +970,19 @@ const HomePage = ({ onProductClick }) => {
               {/* Avatar */}
               <div className="flex-shrink-0">
                 <div className="rounded-full p-[3px]" style={{ background: 'linear-gradient(45deg, #f9a825, #f06292, #ab47bc)' }}>
-                  <div className="w-20 h-20 rounded-full overflow-hidden bg-[#7f2065] flex items-center justify-center">
-                    <span className="text-white font-bold text-lg tracking-tight">sotrue</span>
+                  <div className="w-20 h-20 rounded-full overflow-hidden bg-white flex items-center justify-center">
+                    <span className="text-[#4a1942] font-bold text-sm tracking-tight text-center leading-tight px-1">The<br/>Bae Shop</span>
                   </div>
                 </div>
               </div>
               {/* Stats row */}
               <div className="flex flex-1 justify-around">
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">252</p>
+                  <p className="font-semibold text-gray-900 text-base">98</p>
                   <p className="text-gray-500 text-xs">posts</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">73.5K</p>
+                  <p className="font-semibold text-gray-900 text-base">1,412</p>
                   <p className="text-gray-500 text-xs">followers</p>
                 </div>
                 <div className="text-center">
@@ -1067,24 +994,21 @@ const HomePage = ({ onProductClick }) => {
 
             {/* Bio block */}
             <div className="space-y-0.5">
-              <p className="text-gray-900 text-sm font-semibold">Sotrue</p>
-              <p className="text-gray-500 text-xs">Beauty, cosmetic &amp; personal care</p>
-              <p className="text-gray-800 text-sm">India's glow-first beauty brand ✨💖</p>
-              <p className="text-gray-800 text-sm">Glow Like You Own It! 🌟</p>
-              <p className="text-gray-800 text-sm">👇Shop it all till you drop here!</p>
-              <a href="https://www.sotrue.in" target="_blank" rel="noopener noreferrer"
-                className="text-[#7f2065] text-sm hover:underline inline-block">
-                www.sotrue.in and 1 more
-              </a>
+              <p className="text-gray-900 text-sm font-semibold">The Bae Shop</p>
+              <p className="text-gray-500 text-xs">Shopping &amp; retail</p>
+              <p className="text-gray-800 text-sm">Personalised gifts that feel special 💝</p>
+              <p className="text-gray-800 text-sm">Lifestyle &amp; travel organisers</p>
+              <p className="text-gray-800 text-sm">Handcrafted | Vegan Leather | Premium Materials</p>
+              <p className="text-gray-800 text-sm">👇Shop now</p>
             </div>
 
             {/* Buttons — full width like Instagram */}
             <div className="flex gap-2">
-              <a href="https://www.instagram.com/sotrue.beauty/" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/thebaeshop.xoxo/" target="_blank" rel="noopener noreferrer"
                 className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center" style={{ backgroundColor: '#4f6ef7' }}>
                 Follow
               </a>
-              <a href="https://www.instagram.com/sotrue.beauty/" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/thebaeshop.xoxo/" target="_blank" rel="noopener noreferrer"
                 className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-gray-800 bg-gray-100 text-center">
                 Message
               </a>
@@ -1273,9 +1197,9 @@ const HomePage = ({ onProductClick }) => {
             if (lookTouchStartY.current === null) return;
             const diff = lookTouchStartY.current - e.changedTouches[0].clientY;
             lookTouchStartY.current = null;
-            if (Math.abs(diff) < 200) return;
+            if (Math.abs(diff) < 50) return;
             const now = Date.now();
-            if (now - lookLastSwitchTime.current < 2000) return;
+            if (now - lookLastSwitchTime.current < 400) return;
             lookLastSwitchTime.current = now;
             const cur = lookVideoIndexRef.current;
             const next = diff > 0
@@ -1286,7 +1210,7 @@ const HomePage = ({ onProductClick }) => {
           onWheel={(e) => {
             e.preventDefault();
             const now = Date.now();
-            if (now - lookLastSwitchTime.current < 2000) return;
+            if (now - lookLastSwitchTime.current < 400) return;
             lookLastSwitchTime.current = now;
             const cur = lookVideoIndexRef.current;
             const next = e.deltaY > 0
@@ -1452,8 +1376,8 @@ const HomePage = ({ onProductClick }) => {
       )}
 
       {/* Floating Instagram Button */}
-      <button 
-        className="fixed bottom-0 left-0 md:bottom-5 md:left-5 w-full md:w-auto md:rounded-full rounded-none flex items-center justify-center gap-2.5 px-5 py-3 md:px-5 md:py-3 text-sm md:text-sm font-semibold text-white cursor-pointer shadow-lg z-30 transition-all duration-300 hover:-translate-y-0.5"
+      <button
+        className="fixed bottom-5 left-5 w-12 h-12 md:w-auto md:h-auto md:px-5 md:py-3 rounded-full flex items-center justify-center md:gap-2.5 text-sm font-semibold text-white cursor-pointer z-30 transition-all duration-300 hover:scale-105 active:scale-95"
         style={{
           background: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
           boxShadow: '0 4px 15px rgba(188, 24, 136, 0.4)'
@@ -1461,10 +1385,10 @@ const HomePage = ({ onProductClick }) => {
         onClick={() => setShowInstagramModal(true)}
         aria-label="See Our Instagram"
       >
-        <svg className="w-6 h-6 md:w-6 md:h-6 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="currentColor"/>
+        <svg className="w-5 h-5 md:w-5 md:h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
         </svg>
-        <span className="whitespace-nowrap">See Our Instagram</span>
+        <span className="hidden md:inline whitespace-nowrap">See Our Instagram</span>
       </button>
 
       {/* Instagram Modal */}
