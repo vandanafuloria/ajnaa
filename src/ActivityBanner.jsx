@@ -1,59 +1,64 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+const IMG1 = 'https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=600';
+const IMG2 = 'https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600';
+const IMG3 = 'https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600';
+const IMG4 = 'https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600';
+
 const activities = [
   {
     type: 'purchase',
     name: 'Rahul M.',
     location: 'Mumbai',
-    product: 'AURA TWS (Black)',
+    product: 'Vibrant Peacock Floral Canvas',
     time: '2 min ago',
-    productImage: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-11.jpg.webp',
+    productImage: IMG1,
   },
   {
     type: 'review',
     name: 'Priya S.',
     location: 'Bangalore',
-    product: 'X6 Speaker',
+    product: 'Abstract Mountain Lake Canvas',
     time: 'Just now',
     stars: 5,
-    productImage: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-13.jpg.webp',
-    reviewImage: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-13.jpg.webp',
+    productImage: IMG2,
+    reviewImage: IMG2,
   },
   {
     type: 'purchase',
     name: 'Aditya K.',
     location: 'Delhi',
-    product: 'Boss 10.1 Speaker',
+    product: 'Artistic Abstract Canvas',
     time: '4 min ago',
-    productImage: 'https://olivlife.in/wp-content/uploads/2025/05/Boss-10.1-Portable-Bluetooth-Wireless-Speaker-4-150x150.jpg',
+    productImage: IMG3,
   },
   {
     type: 'review',
     name: 'Sneha R.',
     location: 'Pune',
-    product: 'OG PowerBank',
+    product: 'Abstract Peacock Feather Canvas',
     time: '6 min ago',
     stars: 5,
-    productImage: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-9.jpg.webp',
-    reviewImage: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-9.jpg.webp',
+    productImage: IMG4,
+    reviewImage: IMG4,
   },
   {
     type: 'purchase',
     name: 'Vikram T.',
     location: 'Chennai',
-    product: 'Neckband (Yellow)',
+    product: 'Vibrant Peacock Floral Canvas',
     time: '1 min ago',
-    productImage: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-9.jpg.webp',
+    productImage: IMG1,
   },
   {
     type: 'review',
     name: 'Kavya N.',
     location: 'Jaipur',
-    product: 'Boss 10.1 Speaker',
+    product: 'Artistic Abstract Canvas',
     time: 'Just now',
     stars: 5,
-    productImage: 'https://olivlife.in/wp-content/uploads/2025/05/Boss-10.1-Portable-Bluetooth-Wireless-Speaker-4-150x150.jpg',
-    reviewImage: 'https://olivlife.in/wp-content/uploads/2025/05/Boss-10.1-Portable-Bluetooth-Wireless-Speaker-4-150x150.jpg',
+    productImage: IMG3,
+    reviewImage: IMG3,
   },
 ];
 

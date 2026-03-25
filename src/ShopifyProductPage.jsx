@@ -15,12 +15,12 @@ import productHeader from './assets/product_header.png';
 import reviewData from '../review.json';
 
 
-// OlivLife product card images (same as home page)
+// VibeCrafts product card images
 const OLIVLIFE_IMGS = [
-  'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-11.jpg.webp',
-  'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-13.jpg.webp',
-  'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-9.jpg.webp',
-  'https://olivlife.in/wp-content/uploads/2025/05/Boss-10.1-Portable-Bluetooth-Wireless-Speaker-4-150x150.jpg',
+  'https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=600',
+  'https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600',
+  'https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600',
+  'https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600',
 ];
 
 function getReviewTitle(text) {
@@ -34,28 +34,42 @@ const BRAND_NAME = "wordofmouth";
 
 // Product Images Array - All product images
 const PRODUCT_IMAGES = [
-  "https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-11.jpg.webp",
-  "https://olivlife.in/wp-content/uploads/2025/05/OlivLife-Earpods-Black-1-1.jpg.webp",
-  "https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-13.jpg.webp",
-  "https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-9.jpg.webp",
+  "https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=800",
+  "https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600",
+  "https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600",
+  "https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600",
 ];
 
 // Product Video
-const PRODUCT_VIDEO = 'https://www.pexels.com/download/video/6689313/';
+const PRODUCT_VIDEO = 'https://cdn.shopify.com/videos/c/o/v/6705397241a34c05bb518fb088efebbc.mp4';
+
+// All VibeCrafts videos for video section
+const VIBECRAFTS_VIDEOS = [
+  'https://cdn.shopify.com/videos/c/o/v/6705397241a34c05bb518fb088efebbc.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/4ccf42fed6f24c33a4fe40ed57894447.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/6e87d98ad895427785883250699980be.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/7de778663bbd4ae8891937d41152bd28.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/b5259f2f9e4c4d1c89237bf73eeacead.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/0848219d3ecf4b958d7a7431f67f472b.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/b24af678e64b40518f1dadd3796ab3b2.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/738c5e887f4241629de7eaea7632c4ad.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/6d4c3029fce7492fa25dee1717b98205.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/0ac45b808de7488bb1ab1e51fd202926.mp4',
+];
 
 // Product Details
-const PRODUCT_NAME = "OlivLife AURA TWS Earbuds (Black)";
-const PRODUCT_PRICE = 2499;
-const PRODUCT_ORIGINAL_PRICE = 3899;
-const PRODUCT_DISCOUNT = 36;
-const PRODUCT_SKU = "OLIV-AURA-TWS-BLK";
-const PRODUCT_DESCRIPTION = "OlivLife AURA TWS Earbuds deliver 40 hours of total playback, deep bass, and ENC (Environmental Noise Cancellation) for crystal-clear calls. Featuring Bluetooth 5.3 for stable wireless connectivity, IPX5 water resistance, and intuitive touch controls — the AURA TWS is your perfect everyday companion from the classroom to the office.";
-const PRODUCT_BRAND = "OlivLife";
+const PRODUCT_NAME = "Vibrant Peacock and Red Lotus Floral Canvas Wall Painting";
+const PRODUCT_PRICE = 2699;
+const PRODUCT_ORIGINAL_PRICE = 6599;
+const PRODUCT_DISCOUNT = 59;
+const PRODUCT_SKU = "PTVCH-4307";
+const PRODUCT_DESCRIPTION = "Bring the timeless beauty of Indian art into your living space with this stunning Vibrant Peacock and Red Lotus Floral Canvas Wall Painting. Featuring a majestic peacock set against a backdrop of blooming lotus flowers and lush foliage in rich jewel tones, this artwork is digitally printed on premium-grade canvas with UV-resistant, fade-proof inks. Ready to hang with a fitted wood frame — no assembly needed.";
+const PRODUCT_BRAND = "VibeCrafts";
 const PRODUCT_COLORS = [
-  { name: "Black", value: "#1a1a1a" },
-  { name: "White", value: "#f5f5f5" },
+  { name: "Standard", value: "#41543F" },
+  { name: "Vibrant", value: "#c0392b" },
 ];
-const PRODUCT_SIZES = ["One Size"];
+const PRODUCT_SIZES = ["18x12 inch", "24x16 inch", "36x24 inch", "48x32 inch"];
 
 // You May Also Like Products Data
 const RELATED_PRODUCTS = [
@@ -99,10 +113,10 @@ const RELATED_PRODUCTS = [
 
 // Best Seller Products data — same as home page
 const bestSellerProducts = [
-  { id: 1, image: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-11.jpg.webp', title: 'OlivLife AURA TWS (Black)', currentPrice: 2499, originalPrice: 3899, rating: 4.7, reviewCount: 1284, feature: '40 Hours Playback' },
-  { id: 2, image: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-13.jpg.webp', title: 'OlivLife X6 Speaker (W&G)', currentPrice: 2999, originalPrice: 3999, rating: 4.8, reviewCount: 956, feature: '5W punchy mono sound' },
-  { id: 3, image: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-9.jpg.webp', title: 'OlivLife Neckband (Yellow)', currentPrice: 899, originalPrice: 1999, rating: 5.0, reviewCount: 742, feature: '24 Hours Playback' },
-  { id: 4, image: 'https://olivlife.in/wp-content/uploads/2025/05/Boss-10.1-Portable-Bluetooth-Wireless-Speaker-4-150x150.jpg', title: 'OlivLife Boss 10.1 Speaker', currentPrice: 4999, originalPrice: 6999, rating: 5.0, reviewCount: 621, feature: '20W powerful stereo sound' },
+  { id: 1, image: 'https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=600', title: 'Vibrant Peacock and Red Lotus Floral Canvas Wall Painting', currentPrice: 2699, originalPrice: 6599, rating: 4.7, reviewCount: 1284, feature: 'Premium Canvas Print' },
+  { id: 2, image: 'https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600', title: 'Abstract Mountain Lake Canvas Wall Art Painting', currentPrice: 1999, originalPrice: 4999, rating: 4.8, reviewCount: 956, feature: 'UV Resistant Colors' },
+  { id: 3, image: 'https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600', title: 'Artistic Abstract Canvas Wall Art for Modern Decor', currentPrice: 1799, originalPrice: 4499, rating: 4.9, reviewCount: 742, feature: 'Stretched & Ready to Hang' },
+  { id: 4, image: 'https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600', title: 'Abstract Peacock Feather Canvas Wall Art Painting', currentPrice: 2299, originalPrice: 5999, rating: 4.8, reviewCount: 621, feature: 'Fade-Proof Ink Technology' },
 ];
 
 // ============================================
@@ -256,18 +270,17 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
   // Instagram post URLs
   const instagramPosts = [
-    'https://www.instagram.com/p/DWBwnwzCGz-/',
-    'https://www.instagram.com/p/DV8evfAk8WK/',
-    'https://www.instagram.com/p/DVi06_pGDZ4/',
-    'https://www.instagram.com/p/DVYgmN_mOky/',
-    'https://www.instagram.com/p/DVONcAQkxKq/',
-    'https://www.instagram.com/p/DVGjQReEtZu/',
-    'https://www.instagram.com/p/DUuX_tMk8YK/',
-    'https://www.instagram.com/p/DUDiVtxk1et/',
-    'https://www.instagram.com/p/DTfbzsAE2kt/',
-    'https://www.instagram.com/p/DTS0wspE5sx/',
-    'https://www.instagram.com/p/DSC2COMkzyQ/',
-    'https://www.instagram.com/p/DU-tK8PkxVI/',
+    'https://www.instagram.com/p/DWOkJDuExMS/',
+    'https://www.instagram.com/p/DWGjpesAZvP/',
+    'https://www.instagram.com/p/DWRJ7kPD6_c/',
+    'https://www.instagram.com/p/DWBtR6vj3n3/',
+    'https://www.instagram.com/p/DWA3oX3Ewfc/',
+    'https://www.instagram.com/p/DWBGFbvDZ1S/',
+    'https://www.instagram.com/p/DV7r2UQD-d8/',
+    'https://www.instagram.com/p/DV27mLnCW2W/',
+    'https://www.instagram.com/p/DVqAumXkYQk/',
+    'https://www.instagram.com/p/DVlVxNkGTSg/',
+    'https://www.instagram.com/p/DU5k3k0j31C/',
   ];
 
 
@@ -349,7 +362,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       location: r.location,
       date: productReviewDates[i] || '1/01/2025',
       rating: r.rating,
-      title: getReviewTitle(r.review),
+      title: r.title || getReviewTitle(r.review),
       text: r.review,
       images: [OLIVLIFE_IMGS[(i * 2) % OLIVLIFE_IMGS.length], OLIVLIFE_IMGS[(i * 2 + 1) % OLIVLIFE_IMGS.length]],
     }));
@@ -364,7 +377,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       location: r.location,
       date: brandReviewDates[i] || '1/01/2025',
       rating: r.rating,
-      title: getReviewTitle(r.review),
+      title: r.title || getReviewTitle(r.review),
       text: r.review,
       images: [OLIVLIFE_IMGS[(i * 2) % OLIVLIFE_IMGS.length], OLIVLIFE_IMGS[(i * 2 + 1) % OLIVLIFE_IMGS.length]],
     }));
@@ -687,13 +700,13 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       )}
       
       <main className="flex-1 py-8 md:py-12 bg-white">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="w-full px-4">
 
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
             <button onClick={onHomeClick} className="hover:text-gray-700 transition-colors">Home</button>
             <span>›</span>
-            <span className="text-gray-500">True Wireless Earbuds</span>
+            <span className="text-gray-500">Canvas Wall Art</span>
             <span>›</span>
             <span className="text-gray-800 font-medium truncate">{productName}</span>
           </nav>
@@ -723,7 +736,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   src={productImages[selectedImage] || productImages[0]}
                   alt={productName}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  style={{ aspectRatio: '1/1' }}
+                  style={{ aspectRatio: '16/9' }}
                 />
                 {/* Discount badge */}
                 <div className="absolute top-3 left-3 w-12 h-12 rounded-full bg-red-500 flex items-center justify-center text-white text-sm font-bold shadow">
@@ -780,18 +793,18 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                 {/* Feature tags */}
                 <div className="flex flex-wrap gap-2">
                   {[
-                    { label: 'No Wires', icon: <path d="M17 6.1H3M21 12H8M21 12l-4-4m4 4l-4 4M3 17.9h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/> },
-                    { label: '40Hr Playtime', icon: <><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2"/><polyline points="12 7 12 12 15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
-                    { label: 'Clear Call Quality', icon: <><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 5.18 2 2 0 0 1 5.07 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17.92z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
-                    { label: 'Sweat & Rain Proof', icon: <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/> },
-                    { label: 'Instant Connect', icon: <><path d="M5 12.55a11 11 0 0 1 14.08 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M1.42 9a16 16 0 0 1 21.16 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="20" r="1" fill="currentColor"/></> },
+                    { label: 'Premium Canvas', icon: <><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2"/><path d="M3 9h18M9 21V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
+                    { label: 'Ready to Hang', icon: <><path d="M12 2v4M8 6l4-4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><rect x="4" y="10" width="16" height="12" rx="2" stroke="currentColor" strokeWidth="2"/></> },
+                    { label: 'UV Resistant', icon: <><circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
+                    { label: 'Fade-Proof Ink', icon: <><path d="M12 22c-4.97 0-9-4.03-9-9 0-4.17 3-7.67 7-8.7V2l5 5-5 5V9.3c-2.86.9-5 3.57-5 6.7 0 3.31 2.69 6 6 6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></> },
+                    { label: 'Eco-Friendly', icon: <><path d="M2 22c1.25-1.25 2.9-2 4.5-2 1.59 0 3.23.77 4.5 2 1.27-1.23 2.91-2 4.5-2 1.6 0 3.25.77 4.5 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M12 15V2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M5 8c1.5 0 3.5 1 7 1s5.5-1 7-1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
                   ].map(({ label, icon }) => (
                     <span
                       key={label}
-                      className="inline-flex items-center gap-2 text-xs font-semibold text-gray-700 rounded-xl px-3 py-2"
-                      style={{ background: '#fff', border: '1px solid #e8e8e8' }}
+                      className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-2"
+                      style={{ background: 'rgba(65,84,63,0.08)', border: '1px solid rgba(65,84,63,0.3)', color: '#41543F', borderRadius: '0' }}
                     >
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" style={{ color: '#374151', flexShrink: 0 }}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" style={{ color: '#41543F', flexShrink: 0 }}>
                         {icon}
                       </svg>
                       {label}
@@ -802,27 +815,88 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
               {/* Price row */}
               <div className="flex items-baseline gap-3">
-                <span className="text-lg text-gray-400 line-through">₹{productOriginal.toLocaleString('en-IN')}.00</span>
-                <span className="text-3xl font-bold text-gray-900">₹{productPrice.toLocaleString('en-IN')}.00</span>
+                <span className="text-3xl font-bold text-gray-900">₹{productPrice.toLocaleString('en-IN')}</span>
+                <span className="text-lg text-gray-400 line-through">₹{productOriginal.toLocaleString('en-IN')}</span>
+                <span className="text-sm font-bold text-white px-2 py-0.5 rounded" style={{ backgroundColor: '#22c55e' }}>
+                  {productDiscount}% OFF
+                </span>
               </div>
 
-              {/* In Stock */}
-              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-green-700 bg-green-50 border border-green-200 px-3 py-1 rounded-md w-fit">
-                <span className="w-2 h-2 rounded-full bg-green-500 inline-block" />
-                In Stock
-              </span>
+              {/* EMI box */}
+              <div className="rounded-lg px-4 py-3 flex flex-col gap-1" style={{ backgroundColor: '#f5f5f5', border: '1px solid #e8e8e8' }}>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm text-gray-600">or <span className="font-bold text-gray-900" style={{ backgroundColor: '#d1fae5', padding: '1px 6px', borderRadius: '4px' }}>₹{Math.round(productPrice / 4).toLocaleString('en-IN')}</span> /month <span className="text-gray-500">(4 months)</span></span>
+                  <button className="ml-auto text-white text-xs font-semibold px-3 py-1.5 rounded" style={{ backgroundColor: '#41543F' }}>
+                    Buy on EMI
+                  </button>
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#41543F" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3" strokeLinecap="round"/></svg>
+                  UPI &amp; Cards Accepted &nbsp;|&nbsp; 0 Extra Cost &nbsp;|&nbsp; <span className="font-bold text-gray-700">snap<span style={{ color: '#41543F' }}>mint</span></span>
+                </div>
+              </div>
 
-              {/* Pincode */}
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  placeholder="Enter Pincode"
-                  maxLength={6}
-                  className="flex-1 border border-gray-300 rounded px-4 py-2.5 text-sm focus:outline-none focus:border-gray-600"
-                />
-                <button className="px-5 py-2.5 bg-gray-800 text-white text-sm font-semibold rounded hover:bg-gray-900 transition-colors">
-                  Check Pincode
-                </button>
+              {/* Season Sale box */}
+              <div className="rounded-lg px-4 py-3 flex flex-col gap-2" style={{ backgroundColor: '#f7f3ed', border: '1px solid #e2d9cc' }}>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-white px-2 py-1 rounded" style={{ backgroundColor: '#41543F' }}>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                    END OF SEASON SALE
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-700">Get at <strong className="text-gray-900">₹{Math.round(productPrice * 0.845).toLocaleString('en-IN')}</strong></span>
+                  <button className="text-white text-xs font-bold px-3 py-1.5 rounded" style={{ backgroundColor: '#41543F' }}>
+                    Extra ₹{Math.round(productPrice * 0.155).toLocaleString('en-IN')} Off
+                  </button>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-gray-500">
+                  <span>With Coupon +</span>
+                  <div className="flex items-center gap-1">
+                    <span className="bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">UPI</span>
+                    <span className="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">MC</span>
+                    <span className="bg-blue-700 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">VISA</span>
+                  </div>
+                  <span>Pre-Paid Offer</span>
+                  <button className="ml-auto text-xs font-semibold underline" style={{ color: '#41543F' }}>Details &rsaquo;</button>
+                </div>
+              </div>
+
+              {/* Frame Type selector */}
+              <div>
+                <p className="text-sm font-semibold text-gray-800 mb-2">Frame Type</p>
+                <div className="flex gap-3">
+                  {[
+                    { label: 'Ready To Hang\n(Fitted With Wood Frame)', img: PRODUCT_IMAGES[0] },
+                    { label: 'Painting with\nFloating Frame', img: PRODUCT_IMAGES[1] },
+                  ].map((frame, i) => (
+                    <button
+                      key={i}
+                      className={`flex-1 rounded-xl overflow-hidden border-2 text-left transition-all ${selectedSize === frame.label ? 'border-gray-800' : 'border-gray-200 hover:border-gray-400'}`}
+                      onClick={() => setSelectedSize(frame.label)}
+                    >
+                      <img src={frame.img} alt={frame.label} className="w-full h-24 object-cover" />
+                      <p className="text-[11px] font-semibold text-gray-800 px-2 py-2 leading-tight whitespace-pre-line">{frame.label}</p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Check delivery timeline */}
+              <div className="border border-gray-200 rounded-lg p-4">
+                <p className="text-sm font-semibold text-gray-800 mb-3">Check delivery timeline</p>
+                <div className="flex gap-2 items-center border border-gray-300 rounded-lg px-3 py-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#41543F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  <input
+                    type="text"
+                    placeholder="Enter PIN code"
+                    maxLength={6}
+                    className="flex-1 text-sm focus:outline-none bg-transparent"
+                  />
+                  <button className="text-sm font-semibold" style={{ color: '#41543F' }}>Check</button>
+                </div>
               </div>
 
               {/* Added to carts banner */}
@@ -834,23 +908,6 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                 <span style={{ color: '#9a3412' }}>This product has been added to <strong style={{ color: '#ea580c' }}>98 people's</strong> carts.</span>
               </div>
 
-              {/* Delivery options */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <p className="text-sm text-gray-600 mb-3 font-medium">Check delivery options in your location:</p>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    placeholder="Enter a Pincode"
-                    maxLength={6}
-                    className="flex-1 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-gray-600"
-                  />
-                  <button className="px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded hover:bg-gray-900 transition-colors">
-                    Check
-                  </button>
-                </div>
-                <p className="text-xs text-gray-400 mt-2">Shipping to <strong className="text-gray-600">IN</strong> · <button className="underline hover:text-gray-800">change</button></p>
-              </div>
-
               {/* Quantity + Add to Cart */}
               <div className="flex gap-3 items-center">
                 <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
@@ -858,8 +915,10 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <span className="w-10 text-center text-base font-semibold text-gray-900">{quantity}</span>
                   <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-11 flex items-center justify-center text-xl text-gray-600 hover:bg-gray-50 transition-colors">+</button>
                 </div>
-                <button className="flex-1 py-3 bg-green-600 hover:bg-green-700 text-white font-bold text-sm rounded-lg transition-colors tracking-wide">
-                  Add to cart
+                <button className="flex-1 py-3 text-white font-bold text-sm rounded-lg transition-colors tracking-wide" style={{ backgroundColor: '#41543F' }}
+                  onMouseEnter={e => e.currentTarget.style.backgroundColor = '#2e3b2d'}
+                  onMouseLeave={e => e.currentTarget.style.backgroundColor = '#41543F'}>
+                  Add to Cart
                 </button>
               </div>
 
@@ -876,11 +935,11 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
               {/* Delivery info checklist */}
               <ul className="flex flex-col gap-2.5">
                 {[
-                  { bold: 'Delivered today', rest: '(order Mon–Fri before 12:00, delivery between 17:00 and 22:00)' },
-                  { bold: 'Including', rest: 'shipping costs, fulfilled by OlivLife' },
-                  { bold: null, rest: 'Pick up at an OlivLife collection point is possible' },
-                  { bold: null, rest: '30 days to change your mind and free returns' },
-                  { bold: null, rest: 'Day and night customer service' },
+                  { bold: 'Free Shipping', rest: 'on all orders above ₹999 across India' },
+                  { bold: 'Ready to Hang', rest: '— arrives stretched on a wood frame, no assembly needed' },
+                  { bold: null, rest: 'Packed securely to prevent damage during transit' },
+                  { bold: null, rest: '7-day easy return & replacement policy' },
+                  { bold: null, rest: '100% authentic, premium-grade canvas materials' },
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 flex-shrink-0">
@@ -894,7 +953,20 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
               <div className="border-t border-gray-100 my-1" />
 
               {/* Category */}
-              <p className="text-sm text-gray-400">Category: <span className="text-gray-600 font-medium">True Wireless Earbuds</span></p>
+              {/* End of Season Sale bottom banner */}
+              <div className="rounded-xl px-4 py-3 flex items-center justify-between" style={{ backgroundColor: '#1a2e1a' }}>
+                <div className="flex items-center gap-2">
+                  <span className="text-white text-xs font-light tracking-widest uppercase">HOME DECOR</span>
+                  <span className="text-yellow-300 text-sm font-bold italic">END of SEASON</span>
+                  <span className="text-white text-sm font-bold italic">Sale</span>
+                </div>
+                <span className="flex items-center gap-1 text-xs font-bold text-white bg-red-600 px-2 py-0.5 rounded-full animate-pulse">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white inline-block" />
+                  LIVE
+                </span>
+              </div>
+
+              <p className="text-sm text-gray-400">Category: <span className="text-gray-600 font-medium">Canvas Wall Art</span></p>
 
             </div>
           </div>
@@ -902,24 +974,34 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       </main>
 
 
-      {/* See It In The Wild */}
+      {/* In Your Home */}
       {(() => {
         const WILD_VIDEOS = [
-          'https://www.pexels.com/download/video/6689313/',
-          'https://www.pexels.com/download/video/7382316/',
-          'https://www.pexels.com/download/video/6322740/',
-          'https://www.pexels.com/download/video/7988851/',
-          'https://www.pexels.com/download/video/4884004/',
+          'https://cdn.shopify.com/videos/c/o/v/6705397241a34c05bb518fb088efebbc.mp4',
+          'https://cdn.shopify.com/videos/c/o/v/4ccf42fed6f24c33a4fe40ed57894447.mp4',
+          'https://cdn.shopify.com/videos/c/o/v/6e87d98ad895427785883250699980be.mp4',
+          'https://cdn.shopify.com/videos/c/o/v/7de778663bbd4ae8891937d41152bd28.mp4',
+          'https://cdn.shopify.com/videos/c/o/v/b5259f2f9e4c4d1c89237bf73eeacead.mp4',
+          'https://cdn.shopify.com/videos/c/o/v/0848219d3ecf4b958d7a7431f67f472b.mp4',
+          'https://cdn.shopify.com/videos/c/o/v/b24af678e64b40518f1dadd3796ab3b2.mp4',
+          'https://cdn.shopify.com/videos/c/o/v/738c5e887f4241629de7eaea7632c4ad.mp4',
+          'https://cdn.shopify.com/videos/c/o/v/6d4c3029fce7492fa25dee1717b98205.mp4',
+          'https://cdn.shopify.com/videos/c/o/v/0ac45b808de7488bb1ab1e51fd202926.mp4',
         ];
         return (
           <>
-            <div className="w-full py-7" style={{ background: '#264171' }}>
-              <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="w-full py-7" style={{ background: '#41543F' }}>
+              <div className="w-full px-4">
                 <div className="flex items-center justify-between mb-5">
-                  <h2 className="text-base font-bold text-white tracking-wide">See It In The Wild</h2>
-                  <span className="flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full" style={{ color: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.15)' }}>
-                    Real customers
-                  </span>
+                  <h2 className="text-base font-bold text-white tracking-wide">In Your Home</h2>
+                  <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full" style={{ color: 'rgba(255,255,255,0.85)', border: '1px solid rgba(255,255,255,0.25)', textDecoration: 'none' }}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                      <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeWidth="1.8"/>
+                      <circle cx="12" cy="12" r="4.5" stroke="white" strokeWidth="1.8"/>
+                      <circle cx="17.5" cy="6.5" r="1" fill="white"/>
+                    </svg>
+                    vibecrafts_official
+                  </a>
                 </div>
                 <div className="overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
                   <div className="flex gap-3 min-w-max">
@@ -963,7 +1045,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
       {/* Best Sellers Section */}
       <section className="w-full py-12 md:py-16 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="w-full px-4">
           <div className="text-center mb-8 md:mb-10">
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#8B4513] tracking-wide">
               SHOP OUR BEST SELLERS
@@ -986,7 +1068,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
       {/* Reviews Section - WOM Style */}
       <div id="reviews-section" className="bg-white w-full py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="w-full px-4 max-w-7xl mx-auto">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-normal text-gray-800">Customer Reviews</h2>
           </div>
@@ -1002,13 +1084,13 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <div
                       className="w-32 h-32 rounded-full flex items-center justify-center mb-4 relative mx-auto"
                       style={{
-                        background: `conic-gradient(#264171 0% 96%, #dce6f5 96% 100%)`,
-                        boxShadow: '0 8px 24px rgba(38,65,113,0.22)'
+                        background: `conic-gradient(#41543F 0% 96%, #d4e0d3 96% 100%)`,
+                        boxShadow: '0 8px 24px rgba(65,84,63,0.25)'
                       }}
                     >
                       <div className="absolute inset-[6px] rounded-full bg-white flex items-center justify-center">
                         <div className="flex items-baseline gap-0.5">
-                          <span className="text-3xl font-bold" style={{ color: '#264171' }}>4.8</span>
+                          <span className="text-3xl font-bold" style={{ color: '#41543F' }}>4.8</span>
                           <span className="text-sm font-medium text-gray-400">/5</span>
                         </div>
                       </div>
@@ -1023,7 +1105,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       ))}
                     </div>
                     <p className="text-sm text-gray-500 mb-3">Based on <strong className="text-gray-800">147</strong> reviews</p>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border" style={{ backgroundColor: 'rgba(38,65,113,0.07)', color: '#264171', borderColor: 'rgba(38,65,113,0.2)' }}>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border" style={{ backgroundColor: 'rgba(65,84,63,0.07)', color: '#41543F', borderColor: 'rgba(65,84,63,0.25)' }}>
                       <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                       </svg>
@@ -1053,7 +1135,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                             style={{
                               width: `${item.percent}%`,
                               minWidth: '2px',
-                              backgroundColor: '#264171',
+                              backgroundColor: '#41543F',
                               borderRadius: '1px'
                             }}
                           />
@@ -1808,7 +1890,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
       {/* You May Also Like Section */}
       <section className="w-full py-12 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="w-full px-4">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#8B4513] mb-3 tracking-wide">
               Best Sellers

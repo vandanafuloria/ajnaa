@@ -26,7 +26,7 @@ const Sparkline = ({ data }) => {
           top: 0,
           left: `${(pts[hovered].x / w) * 100}%`,
           transform: 'translateX(-50%)',
-          background: '#1a1a2e',
+          background: '#41543F',
           color: '#fff',
           fontSize: '9px',
           fontWeight: 600,
@@ -42,20 +42,20 @@ const Sparkline = ({ data }) => {
       <svg width="100%" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" style={{ display: 'block' }}>
         <defs>
           <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#1a1a2e" stopOpacity="0.12"/>
-            <stop offset="100%" stopColor="#1a1a2e" stopOpacity="0"/>
+            <stop offset="0%" stopColor="#41543F" stopOpacity="0.12"/>
+            <stop offset="100%" stopColor="#41543F" stopOpacity="0"/>
           </linearGradient>
         </defs>
         <path d={areaD} fill="url(#sparkGrad)"/>
-        <path d={pathD} fill="none" stroke="#1a1a2e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d={pathD} fill="none" stroke="#41543F" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
         {pts.map((p) => (
           <circle
             key={p.i}
             cx={p.x}
             cy={p.y}
             r={hovered === p.i ? 3.5 : 2}
-            fill={hovered === p.i ? '#1a1a2e' : '#fff'}
-            stroke="#1a1a2e"
+            fill={hovered === p.i ? '#41543F' : '#fff'}
+            stroke="#41543F"
             strokeWidth="1.4"
             style={{ cursor: 'pointer', transition: 'r 0.15s' }}
             onMouseEnter={() => setHovered(p.i)}
@@ -69,150 +69,150 @@ const Sparkline = ({ data }) => {
 
 const AIBrandEngine = ({ showExtras = true }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [activeTab, setActiveTab] = useState('tws');
+  const [activeTab, setActiveTab] = useState('floral');
 
   if (!showExtras) return null;
 
   const tabs = [
-    { id: 'tws',       label: 'Earbuds'   },
-    { id: 'speakers',  label: 'Speakers'  },
-    { id: 'neckband',  label: 'Neckband'  },
-    { id: 'powerbank', label: 'PowerBank' },
-    { id: 'cables',    label: 'Cables'    },
-    { id: 'cctv',      label: 'CCTV'      },
+    { id: 'floral',      label: 'Floral'      },
+    { id: 'abstract',    label: 'Abstract'    },
+    { id: 'nature',      label: 'Nature'      },
+    { id: 'peacock',     label: 'Peacock'     },
+    { id: 'geometric',   label: 'Geometric'   },
+    { id: 'traditional', label: 'Traditional' },
   ];
 
   const content = {
-    tws: {
-      title: 'OlivLife AURA TWS',
-      category: 'Earbuds · True Wireless',
+    floral: {
+      title: 'VibeCrafts Floral Collection',
+      category: 'Canvas Wall Art · Floral & Botanical',
       metrics: {
         purchases: 18420,
         reviews: 4312,
-        refundRate: 4.8,
+        refundRate: 1.8,
         qualityScore: 97,
         trend: [40, 55, 48, 72, 65, 88, 102, 95, 118, 130, 122, 148],
       },
       stats: [
-        { value: '40 Hrs',  label: 'Total playback time' },
-        { value: 'ENC',     label: 'Environmental noise cancellation' },
-        { value: 'BT 5.3',  label: 'Stable wireless connectivity' },
+        { value: 'Premium',  label: 'Fade-proof UV-resistant inks' },
+        { value: 'Ready',    label: 'Stretched & ready to hang' },
+        { value: '59% OFF',  label: 'Limited season sale pricing' },
       ],
       highlights: [
-        'True wireless stereo earbuds with deep bass',
-        'Touch controls & instant pairing',
-        'IPX5 water-resistant build',
-        'Available in Black & White variants',
+        'Rich jewel-tone palette inspired by Indian art',
+        'Available in 4 sizes from 18x12 to 48x32 inch',
+        'Fitted wood frame — no assembly required',
+        'Eco-friendly canvas, non-toxic inks',
       ],
     },
-    speakers: {
-      title: 'OlivLife Speakers',
-      category: 'Audio · Portable Speakers',
+    abstract: {
+      title: 'VibeCrafts Abstract Collection',
+      category: 'Canvas Wall Art · Abstract & Contemporary',
       metrics: {
-        purchases: 11870,
-        reviews: 2891,
-        refundRate: 3.6,
-        qualityScore: 98,
+        purchases: 14870,
+        reviews: 3291,
+        refundRate: 2.1,
+        qualityScore: 96,
         trend: [30, 38, 42, 50, 58, 70, 65, 80, 88, 95, 105, 118],
       },
       stats: [
-        { value: '20W',    label: 'Boss 10.1 stereo output' },
-        { value: '5W',     label: 'X6 punchy mono sound' },
-        { value: 'BT 5.0', label: 'Multi-device connectivity' },
+        { value: 'Modern',   label: 'Curated for contemporary homes' },
+        { value: 'HD Print', label: 'High-resolution digital print' },
+        { value: '60% OFF',  label: 'End of season discount' },
       ],
       highlights: [
-        'Boss 10.1 — powerful 20W stereo speaker',
-        'X6 compact speaker with rich mono sound',
-        'RGB lighting & 360° surround audio',
-        'Up to 8 hours playtime per charge',
+        'Minimalist to bold designs for every aesthetic',
+        'Seamless color gradients with museum-quality finish',
+        'Pairs perfectly with neutral & Scandinavian interiors',
+        'Gift-ready packaging with protective wrap',
       ],
     },
-    neckband: {
-      title: 'OlivLife Neckband',
-      category: 'Audio · Neckband Earphones',
+    nature: {
+      title: 'VibeCrafts Nature Collection',
+      category: 'Canvas Wall Art · Landscapes & Nature',
       metrics: {
-        purchases: 9340,
-        reviews: 2105,
-        refundRate: 5.2,
-        qualityScore: 95,
+        purchases: 11340,
+        reviews: 2605,
+        refundRate: 1.9,
+        qualityScore: 98,
         trend: [22, 28, 35, 40, 38, 52, 60, 55, 68, 75, 80, 92],
       },
       stats: [
-        { value: '24 Hrs',      label: 'Continuous playback' },
-        { value: 'Magnetic',    label: 'Auto on/off snap closure' },
-        { value: 'Fast Charge', label: '10 min charge = 2 hrs play' },
+        { value: 'Serene',      label: 'Calming mountain & lake themes' },
+        { value: 'Weatherproof', label: 'Moisture-resistant canvas coat' },
+        { value: '58% OFF',     label: 'Home decor season pricing' },
       ],
       highlights: [
-        'Ergonomic flexible neckband design',
-        'Hi-Fi sound with powerful bass',
-        'Built-in mic for clear calls',
-        'Available in Yellow & Black variants',
+        'Breathtaking mountain lakes and forest scenes',
+        'Warm sunrise & golden hour palettes',
+        'Perfect for bedrooms, study rooms & corridors',
+        'Brings nature indoors with photorealistic detail',
       ],
     },
-    powerbank: {
-      title: 'OlivLife OG PowerBank',
-      category: 'Accessories · Power',
+    peacock: {
+      title: 'VibeCrafts Peacock Collection',
+      category: 'Canvas Wall Art · Peacock & Birds',
       metrics: {
-        purchases: 7210,
-        reviews: 1680,
-        refundRate: 2.9,
+        purchases: 21200,
+        reviews: 5180,
+        refundRate: 1.6,
         qualityScore: 99,
+        trend: [50, 60, 72, 80, 75, 90, 100, 112, 108, 125, 138, 160],
+      },
+      stats: [
+        { value: '#1 Seller', label: 'Best-selling canvas category' },
+        { value: 'Vibrant',   label: 'Jewel-tone teal & gold palette' },
+        { value: '59% OFF',   label: 'Flash sale pricing active' },
+      ],
+      highlights: [
+        'Majestic peacock motifs in Indian art style',
+        'Bold colors that transform any living room',
+        'Lotus, arch & garden backdrop compositions',
+        'Most gifted canvas category on VibeCrafts',
+      ],
+    },
+    geometric: {
+      title: 'VibeCrafts Geometric Collection',
+      category: 'Canvas Wall Art · Geometric & Patterns',
+      metrics: {
+        purchases: 8920,
+        reviews: 1980,
+        refundRate: 2.3,
+        qualityScore: 95,
         trend: [18, 22, 30, 35, 40, 45, 50, 58, 62, 70, 78, 88],
       },
       stats: [
-        { value: '10,000 mAh', label: 'High-capacity battery' },
-        { value: 'Wireless',   label: 'Qi wireless fast charging' },
-        { value: '22.5W',      label: 'Wired fast charge output' },
+        { value: 'Precision',  label: 'Crisp lines & sharp geometry' },
+        { value: 'Versatile',  label: 'Suits office & modern homes' },
+        { value: '55% OFF',    label: 'Season discount pricing' },
       ],
       highlights: [
-        'Charge wirelessly — no cable needed',
-        'Dual USB + Type-C output ports',
-        'Slim & pocket-friendly design',
-        'LED battery level indicator',
+        'Tessellated and mandala-inspired designs',
+        'Monochrome to multi-hued pattern options',
+        'Great for feature walls and gallery setups',
+        'Available as single panel & triptych sets',
       ],
     },
-    cables: {
-      title: 'OlivLife 4-in-1 USB',
-      category: 'Accessories · Cables',
+    traditional: {
+      title: 'VibeCrafts Traditional Collection',
+      category: 'Canvas Wall Art · Indian Heritage Art',
       metrics: {
-        purchases: 14580,
-        reviews: 3024,
-        refundRate: 2.1,
-        qualityScore: 99,
-        trend: [50, 60, 72, 80, 75, 90, 100, 112, 108, 125, 138, 155],
+        purchases: 7610,
+        reviews: 1742,
+        refundRate: 2.0,
+        qualityScore: 97,
+        trend: [15, 18, 22, 28, 32, 38, 42, 48, 55, 60, 68, 78],
       },
       stats: [
-        { value: '4-in-1', label: 'Universal connector heads' },
-        { value: '65W',    label: 'Fast charging support' },
-        { value: '1.2m',   label: 'Braided durable length' },
+        { value: 'Heritage',   label: 'Inspired by Indian folk art forms' },
+        { value: 'Handcrafted', label: 'Artisan-designed compositions' },
+        { value: '57% OFF',    label: 'End of season pricing' },
       ],
       highlights: [
-        'Type-C, Micro USB, Lightning & USB-A in one',
-        'Nylon braided for tangle-free durability',
-        'Data transfer up to 480 Mbps',
-        'Compatible with all major devices',
-      ],
-    },
-    cctv: {
-      title: 'OlivLife Security Cam',
-      category: 'Security · CCTV Cameras',
-      metrics: {
-        purchases: 5920,
-        reviews: 1342,
-        refundRate: 6.3,
-        qualityScore: 96,
-        trend: [15, 18, 22, 28, 32, 38, 42, 48, 55, 60, 68, 75],
-      },
-      stats: [
-        { value: '2MP / 4MP',   label: 'Full HD & Ultra HD options' },
-        { value: 'Night Vision', label: 'IR up to 30m in darkness' },
-        { value: 'Wide Angle',  label: '120° field of view' },
-      ],
-      highlights: [
-        'Indoor & outdoor weatherproof models',
-        'Motion detection with instant alerts',
-        'Remote live view via mobile app',
-        'Easy DIY installation, no technician needed',
+        'Madhubani, Warli & Pattachitra-inspired motifs',
+        'Warm earthy tones with golden accents',
+        'Ideal for pooja rooms, foyers & dining areas',
+        'Celebrates Indian cultural heritage in modern form',
       ],
     },
   };
@@ -228,11 +228,10 @@ const AIBrandEngine = ({ showExtras = true }) => {
         <button
           className="ai-brand-engine-trigger"
           onClick={() => setIsExpanded(true)}
-          aria-label="Explore Products"
+          aria-label="Explore Collections"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
           </svg>
         </button>
       ) : (
@@ -241,12 +240,11 @@ const AIBrandEngine = ({ showExtras = true }) => {
           <div className="panel-header">
             <div className="header-left">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <path d="M8 21h8M12 17v4"/>
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
               </svg>
               <div>
-                <h3 className="panel-title">OlivLife</h3>
-                <p className="panel-subtitle">Audio · Accessories · Security · Since 2023</p>
+                <h3 className="panel-title">VibeCrafts</h3>
+                <p className="panel-subtitle">Canvas Wall Art · Home Decor · Since 2022</p>
               </div>
             </div>
             <button className="panel-close-btn" onClick={() => setIsExpanded(false)} aria-label="Close">
@@ -314,7 +312,7 @@ const AIBrandEngine = ({ showExtras = true }) => {
                   </svg>
                 </div>
                 <div className="metric-num">{m.refundRate}%</div>
-                <div className="metric-lbl">Refund</div>
+                <div className="metric-lbl">Returns</div>
               </div>
             </div>
 
@@ -324,17 +322,9 @@ const AIBrandEngine = ({ showExtras = true }) => {
               <div className="score-card">
                 <div className="score-arc-wrap">
                   <svg width="64" height="40" viewBox="0 0 64 40">
-                    {/* track arc */}
-                    <path
-                      d="M 6 38 A 26 26 0 0 1 58 38"
-                      fill="none" stroke="#ebebeb" strokeWidth="5" strokeLinecap="round"
-                    />
-                    {/* filled arc — dasharray trick on a 81.7px arc */}
-                    <path
-                      d="M 6 38 A 26 26 0 0 1 58 38"
-                      fill="none" stroke="#1a1a2e" strokeWidth="5" strokeLinecap="round"
-                      strokeDasharray={`${(m.qualityScore / 100) * 81.7} 81.7`}
-                    />
+                    <path d="M 6 38 A 26 26 0 0 1 58 38" fill="none" stroke="#ebebeb" strokeWidth="5" strokeLinecap="round"/>
+                    <path d="M 6 38 A 26 26 0 0 1 58 38" fill="none" stroke="#41543F" strokeWidth="5" strokeLinecap="round"
+                      strokeDasharray={`${(m.qualityScore / 100) * 81.7} 81.7`}/>
                   </svg>
                   <div className="score-arc-label">{m.qualityScore}%</div>
                 </div>
@@ -342,19 +332,14 @@ const AIBrandEngine = ({ showExtras = true }) => {
                 <div className="score-sub">Customer satisfaction</div>
               </div>
 
-              {/* Refund rate — segmented bar */}
+              {/* Return rate — segmented bar */}
               <div className="score-card">
                 <div className="refund-gauge">
                   <div className="refund-big">{m.refundRate}<span className="refund-pct">%</span></div>
                   <div className="refund-bar-wrap">
                     {[...Array(10)].map((_, i) => {
                       const filled = i < Math.round(m.refundRate * 10 / 10);
-                      return (
-                        <div
-                          key={i}
-                          className={`refund-seg ${filled ? 'filled' : ''}`}
-                        />
-                      );
+                      return <div key={i} className={`refund-seg ${filled ? 'filled' : ''}`}/>;
                     })}
                   </div>
                 </div>

@@ -8,11 +8,16 @@ import ActivityBanner from './ActivityBanner';
 import './HomePage.css';
 
 const SHOPIFY_VIDEO_URLS = [
-  'https://www.pexels.com/download/video/6689313/',
-  'https://www.pexels.com/download/video/7382316/',
-  'https://www.pexels.com/download/video/6322740/',
-  'https://www.pexels.com/download/video/7988851/',
-  'https://www.pexels.com/download/video/4884004/',
+  'https://cdn.shopify.com/videos/c/o/v/6705397241a34c05bb518fb088efebbc.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/4ccf42fed6f24c33a4fe40ed57894447.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/6e87d98ad895427785883250699980be.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/7de778663bbd4ae8891937d41152bd28.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/b5259f2f9e4c4d1c89237bf73eeacead.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/0848219d3ecf4b958d7a7431f67f472b.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/b24af678e64b40518f1dadd3796ab3b2.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/738c5e887f4241629de7eaea7632c4ad.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/6d4c3029fce7492fa25dee1717b98205.mp4',
+  'https://cdn.shopify.com/videos/c/o/v/0ac45b808de7488bb1ab1e51fd202926.mp4',
 ];
 
 const BRAND_NAME = "wordofmouth";
@@ -21,101 +26,68 @@ const BRAND_NAME = "wordofmouth";
 const bestSellerProducts = [
   {
     id: 1,
-    image: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-11.jpg.webp',
-    title: 'OlivLife AURA TWS (Black)',
-    currentPrice: 2499,
-    originalPrice: 3899,
+    image: 'https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=600',
+    title: 'Vibrant Peacock and Red Lotus Floral Canvas Wall Painting',
+    currentPrice: 2699,
+    originalPrice: 6599,
     rating: 4.7,
-    badge: 'New Launch',
-    feature: '40 Hours Playback',
+    badge: 'Best Sellers',
+    feature: 'Premium Canvas Print',
   },
   {
     id: 2,
-    image: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-13.jpg.webp',
-    title: 'OlivLife X6 Speaker (W&G)',
-    currentPrice: 2999,
-    originalPrice: 3999,
+    image: 'https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600',
+    title: 'Abstract Mountain Lake Canvas Wall Art Painting for Wall Decor',
+    currentPrice: 1999,
+    originalPrice: 4999,
     rating: 4.8,
-    badge: 'Best Sellers',
-    feature: '5W punchy mono sound',
+    badge: 'Trending',
+    feature: 'UV Resistant Colors',
   },
   {
     id: 3,
-    image: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-9.jpg.webp',
-    title: 'OlivLife Neckband (Y)',
-    currentPrice: 899,
-    originalPrice: 1999,
-    rating: 5.0,
-    badge: 'Trending',
-    feature: '24 Hours Playback',
+    image: 'https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600',
+    title: 'Artistic Abstract Canvas Wall Art Painting for Modern Decor',
+    currentPrice: 1799,
+    originalPrice: 4499,
+    rating: 4.9,
+    badge: 'New Launch',
+    feature: 'Stretched & Ready to Hang',
   },
   {
     id: 4,
-    image: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-13.jpg.webp',
-    title: 'OlivLife Boss 10.1 Speaker',
-    currentPrice: 4999,
-    originalPrice: 6999,
-    rating: 5.0,
+    image: 'https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600',
+    title: 'Abstract Peacock Feather Canvas Wall Art Painting',
+    currentPrice: 2299,
+    originalPrice: 5999,
+    rating: 4.8,
     badge: 'Best Sellers',
-    feature: '20W powerful stereo sound',
+    feature: 'Fade-Proof Ink Technology',
   },
 ];
 
 const getRandomSoldThisWeek = (min = 180, max = 420) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
+const VIBECRAFTS_IMGS = [
+  'https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=600',
+  'https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600',
+  'https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600',
+  'https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600',
+];
+
 // Video Products data
 const videoProducts = [
-  {
-    id: 1,
-    video: SHOPIFY_VIDEO_URLS[0],
-    image: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-11.jpg.webp',
-    views: '4.0K',
-    title: 'OlivLife AURA TWS (Black)',
-    currentPrice: 2499,
-    originalPrice: 3899,
-    soldThisWeek: getRandomSoldThisWeek(),
-  },
-  {
-    id: 2,
-    video: SHOPIFY_VIDEO_URLS[1],
-    image: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-13.jpg.webp',
-    views: '4.2K',
-    title: 'OlivLife X6 Speaker (W&G)',
-    currentPrice: 2999,
-    originalPrice: 3999,
-    soldThisWeek: getRandomSoldThisWeek(),
-  },
-  {
-    id: 3,
-    video: SHOPIFY_VIDEO_URLS[2],
-    image: 'https://olivlife.in/wp-content/uploads/2025/07/product-wise-banner-9.jpg.webp',
-    views: '3.8K',
-    title: 'OlivLife Neckband (Yellow)',
-    currentPrice: 899,
-    originalPrice: 1999,
-    soldThisWeek: getRandomSoldThisWeek(),
-  },
-  {
-    id: 4,
-    video: SHOPIFY_VIDEO_URLS[3],
-    image: 'https://olivlife.in/wp-content/uploads/2025/05/Boss-10.1-Portable-Bluetooth-Wireless-Speaker-4-150x150.jpg',
-    views: '3.1K',
-    title: 'OlivLife Boss 10.1 Speaker',
-    currentPrice: 4999,
-    originalPrice: 6999,
-    soldThisWeek: getRandomSoldThisWeek(),
-  },
-  {
-    id: 5,
-    video: SHOPIFY_VIDEO_URLS[4],
-    image: 'https://olivlife.in/wp-content/uploads/2025/05/OlivLife-Earpods-Black-1-1.jpg.webp',
-    views: '2.9K',
-    title: 'OlivLife 4-in-1 USB Cable',
-    currentPrice: 299,
-    originalPrice: 599,
-    soldThisWeek: getRandomSoldThisWeek(),
-  },
+  { id: 1, video: SHOPIFY_VIDEO_URLS[0], image: VIBECRAFTS_IMGS[0], views: '4.0K', title: 'Vibrant Peacock and Red Lotus Floral Canvas Wall Painting', currentPrice: 2699, originalPrice: 6599, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 2, video: SHOPIFY_VIDEO_URLS[1], image: VIBECRAFTS_IMGS[1], views: '4.2K', title: 'Abstract Mountain Lake Canvas Wall Art Painting', currentPrice: 1999, originalPrice: 4999, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 3, video: SHOPIFY_VIDEO_URLS[2], image: VIBECRAFTS_IMGS[2], views: '3.8K', title: 'Artistic Abstract Canvas Wall Art for Modern Decor', currentPrice: 1799, originalPrice: 4499, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 4, video: SHOPIFY_VIDEO_URLS[3], image: VIBECRAFTS_IMGS[3], views: '3.1K', title: 'Abstract Peacock Feather Canvas Wall Art Painting', currentPrice: 2299, originalPrice: 5999, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 5, video: SHOPIFY_VIDEO_URLS[4], image: VIBECRAFTS_IMGS[0], views: '2.9K', title: 'Vibrant Peacock Floral Canvas – Premium Edition', currentPrice: 2699, originalPrice: 6599, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 6, video: SHOPIFY_VIDEO_URLS[5], image: VIBECRAFTS_IMGS[1], views: '2.7K', title: 'Mountain Serenity Canvas Wall Art', currentPrice: 1999, originalPrice: 4999, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 7, video: SHOPIFY_VIDEO_URLS[6], image: VIBECRAFTS_IMGS[2], views: '3.3K', title: 'Artistic Abstract Modern Canvas Painting', currentPrice: 1799, originalPrice: 4499, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 8, video: SHOPIFY_VIDEO_URLS[7], image: VIBECRAFTS_IMGS[3], views: '3.5K', title: 'Peacock Feather Wall Art – Teal Edition', currentPrice: 2299, originalPrice: 5999, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 9, video: SHOPIFY_VIDEO_URLS[8], image: VIBECRAFTS_IMGS[0], views: '4.1K', title: 'Floral Peacock Canvas – Living Room Décor', currentPrice: 2699, originalPrice: 6599, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 10, video: SHOPIFY_VIDEO_URLS[9], image: VIBECRAFTS_IMGS[1], views: '3.9K', title: 'Lake & Mountains Canvas Art for Bedroom', currentPrice: 1999, originalPrice: 4999, soldThisWeek: getRandomSoldThisWeek() },
 ];
 
 const HomePage = ({ onProductClick }) => {
@@ -149,17 +121,17 @@ const HomePage = ({ onProductClick }) => {
   
   // Instagram post URLs
   const instagramPosts = [
-    'https://www.instagram.com/p/DWOVN7Ck0py/',
-    'https://www.instagram.com/p/DWOGWyvDS8Y/',
-    'https://www.instagram.com/p/DV_Iky9iBDT/',
-    'https://www.instagram.com/p/DV8nGktlGHJ/',
-    'https://www.instagram.com/p/DViwTKdDO2d/',
-    'https://www.instagram.com/p/DVdtsV7jN4n/',
-    'https://www.instagram.com/p/DVQyM7jDysY/',
-    'https://www.instagram.com/p/DVOUQe2gft4/',
-    'https://www.instagram.com/p/DVJHNUBj9_f/',
-    'https://www.instagram.com/p/DVBY3QpAnnk/',
-    'https://www.instagram.com/p/DUQhPq5Eulx/',
+    'https://www.instagram.com/p/DWOkJDuExMS/',
+    'https://www.instagram.com/p/DWGjpesAZvP/',
+    'https://www.instagram.com/p/DWRJ7kPD6_c/',
+    'https://www.instagram.com/p/DWBtR6vj3n3/',
+    'https://www.instagram.com/p/DWA3oX3Ewfc/',
+    'https://www.instagram.com/p/DWBGFbvDZ1S/',
+    'https://www.instagram.com/p/DV7r2UQD-d8/',
+    'https://www.instagram.com/p/DV27mLnCW2W/',
+    'https://www.instagram.com/p/DVqAumXkYQk/',
+    'https://www.instagram.com/p/DVlVxNkGTSg/',
+    'https://www.instagram.com/p/DU5k3k0j31C/',
   ];
 
   // Load Instagram embed script
@@ -360,7 +332,7 @@ const HomePage = ({ onProductClick }) => {
 
       {/* Big Deals Section */}
       <section className="w-full py-12 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="w-full px-4">
           <div className="flex items-center justify-between mb-8 md:mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Big Deals</h2>
             <button className="text-base md:text-lg font-bold text-gray-900 hover:opacity-70 transition-opacity">View All</button>
@@ -371,7 +343,7 @@ const HomePage = ({ onProductClick }) => {
                 <div
                   key={product.id}
                   className="flex-shrink-0 cursor-pointer"
-                  style={{ width: '240px' }}
+                  style={{ width: '300px' }}
                   onClick={() => onProductClick && onProductClick(product)}
                 >
                   <ProductCard product={product} />
@@ -387,7 +359,7 @@ const HomePage = ({ onProductClick }) => {
 
       {/* Video Section - moved to product page */}
       <section className="w-full py-12 md:py-16 bg-white hidden">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="w-full px-4">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#8B4513] mb-3 tracking-wide">
               SHOP OUR BEST SELLERS
@@ -597,11 +569,11 @@ const HomePage = ({ onProductClick }) => {
 
       {/* Shop Videos Section */}
       <section className="w-full py-10 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="w-full px-4">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <p className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">Featured Drops</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">🎧 Shop the Sound</h2>
+              <p className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">New Arrivals</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">🛋️ Shop the Vibe</h2>
             </div>
             <button className="text-sm font-bold text-gray-900 hover:opacity-70 transition-opacity">View All</button>
           </div>
@@ -610,7 +582,7 @@ const HomePage = ({ onProductClick }) => {
               {videoProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="w-[200px] md:w-[240px] flex-shrink-0 cursor-pointer"
+                  className="w-[240px] md:w-[280px] flex-shrink-0 cursor-pointer"
                   style={{ minHeight: '330px', boxShadow: 'rgba(0,0,0,0.2) 0px 4px 8px', borderRadius: '8px' }}
                   onClick={() => { const idx = videoProducts.findIndex(p => p.id === product.id); goToLookVideo(idx); }}
                 >
@@ -671,7 +643,7 @@ const HomePage = ({ onProductClick }) => {
                       </div>
                       <button
                         onClick={(e) => e.stopPropagation()}
-                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#264171' }}
+                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#41543F' }}
                       >
                         ADD TO CART
                       </button>
@@ -688,7 +660,7 @@ const HomePage = ({ onProductClick }) => {
 
       {/* Instagram Profile Section */}
       <section className="w-full py-6 md:py-10 bg-white">
-        <div className="max-w-5xl mx-auto px-4 md:px-12">
+        <div className="w-full px-4">
 
           {/* ── DESKTOP layout (md+): left | center | right ── */}
           <div className="hidden md:grid grid-cols-3 items-center gap-16">
@@ -696,8 +668,21 @@ const HomePage = ({ onProductClick }) => {
             {/* LEFT: Avatar */}
             <div className="flex justify-center">
               <div className="rounded-full p-[3px]" style={{ background: 'linear-gradient(45deg, #f9a825, #f06292, #ab47bc)' }}>
-                <div className="w-32 h-32 rounded-full overflow-hidden bg-white flex items-center justify-center">
-                  <img src="https://olivlife.in/wp-content/uploads/2025/05/Abhay-Health-And-Oliv-Life-All-Products-with-BG-15.png" alt="OlivLife" className="w-full h-full object-contain p-2" />
+                <div className="w-32 h-32 rounded-full overflow-hidden flex items-center justify-center flex-col gap-1" style={{ backgroundColor: '#41543F' }}>
+                  <svg width="56" height="56" viewBox="0 0 100 80" fill="none">
+                    {/* Top-left diamond */}
+                    <rect x="10" y="5" width="30" height="30" rx="3" transform="rotate(45 25 20)" fill="none" stroke="white" strokeWidth="3"/>
+                    {/* Top-right diamond */}
+                    <rect x="45" y="5" width="30" height="30" rx="3" transform="rotate(45 60 20)" fill="none" stroke="white" strokeWidth="3"/>
+                    {/* Bottom-left diamond */}
+                    <rect x="10" y="40" width="30" height="30" rx="3" transform="rotate(45 25 55)" fill="none" stroke="white" strokeWidth="3"/>
+                    {/* Bottom-right diamond */}
+                    <rect x="45" y="40" width="30" height="30" rx="3" transform="rotate(45 60 55)" fill="none" stroke="white" strokeWidth="3"/>
+                    {/* Center connecting lines */}
+                    <line x1="25" y1="37" x2="60" y2="37" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                    <line x1="42" y1="20" x2="42" y2="55" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                  <span style={{ color: 'white', fontSize: '9px', fontWeight: 600, letterSpacing: '1px', fontStyle: 'italic' }}>vibecrafts</span>
                 </div>
               </div>
             </div>
@@ -705,32 +690,32 @@ const HomePage = ({ onProductClick }) => {
             {/* CENTER: username + stats */}
             <div className="flex flex-col items-center gap-3 text-center">
               <div className="flex items-center gap-3">
-                <a href="https://www.instagram.com/oliv_life_/" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer"
                   className="text-gray-900 font-semibold text-xl hover:opacity-70 transition-opacity">
-                  oliv_life_
+                  vibecrafts_official
                 </a>
                 <span className="text-gray-400 text-base tracking-widest">···</span>
               </div>
               <div className="flex gap-8">
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">473</p>
+                  <p className="font-bold text-gray-900 text-base">2,166</p>
                   <p className="text-gray-400 text-sm">posts</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">2,465</p>
+                  <p className="font-bold text-gray-900 text-base">95.1K</p>
                   <p className="text-gray-400 text-sm">followers</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">8</p>
+                  <p className="font-bold text-gray-900 text-base">1</p>
                   <p className="text-gray-400 text-sm">following</p>
                 </div>
               </div>
               <div className="flex gap-2 pt-1">
-                <a href="https://www.instagram.com/oliv_life_/" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer"
                   className="px-8 py-1.5 rounded-lg text-sm font-semibold text-white" style={{ backgroundColor: '#4f6ef7' }}>
                   Follow
                 </a>
-                <a href="https://www.instagram.com/oliv_life_/" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer"
                   className="px-6 py-1.5 rounded-lg text-sm font-semibold text-white hover:opacity-80 transition-opacity" style={{ backgroundColor: '#363636' }}>
                   Message
                 </a>
@@ -744,10 +729,12 @@ const HomePage = ({ onProductClick }) => {
 
             {/* RIGHT: bio */}
             <div className="space-y-1">
-              <p className="text-gray-900 text-sm font-semibold">OlivLife | Audio &amp; Accessories</p>
-              <p className="text-gray-400 text-sm">Electronics</p>
-              <p className="text-gray-800 text-sm">🚀Empowering your hustle from the classroom to the office. 🎧</p>
-              <p className="text-gray-800 text-sm">Affordable tech products for modern lifestyle. Quality you deserve, prices you'll love.</p>
+              <p className="text-gray-900 text-sm font-semibold">VibeCrafts</p>
+              <p className="text-gray-400 text-sm">Home decor</p>
+              <p className="text-gray-800 text-sm">Most Reliable Brand in Premium Home Decor &amp; Furniture products.</p>
+              <p className="text-gray-800 text-sm">1 Million+ Trusted customers across the Nation.</p>
+              <p className="text-gray-800 text-sm">Visit and experience the Home Decor.</p>
+              <a href="https://www.vibecrafts.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium" style={{ color: '#4f6ef7' }}>www.vibecrafts.com</a>
             </div>
           </div>
 
@@ -758,23 +745,31 @@ const HomePage = ({ onProductClick }) => {
               {/* Avatar */}
               <div className="flex-shrink-0">
                 <div className="rounded-full p-[3px]" style={{ background: 'linear-gradient(45deg, #f9a825, #f06292, #ab47bc)' }}>
-                  <div className="w-20 h-20 rounded-full overflow-hidden bg-white flex items-center justify-center">
-                    <img src="https://olivlife.in/wp-content/uploads/2025/05/Abhay-Health-And-Oliv-Life-All-Products-with-BG-15.png" alt="OlivLife" className="w-full h-full object-contain p-1.5" />
+                  <div className="w-20 h-20 rounded-full overflow-hidden flex items-center justify-center" style={{ backgroundColor: '#41543F' }}>
+                    <svg width="44" height="44" viewBox="0 0 80 80" fill="none">
+                      <rect x="20" y="20" width="40" height="40" rx="4" stroke="white" strokeWidth="3" transform="rotate(45 40 40)"/>
+                      <rect x="28" y="28" width="24" height="24" rx="3" stroke="white" strokeWidth="2.5" transform="rotate(45 40 40)"/>
+                      <rect x="34" y="34" width="12" height="12" rx="2" stroke="white" strokeWidth="2" transform="rotate(45 40 40)"/>
+                      <line x1="40" y1="8" x2="40" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+                      <line x1="40" y1="60" x2="40" y2="72" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+                      <line x1="8" y1="40" x2="20" y2="40" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+                      <line x1="60" y1="40" x2="72" y2="40" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+                    </svg>
                   </div>
                 </div>
               </div>
               {/* Stats row */}
               <div className="flex flex-1 justify-around">
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">473</p>
+                  <p className="font-semibold text-gray-900 text-base">2,166</p>
                   <p className="text-gray-400 text-xs">posts</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">2,465</p>
+                  <p className="font-semibold text-gray-900 text-base">95.1K</p>
                   <p className="text-gray-400 text-xs">followers</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">8</p>
+                  <p className="font-semibold text-gray-900 text-base">1</p>
                   <p className="text-gray-400 text-xs">following</p>
                 </div>
               </div>
@@ -782,19 +777,20 @@ const HomePage = ({ onProductClick }) => {
 
             {/* Bio block */}
             <div className="space-y-0.5">
-              <p className="text-gray-900 text-sm font-semibold">OlivLife | Audio &amp; Accessories</p>
-              <p className="text-gray-400 text-xs">Electronics</p>
-              <p className="text-gray-800 text-sm">🚀Empowering your hustle from the classroom to the office. 🎧</p>
-              <p className="text-gray-800 text-sm">Affordable tech products for modern lifestyle. Quality you deserve, prices you'll love.</p>
+              <p className="text-gray-900 text-sm font-semibold">VibeCrafts</p>
+              <p className="text-gray-400 text-xs">Home decor</p>
+              <p className="text-gray-800 text-sm">Most Reliable Brand in Premium Home Decor &amp; Furniture products.</p>
+              <p className="text-gray-800 text-sm">1 Million+ Trusted customers across the Nation.</p>
+              <a href="https://www.vibecrafts.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium" style={{ color: '#4f6ef7' }}>www.vibecrafts.com</a>
             </div>
 
             {/* Buttons — full width like Instagram */}
             <div className="flex gap-2">
-              <a href="https://www.instagram.com/oliv_life_/" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer"
                 className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center" style={{ backgroundColor: '#4f6ef7' }}>
                 Follow
               </a>
-              <a href="https://www.instagram.com/oliv_life_/" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer"
                 className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center" style={{ backgroundColor: '#363636' }}>
                 Message
               </a>
