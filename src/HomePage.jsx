@@ -123,7 +123,6 @@ const HomePage = ({ onProductClick }) => {
   const instagramPosts = [
     'https://www.instagram.com/p/DWOkJDuExMS/',
     'https://www.instagram.com/p/DWGjpesAZvP/',
-    'https://www.instagram.com/p/DWRJ7kPD6_c/',
     'https://www.instagram.com/p/DWBtR6vj3n3/',
     'https://www.instagram.com/p/DWA3oX3Ewfc/',
     'https://www.instagram.com/p/DWBGFbvDZ1S/',

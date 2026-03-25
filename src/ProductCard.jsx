@@ -60,23 +60,19 @@ const ProductCard = ({ product, onClick }) => {
         <p className="text-gray-900 text-sm font-semibold leading-snug line-clamp-2">{title}</p>
 
         {/* Rating & review count */}
-        <div className="flex items-center gap-1.5">
-          <div className="flex items-center gap-0.5">
-            {[1,2,3,4,5].map(i => {
-              const full = i <= Math.floor(rating);
-              const half = !full && i === Math.ceil(rating) && rating % 1 >= 0.3;
-              const clipId = `half-pc-${i}-${title?.slice(0,4)}`;
-              return (
-                <svg key={i} width="13" height="13" viewBox="0 0 24 24">
-                  {half && <defs><clipPath id={clipId}><rect x="0" y="0" width="12" height="24"/></clipPath></defs>}
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#e5e7eb"/>
-                  {(full || half) && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#f59e0b" clipPath={half ? `url(#${clipId})` : undefined}/>}
-                </svg>
-              );
-            })}
+        <div className="flex items-center gap-2">
+          {/* Rating pill */}
+          <div
+            className="flex items-center gap-1 px-2 py-0.5"
+            style={{ backgroundColor: '#41543F', borderRadius: '3px' }}
+          >
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="#FFD700">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span className="text-white font-bold" style={{ fontSize: '11px' }}>{rating}</span>
           </div>
-          <span className="text-xs font-bold text-gray-800">{rating}</span>
-          <span className="text-xs text-gray-400">({reviewCount.toLocaleString('en-IN')})</span>
+          {/* Review count */}
+          <span className="text-gray-400 font-medium" style={{ fontSize: '11px' }}>{reviewCount.toLocaleString('en-IN')} reviews</span>
         </div>
 
         {/* Price row */}

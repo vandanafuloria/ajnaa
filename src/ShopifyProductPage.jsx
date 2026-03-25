@@ -128,80 +128,80 @@ const dummyReviews = [
   {
     name: 'Priya Sharma',
     rating: 5,
-    title: 'Amazing sound quality!',
-    text: 'These OlivLife earbuds are absolutely brilliant! The deep bass quality is excellent and the ENC feature works flawlessly. Highly recommended!',
+    title: 'Absolutely transformed my living room!',
+    text: 'The Vibrant Peacock canvas is stunning in person — the colors are so rich and vibrant. It arrived perfectly packed and was ready to hang right out of the box. Looks like it came from a high-end gallery!',
     date: '1/20/2025',
     type: 'product'
   },
   {
     name: 'Anjali Mehta',
     rating: 4,
-    title: 'Great quality, love the battery life',
-    text: 'The earbuds are well-made with a premium matte finish. The design is elegant and they fit perfectly. The 40-hour playback is super convenient. Overall, a great purchase!',
+    title: 'Beautiful artwork, great quality canvas',
+    text: 'The print quality is exceptional — every detail of the lotus and peacock is crisp and sharp. The wood frame is sturdy and the canvas is tightly stretched. Really happy with this purchase!',
     date: '1/18/2025',
     type: 'product'
   },
   {
     name: 'Riya Patel',
     rating: 5,
-    title: 'Perfect for long calls',
-    text: 'I bought these for office use and they are perfect! The ENC mics are top-notch, making my voice crystal clear to others. The charging case is so sleek. Worth every penny!',
+    title: 'Perfect centerpiece for my drawing room',
+    text: 'I was looking for something to fill the large blank wall above my sofa and this painting was exactly right. The size is perfect, the colors match my interiors beautifully, and everyone who visits asks where I got it!',
     date: '1/15/2025',
     type: 'product'
   },
   {
     name: 'Kavya Reddy',
     rating: 4,
-    title: 'Good earbuds, great value',
-    text: 'The AURA TWS is good quality. The sound feels premium and the touch controls are very responsive. Bluetooth pairing was done instantly. Very satisfied with the purchase!',
+    title: 'Great decor piece, fast delivery',
+    text: 'The canvas arrived well-packed and undamaged. The colors are true to the product photos and the print is very clear. The peacock design gives such a royal feel to the room. Would definitely buy again!',
     date: '1/12/2025',
     type: 'product'
   },
   {
     name: 'Meera Singh',
     rating: 5,
-    title: 'Exceeded my expectations!',
-    text: 'I was pleasantly surprised by the quality of the earbuds. The bass is punchy yet balanced, the design is comfortable, and the battery life is outstanding. The packaging is also very premium.',
+    title: 'Exceeded all my expectations!',
+    text: 'I gifted this to my mother for her new home and she absolutely loved it. The packaging was premium, the canvas quality is top-notch, and the colors are incredibly vivid. VibeCrafts never disappoints!',
     date: '1/10/2025',
     type: 'product'
   },
   {
     name: 'Sneha Verma',
     rating: 5,
-    title: 'Best TWS brand!',
-    text: 'Ordered for my daily commute and I absolutely love them. The audio quality is top notch and the snug fit keeps them secure. Delivery was fast and packaging was elegant.',
+    title: 'Best home decor purchase this year!',
+    text: 'This peacock painting has completely changed the look of my bedroom. The UV-resistant print means the colors stay bright — no fading even in sunlight. Delivery was quick and the frame is solid. 10/10!',
     date: '1/08/2025',
     type: 'product'
   },
   {
     name: 'Divya Nair',
     rating: 4,
-    title: 'Great value for money',
-    text: 'The AURA earbuds offer great value for the price. The case looks trendy and feels premium. The IPX5 water resistance is a big plus for my workouts. Overall, a very satisfactory purchase!',
+    title: 'Stunning wall art at a great price',
+    text: 'For the price, the quality is outstanding. The canvas has a nice texture and the print is sharp with no pixelation. The ready-to-hang feature saved me a lot of effort. Very satisfied with VibeCrafts!',
     date: '1/05/2025',
     type: 'product'
   },
   {
     name: 'Pooja Mehta',
     rating: 5,
-    title: 'Love it! Perfect everyday earbuds',
-    text: 'This is one of the best TWS earbuds I\'ve purchased online. The sound quality is excellent, the connection is stable, and the design is so elegant. Already ordered another for my brother!',
+    title: 'Museum quality art for your home',
+    text: 'I have bought many canvas prints before but nothing comes close to VibeCrafts. The colors pop, the details are sharp, and the frame is premium. My guests keep complimenting it. Already ordered two more!',
     date: '1/03/2025',
     type: 'product'
   },
   {
     name: 'Neha Kapoor',
     rating: 4,
-    title: 'Nice everyday companion',
-    text: 'The OlivLife AURA is a great everyday carry. The audio feels premium, the silicone tips keep things comfortable, and the connection is smooth. Exactly what I was looking for!',
+    title: 'Elegant and sophisticated wall art',
+    text: 'The abstract peacock feather design is truly mesmerizing. It looks even better in real life than in the photos. The canvas is high quality and the colors are fade-proof. Very happy with this decor piece!',
     date: '12/30/2024',
     type: 'product'
   },
   {
     name: 'Aarti Desai',
     rating: 5,
-    title: 'Beautiful and functional',
-    text: 'I absolutely love my OlivLife earbuds! They\'re so stylish and the audio quality is great. The fast charging is super helpful. Perfect for both daily use and working out.',
+    title: 'A statement piece for any room',
+    text: 'This canvas painting is a true statement piece. The floral and peacock motif brings so much life and color to my otherwise neutral living room. Premium packaging, perfect print, quick delivery — loved everything!',
     date: '12/28/2024',
     type: 'product'
   }
@@ -792,21 +792,12 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
                 {/* Feature tags */}
                 <div className="flex flex-wrap gap-2">
-                  {[
-                    { label: 'Premium Canvas', icon: <><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2"/><path d="M3 9h18M9 21V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
-                    { label: 'Ready to Hang', icon: <><path d="M12 2v4M8 6l4-4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><rect x="4" y="10" width="16" height="12" rx="2" stroke="currentColor" strokeWidth="2"/></> },
-                    { label: 'UV Resistant', icon: <><circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
-                    { label: 'Fade-Proof Ink', icon: <><path d="M12 22c-4.97 0-9-4.03-9-9 0-4.17 3-7.67 7-8.7V2l5 5-5 5V9.3c-2.86.9-5 3.57-5 6.7 0 3.31 2.69 6 6 6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></> },
-                    { label: 'Eco-Friendly', icon: <><path d="M2 22c1.25-1.25 2.9-2 4.5-2 1.59 0 3.23.77 4.5 2 1.27-1.23 2.91-2 4.5-2 1.6 0 3.25.77 4.5 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M12 15V2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M5 8c1.5 0 3.5 1 7 1s5.5-1 7-1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
-                  ].map(({ label, icon }) => (
+                  {['Premium Canvas', 'Ready to Hang', 'UV Resistant', 'Fade-Proof Ink', 'Eco-Friendly'].map((label) => (
                     <span
                       key={label}
-                      className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-2"
-                      style={{ background: 'rgba(65,84,63,0.08)', border: '1px solid rgba(65,84,63,0.3)', color: '#41543F', borderRadius: '0' }}
+                      className="inline-flex items-center text-xs font-medium px-2.5 py-1"
+                      style={{ background: '#6b8a68', color: '#fff', borderRadius: '9999px' }}
                     >
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" style={{ color: '#41543F', flexShrink: 0 }}>
-                        {icon}
-                      </svg>
                       {label}
                     </span>
                   ))}
@@ -1205,8 +1196,8 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       fontWeight: '600',
                       borderRadius: '0',
                       border: '1.5px solid',
-                      borderColor: activeTab === id ? '#111' : '#e0e0e0',
-                      background: activeTab === id ? '#111' : '#fff',
+                      borderColor: activeTab === id ? '#41543F' : '#e0e0e0',
+                      background: activeTab === id ? '#41543F' : '#fff',
                       color: activeTab === id ? '#fff' : '#666',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease',
@@ -1404,7 +1395,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           </div>
 
                           {/* Title */}
-                          {review.title && <p className="text-xs font-semibold text-gray-800 mb-1">{review.title}</p>}
+                          {review.title && <p className="text-sm font-semibold text-gray-800 mb-1">{review.title}</p>}
 
                           {/* Review text */}
                           <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-2">
@@ -1665,7 +1656,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           </div>
 
                           {/* Title */}
-                          {review.title && <p className="text-xs font-semibold text-gray-800 mb-1">{review.title}</p>}
+                          {review.title && <p className="text-sm font-semibold text-gray-800 mb-1">{review.title}</p>}
 
                           {/* Review text */}
                           <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-2">
