@@ -1,28 +1,25 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 
 const ProductCard = ({ product, onClick }) => {
-  const [wished, setWished] = useState(false);
-
   if (!product) return null;
 
-  const { image, title, currentPrice, originalPrice, rating = 4.5, reviewCount = 1284, feature } = product;
+  const { image, title, currentPrice, originalPrice, rating = 4.5, reviewCount = 128 } = product;
 
   const discountPercent = originalPrice && currentPrice
     ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100)
     : 0;
 
-  const formatPrice = (price) => `₹${Number(price).toLocaleString('en-IN')}`;
-  const emiAmount = Math.round(currentPrice / 4);
+  const formatPrice = (price) =>
+    `Rs. ${Number(price).toLocaleString('en-IN')}.00`;
 
   return (
     <div
-      className="flex flex-col overflow-hidden bg-white cursor-pointer"
-      style={{ boxShadow: '0 2px 16px rgba(0,0,0,0.10)', minWidth: '200px' }}
+      className="flex flex-col overflow-hidden cursor-pointer"
+      style={{ backgroundColor: '#f0ece3', minWidth: '250px', maxWidth: '320px' }}
       onClick={onClick}
     >
-      {/* Image area — landscape 16:9 */}
-      <div className="relative w-full" style={{ backgroundColor: '#f8f8f8', aspectRatio: '16 / 9' }}>
+      {/* Image area — portrait 3:4 */}
+      <div className="relative w-full" style={{ aspectRatio: '3 / 4', backgroundColor: '#e8e3da' }}>
         <img
           src={image}
           alt={title}
@@ -30,70 +27,63 @@ const ProductCard = ({ product, onClick }) => {
           loading="lazy"
         />
 
-        {/* Top-left: discount badge */}
+        {/* OFF badge — top-left, black */}
         {discountPercent > 0 && (
-          <div className="absolute top-2.5 left-2.5">
-            <span
-              className="text-white text-xs font-bold px-2 py-0.5 rounded"
-              style={{ backgroundColor: '#22c55e' }}
-            >
-              {discountPercent}% OFF
-            </span>
+          <div
+            className="absolute top-2 left-2 px-1.5 py-0.5"
+            style={{ backgroundColor: '#111', color: '#fff' }}
+          >
+            <span className="font-bold" style={{ fontSize: '10px' }}>OFF {discountPercent}%</span>
           </div>
         )}
-
-        {/* Top-right: heart */}
-        <button
-          className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white flex items-center justify-center shadow"
-          onClick={(e) => { e.stopPropagation(); setWished(w => !w); }}
-          aria-label="Wishlist"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill={wished ? '#ef4444' : 'none'} stroke={wished ? '#ef4444' : '#888'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-        </button>
       </div>
 
       {/* Info */}
-      <div className="px-3 pt-3 pb-3 flex flex-col gap-2 bg-white">
+      <div className="flex flex-col items-center gap-1.5 px-2.5 pt-3 pb-3" style={{ backgroundColor: '#f0ece3' }}>
         {/* Title */}
-        <p className="text-gray-900 text-sm font-semibold leading-snug line-clamp-2">{title}</p>
+        <h3
+          className="text-center font-bold leading-snug line-clamp-2 w-full"
+          style={{ fontSize: '0.78rem', fontFamily: 'Georgia, serif', color: '#1a1a1a' }}
+        >
+          {title}
+        </h3>
 
-        {/* Rating & review count */}
-        <div className="flex items-center gap-2">
-          {/* Rating pill */}
+        {/* Rating & reviews */}
+        <div className="flex items-center justify-center gap-2 w-full">
+          {/* Dark pill */}
           <div
-            className="flex items-center gap-1 px-2 py-0.5"
-            style={{ backgroundColor: '#41543F', borderRadius: '3px' }}
+            className="flex items-center gap-1 px-2 py-1 rounded-md"
+            style={{ backgroundColor: '#3d4f35' }}
           >
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="#FFD700">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            <svg width="11" height="11" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#f5c518"/>
             </svg>
-            <span className="text-white font-bold" style={{ fontSize: '11px' }}>{rating}</span>
+            <span className="font-bold" style={{ fontSize: '11px', color: '#fff' }}>{rating}</span>
           </div>
           {/* Review count */}
-          <span className="text-gray-400 font-medium" style={{ fontSize: '11px' }}>{reviewCount.toLocaleString('en-IN')} reviews</span>
+          <span style={{ fontSize: '11px', color: '#888' }}>{reviewCount.toLocaleString('en-IN')} reviews</span>
         </div>
 
         {/* Price row */}
-        <div className="flex items-baseline gap-2">
-          <span className="text-gray-900 text-lg font-bold">{formatPrice(currentPrice)}</span>
+        <div className="flex items-baseline gap-1.5 justify-center flex-wrap">
+          <span className="font-bold text-xs" style={{ color: '#1a1a1a' }}>
+            {formatPrice(currentPrice)}
+          </span>
           {originalPrice && (
-            <span className="text-gray-400 text-sm line-through">{formatPrice(originalPrice)}</span>
+            <span className="line-through" style={{ fontSize: '10px', color: '#999' }}>
+              {formatPrice(originalPrice)}
+            </span>
           )}
         </div>
 
-        {/* EMI row */}
-        <div className="flex items-center gap-2">
-          <span className="text-gray-600 text-xs">or {formatPrice(emiAmount)}/Month</span>
-          <button
-            className="text-white text-xs font-semibold px-3 py-1 rounded"
-            style={{ backgroundColor: '#22c55e' }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            Buy on EMI &gt;
-          </button>
-        </div>
+        {/* Add to cart */}
+        <button
+          className="w-full py-1.5 text-white font-semibold uppercase mt-1"
+          style={{ backgroundColor: '#5c6b45', letterSpacing: '0.08em', fontSize: '10px' }}
+          onClick={(e) => { e.stopPropagation(); onClick && onClick(); }}
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );

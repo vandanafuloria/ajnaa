@@ -1,22 +1,212 @@
 [
-  {"name":"Priya Sharma","location":"Mumbai","type":"very_small","rating":5,"title":"Amazing craftsmanship!","review":"Amazing craftsmanship, adds so much character to my living room!"},
-  {"name":"Kavya Nair","location":"Bengaluru","type":"very_small","rating":5,"title":"Super premium quality","review":"Best macrame wall hanging I've purchased. Quality is super premium!"},
-  {"name":"Ritika Joshi","location":"Pune","type":"very_small","rating":4,"title":"So elegant","review":"The detailing and finish of the decor pieces are so elegant."},
-  {"name":"Sneha Pillai","location":"Chennai","type":"very_small","rating":5,"title":"Impressed by VibeCraft","review":"Genuinely beautiful handcrafted pieces. Impressed by VibeCraft!"},
-  {"name":"Ananya Singh","location":"Delhi","type":"very_small","rating":5,"title":"Gorgeous piece","review":"Lightweight, easy to hang and looks gorgeous. Love it!"},
-  {"name":"Divya Reddy","location":"Hyderabad","type":"small","rating":5,"title":"Great value for money!","review":"I've tried many home decor brands but VibeCraft is on another level. The finishing is not overpowering — it's clear and detailed. No mess, great value for money!"},
-  {"name":"Meghna Kulkarni","location":"Nagpur","type":"small","rating":4,"title":"Vibrant and authentic","review":"The colors stay vibrant for years. The texture feels smooth and authentic. Really good for the price point."},
-  {"name":"Simran Kaur","location":"Chandigarh","type":"small","rating":5,"title":"Sturdy and gorgeous","review":"Bought a custom nameplate on a whim and now it's my favorite piece. The woodwork is gorgeous and feels very sturdy."},
-  {"name":"Pooja Tiwari","location":"Bhopal","type":"small","rating":5,"title":"Perfect for office desk","review":"Perfect for my office desk. Adds a nice aesthetic without taking up too much space. Affordable and reliable!"},
-  {"name":"Lakshmi Iyer","location":"Coimbatore","type":"small","rating":4,"title":"Lovely aesthetic","review":"Great product by VibeCraft. Packaging is very secure and the aesthetic is lovely. Will keep repurchasing."},
-  {"name":"Nandita Roy","location":"Kolkata","type":"mid","rating":5,"title":"Instantly elevated my bedroom","review":"I was skeptical about ordering handmade decor online but VibeCraft completely changed my mind. The finishing is refined and durable. It arrived in perfect condition and instantly elevated my bedroom. This is now my go-to decor store."},
-  {"name":"Rashmi Verma","location":"Lucknow","type":"mid","rating":4,"title":"Minimalist and premium","review":"The design profile is one of the best I've experienced in this price range. It's eye-catching but not overly flashy — perfect for a minimalist setup. The materials feel premium. Great value from VibeCraft."},
-  {"name":"Shweta Malhotra","location":"Jaipur","type":"mid","rating":5,"title":"Incredible attention to detail","review":"Been using VibeCraft's planters and wall art for 3 months now and I absolutely love them. The attention to detail means it instantly catches the eye of anyone walking in. My friends keep asking where I get my decor from!"},
-  {"name":"Tanvi Bhat","location":"Mangaluru","type":"mid","rating":4,"title":"Keeps the space looking cozy","review":"Good quality pieces for daily inspiration. The hand-painted designs are authentic and pleasant. I like that it's gentle on the eyes. Does exactly what it promises — keeps your space looking vibrant and cozy."},
-  {"name":"Aarti Pandey","location":"Varanasi","type":"mid","rating":5,"title":"Rivals expensive boutiques","review":"VibeCraft is a gem of a brand. You get premium decor quality that rivals much more expensive boutique brands. I gift these to friends for housewarmings and they all end up becoming regulars. VibeCraft really nailed it."},
-  {"name":"Pooja Mehta","location":"Pune","type":"large","rating":5,"title":"Beautifully balanced aesthetic!","review":"I have been decorating my new apartment with VibeCraft pieces for the past 4 months and I genuinely cannot stop recommending it to everyone I meet. The aesthetic is so beautifully balanced — it's rich, immersive, and lingers without being overpowering. I was initially drawn to it because of the affordable price, but the quality has completely blown me away. No chipped paint, no cheap materials, no regrets whatsoever. An absolute steal. Will be buying more for my bedroom next time!"},
-  {"name":"Sunita Krishnan","location":"Chennai","type":"large","rating":5,"title":"Authentic handcrafted work","review":"As someone who loves a boho aesthetic, finding decor that doesn't look mass-produced is always a challenge. VibeCraft has been a blessing — the design is gentle, the colors are subtle enough not to clash with my furniture, and it genuinely elevates the mood of the room. I love that it's made by VibeCraft, a brand I've trusted for authentic handcrafted work. The finish reminds me of premium boutique items and I get compliments regularly. Highly highly recommend."},
-  {"name":"Megha Saxena","location":"Noida","type":"large","rating":4,"title":"Elegant craftsmanship","review":"VibeCraft has become a home styling essential for me. The design profile is elegant and distinctly clear — the craftsmanship is real and not synthetic-looking like some cheaper decor brands. I appreciate the handmade touch as it feels more personalized and precious. The packaging design is also quite pretty. My only minor feedback is that I wish they had more customization options for sizes, because at this quality I'd love to scale it up! Other than that, absolutely brilliant products."},
-  {"name":"Deepa Nambiar","location":"Kochi","type":"large","rating":5,"title":"Premium handcrafted product","review":"I switched to VibeCraft after trying multiple branded decor items that either looked artificial or lost their charm over time. This one is completely different. My living space has actually become more vibrant with continued additions and the vibe is truly lovely. The durability claim is no joke — I have had one of their outdoor pieces in the sun for months and it hasn't faded. VibeCraft has delivered a truly premium handcrafted product at a mass-market price. Five stars without hesitation."},
-  {"name":"Ritu Agarwal","location":"Agra","type":"large","rating":5,"title":"Brings the whole room together!","review":"Ordered a custom VibeCraft wall piece from the website and received it in two days — great packaging and the box was intact. The very first look and I knew this was something special. The color palette is rich, warm, and very versatile. I've had it on my wall for two months now and there's no dullness over time. The piece brings the whole room together and I've never had any hanging issues. Honestly expected something basic but this is genuinely good quality. Will order 3 more pieces next time!"}
+  {
+    "name": "Ayesha Khan",
+    "location": "Mumbai",
+    "rating": 5,
+    "title": "Transformed my morning routine!",
+    "review": "The Luxova Face Wash is a game-changer! It removes dirt and makeup without stripping natural moisture. My face feels fresh and visibly brighter.",
+    "type": "large"
+  },
+  {
+    "name": "Priya Sharma",
+    "location": "Delhi",
+    "rating": 5,
+    "title": "Perfect everyday face cream",
+    "review": "The Luxova Hydrating Face Cream is wonderfully lightweight yet deeply moisturizing. It absorbs instantly, leaving a beautiful, non-greasy dewy glow.",
+    "type": "large"
+  },
+  {
+    "name": "Neha Verma",
+    "location": "Bangalore",
+    "rating": 4.5,
+    "title": "Gentle and effective face wash",
+    "review": "Finding a face wash for sensitive skin is tough, but Luxova nailed it. It foams nicely and clears pores effectively without any irritation.",
+    "type": "large"
+  },
+  {
+    "name": "Riya Patel",
+    "location": "Ahmedabad",
+    "rating": 5,
+    "title": "My holy grail night cream",
+    "review": "The Anti-Aging Night Cream has smoothed out my skin texture. I wake up with plump, nourished skin, and fine lines have noticeably faded.",
+    "type": "large"
+  },
+  {
+    "name": "Kavita Reddy",
+    "location": "Hyderabad",
+    "rating": 4,
+    "title": "Great for acne-prone skin",
+    "review": "I use the Luxova Face Wash with their daily moisturizer. It controls sebum perfectly and doesn't clog pores. I've seen a huge reduction in breakouts!",
+    "type": "large"
+  },
+  {
+    "name": "Simran Kaur",
+    "location": "Chandigarh",
+    "rating": 5,
+    "title": "Luxurious feel and amazing results",
+    "review": "This face cream screams luxury. It melts into the skin like butter and keeps my face hydrated all day long. Definitely repurchasing!",
+    "type": "large"
+  },
+  {
+    "name": "Meera Joshi",
+    "location": "Pune",
+    "rating": 5,
+    "title": "Best skincare duo!",
+    "review": "Using the Face Wash followed by the Vitamin C Cream gives an unparalleled glow. My dark spots are lightening, and my skin feels incredibly healthy.",
+    "type": "large"
+  },
+  {
+    "name": "Ananya Desai",
+    "location": "Surat",
+    "rating": 5,
+    "title": "Luxova never disappoints",
+    "review": "I've been a loyal customer for a year. Their face creams are scientifically formulated and genuinely deliver on their promises!",
+    "type": "mid"
+  },
+  {
+    "name": "Shruti Iyer",
+    "location": "Kolkata",
+    "rating": 4.5,
+    "title": "Premium quality at accessible prices",
+    "review": "Luxova provides high-end skincare at great prices. Their face wash is just as good as luxury brands that cost three times as much.",
+    "type": "mid"
+  },
+  {
+    "name": "Pooja Hegde",
+    "location": "Chennai",
+    "rating": 5,
+    "title": "Fast delivery and great packaging",
+    "review": "Ordered the skincare kit and it arrived in 2 days. The brand pays great attention to detail, and the products are now staples in my vanity.",
+    "type": "mid"
+  },
+  {
+    "name": "Tanya Bhatia",
+    "location": "Gurgaon",
+    "rating": 4.8,
+    "title": "Clean, safe, and effective",
+    "review": "Luxova’s ingredient list is clean and chemical-free. My skin has never been happier, and their hydrating cream is a true lifesaver!",
+    "type": "mid"
+  },
+  {
+    "name": "Sakshi Nair",
+    "location": "Kochi",
+    "rating": 5,
+    "title": "A brand I can finally trust",
+    "review": "Luxova actually works for my sensitive skin! No redness or irritation—just clean, moisturized skin. I highly recommend their products.",
+    "type": "mid"
+  },
+  {
+    "name": "Divya Agarwal",
+    "location": "Lucknow",
+    "rating": 4,
+    "title": "Excellent product range",
+    "review": "Love the variety of products Luxova offers. I mix their brightening face wash with the anti-aging cream, and the results are fantastic.",
+    "type": "mid"
+  },
+  {
+    "name": "Aditi Rao",
+    "location": "Indore",
+    "rating": 5,
+    "title": "My go-to skincare brand",
+    "review": "From the gentle face washes to the hydrating creams, Luxova truly understands skincare. I get so many compliments on my skin now!",
+    "type": "mid"
+  },
+  {
+    "name": "Geeta Singh",
+    "location": "Bhopal",
+    "rating": 5,
+    "title": "Visible results in a week",
+    "review": "I trusted the reviews and bought the face cream. The brand lives up to the hype with instant hydration and a real glow.",
+    "type": "mid"
+  },
+  {
+    "name": "Roshni M.",
+    "rating": 5,
+    "review": "Absolutely love the face wash! Cleanses perfectly.",
+    "type": "small"
+  },
+  {
+    "name": "Smriti K.",
+    "rating": 5,
+    "review": "The best face cream I've used. So hydrating!",
+    "type": "small"
+  },
+  {
+    "name": "Jhanvi T.",
+    "rating": 4,
+    "review": "Leaves my skin glowing all day long.",
+    "type": "small"
+  },
+  {
+    "name": "Alia S.",
+    "rating": 5,
+    "review": "My acne cleared up after using this face wash.",
+    "type": "very_small"
+  },
+  {
+    "name": "Deepa R.",
+    "rating": 5,
+    "review": "Very lightweight cream, perfect under makeup.",
+    "type": "small"
+  },
+  {
+    "name": "Nikita P.",
+    "rating": 4.5,
+    "review": "Smells amazing and feels so luxurious.",
+    "type": "very_small"
+  },
+  {
+    "name": "Vandana F.",
+    "rating": 5,
+    "review": "Holy grail skincare! My face feels so soft.",
+    "type": "small"
+  },
+  {
+    "name": "Sanjana W.",
+    "rating": 5,
+    "review": "Doesn't dry out my skin at all. 10/10.",
+    "type": "very_small"
+  },
+  {
+    "name": "Ishita B.",
+    "rating": 5,
+    "review": "I bought 3 more bottles of the face wash!",
+    "type": "small"
+  },
+  {
+    "name": "Mansi C.",
+    "rating": 4,
+    "review": "The cream absorbs so fast. No stickiness.",
+    "type": "very_small"
+  },
+  {
+    "name": "Pallavi G.",
+    "rating": 5,
+    "review": "Highly recommend the night cream. Woke up glowing.",
+    "type": "small"
+  },
+  {
+    "name": "Kirti D.",
+    "rating": 5,
+    "review": "Best purchase! The face wash removes all makeup.",
+    "type": "very_small"
+  },
+  {
+    "name": "Richa V.",
+    "rating": 4.5,
+    "review": "A little goes a long way with this cream.",
+    "type": "small"
+  },
+  {
+    "name": "Farah A.",
+    "rating": 5,
+    "review": "My sensitive skin loves this face wash.",
+    "type": "very_small"
+  },
+  {
+    "name": "Natasha K.",
+    "rating": 5,
+    "review": "Worth every penny. Amazing skincare line.",
+    "type": "small"
+  }
 ]

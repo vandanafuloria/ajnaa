@@ -8,16 +8,12 @@ import ActivityBanner from './ActivityBanner';
 import './HomePage.css';
 
 const SHOPIFY_VIDEO_URLS = [
-  'https://cdn.shopify.com/videos/c/o/v/6705397241a34c05bb518fb088efebbc.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/4ccf42fed6f24c33a4fe40ed57894447.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/6e87d98ad895427785883250699980be.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/7de778663bbd4ae8891937d41152bd28.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/b5259f2f9e4c4d1c89237bf73eeacead.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/0848219d3ecf4b958d7a7431f67f472b.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/b24af678e64b40518f1dadd3796ab3b2.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/738c5e887f4241629de7eaea7632c4ad.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/6d4c3029fce7492fa25dee1717b98205.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/0ac45b808de7488bb1ab1e51fd202926.mp4',
+  'https://www.luxova.in/cdn/shop/files/quinn_vwgff828tv7lpcepnfgllnhr.mp4#t=0.1',
+  'https://www.luxova.in/cdn/shop/files/quinn_ep6v9azbcgyfirjy2k93jg1a.mp4#t=0.1',
+  'https://www.luxova.in/cdn/shop/files/quinn_prlxca5a18163gp9umry98em.mp4#t=0.1',
+  'https://www.luxova.in/cdn/shop/files/quinn_wz5nlug6cyex50opla3y46bj.mp4#t=0.1',
+  'https://www.luxova.in/cdn/shop/files/quinn_ftl1ge2kq7fzk5jq8w6p3eco.mp4#t=0.1',
+  'https://www.luxova.in/cdn/shop/files/quinn_urmhs7hbsh51h8sbwyiypex7.mp4#t=0.1',
 ];
 
 const BRAND_NAME = "wordofmouth";
@@ -26,43 +22,43 @@ const BRAND_NAME = "wordofmouth";
 const bestSellerProducts = [
   {
     id: 1,
-    image: 'https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=600',
-    title: 'Vibrant Peacock and Red Lotus Floral Canvas Wall Painting',
-    currentPrice: 2699,
-    originalPrice: 6599,
-    rating: 4.7,
+    image: 'https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946',
+    title: 'Pure Silver Overnight Face Oil Serum',
+    currentPrice: 1299,
+    originalPrice: 1399,
+    rating: 4.8,
     badge: 'Best Sellers',
-    feature: 'Premium Canvas Print',
+    feature: 'Natural Ingredients',
   },
   {
     id: 2,
-    image: 'https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600',
-    title: 'Abstract Mountain Lake Canvas Wall Art Painting for Wall Decor',
-    currentPrice: 1999,
-    originalPrice: 4999,
-    rating: 4.8,
+    image: 'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946',
+    title: 'Luxova Frames Collection',
+    currentPrice: 999,
+    originalPrice: 1199,
+    rating: 4.7,
     badge: 'Trending',
-    feature: 'UV Resistant Colors',
+    feature: 'Premium Quality',
   },
   {
     id: 3,
-    image: 'https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600',
-    title: 'Artistic Abstract Canvas Wall Art Painting for Modern Decor',
+    image: 'https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946',
+    title: 'Luxova Skincare Kit',
     currentPrice: 1799,
-    originalPrice: 4499,
+    originalPrice: 2199,
     rating: 4.9,
     badge: 'New Launch',
-    feature: 'Stretched & Ready to Hang',
+    feature: 'Scientifically Formulated',
   },
   {
     id: 4,
-    image: 'https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600',
-    title: 'Abstract Peacock Feather Canvas Wall Art Painting',
-    currentPrice: 2299,
-    originalPrice: 5999,
+    image: 'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888',
+    title: 'Luxova Premium Frames',
+    currentPrice: 1499,
+    originalPrice: 1799,
     rating: 4.8,
     badge: 'Best Sellers',
-    feature: 'Fade-Proof Ink Technology',
+    feature: 'Luxova Exclusive',
   },
 ];
 
@@ -70,24 +66,20 @@ const getRandomSoldThisWeek = (min = 180, max = 420) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
 const VIBECRAFTS_IMGS = [
-  'https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=600',
-  'https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600',
-  'https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600',
-  'https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600',
+  'https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946',
+  'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946',
+  'https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946',
+  'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888',
 ];
 
 // Video Products data
 const videoProducts = [
-  { id: 1, video: SHOPIFY_VIDEO_URLS[0], image: VIBECRAFTS_IMGS[0], views: '4.0K', title: 'Vibrant Peacock and Red Lotus Floral Canvas Wall Painting', currentPrice: 2699, originalPrice: 6599, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 2, video: SHOPIFY_VIDEO_URLS[1], image: VIBECRAFTS_IMGS[1], views: '4.2K', title: 'Abstract Mountain Lake Canvas Wall Art Painting', currentPrice: 1999, originalPrice: 4999, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 3, video: SHOPIFY_VIDEO_URLS[2], image: VIBECRAFTS_IMGS[2], views: '3.8K', title: 'Artistic Abstract Canvas Wall Art for Modern Decor', currentPrice: 1799, originalPrice: 4499, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 4, video: SHOPIFY_VIDEO_URLS[3], image: VIBECRAFTS_IMGS[3], views: '3.1K', title: 'Abstract Peacock Feather Canvas Wall Art Painting', currentPrice: 2299, originalPrice: 5999, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 5, video: SHOPIFY_VIDEO_URLS[4], image: VIBECRAFTS_IMGS[0], views: '2.9K', title: 'Vibrant Peacock Floral Canvas – Premium Edition', currentPrice: 2699, originalPrice: 6599, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 6, video: SHOPIFY_VIDEO_URLS[5], image: VIBECRAFTS_IMGS[1], views: '2.7K', title: 'Mountain Serenity Canvas Wall Art', currentPrice: 1999, originalPrice: 4999, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 7, video: SHOPIFY_VIDEO_URLS[6], image: VIBECRAFTS_IMGS[2], views: '3.3K', title: 'Artistic Abstract Modern Canvas Painting', currentPrice: 1799, originalPrice: 4499, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 8, video: SHOPIFY_VIDEO_URLS[7], image: VIBECRAFTS_IMGS[3], views: '3.5K', title: 'Peacock Feather Wall Art – Teal Edition', currentPrice: 2299, originalPrice: 5999, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 9, video: SHOPIFY_VIDEO_URLS[8], image: VIBECRAFTS_IMGS[0], views: '4.1K', title: 'Floral Peacock Canvas – Living Room Décor', currentPrice: 2699, originalPrice: 6599, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 10, video: SHOPIFY_VIDEO_URLS[9], image: VIBECRAFTS_IMGS[1], views: '3.9K', title: 'Lake & Mountains Canvas Art for Bedroom', currentPrice: 1999, originalPrice: 4999, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 1, video: SHOPIFY_VIDEO_URLS[0], image: VIBECRAFTS_IMGS[0], views: '4.0K', title: 'Luxova Brightening Face Serum', currentPrice: 2699, originalPrice: 6599, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 2, video: SHOPIFY_VIDEO_URLS[1], image: VIBECRAFTS_IMGS[1], views: '4.2K', title: 'Luxova Hydrating Moisturiser', currentPrice: 1999, originalPrice: 4999, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 3, video: SHOPIFY_VIDEO_URLS[2], image: VIBECRAFTS_IMGS[2], views: '3.8K', title: 'Luxova Anti-Aging Night Cream', currentPrice: 1799, originalPrice: 4499, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 4, video: SHOPIFY_VIDEO_URLS[3], image: VIBECRAFTS_IMGS[3], views: '3.1K', title: 'Luxova Vitamin C Glow Toner', currentPrice: 2299, originalPrice: 5999, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 5, video: SHOPIFY_VIDEO_URLS[4], image: VIBECRAFTS_IMGS[0], views: '2.9K', title: 'Luxova SPF 50 Sunscreen', currentPrice: 2699, originalPrice: 6599, soldThisWeek: getRandomSoldThisWeek() },
+  { id: 6, video: SHOPIFY_VIDEO_URLS[5], image: VIBECRAFTS_IMGS[1], views: '2.7K', title: 'Luxova Deep Cleansing Face Wash', currentPrice: 1999, originalPrice: 4999, soldThisWeek: getRandomSoldThisWeek() },
 ];
 
 const HomePage = ({ onProductClick }) => {
@@ -121,16 +113,12 @@ const HomePage = ({ onProductClick }) => {
   
   // Instagram post URLs
   const instagramPosts = [
-    'https://www.instagram.com/p/DWOkJDuExMS/',
-    'https://www.instagram.com/p/DWGjpesAZvP/',
-    'https://www.instagram.com/p/DWBtR6vj3n3/',
-    'https://www.instagram.com/p/DWA3oX3Ewfc/',
-    'https://www.instagram.com/p/DWBGFbvDZ1S/',
-    'https://www.instagram.com/p/DV7r2UQD-d8/',
-    'https://www.instagram.com/p/DV27mLnCW2W/',
-    'https://www.instagram.com/p/DVqAumXkYQk/',
-    'https://www.instagram.com/p/DVlVxNkGTSg/',
-    'https://www.instagram.com/p/DU5k3k0j31C/',
+    'https://www.instagram.com/p/DWI_vPwERMl/',
+    'https://www.instagram.com/p/DWS_b6EEYXN/',
+    'https://www.instagram.com/p/DV0D0CjEQA-/',
+    'https://www.instagram.com/p/DVL9Wc7DJ2p/',
+    'https://www.instagram.com/p/DUPuPObCtu0/',
+    'https://www.instagram.com/p/DTXfCP_Ep2C/',
   ];
 
   // Load Instagram embed script
@@ -642,7 +630,7 @@ const HomePage = ({ onProductClick }) => {
                       </div>
                       <button
                         onClick={(e) => e.stopPropagation()}
-                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#41543F' }}
+                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#868753' }}
                       >
                         ADD TO CART
                       </button>
@@ -667,21 +655,28 @@ const HomePage = ({ onProductClick }) => {
             {/* LEFT: Avatar */}
             <div className="flex justify-center">
               <div className="rounded-full p-[3px]" style={{ background: 'linear-gradient(45deg, #f9a825, #f06292, #ab47bc)' }}>
-                <div className="w-32 h-32 rounded-full overflow-hidden flex items-center justify-center flex-col gap-1" style={{ backgroundColor: '#41543F' }}>
-                  <svg width="56" height="56" viewBox="0 0 100 80" fill="none">
-                    {/* Top-left diamond */}
-                    <rect x="10" y="5" width="30" height="30" rx="3" transform="rotate(45 25 20)" fill="none" stroke="white" strokeWidth="3"/>
-                    {/* Top-right diamond */}
-                    <rect x="45" y="5" width="30" height="30" rx="3" transform="rotate(45 60 20)" fill="none" stroke="white" strokeWidth="3"/>
-                    {/* Bottom-left diamond */}
-                    <rect x="10" y="40" width="30" height="30" rx="3" transform="rotate(45 25 55)" fill="none" stroke="white" strokeWidth="3"/>
-                    {/* Bottom-right diamond */}
-                    <rect x="45" y="40" width="30" height="30" rx="3" transform="rotate(45 60 55)" fill="none" stroke="white" strokeWidth="3"/>
-                    {/* Center connecting lines */}
-                    <line x1="25" y1="37" x2="60" y2="37" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    <line x1="42" y1="20" x2="42" y2="55" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                <div className="w-32 h-32 rounded-full overflow-hidden">
+                  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                    <circle cx="100" cy="100" r="100" fill="#1a1208"/>
+                    <circle cx="100" cy="100" r="92" fill="none" stroke="#c9a84c" strokeWidth="2"/>
+                    <circle cx="100" cy="100" r="85" fill="none" stroke="#c9a84c" strokeWidth="0.8"/>
+                    {[0,30,60,90,120,150,180,210,240,270,300,330].map((a,i) => (
+                      <circle key={i} cx={100+88*Math.cos(a*Math.PI/180)} cy={100+88*Math.sin(a*Math.PI/180)} r="2.5" fill="#c9a84c"/>
+                    ))}
+                    <path d="M 100 30 m -55 0 a 55 55 0 0 1 110 0" fill="none" stroke="none"/>
+                    <text fill="#c9a84c" fontSize="11" fontFamily="serif" letterSpacing="4" textAnchor="middle">
+                      <textPath href="#topArc" startOffset="50%">L · U · X · O · V · A</textPath>
+                    </text>
+                    <defs>
+                      <path id="topArc" d="M 38 80 A 62 62 0 0 1 162 80"/>
+                      <path id="botArc" d="M 40 118 A 62 62 0 0 0 160 118"/>
+                    </defs>
+                    <text fill="#c9a84c" fontSize="7.5" fontFamily="serif" letterSpacing="1.5" textAnchor="middle">
+                      <textPath href="#botArc" startOffset="50%">Perfection Personified</textPath>
+                    </text>
+                    <text x="100" y="115" textAnchor="middle" fill="#c9a84c" fontSize="52" fontFamily="Georgia, serif" fontStyle="italic" fontWeight="400">L</text>
+                    <circle cx="100" cy="100" r="30" fill="none" stroke="#c9a84c" strokeWidth="0.8"/>
                   </svg>
-                  <span style={{ color: 'white', fontSize: '9px', fontWeight: 600, letterSpacing: '1px', fontStyle: 'italic' }}>vibecrafts</span>
                 </div>
               </div>
             </div>
@@ -689,32 +684,32 @@ const HomePage = ({ onProductClick }) => {
             {/* CENTER: username + stats */}
             <div className="flex flex-col items-center gap-3 text-center">
               <div className="flex items-center gap-3">
-                <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer"
                   className="text-gray-900 font-semibold text-xl hover:opacity-70 transition-opacity">
-                  vibecrafts_official
+                  luxova_official
                 </a>
                 <span className="text-gray-400 text-base tracking-widest">···</span>
               </div>
               <div className="flex gap-8">
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">2,166</p>
+                  <p className="font-bold text-gray-900 text-base">731</p>
                   <p className="text-gray-400 text-sm">posts</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">95.1K</p>
+                  <p className="font-bold text-gray-900 text-base">9,332</p>
                   <p className="text-gray-400 text-sm">followers</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">1</p>
+                  <p className="font-bold text-gray-900 text-base">78</p>
                   <p className="text-gray-400 text-sm">following</p>
                 </div>
               </div>
               <div className="flex gap-2 pt-1">
-                <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer"
                   className="px-8 py-1.5 rounded-lg text-sm font-semibold text-white" style={{ backgroundColor: '#4f6ef7' }}>
                   Follow
                 </a>
-                <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer"
                   className="px-6 py-1.5 rounded-lg text-sm font-semibold text-white hover:opacity-80 transition-opacity" style={{ backgroundColor: '#363636' }}>
                   Message
                 </a>
@@ -728,12 +723,11 @@ const HomePage = ({ onProductClick }) => {
 
             {/* RIGHT: bio */}
             <div className="space-y-1">
-              <p className="text-gray-900 text-sm font-semibold">VibeCrafts</p>
-              <p className="text-gray-400 text-sm">Home decor</p>
-              <p className="text-gray-800 text-sm">Most Reliable Brand in Premium Home Decor &amp; Furniture products.</p>
-              <p className="text-gray-800 text-sm">1 Million+ Trusted customers across the Nation.</p>
-              <p className="text-gray-800 text-sm">Visit and experience the Home Decor.</p>
-              <a href="https://www.vibecrafts.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium" style={{ color: '#4f6ef7' }}>www.vibecrafts.com</a>
+              <p className="text-gray-900 text-sm font-semibold">Luxova Skincare</p>
+              <p className="text-gray-400 text-sm">Skincare</p>
+              <p className="text-gray-800 text-sm">Experience the Art and Science of Skincare</p>
+              <p className="text-gray-800 text-sm">- Scientifically formulated with natural ingredients</p>
+              <a href="https://www.luxova.in" target="_blank" rel="noopener noreferrer" className="text-sm font-medium" style={{ color: '#4f6ef7' }}>www.luxova.in</a>
             </div>
           </div>
 
@@ -744,15 +738,26 @@ const HomePage = ({ onProductClick }) => {
               {/* Avatar */}
               <div className="flex-shrink-0">
                 <div className="rounded-full p-[3px]" style={{ background: 'linear-gradient(45deg, #f9a825, #f06292, #ab47bc)' }}>
-                  <div className="w-20 h-20 rounded-full overflow-hidden flex items-center justify-center" style={{ backgroundColor: '#41543F' }}>
-                    <svg width="44" height="44" viewBox="0 0 80 80" fill="none">
-                      <rect x="20" y="20" width="40" height="40" rx="4" stroke="white" strokeWidth="3" transform="rotate(45 40 40)"/>
-                      <rect x="28" y="28" width="24" height="24" rx="3" stroke="white" strokeWidth="2.5" transform="rotate(45 40 40)"/>
-                      <rect x="34" y="34" width="12" height="12" rx="2" stroke="white" strokeWidth="2" transform="rotate(45 40 40)"/>
-                      <line x1="40" y1="8" x2="40" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-                      <line x1="40" y1="60" x2="40" y2="72" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-                      <line x1="8" y1="40" x2="20" y2="40" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-                      <line x1="60" y1="40" x2="72" y2="40" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+                  <div className="w-20 h-20 rounded-full overflow-hidden">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                      <circle cx="100" cy="100" r="100" fill="#1a1208"/>
+                      <circle cx="100" cy="100" r="92" fill="none" stroke="#c9a84c" strokeWidth="2"/>
+                      <circle cx="100" cy="100" r="85" fill="none" stroke="#c9a84c" strokeWidth="0.8"/>
+                      {[0,30,60,90,120,150,180,210,240,270,300,330].map((a,i) => (
+                        <circle key={i} cx={100+88*Math.cos(a*Math.PI/180)} cy={100+88*Math.sin(a*Math.PI/180)} r="2.5" fill="#c9a84c"/>
+                      ))}
+                      <defs>
+                        <path id="topArcMob" d="M 38 80 A 62 62 0 0 1 162 80"/>
+                        <path id="botArcMob" d="M 40 118 A 62 62 0 0 0 160 118"/>
+                      </defs>
+                      <text fill="#c9a84c" fontSize="11" fontFamily="serif" letterSpacing="4" textAnchor="middle">
+                        <textPath href="#topArcMob" startOffset="50%">L · U · X · O · V · A</textPath>
+                      </text>
+                      <text fill="#c9a84c" fontSize="7.5" fontFamily="serif" letterSpacing="1.5" textAnchor="middle">
+                        <textPath href="#botArcMob" startOffset="50%">Perfection Personified</textPath>
+                      </text>
+                      <text x="100" y="115" textAnchor="middle" fill="#c9a84c" fontSize="52" fontFamily="Georgia, serif" fontStyle="italic" fontWeight="400">L</text>
+                      <circle cx="100" cy="100" r="30" fill="none" stroke="#c9a84c" strokeWidth="0.8"/>
                     </svg>
                   </div>
                 </div>
@@ -760,15 +765,15 @@ const HomePage = ({ onProductClick }) => {
               {/* Stats row */}
               <div className="flex flex-1 justify-around">
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">2,166</p>
+                  <p className="font-semibold text-gray-900 text-base">731</p>
                   <p className="text-gray-400 text-xs">posts</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">95.1K</p>
+                  <p className="font-semibold text-gray-900 text-base">9,332</p>
                   <p className="text-gray-400 text-xs">followers</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">1</p>
+                  <p className="font-semibold text-gray-900 text-base">78</p>
                   <p className="text-gray-400 text-xs">following</p>
                 </div>
               </div>
@@ -776,20 +781,20 @@ const HomePage = ({ onProductClick }) => {
 
             {/* Bio block */}
             <div className="space-y-0.5">
-              <p className="text-gray-900 text-sm font-semibold">VibeCrafts</p>
-              <p className="text-gray-400 text-xs">Home decor</p>
-              <p className="text-gray-800 text-sm">Most Reliable Brand in Premium Home Decor &amp; Furniture products.</p>
-              <p className="text-gray-800 text-sm">1 Million+ Trusted customers across the Nation.</p>
-              <a href="https://www.vibecrafts.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium" style={{ color: '#4f6ef7' }}>www.vibecrafts.com</a>
+              <p className="text-gray-900 text-sm font-semibold">Luxova Skincare</p>
+              <p className="text-gray-400 text-xs">Skincare</p>
+              <p className="text-gray-800 text-sm">Experience the Art and Science of Skincare</p>
+              <p className="text-gray-800 text-sm">- Scientifically formulated with natural ingredients</p>
+              <a href="https://www.luxova.in" target="_blank" rel="noopener noreferrer" className="text-sm font-medium" style={{ color: '#4f6ef7' }}>www.luxova.in</a>
             </div>
 
             {/* Buttons — full width like Instagram */}
             <div className="flex gap-2">
-              <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer"
                 className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center" style={{ backgroundColor: '#4f6ef7' }}>
                 Follow
               </a>
-              <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer"
                 className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center" style={{ backgroundColor: '#363636' }}>
                 Message
               </a>

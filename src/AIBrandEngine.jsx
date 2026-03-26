@@ -12,8 +12,7 @@ const Sparkline = ({ data }) => {
   const pts = data.map((v, i) => ({
     x: pad + (i / (data.length - 1)) * (w - pad * 2),
     y: h - pad - ((v - min) / range) * (h - pad * 2),
-    v,
-    i,
+    v, i,
   }));
   const pathD = 'M ' + pts.map(p => `${p.x},${p.y}`).join(' L ');
   const areaD = `${pathD} L ${pts[pts.length-1].x},${h} L ${pts[0].x},${h} Z`;
@@ -22,41 +21,31 @@ const Sparkline = ({ data }) => {
     <div style={{ position: 'relative' }}>
       {hovered !== null && (
         <div style={{
-          position: 'absolute',
-          top: 0,
+          position: 'absolute', top: 0,
           left: `${(pts[hovered].x / w) * 100}%`,
           transform: 'translateX(-50%)',
-          background: '#41543F',
-          color: '#fff',
-          fontSize: '9px',
-          fontWeight: 600,
-          padding: '3px 7px',
-          borderRadius: '5px',
-          whiteSpace: 'nowrap',
-          pointerEvents: 'none',
-          zIndex: 10,
+          background: '#868753', color: '#fff',
+          fontSize: '9px', fontWeight: 600,
+          padding: '3px 7px', borderRadius: '5px',
+          whiteSpace: 'nowrap', pointerEvents: 'none', zIndex: 10,
         }}>
-          {MONTHS[hovered]}: {data[hovered] * 8 + 22} orders
+          {MONTHS[hovered]}: {data[hovered] * 6 + 30} orders
         </div>
       )}
       <svg width="100%" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" style={{ display: 'block' }}>
         <defs>
           <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#41543F" stopOpacity="0.12"/>
-            <stop offset="100%" stopColor="#41543F" stopOpacity="0"/>
+            <stop offset="0%" stopColor="#868753" stopOpacity="0.12"/>
+            <stop offset="100%" stopColor="#868753" stopOpacity="0"/>
           </linearGradient>
         </defs>
         <path d={areaD} fill="url(#sparkGrad)"/>
-        <path d={pathD} fill="none" stroke="#41543F" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d={pathD} fill="none" stroke="#868753" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
         {pts.map((p) => (
-          <circle
-            key={p.i}
-            cx={p.x}
-            cy={p.y}
+          <circle key={p.i} cx={p.x} cy={p.y}
             r={hovered === p.i ? 3.5 : 2}
-            fill={hovered === p.i ? '#41543F' : '#fff'}
-            stroke="#41543F"
-            strokeWidth="1.4"
+            fill={hovered === p.i ? '#868753' : '#fff'}
+            stroke="#868753" strokeWidth="1.4"
             style={{ cursor: 'pointer', transition: 'r 0.15s' }}
             onMouseEnter={() => setHovered(p.i)}
             onMouseLeave={() => setHovered(null)}
@@ -69,157 +58,126 @@ const Sparkline = ({ data }) => {
 
 const AIBrandEngine = ({ showExtras = true }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [activeTab, setActiveTab] = useState('floral');
+  const [activeTab, setActiveTab] = useState('serum');
 
   if (!showExtras) return null;
 
   const tabs = [
-    { id: 'floral',      label: 'Floral'      },
-    { id: 'abstract',    label: 'Abstract'    },
-    { id: 'nature',      label: 'Nature'      },
-    { id: 'peacock',     label: 'Peacock'     },
-    { id: 'geometric',   label: 'Geometric'   },
-    { id: 'traditional', label: 'Traditional' },
+    { id: 'serum',      label: 'Serums'       },
+    { id: 'moisturiser',label: 'Moisturisers' },
+    { id: 'facepack',   label: 'Face Packs'   },
+    { id: 'oil',        label: 'Face Oils'    },
+    { id: 'suncare',    label: 'Suncare'      },
+    { id: 'kits',       label: 'Kits'         },
   ];
 
   const content = {
-    floral: {
-      title: 'VibeCrafts Floral Collection',
-      category: 'Canvas Wall Art · Floral & Botanical',
-      metrics: {
-        purchases: 18420,
-        reviews: 4312,
-        refundRate: 1.8,
-        qualityScore: 97,
-        trend: [40, 55, 48, 72, 65, 88, 102, 95, 118, 130, 122, 148],
-      },
+    serum: {
+      title: 'Luxova Serum Collection',
+      category: 'Skincare · Serums & Treatments',
+      metrics: { purchases: 9332, reviews: 2814, refundRate: 1.2, qualityScore: 98,
+        trend: [38, 50, 45, 68, 72, 85, 90, 105, 98, 118, 132, 148] },
       stats: [
-        { value: 'Premium',  label: 'Fade-proof UV-resistant inks' },
-        { value: 'Ready',    label: 'Stretched & ready to hang' },
-        { value: '59% OFF',  label: 'Limited season sale pricing' },
+        { value: 'Silver',   label: 'Pure Silver Overnight Face Oil Serum' },
+        { value: '7% OFF',   label: 'Limited time pricing' },
+        { value: 'Natural',  label: 'Blend of natural oils' },
       ],
       highlights: [
-        'Rich jewel-tone palette inspired by Indian art',
-        'Available in 4 sizes from 18x12 to 48x32 inch',
-        'Fitted wood frame — no assembly required',
-        'Eco-friendly canvas, non-toxic inks',
+        'Pure silver-infused formula for overnight skin repair',
+        'Reduces wrinkles, fine lines & pigmentation',
+        'Blend of natural oils — no harmful chemicals',
+        'Lightweight, non-greasy texture absorbs fast',
       ],
     },
-    abstract: {
-      title: 'VibeCrafts Abstract Collection',
-      category: 'Canvas Wall Art · Abstract & Contemporary',
-      metrics: {
-        purchases: 14870,
-        reviews: 3291,
-        refundRate: 2.1,
-        qualityScore: 96,
-        trend: [30, 38, 42, 50, 58, 70, 65, 80, 88, 95, 105, 118],
-      },
+    moisturiser: {
+      title: 'Luxova Moisturiser Collection',
+      category: 'Skincare · Hydration & Moisture',
+      metrics: { purchases: 7210, reviews: 1980, refundRate: 1.5, qualityScore: 97,
+        trend: [28, 35, 42, 50, 55, 68, 72, 80, 88, 95, 108, 122] },
       stats: [
-        { value: 'Modern',   label: 'Curated for contemporary homes' },
-        { value: 'HD Print', label: 'High-resolution digital print' },
-        { value: '60% OFF',  label: 'End of season discount' },
+        { value: 'Deep',     label: 'Deep hydration for 24 hrs' },
+        { value: 'Glow',     label: 'Instant luminous finish' },
+        { value: 'Natural',  label: 'Natural ingredient formula' },
       ],
       highlights: [
-        'Minimalist to bold designs for every aesthetic',
-        'Seamless color gradients with museum-quality finish',
-        'Pairs perfectly with neutral & Scandinavian interiors',
-        'Gift-ready packaging with protective wrap',
+        'Scientifically formulated for Indian skin types',
+        'Hyaluronic acid & botanical extract blend',
+        'Suitable for dry, oily & combination skin',
+        'Dermatologist tested, paraben-free formula',
       ],
     },
-    nature: {
-      title: 'VibeCrafts Nature Collection',
-      category: 'Canvas Wall Art · Landscapes & Nature',
-      metrics: {
-        purchases: 11340,
-        reviews: 2605,
-        refundRate: 1.9,
-        qualityScore: 98,
-        trend: [22, 28, 35, 40, 38, 52, 60, 55, 68, 75, 80, 92],
-      },
+    facepack: {
+      title: 'Luxova Face Pack Collection',
+      category: 'Skincare · Masks & Face Packs',
+      metrics: { purchases: 5840, reviews: 1542, refundRate: 1.8, qualityScore: 96,
+        trend: [22, 28, 32, 40, 48, 55, 60, 70, 75, 85, 92, 105] },
       stats: [
-        { value: 'Serene',      label: 'Calming mountain & lake themes' },
-        { value: 'Weatherproof', label: 'Moisture-resistant canvas coat' },
-        { value: '58% OFF',     label: 'Home decor season pricing' },
+        { value: 'Glow',     label: 'Instant brightening effect' },
+        { value: 'Clay',     label: 'Deep pore cleansing action' },
+        { value: 'Herbal',   label: 'Ayurvedic herb infusion' },
       ],
       highlights: [
-        'Breathtaking mountain lakes and forest scenes',
-        'Warm sunrise & golden hour palettes',
-        'Perfect for bedrooms, study rooms & corridors',
-        'Brings nature indoors with photorealistic detail',
+        'Watermelon & saffron — deep moisturising pack',
+        'Removes tan, impurities & excess oil',
+        'Leaves skin visibly brighter in one use',
+        'Suitable for weekly detox skin routine',
       ],
     },
-    peacock: {
-      title: 'VibeCrafts Peacock Collection',
-      category: 'Canvas Wall Art · Peacock & Birds',
-      metrics: {
-        purchases: 21200,
-        reviews: 5180,
-        refundRate: 1.6,
-        qualityScore: 99,
-        trend: [50, 60, 72, 80, 75, 90, 100, 112, 108, 125, 138, 160],
-      },
+    oil: {
+      title: 'Luxova Face Oil Collection',
+      category: 'Skincare · Oils & Elixirs',
+      metrics: { purchases: 6120, reviews: 1730, refundRate: 1.3, qualityScore: 98,
+        trend: [30, 42, 38, 55, 60, 72, 80, 88, 95, 110, 120, 138] },
       stats: [
-        { value: '#1 Seller', label: 'Best-selling canvas category' },
-        { value: 'Vibrant',   label: 'Jewel-tone teal & gold palette' },
-        { value: '59% OFF',   label: 'Flash sale pricing active' },
+        { value: 'Pure',     label: 'Cold-pressed natural oils' },
+        { value: 'Silver',   label: 'Pure silver overnight serum' },
+        { value: '100%',     label: 'Natural, toxin-free formula' },
       ],
       highlights: [
-        'Majestic peacock motifs in Indian art style',
-        'Bold colors that transform any living room',
-        'Lotus, arch & garden backdrop compositions',
-        'Most gifted canvas category on VibeCrafts',
+        'Pure Silver Overnight Face Oil Serum — bestseller',
+        'Repairs skin barrier while you sleep',
+        'Rosehip, argan & jojoba oil complex',
+        'Visibly plumper, softer skin in 7 days',
       ],
     },
-    geometric: {
-      title: 'VibeCrafts Geometric Collection',
-      category: 'Canvas Wall Art · Geometric & Patterns',
-      metrics: {
-        purchases: 8920,
-        reviews: 1980,
-        refundRate: 2.3,
-        qualityScore: 95,
-        trend: [18, 22, 30, 35, 40, 45, 50, 58, 62, 70, 78, 88],
-      },
+    suncare: {
+      title: 'Luxova Suncare Collection',
+      category: 'Skincare · SPF & Sun Protection',
+      metrics: { purchases: 4380, reviews: 1120, refundRate: 2.0, qualityScore: 95,
+        trend: [18, 22, 28, 35, 42, 58, 70, 80, 72, 65, 55, 48] },
       stats: [
-        { value: 'Precision',  label: 'Crisp lines & sharp geometry' },
-        { value: 'Versatile',  label: 'Suits office & modern homes' },
-        { value: '55% OFF',    label: 'Season discount pricing' },
+        { value: 'SPF 50',   label: 'Broad spectrum protection' },
+        { value: 'PA+++',    label: 'UVA & UVB shield' },
+        { value: 'No White', label: 'Zero white cast formula' },
       ],
       highlights: [
-        'Tessellated and mandala-inspired designs',
-        'Monochrome to multi-hued pattern options',
-        'Great for feature walls and gallery setups',
-        'Available as single panel & triptych sets',
+        'Lightweight SPF 50 PA+++ sunscreen',
+        'No white cast — suitable for all skin tones',
+        'Moisturises while protecting from sun damage',
+        'Water-resistant formula for active lifestyles',
       ],
     },
-    traditional: {
-      title: 'VibeCrafts Traditional Collection',
-      category: 'Canvas Wall Art · Indian Heritage Art',
-      metrics: {
-        purchases: 7610,
-        reviews: 1742,
-        refundRate: 2.0,
-        qualityScore: 97,
-        trend: [15, 18, 22, 28, 32, 38, 42, 48, 55, 60, 68, 78],
-      },
+    kits: {
+      title: 'Luxova Skincare Kits',
+      category: 'Skincare · Combo Sets & Gift Kits',
+      metrics: { purchases: 3910, reviews: 980, refundRate: 1.4, qualityScore: 97,
+        trend: [20, 25, 30, 38, 45, 52, 60, 68, 75, 85, 95, 112] },
       stats: [
-        { value: 'Heritage',   label: 'Inspired by Indian folk art forms' },
-        { value: 'Handcrafted', label: 'Artisan-designed compositions' },
-        { value: '57% OFF',    label: 'End of season pricing' },
+        { value: 'Complete', label: 'Full skincare routine in one box' },
+        { value: 'Gift',     label: 'Premium gift-ready packaging' },
+        { value: 'Value',    label: 'Save up to 30% vs individual' },
       ],
       highlights: [
-        'Madhubani, Warli & Pattachitra-inspired motifs',
-        'Warm earthy tones with golden accents',
-        'Ideal for pooja rooms, foyers & dining areas',
-        'Celebrates Indian cultural heritage in modern form',
+        'Curated AM & PM skincare routine kits',
+        'Includes cleanser, serum, moisturiser & SPF',
+        'Perfect for gifting — luxurious unboxing experience',
+        'Scientifically formulated with natural ingredients',
       ],
     },
   };
 
   const current = content[activeTab];
   const m = current.metrics;
-
   const fmt = (n) => n >= 1000 ? `${(n / 1000).toFixed(1)}k` : n;
 
   return (
@@ -231,7 +189,8 @@ const AIBrandEngine = ({ showExtras = true }) => {
           aria-label="Explore Collections"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
           </svg>
         </button>
       ) : (
@@ -240,11 +199,12 @@ const AIBrandEngine = ({ showExtras = true }) => {
           <div className="panel-header">
             <div className="header-left">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
               </svg>
               <div>
-                <h3 className="panel-title">VibeCrafts</h3>
-                <p className="panel-subtitle">Canvas Wall Art · Home Decor · Since 2022</p>
+                <h3 className="panel-title">Luxova Skincare</h3>
+                <p className="panel-subtitle">Skincare · Natural Ingredients · Science-backed</p>
               </div>
             </div>
             <button className="panel-close-btn" onClick={() => setIsExpanded(false)} aria-label="Close">
@@ -269,7 +229,6 @@ const AIBrandEngine = ({ showExtras = true }) => {
 
           {/* Content */}
           <div className="panel-content">
-            {/* Title row */}
             <div className="content-header-row">
               <h4 className="content-title">{current.title}</h4>
               <span className="content-category">{current.category}</span>
@@ -316,14 +275,13 @@ const AIBrandEngine = ({ showExtras = true }) => {
               </div>
             </div>
 
-            {/* Quality + Refund side by side */}
+            {/* Quality + Return rate */}
             <div className="score-row">
-              {/* Quality score — arc gauge */}
               <div className="score-card">
                 <div className="score-arc-wrap">
                   <svg width="64" height="40" viewBox="0 0 64 40">
                     <path d="M 6 38 A 26 26 0 0 1 58 38" fill="none" stroke="#ebebeb" strokeWidth="5" strokeLinecap="round"/>
-                    <path d="M 6 38 A 26 26 0 0 1 58 38" fill="none" stroke="#41543F" strokeWidth="5" strokeLinecap="round"
+                    <path d="M 6 38 A 26 26 0 0 1 58 38" fill="none" stroke="#868753" strokeWidth="5" strokeLinecap="round"
                       strokeDasharray={`${(m.qualityScore / 100) * 81.7} 81.7`}/>
                   </svg>
                   <div className="score-arc-label">{m.qualityScore}%</div>
@@ -332,7 +290,6 @@ const AIBrandEngine = ({ showExtras = true }) => {
                 <div className="score-sub">Customer satisfaction</div>
               </div>
 
-              {/* Return rate — segmented bar */}
               <div className="score-card">
                 <div className="refund-gauge">
                   <div className="refund-big">{m.refundRate}<span className="refund-pct">%</span></div>

@@ -1,5 +1,5 @@
 :root {
-  --brand: #41543F;
+  --brand: #868753;
   --brand-light: rgba(65, 84, 63, 0.07);
   --brand-mid: rgba(65, 84, 63, 0.18);
   --border: #ebebeb;
@@ -318,7 +318,7 @@
 }
 
 .refund-seg.filled {
-  background: #41543F;
+  background: #868753;
 }
 
 .score-title {

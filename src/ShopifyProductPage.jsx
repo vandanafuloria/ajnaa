@@ -15,12 +15,12 @@ import productHeader from './assets/product_header.png';
 import reviewData from '../review.json';
 
 
-// VibeCrafts product card images
+// Luxova product card images
 const OLIVLIFE_IMGS = [
-  'https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=600',
-  'https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600',
-  'https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600',
-  'https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600',
+  'https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946',
+  'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946',
+  'https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946',
+  'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888',
 ];
 
 function getReviewTitle(text) {
@@ -34,31 +34,27 @@ const BRAND_NAME = "wordofmouth";
 
 // Product Images Array - All product images
 const PRODUCT_IMAGES = [
-  "https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=800",
-  "https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600",
-  "https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600",
-  "https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600",
+  "https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946",
+  "https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946",
+  "https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946",
+  "https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888",
 ];
 
 // Product Video
-const PRODUCT_VIDEO = 'https://cdn.shopify.com/videos/c/o/v/6705397241a34c05bb518fb088efebbc.mp4';
+const PRODUCT_VIDEO = 'https://www.luxova.in/cdn/shop/files/quinn_vwgff828tv7lpcepnfgllnhr.mp4#t=0.1';
 
-// All VibeCrafts videos for video section
+// All Luxova videos for video section
 const VIBECRAFTS_VIDEOS = [
-  'https://cdn.shopify.com/videos/c/o/v/6705397241a34c05bb518fb088efebbc.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/4ccf42fed6f24c33a4fe40ed57894447.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/6e87d98ad895427785883250699980be.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/7de778663bbd4ae8891937d41152bd28.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/b5259f2f9e4c4d1c89237bf73eeacead.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/0848219d3ecf4b958d7a7431f67f472b.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/b24af678e64b40518f1dadd3796ab3b2.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/738c5e887f4241629de7eaea7632c4ad.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/6d4c3029fce7492fa25dee1717b98205.mp4',
-  'https://cdn.shopify.com/videos/c/o/v/0ac45b808de7488bb1ab1e51fd202926.mp4',
+  'https://www.luxova.in/cdn/shop/files/quinn_vwgff828tv7lpcepnfgllnhr.mp4#t=0.1',
+  'https://www.luxova.in/cdn/shop/files/quinn_ep6v9azbcgyfirjy2k93jg1a.mp4#t=0.1',
+  'https://www.luxova.in/cdn/shop/files/quinn_prlxca5a18163gp9umry98em.mp4#t=0.1',
+  'https://www.luxova.in/cdn/shop/files/quinn_wz5nlug6cyex50opla3y46bj.mp4#t=0.1',
+  'https://www.luxova.in/cdn/shop/files/quinn_ftl1ge2kq7fzk5jq8w6p3eco.mp4#t=0.1',
+  'https://www.luxova.in/cdn/shop/files/quinn_urmhs7hbsh51h8sbwyiypex7.mp4#t=0.1',
 ];
 
 // Product Details
-const PRODUCT_NAME = "Vibrant Peacock and Red Lotus Floral Canvas Wall Painting";
+const PRODUCT_NAME = "Pure Silver Overnight Face Oil Serum";
 const PRODUCT_PRICE = 2699;
 const PRODUCT_ORIGINAL_PRICE = 6599;
 const PRODUCT_DISCOUNT = 59;
@@ -66,7 +62,7 @@ const PRODUCT_SKU = "PTVCH-4307";
 const PRODUCT_DESCRIPTION = "Bring the timeless beauty of Indian art into your living space with this stunning Vibrant Peacock and Red Lotus Floral Canvas Wall Painting. Featuring a majestic peacock set against a backdrop of blooming lotus flowers and lush foliage in rich jewel tones, this artwork is digitally printed on premium-grade canvas with UV-resistant, fade-proof inks. Ready to hang with a fitted wood frame — no assembly needed.";
 const PRODUCT_BRAND = "VibeCrafts";
 const PRODUCT_COLORS = [
-  { name: "Standard", value: "#41543F" },
+  { name: "Standard", value: "#868753" },
   { name: "Vibrant", value: "#c0392b" },
 ];
 const PRODUCT_SIZES = ["18x12 inch", "24x16 inch", "36x24 inch", "48x32 inch"];
@@ -75,37 +71,37 @@ const PRODUCT_SIZES = ["18x12 inch", "24x16 inch", "36x24 inch", "48x32 inch"];
 const RELATED_PRODUCTS = [
   {
     id: 1,
-    name: "Brown Collarless Checkered Shirt",
-    image: "https://somashop.com/_next/image?url=https%3A%2F%2Fapi.somashop.com%2Fassets%2Fuploads%2Fmedia%2F_DSC8004.webp&w=640&q=75",
-    price: 7999,
-    originalPrice: 8499,
-    rating: 4.5,
-    reviews: 156
+    name: "Pure Silver Overnight Face Oil Serum",
+    image: "https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946",
+    price: 1299,
+    originalPrice: 1399,
+    rating: 4.8,
+    reviews: 320
   },
   {
     id: 2,
-    name: "Indigo Style Tunic",
-    image: "https://somashop.com/_next/image?url=https%3A%2F%2Fapi.somashop.com%2Fassets%2Fuploads%2Fmedia%2F_AR73374.webp&w=640&q=75",
-    price: 6799,
-    originalPrice: 7299,
+    name: "Luxova Frames Collection",
+    image: "https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946",
+    price: 999,
+    originalPrice: 1199,
     rating: 4.7,
-    reviews: 189
+    reviews: 218
   },
   {
     id: 3,
-    name: "Box Pleat Dress Beige",
-    image: "https://somashop.com/_next/image?url=https%3A%2F%2Fapi.somashop.com%2Fassets%2Fuploads%2Fmedia%2F_DSC8160.webp&w=640&q=75",
-    price: 5899,
-    originalPrice: 6399,
-    rating: 4.3,
-    reviews: 142
+    name: "Luxova Skincare Kit",
+    image: "https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946",
+    price: 1799,
+    originalPrice: 2199,
+    rating: 4.9,
+    reviews: 415
   },
   {
     id: 4,
-    name: "Box Pleat Blue Twill Dress",
-    image: "https://api.somashop.com/assets/uploads/media/_DSC8033.webp",
-    price: 6299,
-    originalPrice: 6799,
+    name: "Luxova Premium Frames",
+    image: "https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888",
+    price: 1499,
+    originalPrice: 1799,
     rating: 4.6,
     reviews: 178
   }
@@ -113,10 +109,10 @@ const RELATED_PRODUCTS = [
 
 // Best Seller Products data — same as home page
 const bestSellerProducts = [
-  { id: 1, image: 'https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=600', title: 'Vibrant Peacock and Red Lotus Floral Canvas Wall Painting', currentPrice: 2699, originalPrice: 6599, rating: 4.7, reviewCount: 1284, feature: 'Premium Canvas Print' },
-  { id: 2, image: 'https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600', title: 'Abstract Mountain Lake Canvas Wall Art Painting', currentPrice: 1999, originalPrice: 4999, rating: 4.8, reviewCount: 956, feature: 'UV Resistant Colors' },
-  { id: 3, image: 'https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600', title: 'Artistic Abstract Canvas Wall Art for Modern Decor', currentPrice: 1799, originalPrice: 4499, rating: 4.9, reviewCount: 742, feature: 'Stretched & Ready to Hang' },
-  { id: 4, image: 'https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600', title: 'Abstract Peacock Feather Canvas Wall Art Painting', currentPrice: 2299, originalPrice: 5999, rating: 4.8, reviewCount: 621, feature: 'Fade-Proof Ink Technology' },
+  { id: 1, image: 'https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946', title: 'Pure Silver Overnight Face Oil Serum', currentPrice: 1299, originalPrice: 1399, rating: 4.8, reviewCount: 320, feature: 'Natural Ingredients' },
+  { id: 2, image: 'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946', title: 'Luxova Frames Collection', currentPrice: 999, originalPrice: 1199, rating: 4.7, reviewCount: 218, feature: 'Premium Quality' },
+  { id: 3, image: 'https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946', title: 'Luxova Skincare Kit', currentPrice: 1799, originalPrice: 2199, rating: 4.9, reviewCount: 415, feature: 'Scientifically Formulated' },
+  { id: 4, image: 'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888', title: 'Luxova Premium Frames', currentPrice: 1499, originalPrice: 1799, rating: 4.6, reviewCount: 178, feature: 'Luxova Exclusive' },
 ];
 
 // ============================================
@@ -699,104 +695,108 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
         </div>
       )}
       
-      <main className="flex-1 py-8 md:py-12 bg-white">
-        <div className="w-full px-4">
+      <main className="flex-1 py-8 md:py-12" style={{ backgroundColor: '#f0ece3' }}>
+        <div className="w-full px-4 md:px-8">
 
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
             <button onClick={onHomeClick} className="hover:text-gray-700 transition-colors">Home</button>
             <span>›</span>
-            <span className="text-gray-500">Canvas Wall Art</span>
-            <span>›</span>
             <span className="text-gray-800 font-medium truncate">{productName}</span>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-            {/* LEFT: thumbnails + main image */}
-            <div className="flex gap-3">
-              {/* Vertical thumbnail strip */}
-              <div className="flex flex-col gap-2">
+            {/* LEFT: main image + thumbnails below */}
+            <div className="flex flex-col gap-4">
+              {/* Main image */}
+              <div
+                className="relative w-full overflow-hidden cursor-zoom-in"
+                style={{ backgroundColor: '#e8e3da' }}
+                onClick={() => setIsModalOpen(true)}
+              >
+                <img
+                  src={productImages[selectedImage] || productImages[0]}
+                  alt={productName}
+                  className="w-full object-cover"
+                  style={{ aspectRatio: '4/5' }}
+                />
+              </div>
+
+              {/* Thumbnails below */}
+              <div className="flex gap-3">
                 {productImages.map((img, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all bg-gray-50 flex-shrink-0 ${
-                      selectedImage === index ? 'border-gray-800' : 'border-gray-200 hover:border-gray-400'
-                    }`}
+                    className="overflow-hidden flex-shrink-0 transition-all"
+                    style={{
+                      width: '80px',
+                      height: '80px',
+                      border: selectedImage === index ? '2px solid #1a1a1a' : '2px solid transparent',
+                      backgroundColor: '#e8e3da',
+                    }}
                   >
                     <img src={img} alt={`View ${index + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
-
-              {/* Main image */}
-              <div className="relative flex-1 rounded-xl overflow-hidden bg-gray-50 group cursor-zoom-in" onClick={() => setIsModalOpen(true)}>
-                <img
-                  src={productImages[selectedImage] || productImages[0]}
-                  alt={productName}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  style={{ aspectRatio: '16/9' }}
-                />
-                {/* Discount badge */}
-                <div className="absolute top-3 left-3 w-12 h-12 rounded-full bg-red-500 flex items-center justify-center text-white text-sm font-bold shadow">
-                  {productDiscount}%
-                </div>
-                {/* Expand icon */}
-                <button className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 flex items-center justify-center shadow hover:bg-white transition-colors">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/>
-                  </svg>
-                </button>
-              </div>
             </div>
 
             {/* RIGHT: product info */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-5">
 
               {/* Title */}
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">{productName}</h1>
+              <h1
+                className="leading-tight"
+                style={{ fontFamily: 'Georgia, serif', fontSize: '2rem', fontWeight: 700, color: '#1a1a1a' }}
+              >
+                {productName}
+              </h1>
 
-              {/* Rating + sold + tags */}
+              {/* Stars + Reviews + Sold + Tags */}
               <div className="flex flex-col gap-2.5">
                 {/* Stars row */}
                 <div className="flex items-center gap-3 flex-wrap">
                   <div className="flex items-center gap-1">
                     {[1,2,3,4,5].map(i => {
-                      const full = i <= Math.floor(4.8);
-                      const half = !full && i === 5;
+                      const full = i <= Math.floor(productRating);
+                      const half = !full && i === Math.ceil(productRating) && productRating % 1 >= 0.5;
                       return (
                         <svg key={i} width="18" height="18" viewBox="0 0 24 24">
                           {half && (
                             <defs>
-                              <clipPath id={`pdp-half-${i}`}>
-                                <rect x="0" y="0" width="12" height="24"/>
-                              </clipPath>
+                              <linearGradient id={`pdp-hg-${i}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="50%" stopColor="#f5a623"/>
+                                <stop offset="50%" stopColor="#e0e0e0"/>
+                              </linearGradient>
                             </defs>
                           )}
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#e5e7eb"/>
-                          {(full || half) && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#f59e0b" clipPath={half ? `url(#pdp-half-${i})` : undefined}/>}
+                          <path
+                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                            fill={full ? '#f5a623' : half ? `url(#pdp-hg-${i})` : '#e0e0e0'}
+                          />
                         </svg>
                       );
                     })}
-                    <span className="text-sm font-bold text-gray-800 ml-1">4.8</span>
+                    <span className="text-sm font-bold text-gray-800 ml-1">{productRating}</span>
                   </div>
-                  <span className="text-gray-300 text-sm">|</span>
-                  <span className="text-sm text-gray-500"><span className="font-semibold text-gray-800">320</span> Reviews</span>
-                  <span className="text-gray-300 text-sm">|</span>
-                  <span className="text-sm text-gray-500">
+                  <span className="text-gray-300">|</span>
+                  <span className="text-sm text-gray-600"><span className="font-bold text-gray-900">{productReviews}</span> Reviews</span>
+                  <span className="text-gray-300">|</span>
+                  <span className="text-sm text-gray-600">
                     <span className="text-amber-500 mr-1">⚡</span>
-                    <span className="font-semibold text-gray-800">684</span> Sold this week
+                    <span className="font-bold text-gray-900">684</span> Sold this week
                   </span>
                 </div>
 
                 {/* Feature tags */}
                 <div className="flex flex-wrap gap-2">
-                  {['Premium Canvas', 'Ready to Hang', 'UV Resistant', 'Fade-Proof Ink', 'Eco-Friendly'].map((label) => (
+                  {['Natural Ingredients', 'Silver-Infused', 'Paraben-Free', 'Cruelty-Free', 'Dermatologist Tested'].map(label => (
                     <span
                       key={label}
-                      className="inline-flex items-center text-xs font-medium px-2.5 py-1"
-                      style={{ background: '#6b8a68', color: '#fff', borderRadius: '9999px' }}
+                      className="text-xs font-semibold px-3 py-1.5 text-white"
+                      style={{ backgroundColor: '#868753', borderRadius: '999px' }}
                     >
                       {label}
                     </span>
@@ -805,159 +805,100 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
               </div>
 
               {/* Price row */}
-              <div className="flex items-baseline gap-3">
-                <span className="text-3xl font-bold text-gray-900">₹{productPrice.toLocaleString('en-IN')}</span>
-                <span className="text-lg text-gray-400 line-through">₹{productOriginal.toLocaleString('en-IN')}</span>
-                <span className="text-sm font-bold text-white px-2 py-0.5 rounded" style={{ backgroundColor: '#22c55e' }}>
-                  {productDiscount}% OFF
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className="font-bold text-xl" style={{ color: '#868753' }}>
+                  Rs. {productPrice.toLocaleString('en-IN')}.00
+                </span>
+                <span className="line-through text-base" style={{ color: '#999' }}>
+                  Rs. {productOriginal.toLocaleString('en-IN')}.00
+                </span>
+                <span className="text-xs font-bold text-white px-2 py-1" style={{ backgroundColor: '#111' }}>
+                  OFF
                 </span>
               </div>
 
-              {/* EMI box */}
-              <div className="rounded-lg px-4 py-3 flex flex-col gap-1" style={{ backgroundColor: '#f5f5f5', border: '1px solid #e8e8e8' }}>
-                <div className="flex items-center gap-3">
-                  <span className="text-sm text-gray-600">or <span className="font-bold text-gray-900" style={{ backgroundColor: '#d1fae5', padding: '1px 6px', borderRadius: '4px' }}>₹{Math.round(productPrice / 4).toLocaleString('en-IN')}</span> /month <span className="text-gray-500">(4 months)</span></span>
-                  <button className="ml-auto text-white text-xs font-semibold px-3 py-1.5 rounded" style={{ backgroundColor: '#41543F' }}>
-                    Buy on EMI
-                  </button>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs text-gray-500">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#41543F" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3" strokeLinecap="round"/></svg>
-                  UPI &amp; Cards Accepted &nbsp;|&nbsp; 0 Extra Cost &nbsp;|&nbsp; <span className="font-bold text-gray-700">snap<span style={{ color: '#41543F' }}>mint</span></span>
-                </div>
-              </div>
+              {/* Shipping note */}
+              <p className="text-sm" style={{ color: '#555' }}>Shipping calculated at checkout.</p>
 
-              {/* Season Sale box */}
-              <div className="rounded-lg px-4 py-3 flex flex-col gap-2" style={{ backgroundColor: '#f7f3ed', border: '1px solid #e2d9cc' }}>
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-white px-2 py-1 rounded" style={{ backgroundColor: '#41543F' }}>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                    END OF SEASON SALE
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-700">Get at <strong className="text-gray-900">₹{Math.round(productPrice * 0.845).toLocaleString('en-IN')}</strong></span>
-                  <button className="text-white text-xs font-bold px-3 py-1.5 rounded" style={{ backgroundColor: '#41543F' }}>
-                    Extra ₹{Math.round(productPrice * 0.155).toLocaleString('en-IN')} Off
-                  </button>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-gray-500">
-                  <span>With Coupon +</span>
-                  <div className="flex items-center gap-1">
-                    <span className="bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">UPI</span>
-                    <span className="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">MC</span>
-                    <span className="bg-blue-700 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">VISA</span>
-                  </div>
-                  <span>Pre-Paid Offer</span>
-                  <button className="ml-auto text-xs font-semibold underline" style={{ color: '#41543F' }}>Details &rsaquo;</button>
-                </div>
-              </div>
-
-              {/* Frame Type selector */}
-              <div>
-                <p className="text-sm font-semibold text-gray-800 mb-2">Frame Type</p>
-                <div className="flex gap-3">
-                  {[
-                    { label: 'Ready To Hang\n(Fitted With Wood Frame)', img: PRODUCT_IMAGES[0] },
-                    { label: 'Painting with\nFloating Frame', img: PRODUCT_IMAGES[1] },
-                  ].map((frame, i) => (
-                    <button
-                      key={i}
-                      className={`flex-1 rounded-xl overflow-hidden border-2 text-left transition-all ${selectedSize === frame.label ? 'border-gray-800' : 'border-gray-200 hover:border-gray-400'}`}
-                      onClick={() => setSelectedSize(frame.label)}
-                    >
-                      <img src={frame.img} alt={frame.label} className="w-full h-24 object-cover" />
-                      <p className="text-[11px] font-semibold text-gray-800 px-2 py-2 leading-tight whitespace-pre-line">{frame.label}</p>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Check delivery timeline */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <p className="text-sm font-semibold text-gray-800 mb-3">Check delivery timeline</p>
-                <div className="flex gap-2 items-center border border-gray-300 rounded-lg px-3 py-2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#41543F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-                  </svg>
-                  <input
-                    type="text"
-                    placeholder="Enter PIN code"
-                    maxLength={6}
-                    className="flex-1 text-sm focus:outline-none bg-transparent"
-                  />
-                  <button className="text-sm font-semibold" style={{ color: '#41543F' }}>Check</button>
-                </div>
-              </div>
-
-              {/* Added to carts banner */}
-              <div className="flex items-center gap-2 px-4 py-3 rounded-md text-sm" style={{ backgroundColor: '#fff8f0', border: '1px solid #fed7aa' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ea580c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
-                </svg>
-                <span style={{ color: '#9a3412' }}>This product has been added to <strong style={{ color: '#ea580c' }}>98 people's</strong> carts.</span>
-              </div>
+              <div className="border-t" style={{ borderColor: '#d4cfc7' }} />
 
               {/* Quantity + Add to Cart */}
-              <div className="flex gap-3 items-center">
-                <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-11 flex items-center justify-center text-xl text-gray-600 hover:bg-gray-50 transition-colors">−</button>
+              <div className="flex gap-3 items-stretch">
+                <div className="flex items-center border" style={{ borderColor: '#1a1a1a' }}>
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="w-11 h-12 flex items-center justify-center text-xl text-gray-700 hover:bg-gray-100 transition-colors"
+                  >
+                    −
+                  </button>
                   <span className="w-10 text-center text-base font-semibold text-gray-900">{quantity}</span>
-                  <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-11 flex items-center justify-center text-xl text-gray-600 hover:bg-gray-50 transition-colors">+</button>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="w-11 h-12 flex items-center justify-center text-xl text-gray-700 hover:bg-gray-100 transition-colors"
+                  >
+                    +
+                  </button>
                 </div>
-                <button className="flex-1 py-3 text-white font-bold text-sm rounded-lg transition-colors tracking-wide" style={{ backgroundColor: '#41543F' }}
-                  onMouseEnter={e => e.currentTarget.style.backgroundColor = '#2e3b2d'}
-                  onMouseLeave={e => e.currentTarget.style.backgroundColor = '#41543F'}>
+                <button
+                  className="flex-1 h-12 text-white text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: '#5c6b45', letterSpacing: '0.12em' }}
+                >
                   Add to Cart
                 </button>
               </div>
 
+              {/* Buy Now */}
+              <button
+                className="w-full py-3.5 text-white text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-90"
+                style={{ backgroundColor: '#111', letterSpacing: '0.12em' }}
+              >
+                Buy Now
+              </button>
+
               {/* Add to wishlist */}
               <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors w-fit">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
                 </svg>
                 Add to wishlist
               </button>
 
-              <div className="border-t border-gray-100 my-1" />
+              <div className="border-t" style={{ borderColor: '#d4cfc7' }} />
 
-              {/* Delivery info checklist */}
-              <ul className="flex flex-col gap-2.5">
-                {[
-                  { bold: 'Free Shipping', rest: 'on all orders above ₹999 across India' },
-                  { bold: 'Ready to Hang', rest: '— arrives stretched on a wood frame, no assembly needed' },
-                  { bold: null, rest: 'Packed securely to prevent damage during transit' },
-                  { bold: null, rest: '7-day easy return & replacement policy' },
-                  { bold: null, rest: '100% authentic, premium-grade canvas materials' },
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 flex-shrink-0">
-                      <path d="M20 6L9 17l-5-5"/>
+              {/* Delivery info */}
+              <div className="flex flex-col gap-4">
+                {/* Estimated delivery */}
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0" style={{ backgroundColor: '#e8e3da' }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#868753" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
                     </svg>
-                    <span>{item.bold && <strong>{item.bold} </strong>}{item.rest}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="border-t border-gray-100 my-1" />
-
-              {/* Category */}
-              {/* End of Season Sale bottom banner */}
-              <div className="rounded-xl px-4 py-3 flex items-center justify-between" style={{ backgroundColor: '#1a2e1a' }}>
-                <div className="flex items-center gap-2">
-                  <span className="text-white text-xs font-light tracking-widest uppercase">HOME DECOR</span>
-                  <span className="text-yellow-300 text-sm font-bold italic">END of SEASON</span>
-                  <span className="text-white text-sm font-bold italic">Sale</span>
+                  </div>
+                  <p className="text-sm text-gray-700">
+                    <strong>Estimated deliver</strong> in 5-7 days
+                  </p>
                 </div>
-                <span className="flex items-center gap-1 text-xs font-bold text-white bg-red-600 px-2 py-0.5 rounded-full animate-pulse">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white inline-block" />
-                  LIVE
-                </span>
-              </div>
 
-              <p className="text-sm text-gray-400">Category: <span className="text-gray-600 font-medium">Canvas Wall Art</span></p>
+                {/* Free shipping */}
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0" style={{ backgroundColor: '#e8e3da' }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#868753" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>
+                    </svg>
+                  </div>
+                  <p className="text-sm font-semibold text-gray-800">Free Shipping</p>
+                </div>
+
+                {/* Query */}
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0" style={{ backgroundColor: '#e8e3da' }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#868753" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                    </svg>
+                  </div>
+                  <p className="text-sm font-semibold text-gray-800">About your query!</p>
+                </div>
+              </div>
 
             </div>
           </div>
@@ -968,30 +909,26 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       {/* In Your Home */}
       {(() => {
         const WILD_VIDEOS = [
-          'https://cdn.shopify.com/videos/c/o/v/6705397241a34c05bb518fb088efebbc.mp4',
-          'https://cdn.shopify.com/videos/c/o/v/4ccf42fed6f24c33a4fe40ed57894447.mp4',
-          'https://cdn.shopify.com/videos/c/o/v/6e87d98ad895427785883250699980be.mp4',
-          'https://cdn.shopify.com/videos/c/o/v/7de778663bbd4ae8891937d41152bd28.mp4',
-          'https://cdn.shopify.com/videos/c/o/v/b5259f2f9e4c4d1c89237bf73eeacead.mp4',
-          'https://cdn.shopify.com/videos/c/o/v/0848219d3ecf4b958d7a7431f67f472b.mp4',
-          'https://cdn.shopify.com/videos/c/o/v/b24af678e64b40518f1dadd3796ab3b2.mp4',
-          'https://cdn.shopify.com/videos/c/o/v/738c5e887f4241629de7eaea7632c4ad.mp4',
-          'https://cdn.shopify.com/videos/c/o/v/6d4c3029fce7492fa25dee1717b98205.mp4',
-          'https://cdn.shopify.com/videos/c/o/v/0ac45b808de7488bb1ab1e51fd202926.mp4',
+          'https://www.luxova.in/cdn/shop/files/quinn_vwgff828tv7lpcepnfgllnhr.mp4#t=0.1',
+          'https://www.luxova.in/cdn/shop/files/quinn_ep6v9azbcgyfirjy2k93jg1a.mp4#t=0.1',
+          'https://www.luxova.in/cdn/shop/files/quinn_prlxca5a18163gp9umry98em.mp4#t=0.1',
+          'https://www.luxova.in/cdn/shop/files/quinn_wz5nlug6cyex50opla3y46bj.mp4#t=0.1',
+          'https://www.luxova.in/cdn/shop/files/quinn_ftl1ge2kq7fzk5jq8w6p3eco.mp4#t=0.1',
+          'https://www.luxova.in/cdn/shop/files/quinn_urmhs7hbsh51h8sbwyiypex7.mp4#t=0.1',
         ];
         return (
           <>
-            <div className="w-full py-7" style={{ background: '#41543F' }}>
+            <div className="w-full py-7" style={{ background: '#868753' }}>
               <div className="w-full px-4">
                 <div className="flex items-center justify-between mb-5">
-                  <h2 className="text-base font-bold text-white tracking-wide">In Your Home</h2>
-                  <a href="https://www.instagram.com/vibecrafts_official/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full" style={{ color: 'rgba(255,255,255,0.85)', border: '1px solid rgba(255,255,255,0.25)', textDecoration: 'none' }}>
+                  <h2 className="text-base font-bold text-white tracking-wide">In Your Skincare Routine</h2>
+                  <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full" style={{ color: 'rgba(255,255,255,0.85)', border: '1px solid rgba(255,255,255,0.25)', textDecoration: 'none' }}>
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
                       <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeWidth="1.8"/>
                       <circle cx="12" cy="12" r="4.5" stroke="white" strokeWidth="1.8"/>
                       <circle cx="17.5" cy="6.5" r="1" fill="white"/>
                     </svg>
-                    vibecrafts_official
+                    luxova_official
                   </a>
                 </div>
                 <div className="overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
@@ -1075,13 +1012,13 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <div
                       className="w-32 h-32 rounded-full flex items-center justify-center mb-4 relative mx-auto"
                       style={{
-                        background: `conic-gradient(#41543F 0% 96%, #d4e0d3 96% 100%)`,
+                        background: `conic-gradient(#868753 0% 96%, #d4e0d3 96% 100%)`,
                         boxShadow: '0 8px 24px rgba(65,84,63,0.25)'
                       }}
                     >
                       <div className="absolute inset-[6px] rounded-full bg-white flex items-center justify-center">
                         <div className="flex items-baseline gap-0.5">
-                          <span className="text-3xl font-bold" style={{ color: '#41543F' }}>4.8</span>
+                          <span className="text-3xl font-bold" style={{ color: '#868753' }}>4.8</span>
                           <span className="text-sm font-medium text-gray-400">/5</span>
                         </div>
                       </div>
@@ -1096,7 +1033,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       ))}
                     </div>
                     <p className="text-sm text-gray-500 mb-3">Based on <strong className="text-gray-800">147</strong> reviews</p>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border" style={{ backgroundColor: 'rgba(65,84,63,0.07)', color: '#41543F', borderColor: 'rgba(65,84,63,0.25)' }}>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border" style={{ backgroundColor: 'rgba(65,84,63,0.07)', color: '#868753', borderColor: 'rgba(65,84,63,0.25)' }}>
                       <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                       </svg>
@@ -1126,7 +1063,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                             style={{
                               width: `${item.percent}%`,
                               minWidth: '2px',
-                              backgroundColor: '#41543F',
+                              backgroundColor: '#868753',
                               borderRadius: '1px'
                             }}
                           />
@@ -1196,8 +1133,8 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       fontWeight: '600',
                       borderRadius: '0',
                       border: '1.5px solid',
-                      borderColor: activeTab === id ? '#41543F' : '#e0e0e0',
-                      background: activeTab === id ? '#41543F' : '#fff',
+                      borderColor: activeTab === id ? '#868753' : '#e0e0e0',
+                      background: activeTab === id ? '#868753' : '#fff',
                       color: activeTab === id ? '#fff' : '#666',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease',
@@ -1222,32 +1159,32 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     </div>
                     
                     <h4 className="text-xl font-bold text-gray-900 mb-2">Customers say</h4>
-                    
+
                     <p className="text-gray-700 leading-relaxed mb-2 text-base">
                       {isAISummaryExpanded ? (
                         <>
-                          Customers love the long-lasting battery life of the OlivLife AURA Earbuds and consistently praise its 40-hour total playback even with heavy use. The deep bass and ENC (Environmental Noise Cancellation) are frequently highlighted as standout features — many reviewers mention crystal-clear calls and zero connection drops even with daily commuting. Customers are especially impressed by the premium audio quality for the Rs. 2499 price point, with several comparing it favourably to much more expensive TWS brands. The comfortable fit and sleek design receive the most compliments, with many buyers saying they can wear them for hours without any ear fatigue.
-                          <button onClick={() => setIsAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#351F31' }}>Read less</button>
+                          Customers consistently praise Luxova's Pure Silver Overnight Face Oil Serum for visibly improving skin texture within just one week of use. The lightweight, non-greasy formula is a standout highlight — reviewers love that it absorbs quickly and leaves the skin feeling plump and hydrated by morning. Many customers mention a noticeable reduction in fine lines, dark spots, and dullness after regular use. The natural ingredient blend, including the silver-infused formula, earns trust from buyers looking for clean, toxin-free skincare. Packaging is frequently described as premium and gift-worthy, and customers appreciate the brand's science-backed approach to natural skincare. Several long-term users mention switching from expensive international brands after discovering Luxova's results at an accessible price.
+                          <button onClick={() => setIsAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#868753' }}>Read less</button>
                         </>
                       ) : (
                         <>
-                          Customers love the long-lasting battery life and 40-hour playback of the OlivLife AURA Earbuds. The deep bass, crystal-clear ENC for calls, and premium audio quality at Rs. 2499 are consistently praised.
-                          <button onClick={() => setIsAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#351F31' }}>Read more</button>
+                          Customers love Luxova's Pure Silver Overnight Face Oil Serum for its lightweight formula and visible results — softer, brighter skin within days. The natural ingredient blend and science-backed approach are consistently praised.
+                          <button onClick={() => setIsAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#868753' }}>Read more</button>
                         </>
                       )}
                     </p>
-                    
+
                     <p className="text-xs text-gray-500 mb-4">Updated in near real-time as new feedback arrives.</p>
-                    
+
                     {/* Divider */}
                     <div className="border-t border-gray-200 mb-4"></div>
-                    
+
                     {/* Frequently Mentioned */}
                     <div>
                       <p className="text-[11px] font-medium text-gray-400 mb-3 uppercase tracking-widest">Customers Frequently Mention</p>
                       <div className="flex flex-wrap gap-x-4 gap-y-1.5">
-                        {['Deep Bass', 'Long Battery Life', 'Clear Calls', 'Premium Quality', 'Comfortable Fit'].map((item, index) => (
-                          <span key={index} className="text-xs font-semibold" style={{ color: '#7a4f6d' }}>
+                        {['Glowing Skin', 'Natural Ingredients', 'Fast Absorption', 'Visible Results', 'Great Packaging', 'Science-backed'].map((item, index) => (
+                          <span key={index} className="text-xs font-semibold" style={{ color: '#868753' }}>
                             {item}
                           </span>
                         ))}
@@ -1475,28 +1412,28 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <p className="text-gray-700 leading-relaxed mb-2 text-base">
                       {isBrandAISummaryExpanded ? (
                         <>
-                          Customers trust OlivLife for delivering consistent audio quality across its entire range of audio products. The brand is widely praised for offering premium-feel TWS earbuds at accessible price points, making high-quality sound available to everyone. Reviewers frequently highlight OlivLife's reliable Bluetooth connectivity and long battery life — particularly appreciated by those who travel or work remotely. The brand's focus on user comfort, environmental noise cancellation (ENC), and sleek packaging make it a favourite for daily use as well as gifting. Many loyal customers mention having used OlivLife products for years, citing their trusted customer service as a key reason for their confidence in the brand.
-                          <button onClick={() => setIsBrandAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#351F31' }}>Read less</button>
+                          Customers deeply trust Luxova Skincare for its commitment to blending science with nature. The brand is widely praised for formulating products that deliver real, visible results without relying on harsh chemicals or synthetic additives. Reviewers frequently highlight Luxova's transparency about ingredients — particularly the use of pure silver, natural oils, and botanical extracts that are clearly labelled and explained. The brand's skincare range is celebrated for being suitable for Indian skin types, addressing common concerns like pigmentation, dullness, uneven tone, and signs of ageing. Long-term customers mention switching from expensive international skincare brands after experiencing Luxova's results at a fraction of the price. The luxurious packaging, fast delivery, and responsive customer support further strengthen buyer confidence. Many reviewers describe Luxova as a brand that genuinely cares about skin health, not just sales.
+                          <button onClick={() => setIsBrandAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#868753' }}>Read less</button>
                         </>
                       ) : (
                         <>
-                          Customers trust OlivLife for consistent audio quality and reliable connectivity at accessible prices. The brand's long battery life, focus on comfort, and ENC technology make it a long-time favourite.
-                          <button onClick={() => setIsBrandAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#351F31' }}>Read more</button>
+                          Customers trust Luxova Skincare for science-backed, natural formulas that deliver real results. The brand's transparency about ingredients, suitability for Indian skin, and premium packaging make it a consistent favourite.
+                          <button onClick={() => setIsBrandAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#868753' }}>Read more</button>
                         </>
                       )}
                     </p>
-                    
+
                     <p className="text-xs text-gray-500 mb-4">Updated in near real-time as new feedback arrives.</p>
-                    
+
                     {/* Divider */}
                     <div className="border-t border-gray-200 mb-4"></div>
-                    
+
                     {/* Brand Keywords */}
                     <div>
                       <p className="text-[11px] font-medium text-gray-400 mb-3 uppercase tracking-widest">Brand Frequently Mentioned</p>
                       <div className="flex flex-wrap gap-x-4 gap-y-1.5">
-                        {['Great Value', 'Fast Delivery', 'Excellent Support', 'Premium Audio', 'Reliable Connection', 'Sleek Design'].map((item, index) => (
-                          <span key={index} className="text-xs font-semibold" style={{ color: '#7a4f6d' }}>
+                        {['Clean Ingredients', 'Visible Glow', 'Fast Delivery', 'Trusted by Dermatologists', 'Cruelty-Free', 'Premium Packaging', 'Great Value'].map((item, index) => (
+                          <span key={index} className="text-xs font-semibold" style={{ color: '#868753' }}>
                             {item}
                           </span>
                         ))}
