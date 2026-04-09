@@ -5,82 +5,98 @@ import ProductCard from './ProductCard';
 import AIBrandEngine from './AIBrandEngine';
 import LiveUserCounter from './LiveUserCounter';
 import ActivityBanner from './ActivityBanner';
+import duroflexInstagramProfile from './assets/logo.png';
+import { DUROFLEX_SHOP_VIDEOS } from './duroflexShopVideos';
+import InstagramTrustCarousel from './InstagramTrustCarousel';
 import './HomePage.css';
 
-const SHOPIFY_VIDEO_URLS = [
-  'https://www.luxova.in/cdn/shop/files/quinn_vwgff828tv7lpcepnfgllnhr.mp4#t=0.1',
-  'https://www.luxova.in/cdn/shop/files/quinn_ep6v9azbcgyfirjy2k93jg1a.mp4#t=0.1',
-  'https://www.luxova.in/cdn/shop/files/quinn_prlxca5a18163gp9umry98em.mp4#t=0.1',
-  'https://www.luxova.in/cdn/shop/files/quinn_wz5nlug6cyex50opla3y46bj.mp4#t=0.1',
-  'https://www.luxova.in/cdn/shop/files/quinn_ftl1ge2kq7fzk5jq8w6p3eco.mp4#t=0.1',
-  'https://www.luxova.in/cdn/shop/files/quinn_urmhs7hbsh51h8sbwyiypex7.mp4#t=0.1',
-];
+const DUROFLEX_INSTAGRAM_URL = 'https://www.instagram.com/duroflexworld/';
+const DUROFLEX_LINKTR_URL = 'https://linktr.ee/duroflexworld';
+const DUROFLEX_HASHTAG_URL =
+  'https://www.instagram.com/explore/tags/designedtodestress/';
+
+const SHOPIFY_VIDEO_URLS = DUROFLEX_SHOP_VIDEOS;
 
 const BRAND_NAME = "wordofmouth";
 
-// Best Seller Products data
+// Best Seller Products data (Duroflex imagery)
 const bestSellerProducts = [
   {
     id: 1,
-    image: 'https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946',
-    title: 'Pure Silver Overnight Face Oil Serum',
-    currentPrice: 1299,
-    originalPrice: 1399,
+    image: 'https://www.duroflexworld.com/cdn/shop/files/Airboost-6_8_jpg.jpg?v=1773923691',
+    title: 'Duropedic Airboost 6.8 Arctic Ice Mattress',
+    currentPrice: 26197,
+    originalPrice: 39693,
     rating: 4.8,
-    badge: 'Best Sellers',
-    feature: 'Natural Ingredients',
+    reviewCount: 320,
+    badge: 'Best Seller',
+    feature: 'Adjustable firmness & Airknit core',
   },
   {
     id: 2,
-    image: 'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946',
-    title: 'Luxova Frames Collection',
-    currentPrice: 999,
-    originalPrice: 1199,
+    image: 'https://www.duroflexworld.com/cdn/shop/files/Airboost-3_6_jpg.jpg?v=1773923784',
+    title: 'Duroflex Airboost 3.6 Mattress',
+    currentPrice: 18999,
+    originalPrice: 24999,
     rating: 4.7,
+    reviewCount: 218,
     badge: 'Trending',
-    feature: 'Premium Quality',
+    feature: 'Breathable Airboost comfort layers',
   },
   {
     id: 3,
-    image: 'https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946',
-    title: 'Luxova Skincare Kit',
-    currentPrice: 1799,
-    originalPrice: 2199,
+    image: 'https://www.duroflexworld.com/cdn/shop/files/2_2026e6ee-a9e8-4ff5-88c7-104fea9cefb8.jpg?v=1744560694',
+    title: 'Duroflex Premium Quilted Mattress',
+    currentPrice: 22499,
+    originalPrice: 28999,
     rating: 4.9,
+    reviewCount: 415,
     badge: 'New Launch',
-    feature: 'Scientifically Formulated',
+    feature: 'Luxury quilted comfort',
   },
   {
     id: 4,
-    image: 'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888',
-    title: 'Luxova Premium Frames',
-    currentPrice: 1499,
-    originalPrice: 1799,
+    image: 'https://www.duroflexworld.com/cdn/shop/files/1_caa4360f-a470-4da1-9d81-78570f9f02c1.jpg?v=1749639354',
+    title: 'Duroflex Natural Living Prana Mattress',
+    currentPrice: 32999,
+    originalPrice: 41999,
     rating: 4.8,
+    reviewCount: 178,
     badge: 'Best Sellers',
-    feature: 'Luxova Exclusive',
+    feature: 'Natural Living eco-friendly design',
+  },
+  {
+    id: 5,
+    image: 'https://www.duroflexworld.com/cdn/shop/files/1_e2b015b1-5d1a-4e42-986a-d7a482d19130.png?v=1755864195',
+    title: 'Duropedic Strength Mattress',
+    currentPrice: 27999,
+    originalPrice: 35999,
+    rating: 4.6,
+    reviewCount: 190,
+    badge: 'Best Sellers',
+    feature: 'Duropedic strength & support',
   },
 ];
 
 const getRandomSoldThisWeek = (min = 180, max = 420) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
-const VIBECRAFTS_IMGS = [
-  'https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946',
-  'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946',
-  'https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946',
-  'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888',
-];
+const VIDEO_VIEWS = ['4.0K', '4.2K', '3.8K', '3.1K', '2.9K', '2.7K', '3.5K', '4.1K', '3.6K', '2.8K', '3.9K'];
 
-// Video Products data
-const videoProducts = [
-  { id: 1, video: SHOPIFY_VIDEO_URLS[0], image: VIBECRAFTS_IMGS[0], views: '4.0K', title: 'Luxova Brightening Face Serum', currentPrice: 2699, originalPrice: 6599, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 2, video: SHOPIFY_VIDEO_URLS[1], image: VIBECRAFTS_IMGS[1], views: '4.2K', title: 'Luxova Hydrating Moisturiser', currentPrice: 1999, originalPrice: 4999, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 3, video: SHOPIFY_VIDEO_URLS[2], image: VIBECRAFTS_IMGS[2], views: '3.8K', title: 'Luxova Anti-Aging Night Cream', currentPrice: 1799, originalPrice: 4499, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 4, video: SHOPIFY_VIDEO_URLS[3], image: VIBECRAFTS_IMGS[3], views: '3.1K', title: 'Luxova Vitamin C Glow Toner', currentPrice: 2299, originalPrice: 5999, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 5, video: SHOPIFY_VIDEO_URLS[4], image: VIBECRAFTS_IMGS[0], views: '2.9K', title: 'Luxova SPF 50 Sunscreen', currentPrice: 2699, originalPrice: 6599, soldThisWeek: getRandomSoldThisWeek() },
-  { id: 6, video: SHOPIFY_VIDEO_URLS[5], image: VIBECRAFTS_IMGS[1], views: '2.7K', title: 'Luxova Deep Cleansing Face Wash', currentPrice: 1999, originalPrice: 4999, soldThisWeek: getRandomSoldThisWeek() },
-];
+// Video Products data — one row per Duroflex clip; posters cycle best sellers
+const videoProducts = SHOPIFY_VIDEO_URLS.map((url, i) => {
+  const bp = bestSellerProducts[i % bestSellerProducts.length];
+  return {
+    id: i + 1,
+    video: url,
+    image: bp.image,
+    views: VIDEO_VIEWS[i],
+    title: bp.title,
+    currentPrice: bp.currentPrice,
+    originalPrice: bp.originalPrice,
+    soldThisWeek: getRandomSoldThisWeek(),
+  };
+});
 
 const HomePage = ({ onProductClick }) => {
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -113,12 +129,17 @@ const HomePage = ({ onProductClick }) => {
   
   // Instagram post URLs
   const instagramPosts = [
-    'https://www.instagram.com/p/DWI_vPwERMl/',
-    'https://www.instagram.com/p/DWS_b6EEYXN/',
-    'https://www.instagram.com/p/DV0D0CjEQA-/',
-    'https://www.instagram.com/p/DVL9Wc7DJ2p/',
-    'https://www.instagram.com/p/DUPuPObCtu0/',
-    'https://www.instagram.com/p/DTXfCP_Ep2C/',
+    'https://www.instagram.com/p/DUkDWOYiL8x/',
+    'https://www.instagram.com/p/DW1GPT3CLZt/',
+    'https://www.instagram.com/p/DWyteqICIrT/',
+    'https://www.instagram.com/p/DWvjkgfiG99/',
+    'https://www.instagram.com/p/DWndarEiAbr/',
+    'https://www.instagram.com/p/DWlF0FTCD73/',
+    'https://www.instagram.com/p/DWjPq5KCAIq/',
+    'https://www.instagram.com/p/DV8th8KiA24/',
+    'https://www.instagram.com/p/DViRz7QiFbi/',
+    'https://www.instagram.com/p/DUncBy-CL5c/',
+    'https://www.instagram.com/p/DShk_eXDQST/',
   ];
 
   // Load Instagram embed script
@@ -280,80 +301,9 @@ const HomePage = ({ onProductClick }) => {
       
       {/* Live User Counter */}
       <LiveUserCounter className={`fixed left-4 z-50 transition-all duration-300 ${isScrolled ? 'top-4' : 'top-[46px]'}`} />
-      
-      {/* Trust Carousel Widget - Sticky on right side, slide bottom→top */}
-      {(() => {
-        const StarIcon = ({ color = '#FF9500' }) => (
-          <svg width="12" height="12" viewBox="0 0 24 24" fill={color}>
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
-        );
-        const trustSlides = [
-          {
-            icon: <div className="flex items-center gap-0.5">{[1,2,3,4,5].map(i => <StarIcon key={i}/>)}</div>,
-            text: 'Trusted by 10,000+ Customers',
-          },
-          {
-            icon: <img src="https://static.vecteezy.com/system/resources/previews/014/018/561/non_2x/amazon-logo-on-transparent-background-free-vector.jpg" alt="Amazon" style={{ height: '16px', width: 'auto', objectFit: 'contain' }} />,
-            text: '2,000+ Ratings',
-            badge: '4.5',
-          },
-          {
-            icon: <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-ear6tLG-5_mPMoXZt9_V0GikgHnxFObsog&s" alt="Flipkart" style={{ height: '16px', width: 'auto', objectFit: 'contain' }} />,
-            text: '1,500+ Reviews',
-            badge: '4.4',
-          },
-          {
-            icon: <StarIcon color="#FF9500"/>,
-            text: '100% Natural & Toxin-Free',
-          },
-          {
-            icon: <StarIcon color="#FF9500"/>,
-            text: 'Dermatologist Tested & Approved',
-          },
-        ];
-        const [trustIdx, setTrustIdx] = React.useState(0);
-        const [animKey, setAnimKey] = React.useState(0);
-        React.useEffect(() => {
-          const t = setInterval(() => {
-            setTrustIdx(i => (i + 1) % trustSlides.length);
-            setAnimKey(k => k + 1);
-          }, 2500);
-          return () => clearInterval(t);
-        }, []);
-        return (
-          <>
-            <style>{`
-              @keyframes slideLeftRight {
-                0%   { transform: translateX(-100%); opacity: 0; }
-                100% { transform: translateX(0);     opacity: 1; }
-              }
-              .trust-slide { animation: slideLeftRight 0.45s cubic-bezier(0.22,1,0.36,1) both; }
-            `}</style>
-            <div
-              className="fixed right-4 rounded-lg px-4 py-2.5 shadow-lg z-30 overflow-hidden"
-              style={{ top: '226px', transform: 'rotate(270deg)', transformOrigin: 'right', minWidth: '230px', height: '36px', backgroundColor: '#f2f2e6' }}
-            >
-              <div
-                key={animKey}
-                className="trust-slide flex items-center gap-2 whitespace-nowrap h-full"
-              >
-                <span>{trustSlides[trustIdx].icon}</span>
-                <span className="text-xs font-bold text-gray-900">{trustSlides[trustIdx].text}</span>
-                {trustSlides[trustIdx].badge && (
-                  <div className="flex items-center gap-1 px-2 py-0.5 rounded-md" style={{ backgroundColor: '#3d4f35' }}>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="#f5c518">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                    <span className="font-bold text-white" style={{ fontSize: '11px' }}>{trustSlides[trustIdx].badge}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </>
-        );
-      })()}
-      
+
+      <InstagramTrustCarousel instagramUrl={DUROFLEX_INSTAGRAM_URL} followersLabel="81.8K" />
+
 
 
       {/* Big Deals Section */}
@@ -372,7 +322,10 @@ const HomePage = ({ onProductClick }) => {
                   style={{ width: '300px' }}
                   onClick={() => onProductClick && onProductClick(product)}
                 >
-                  <ProductCard product={product} />
+                  <ProductCard
+                    product={product}
+                    onClick={() => onProductClick && onProductClick(product)}
+                  />
                 </div>
               ))}
             </div>
@@ -387,7 +340,7 @@ const HomePage = ({ onProductClick }) => {
       <section className="w-full py-12 md:py-16 bg-white hidden">
         <div className="w-full px-4">
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#8B4513] mb-3 tracking-wide">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#DB2A20] mb-3 tracking-wide">
               SHOP OUR BEST SELLERS
             </h2>
           </div>
@@ -567,7 +520,7 @@ const HomePage = ({ onProductClick }) => {
                           {/* Social Proof - Sold This Week */}
                           <div 
                             className="text-xs font-normal mt-1.5"
-                            style={{ color: '#7f2065', fontWeight: 400 }}
+                            style={{ color: '#DB2A20', fontWeight: 400 }}
                           >
                             {(product.soldThisWeek ?? 235)} sold this week
                           </div>
@@ -580,7 +533,7 @@ const HomePage = ({ onProductClick }) => {
                           e.stopPropagation();
                           console.log('Add to cart:', product);
                         }}
-                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#264171', marginTop: '12px' }}
+                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#DB2A20', marginTop: '12px' }}
                       >
                         ADD TO CART
                       </button>
@@ -669,7 +622,7 @@ const HomePage = ({ onProductClick }) => {
                       </div>
                       <button
                         onClick={(e) => e.stopPropagation()}
-                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#868753' }}
+                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#DB2A20' }}
                       >
                         ADD TO CART
                       </button>
@@ -691,160 +644,202 @@ const HomePage = ({ onProductClick }) => {
           {/* ── DESKTOP layout (md+): left | center | right ── */}
           <div className="hidden md:grid grid-cols-3 items-center gap-16">
 
-            {/* LEFT: Avatar */}
             <div className="flex justify-center">
-              <div className="rounded-full p-[3px]" style={{ background: 'linear-gradient(45deg, #f9a825, #f06292, #ab47bc)' }}>
+              <div
+                className="rounded-full p-[3px]"
+                style={{ background: 'linear-gradient(45deg, #f9a825, #f06292, #ab47bc)' }}
+              >
                 <div className="w-32 h-32 rounded-full overflow-hidden">
-                  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                    <circle cx="100" cy="100" r="100" fill="#1a1208"/>
-                    <circle cx="100" cy="100" r="92" fill="none" stroke="#c9a84c" strokeWidth="2"/>
-                    <circle cx="100" cy="100" r="85" fill="none" stroke="#c9a84c" strokeWidth="0.8"/>
-                    {[0,30,60,90,120,150,180,210,240,270,300,330].map((a,i) => (
-                      <circle key={i} cx={100+88*Math.cos(a*Math.PI/180)} cy={100+88*Math.sin(a*Math.PI/180)} r="2.5" fill="#c9a84c"/>
-                    ))}
-                    <path d="M 100 30 m -55 0 a 55 55 0 0 1 110 0" fill="none" stroke="none"/>
-                    <text fill="#c9a84c" fontSize="11" fontFamily="serif" letterSpacing="4" textAnchor="middle">
-                      <textPath href="#topArc" startOffset="50%">L · U · X · O · V · A</textPath>
-                    </text>
-                    <defs>
-                      <path id="topArc" d="M 38 80 A 62 62 0 0 1 162 80"/>
-                      <path id="botArc" d="M 40 118 A 62 62 0 0 0 160 118"/>
-                    </defs>
-                    <text fill="#c9a84c" fontSize="7.5" fontFamily="serif" letterSpacing="1.5" textAnchor="middle">
-                      <textPath href="#botArc" startOffset="50%">Perfection Personified</textPath>
-                    </text>
-                    <text x="100" y="115" textAnchor="middle" fill="#c9a84c" fontSize="52" fontFamily="Georgia, serif" fontStyle="italic" fontWeight="400">L</text>
-                    <circle cx="100" cy="100" r="30" fill="none" stroke="#c9a84c" strokeWidth="0.8"/>
-                  </svg>
+                  <img
+                    src={duroflexInstagramProfile}
+                    alt="Duroflex on Instagram"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
 
-            {/* CENTER: username + stats */}
             <div className="flex flex-col items-center gap-3 text-center">
               <div className="flex items-center gap-3">
-                <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer"
-                  className="text-gray-900 font-semibold text-xl hover:opacity-70 transition-opacity">
-                  luxova_official
+                <a
+                  href={DUROFLEX_INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-900 font-semibold text-xl hover:opacity-70 transition-opacity"
+                >
+                  duroflexworld
                 </a>
                 <span className="text-gray-400 text-base tracking-widest">···</span>
               </div>
               <div className="flex gap-8">
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">731</p>
+                  <p className="font-bold text-gray-900 text-base">2,007</p>
                   <p className="text-gray-400 text-sm">posts</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">9,332</p>
+                  <p className="font-bold text-gray-900 text-base">81.8K</p>
                   <p className="text-gray-400 text-sm">followers</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">78</p>
+                  <p className="font-bold text-gray-900 text-base">5</p>
                   <p className="text-gray-400 text-sm">following</p>
                 </div>
               </div>
               <div className="flex gap-2 pt-1">
-                <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer"
-                  className="px-8 py-1.5 rounded-lg text-sm font-semibold text-white" style={{ backgroundColor: '#4f6ef7' }}>
+                <a
+                  href={DUROFLEX_INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-1.5 rounded-lg text-sm font-semibold text-white"
+                  style={{ backgroundColor: '#DB2A20' }}
+                >
                   Follow
                 </a>
-                <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer"
-                  className="px-6 py-1.5 rounded-lg text-sm font-semibold text-white hover:opacity-80 transition-opacity" style={{ backgroundColor: '#363636' }}>
+                <a
+                  href={DUROFLEX_INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-1.5 rounded-lg text-sm font-semibold text-white hover:opacity-80 transition-opacity"
+                  style={{ backgroundColor: '#363636' }}
+                >
                   Message
                 </a>
-                <button className="w-9 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#363636' }}>
-                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-3h-1.26c-.19-.73-.49-1.42-.87-2.05l.89-.89a1 1 0 0 0 0-1.41l-2.41-2.41a1 1 0 0 0-1.41 0l-.89.89A8.007 8.007 0 0 0 16 2.26V1a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v1.26c-.73.19-1.42.49-2.05.87l-.89-.89a1 1 0 0 0-1.41 0L5.24 4.65a1 1 0 0 0 0 1.41l.89.89A8.007 8.007 0 0 0 5.26 9H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h1.26c.19.73.49 1.42.87 2.05l-.89.89a1 1 0 0 0 0 1.41l2.41 2.41a1 1 0 0 0 1.41 0l.89-.89c.63.38 1.32.68 2.05.87V22a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1.26c.73-.19 1.42-.49 2.05-.87l.89.89a1 1 0 0 0 1.41 0l2.41-2.41a1 1 0 0 0 0-1.41l-.89-.89c.38-.63.68-1.32.87-2.05H22a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1z"/>
+                <button
+                  type="button"
+                  className="w-9 h-8 rounded-lg flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: '#363636' }}
+                  aria-label="More options"
+                >
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                    <path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-3h-1.26c-.19-.73-.49-1.42-.87-2.05l.89-.89a1 1 0 0 0 0-1.41l-2.41-2.41a1 1 0 0 0-1.41 0l-.89.89A8.007 8.007 0 0 0 16 2.26V1a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v1.26c-.73.19-1.42.49-2.05.87l-.89-.89a1 1 0 0 0-1.41 0L5.24 4.65a1 1 0 0 0 0 1.41l.89.89A8.007 8.007 0 0 0 5.26 9H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h1.26c.19.73.49 1.42.87 2.05l-.89.89a1 1 0 0 0 0 1.41l2.41 2.41a1 1 0 0 0 1.41 0l.89-.89c.63.38 1.32.68 2.05.87V22a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1.26c.73-.19 1.42-.49 2.05-.87l.89.89a1 1 0 0 0 1.41 0l2.41-2.41a1 1 0 0 0 0-1.41l-.89-.89c.38-.63.68-1.32.87-2.05H22a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1z" />
                   </svg>
                 </button>
               </div>
             </div>
 
-            {/* RIGHT: bio */}
             <div className="space-y-1">
-              <p className="text-gray-900 text-sm font-semibold">Luxova Skincare</p>
-              <p className="text-gray-400 text-sm">Skincare</p>
-              <p className="text-gray-800 text-sm">Experience the Art and Science of Skincare</p>
-              <p className="text-gray-800 text-sm">- Scientifically formulated with natural ingredients</p>
-              <a href="https://www.luxova.in" target="_blank" rel="noopener noreferrer" className="text-sm font-medium" style={{ color: '#4f6ef7' }}>www.luxova.in</a>
+              <p className="text-gray-900 text-sm font-semibold">Duroflex</p>
+              <p className="text-gray-400 text-sm">Mattresses, Recliners &amp; Comfort</p>
+              <p className="text-gray-800 text-sm">Where the world de-stresses.</p>
+              <p className="text-gray-800 text-sm">Since 1963 🛏️</p>
+              <p className="text-gray-800 text-sm">Mattresses, Recliners &amp; Comfort Solutions</p>
+              <p className="text-sm">
+                <a
+                  href={DUROFLEX_HASHTAG_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium"
+                  style={{ color: '#DB2A20' }}
+                >
+                  #DesignedtoDestress
+                </a>
+              </p>
+              <a
+                href={DUROFLEX_LINKTR_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium"
+                style={{ color: '#DB2A20' }}
+              >
+                linktr.ee/duroflexworld
+              </a>
             </div>
           </div>
 
-          {/* ── MOBILE layout: exact Instagram app style ── */}
+          {/* ── MOBILE layout ── */}
           <div className="flex flex-col md:hidden gap-3">
-            {/* Row 1: avatar + stats side by side */}
             <div className="flex flex-row items-center gap-4">
-              {/* Avatar */}
-              <div className="flex-shrink-0">
-                <div className="rounded-full p-[3px]" style={{ background: 'linear-gradient(45deg, #f9a825, #f06292, #ab47bc)' }}>
+              <div className="shrink-0">
+                <div
+                  className="rounded-full p-[3px]"
+                  style={{ background: 'linear-gradient(45deg, #f9a825, #f06292, #ab47bc)' }}
+                >
                   <div className="w-20 h-20 rounded-full overflow-hidden">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                      <circle cx="100" cy="100" r="100" fill="#1a1208"/>
-                      <circle cx="100" cy="100" r="92" fill="none" stroke="#c9a84c" strokeWidth="2"/>
-                      <circle cx="100" cy="100" r="85" fill="none" stroke="#c9a84c" strokeWidth="0.8"/>
-                      {[0,30,60,90,120,150,180,210,240,270,300,330].map((a,i) => (
-                        <circle key={i} cx={100+88*Math.cos(a*Math.PI/180)} cy={100+88*Math.sin(a*Math.PI/180)} r="2.5" fill="#c9a84c"/>
-                      ))}
-                      <defs>
-                        <path id="topArcMob" d="M 38 80 A 62 62 0 0 1 162 80"/>
-                        <path id="botArcMob" d="M 40 118 A 62 62 0 0 0 160 118"/>
-                      </defs>
-                      <text fill="#c9a84c" fontSize="11" fontFamily="serif" letterSpacing="4" textAnchor="middle">
-                        <textPath href="#topArcMob" startOffset="50%">L · U · X · O · V · A</textPath>
-                      </text>
-                      <text fill="#c9a84c" fontSize="7.5" fontFamily="serif" letterSpacing="1.5" textAnchor="middle">
-                        <textPath href="#botArcMob" startOffset="50%">Perfection Personified</textPath>
-                      </text>
-                      <text x="100" y="115" textAnchor="middle" fill="#c9a84c" fontSize="52" fontFamily="Georgia, serif" fontStyle="italic" fontWeight="400">L</text>
-                      <circle cx="100" cy="100" r="30" fill="none" stroke="#c9a84c" strokeWidth="0.8"/>
-                    </svg>
+                    <img
+                      src={duroflexInstagramProfile}
+                      alt="Duroflex on Instagram"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               </div>
-              {/* Stats row */}
               <div className="flex flex-1 justify-around">
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">731</p>
+                  <p className="font-semibold text-gray-900 text-base">2,007</p>
                   <p className="text-gray-400 text-xs">posts</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">9,332</p>
+                  <p className="font-semibold text-gray-900 text-base">81.8K</p>
                   <p className="text-gray-400 text-xs">followers</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">78</p>
+                  <p className="font-semibold text-gray-900 text-base">5</p>
                   <p className="text-gray-400 text-xs">following</p>
                 </div>
               </div>
             </div>
 
-            {/* Bio block */}
             <div className="space-y-0.5">
-              <p className="text-gray-900 text-sm font-semibold">Luxova Skincare</p>
-              <p className="text-gray-400 text-xs">Skincare</p>
-              <p className="text-gray-800 text-sm">Experience the Art and Science of Skincare</p>
-              <p className="text-gray-800 text-sm">- Scientifically formulated with natural ingredients</p>
-              <a href="https://www.luxova.in" target="_blank" rel="noopener noreferrer" className="text-sm font-medium" style={{ color: '#4f6ef7' }}>www.luxova.in</a>
+              <p className="text-gray-900 text-sm font-semibold">Duroflex</p>
+              <p className="text-gray-400 text-xs">Mattresses, Recliners &amp; Comfort</p>
+              <p className="text-gray-800 text-sm">Where the world de-stresses.</p>
+              <p className="text-gray-800 text-sm">Since 1963 🛏️</p>
+              <p className="text-gray-800 text-sm">Mattresses, Recliners &amp; Comfort Solutions</p>
+              <p className="text-sm">
+                <a
+                  href={DUROFLEX_HASHTAG_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium"
+                  style={{ color: '#DB2A20' }}
+                >
+                  #DesignedtoDestress
+                </a>
+              </p>
+              <a
+                href={DUROFLEX_LINKTR_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium"
+                style={{ color: '#DB2A20' }}
+              >
+                linktr.ee/duroflexworld
+              </a>
             </div>
 
-            {/* Buttons — full width like Instagram */}
             <div className="flex gap-2">
-              <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer"
-                className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center" style={{ backgroundColor: '#4f6ef7' }}>
+              <a
+                href={DUROFLEX_INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center"
+                style={{ backgroundColor: '#DB2A20' }}
+              >
                 Follow
               </a>
-              <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer"
-                className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center" style={{ backgroundColor: '#363636' }}>
+              <a
+                href={DUROFLEX_INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center"
+                style={{ backgroundColor: '#363636' }}
+              >
                 Message
               </a>
-              <button className="w-9 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#363636' }}>
-                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-3h-1.26c-.19-.73-.49-1.42-.87-2.05l.89-.89a1 1 0 0 0 0-1.41l-2.41-2.41a1 1 0 0 0-1.41 0l-.89.89A8.007 8.007 0 0 0 16 2.26V1a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v1.26c-.73.19-1.42.49-2.05.87l-.89-.89a1 1 0 0 0-1.41 0L5.24 4.65a1 1 0 0 0 0 1.41l.89.89A8.007 8.007 0 0 0 5.26 9H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h1.26c.19.73.49 1.42.87 2.05l-.89.89a1 1 0 0 0 0 1.41l2.41 2.41a1 1 0 0 0 1.41 0l.89-.89c.63.38 1.32.68 2.05.87V22a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1.26c.73-.19 1.42-.49 2.05-.87l.89.89a1 1 0 0 0 1.41 0l2.41-2.41a1 1 0 0 0 0-1.41l-.89-.89c.38-.63.68-1.32.87-2.05H22a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1z"/>
+              <button
+                type="button"
+                className="w-9 h-8 rounded-lg flex items-center justify-center shrink-0"
+                style={{ backgroundColor: '#363636' }}
+                aria-label="More options"
+              >
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                  <path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-3h-1.26c-.19-.73-.49-1.42-.87-2.05l.89-.89a1 1 0 0 0 0-1.41l-2.41-2.41a1 1 0 0 0-1.41 0l-.89.89A8.007 8.007 0 0 0 16 2.26V1a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v1.26c-.73.19-1.42.49-2.05.87l-.89-.89a1 1 0 0 0-1.41 0L5.24 4.65a1 1 0 0 0 0 1.41l.89.89A8.007 8.007 0 0 0 5.26 9H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h1.26c.19.73.49 1.42.87 2.05l-.89.89a1 1 0 0 0 0 1.41l2.41 2.41a1 1 0 0 0 1.41 0l.89-.89c.63.38 1.32.68 2.05.87V22a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1.26c.73-.19 1.42-.49 2.05-.87l.89.89a1 1 0 0 0 1.41 0l2.41-2.41a1 1 0 0 0 0-1.41l-.89-.89c.38-.63.68-1.32.87-2.05H22a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1z" />
                 </svg>
               </button>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -958,7 +953,7 @@ const HomePage = ({ onProductClick }) => {
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-xs font-medium line-clamp-1">{p.title}</p>
                         <p className="text-yellow-300 text-sm font-bold">₹{p.currentPrice?.toLocaleString('en-IN')}</p>
-                        <button className="mt-1 px-3 py-0.5 rounded text-xs font-bold text-gray-900 bg-[#FFD700]">
+                        <button className="mt-1 px-3 py-0.5 rounded text-xs font-bold text-white bg-[#DB2A20]">
                           Add
                         </button>
                       </div>
@@ -989,7 +984,7 @@ const HomePage = ({ onProductClick }) => {
                       <p className="text-white text-sm font-bold">₹{p.currentPrice?.toLocaleString('en-IN')}</p>
                       <button
                         onClick={(e) => { e.stopPropagation(); }}
-                        className="mt-1.5 px-3 py-1 rounded text-xs font-bold text-gray-900 bg-[#FFD700] hover:opacity-90 transition-opacity"
+                        className="mt-1.5 px-3 py-1 rounded text-xs font-bold text-white bg-[#DB2A20] hover:opacity-90 transition-opacity"
                       >
                         Add to Cart
                       </button>
@@ -1150,7 +1145,7 @@ const HomePage = ({ onProductClick }) => {
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-white text-xl font-bold">₹{selectedLookVideo.currentPrice?.toLocaleString('en-IN')}</span>
                 <span className="text-white/50 line-through text-sm">₹{selectedLookVideo.originalPrice?.toLocaleString('en-IN')}</span>
-                <span className="bg-[#A71499] text-white text-xs font-bold px-2 py-0.5 rounded-full">{selectedLookVideo.discount}% OFF</span>
+                <span className="bg-[#DB2A20] text-white text-xs font-bold px-2 py-0.5 rounded-full">{selectedLookVideo.discount}% OFF</span>
               </div>
               <div className="flex gap-2">
                 <button
@@ -1163,7 +1158,7 @@ const HomePage = ({ onProductClick }) => {
                 <button
                   onClick={(e) => e.stopPropagation()}
                   className="flex-1 py-3 rounded-2xl text-sm font-bold text-white"
-                  style={{ background: '#A71499' }}
+                  style={{ background: '#DB2A20' }}
                 >
                   Add to Cart
                 </button>

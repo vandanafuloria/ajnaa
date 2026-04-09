@@ -38,7 +38,7 @@ const SocialProofBadge = ({
 
   return (
     <div
-      className={`relative flex flex-wrap sm:flex-nowrap w-full sm:w-[89%] items-center justify-center sm:justify-start gap-2 sm:gap-2 rounded-full border border-[#e9dbe2] bg-white/95 px-3 sm:px-3.5 py-2 sm:py-1.5 text-[0.7rem] sm:text-[0.75rem] text-[#6f5360] shadow-[0_8px_16px_rgba(127,32,101,0.14)] backdrop-blur cursor-pointer hover:shadow-[0_12px_20px_rgba(127,32,101,0.18)] transition-shadow ${className}`}
+      className={`relative flex flex-wrap sm:flex-nowrap w-full sm:w-[89%] items-center justify-center sm:justify-start gap-2 sm:gap-2 rounded-full border border-[#f0dedc] bg-white/95 px-3 sm:px-3.5 py-2 sm:py-1.5 text-[0.7rem] sm:text-[0.75rem] text-[#5c3d3c] shadow-[0_8px_16px_rgba(219,42,32,0.12)] backdrop-blur cursor-pointer hover:shadow-[0_12px_20px_rgba(219,42,32,0.16)] transition-shadow ${className}`}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
       onClick={handleClick}
@@ -58,23 +58,23 @@ const SocialProofBadge = ({
             />
           ))}
         </span>
-        <span className="text-[0.7rem] sm:text-[0.75rem] font-semibold text-[#7f2065]">{rating.toFixed(1)}</span>
+        <span className="text-[0.7rem] sm:text-[0.75rem] font-semibold text-[#DB2A20]">{rating.toFixed(1)}</span>
       </div>
 
-      <span className="hidden sm:block h-4 w-px bg-[#ead9e1]" />
+      <span className="hidden sm:block h-4 w-px bg-[#f0dedc]" />
 
       <div className="flex items-center gap-1 px-1 sm:px-1.5">
-        <span className="h-1.5 w-1.5 rounded-full bg-[#7f2065]" />
+        <span className="h-1.5 w-1.5 rounded-full bg-[#DB2A20]" />
         <span className="text-[0.7rem] sm:text-[0.75rem] font-medium whitespace-nowrap">{reviewCount} reviews</span>
       </div>
 
-      <span className="hidden sm:block h-4 w-px bg-[#ead9e1]" />
+      <span className="hidden sm:block h-4 w-px bg-[#f0dedc]" />
 
-      <div className="flex items-center gap-1.5 rounded-full bg-[#f7eef2] px-3 sm:px-4 py-2 sm:py-2.5 text-[#7f2065] whitespace-nowrap">
+      <div className="flex items-center gap-1.5 rounded-full bg-[#fdf2f1] px-3 sm:px-4 py-2 sm:py-2.5 text-[#DB2A20] whitespace-nowrap">
         <svg className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
-        <span className="text-[0.75rem] sm:text-[0.85rem] font-medium text-[#7f2065] whitespace-nowrap">{soldThisWeek} sold this week</span>
+        <span className="text-[0.75rem] sm:text-[0.85rem] font-medium text-[#DB2A20] whitespace-nowrap">{soldThisWeek} sold this week</span>
       </div>
 
       {/* Rating Breakdown Tooltip */}
@@ -82,7 +82,7 @@ const SocialProofBadge = ({
         <div className="absolute top-full left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 p-3 sm:p-4 z-50 w-[90vw] max-w-[280px] sm:min-w-[280px]">
           <div className="mb-3 pb-3 border-b border-gray-200">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-2xl font-bold text-[#7f2065]">{rating.toFixed(1)}</span>
+              <span className="text-2xl font-bold text-[#DB2A20]">{rating.toFixed(1)}</span>
               <div className="flex items-center gap-0.5">
                 {stars.map((type, index) => (
                   <span
@@ -100,13 +100,13 @@ const SocialProofBadge = ({
             {ratingDistribution.map((item) => (
               <div key={item.stars} className="flex items-center gap-2 text-xs">
                 <span className="text-gray-600 w-6 text-left font-medium">{item.stars}</span>
-                <i className="fas fa-star text-[10px]" style={{ color: '#7f2065' }}></i>
+                <i className="fas fa-star text-[10px]" style={{ color: '#DB2A20' }}></i>
                 <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
                   <div
                     className="h-full rounded-full"
                     style={{
                       width: `${item.percent}%`,
-                      backgroundColor: '#7f2065'
+                      backgroundColor: '#DB2A20'
                     }}
                   />
                 </div>

@@ -10,17 +10,51 @@ import SocialProofBadge from './SocialProofBadge';
 // ============================================
 
 import productHeader from './assets/product_header.png';
-
+import productReviewImg1 from './assets/Product Images/1.png';
+import productReviewImg2 from './assets/Product Images/2.png';
+import productReviewImg3 from './assets/Product Images/3.png';
+import productReviewImg4 from './assets/Product Images/4.png';
+import productReviewImg5 from './assets/Product Images/5.png';
+import productReviewImg6 from './assets/Product Images/6.png';
+import productReviewImg7 from './assets/Product Images/7.png';
+import productReviewImg8 from './assets/Product Images/8.png';
+import productReviewImg9 from './assets/Product Images/9.png';
+import productReviewImg10 from './assets/Product Images/10.png';
+import productReviewImg11 from './assets/Product Images/11.png';
+import productReviewImg12 from './assets/Product Images/12.png';
+import productReviewImg13 from './assets/Product Images/13.png';
+import productReviewImg14 from './assets/Product Images/14.png';
+import productReviewImg15 from './assets/Product Images/15.png';
+import { DUROFLEX_SHOP_VIDEOS } from './duroflexShopVideos';
 
 import reviewData from '../review.json';
 
+/** Local assets for review UIs — product tab uses this order; brand tab uses {@link BRAND_REVIEW_IMAGES} (reversed). */
+const PRODUCT_REVIEW_IMAGES = [
+  productReviewImg1,
+  productReviewImg2,
+  productReviewImg3,
+  productReviewImg4,
+  productReviewImg5,
+  productReviewImg6,
+  productReviewImg7,
+  productReviewImg8,
+  productReviewImg9,
+  productReviewImg10,
+  productReviewImg11,
+  productReviewImg12,
+  productReviewImg13,
+  productReviewImg14,
+  productReviewImg15,
+];
+const BRAND_REVIEW_IMAGES = [...PRODUCT_REVIEW_IMAGES].reverse();
 
-// Luxova product card images
-const OLIVLIFE_IMGS = [
-  'https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946',
-  'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946',
-  'https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946',
-  'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888',
+// Duroflex product imagery — main gallery only (CDN)
+const DUROFLEX_PDP_IMAGES = [
+  'https://www.duroflexworld.com/cdn/shop/files/Airboost-6_8_jpg.jpg?v=1773923691',
+  'https://www.duroflexworld.com/cdn/shop/files/Airboost-3_6_jpg.jpg?v=1773923784',
+  'https://www.duroflexworld.com/cdn/shop/files/2_2026e6ee-a9e8-4ff5-88c7-104fea9cefb8.jpg?v=1744560694',
+  'https://www.duroflexworld.com/cdn/shop/files/1_caa4360f-a470-4da1-9d81-78570f9f02c1.jpg?v=1749639354',
 ];
 
 function getReviewTitle(text) {
@@ -29,90 +63,67 @@ function getReviewTitle(text) {
 }
 
 
-// Brand Name
-const BRAND_NAME = "wordofmouth";
+// Brand Name (footer / assets)
+const BRAND_NAME = "Duroflex World";
 
 // Product Images Array - All product images
-const PRODUCT_IMAGES = [
-  "https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946",
-  "https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946",
-  "https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946",
-  "https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888",
-];
+const PRODUCT_IMAGES = [...DUROFLEX_PDP_IMAGES];
 
-// Product Video
-const PRODUCT_VIDEO = 'https://www.luxova.in/cdn/shop/files/quinn_vwgff828tv7lpcepnfgllnhr.mp4#t=0.1';
-
-// All Luxova videos for video section
-const VIBECRAFTS_VIDEOS = [
-  'https://www.luxova.in/cdn/shop/files/quinn_vwgff828tv7lpcepnfgllnhr.mp4#t=0.1',
-  'https://www.luxova.in/cdn/shop/files/quinn_ep6v9azbcgyfirjy2k93jg1a.mp4#t=0.1',
-  'https://www.luxova.in/cdn/shop/files/quinn_prlxca5a18163gp9umry98em.mp4#t=0.1',
-  'https://www.luxova.in/cdn/shop/files/quinn_wz5nlug6cyex50opla3y46bj.mp4#t=0.1',
-  'https://www.luxova.in/cdn/shop/files/quinn_ftl1ge2kq7fzk5jq8w6p3eco.mp4#t=0.1',
-  'https://www.luxova.in/cdn/shop/files/quinn_urmhs7hbsh51h8sbwyiypex7.mp4#t=0.1',
-];
+// Product Video — draggable card + modals use Duroflex CDN reels
+const PRODUCT_VIDEO = DUROFLEX_SHOP_VIDEOS[0];
 
 // Product Details
-const PRODUCT_NAME = "Pure Silver Overnight Face Oil Serum";
-const PRODUCT_PRICE = 2699;
-const PRODUCT_ORIGINAL_PRICE = 6599;
-const PRODUCT_DISCOUNT = 59;
-const PRODUCT_SKU = "PTVCH-4307";
-const PRODUCT_DESCRIPTION = "Bring the timeless beauty of Indian art into your living space with this stunning Vibrant Peacock and Red Lotus Floral Canvas Wall Painting. Featuring a majestic peacock set against a backdrop of blooming lotus flowers and lush foliage in rich jewel tones, this artwork is digitally printed on premium-grade canvas with UV-resistant, fade-proof inks. Ready to hang with a fitted wood frame — no assembly needed.";
-const PRODUCT_BRAND = "VibeCrafts";
+const PRODUCT_NAME = "Duropedic Airboost 6.8 Arctic Ice Mattress";
+const PRODUCT_PRICE = 26197;
+const PRODUCT_ORIGINAL_PRICE = 39693;
+const PRODUCT_DISCOUNT = 34;
+const PRODUCT_SKU = "DF-AIRBOOST-68-ARCTIC";
+const PRODUCT_DESCRIPTION = "The Duropedic Airboost 6.8 combines breathable Airboost comfort layers with a cool-touch Arctic Ice quilted cover — designed for deeper, undisturbed sleep in Indian weather. Duropedic engineering supports neutral spine alignment for back and side sleepers, while advanced foams help isolate motion so partners sleep peacefully. Premium knit fabric with anti-microbial treatment keeps the sleep surface fresher between washes; roll-pack delivery makes setup straightforward in any bedroom.";
+const PRODUCT_BRAND = "Duroflex";
 const PRODUCT_COLORS = [
-  { name: "Standard", value: "#868753" },
-  { name: "Vibrant", value: "#c0392b" },
+  { name: "Arctic Ice", value: "#7eb8c9" },
+  { name: "Pearl Grey", value: "#b8b5b0" },
 ];
-const PRODUCT_SIZES = ["18x12 inch", "24x16 inch", "36x24 inch", "48x32 inch"];
-
-// You May Also Like Products Data
-const RELATED_PRODUCTS = [
-  {
-    id: 1,
-    name: "Pure Silver Overnight Face Oil Serum",
-    image: "https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946",
-    price: 1299,
-    originalPrice: 1399,
-    rating: 4.8,
-    reviews: 320
-  },
-  {
-    id: 2,
-    name: "Luxova Frames Collection",
-    image: "https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946",
-    price: 999,
-    originalPrice: 1199,
-    rating: 4.7,
-    reviews: 218
-  },
-  {
-    id: 3,
-    name: "Luxova Skincare Kit",
-    image: "https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946",
-    price: 1799,
-    originalPrice: 2199,
-    rating: 4.9,
-    reviews: 415
-  },
-  {
-    id: 4,
-    name: "Luxova Premium Frames",
-    image: "https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888",
-    price: 1499,
-    originalPrice: 1799,
-    rating: 4.6,
-    reviews: 178
-  }
+const PRODUCT_SIZES = [
+  "72 × 36 in (Single)",
+  "72 × 60 in (Queen)",
+  "72 × 72 in (King)",
+  "78 × 72 in (King XL)",
 ];
 
-// Best Seller Products data — same as home page
+// Best Seller Products data — same as home page (Duroflex imagery)
 const bestSellerProducts = [
-  { id: 1, image: 'https://www.luxova.in/cdn/shop/files/PureSilverOvernightFaceOilSerum_2.png?v=1769862702&width=1946', title: 'Pure Silver Overnight Face Oil Serum', currentPrice: 1299, originalPrice: 1399, rating: 4.8, reviewCount: 320, feature: 'Natural Ingredients' },
-  { id: 2, image: 'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888&width=1946', title: 'Luxova Frames Collection', currentPrice: 999, originalPrice: 1199, rating: 4.7, reviewCount: 218, feature: 'Premium Quality' },
-  { id: 3, image: 'https://www.luxova.in/cdn/shop/files/20231018_175734_0000_2.png?v=1769163609&width=1946', title: 'Luxova Skincare Kit', currentPrice: 1799, originalPrice: 2199, rating: 4.9, reviewCount: 415, feature: 'Scientifically Formulated' },
-  { id: 4, image: 'https://www.luxova.in/cdn/shop/files/frames_3.png?v=1770109888', title: 'Luxova Premium Frames', currentPrice: 1499, originalPrice: 1799, rating: 4.6, reviewCount: 178, feature: 'Luxova Exclusive' },
+  { id: 1, image: 'https://www.duroflexworld.com/cdn/shop/files/Airboost-6_8_jpg.jpg?v=1773923691', title: 'Duropedic Airboost 6.8 Arctic Ice Mattress', currentPrice: 26197, originalPrice: 39693, rating: 4.8, reviewCount: 320, feature: 'Adjustable firmness & Airknit core' },
+  { id: 2, image: 'https://www.duroflexworld.com/cdn/shop/files/Airboost-3_6_jpg.jpg?v=1773923784', title: 'Duroflex Airboost 3.6 Mattress', currentPrice: 18999, originalPrice: 24999, rating: 4.7, reviewCount: 218, feature: 'Breathable Airboost comfort layers' },
+  { id: 3, image: 'https://www.duroflexworld.com/cdn/shop/files/2_2026e6ee-a9e8-4ff5-88c7-104fea9cefb8.jpg?v=1744560694', title: 'Duroflex Premium Quilted Mattress', currentPrice: 22499, originalPrice: 28999, rating: 4.9, reviewCount: 415, feature: 'Luxury quilted comfort' },
+  { id: 4, image: 'https://www.duroflexworld.com/cdn/shop/files/1_caa4360f-a470-4da1-9d81-78570f9f02c1.jpg?v=1749639354', title: 'Duroflex Natural Living Prana Mattress', currentPrice: 32999, originalPrice: 41999, rating: 4.8, reviewCount: 178, feature: 'Natural Living eco-friendly design' },
+  { id: 5, image: 'https://www.duroflexworld.com/cdn/shop/files/1_e2b015b1-5d1a-4e42-986a-d7a482d19130.png?v=1755864195', title: 'Duropedic Strength Mattress', currentPrice: 27999, originalPrice: 35999, rating: 4.6, reviewCount: 190, feature: 'Duropedic strength & support' },
+];
+
+// You May Also Like — aligned with best sellers (reserved for future alternate carousels)
+const RELATED_PRODUCTS = bestSellerProducts.slice(0, 4).map((p) => ({
+  id: p.id,
+  name: p.title,
+  image: p.image,
+  price: p.currentPrice,
+  originalPrice: p.originalPrice,
+  rating: p.rating,
+  reviews: p.reviewCount,
+}));
+
+// Short captions under PDP reel pills (Duroflex shop clips)
+const PDP_REEL_LABELS = [
+  'Airboost comfort',
+  'Designed to destress',
+  'Natural Living',
+  'Customer favourites',
+  'Better sleep tonight',
+  'Duropedic support',
+  'Breathable layers',
+  'Real Indian homes',
+  'Mattress innovation',
+  'Shop Duroflex World',
+  'Rest worth dreaming of',
 ];
 
 // ============================================
@@ -124,80 +135,80 @@ const dummyReviews = [
   {
     name: 'Priya Sharma',
     rating: 5,
-    title: 'Absolutely transformed my living room!',
-    text: 'The Vibrant Peacock canvas is stunning in person — the colors are so rich and vibrant. It arrived perfectly packed and was ready to hang right out of the box. Looks like it came from a high-end gallery!',
+    title: 'Finally sleeping through the night',
+    text: 'We switched from a budget spring mattress to this Duropedic Airboost — the difference in support and temperature is night and day. Unboxing was simple and it fluffed up evenly within a day.',
     date: '1/20/2025',
     type: 'product'
   },
   {
     name: 'Anjali Mehta',
     rating: 4,
-    title: 'Beautiful artwork, great quality canvas',
-    text: 'The print quality is exceptional — every detail of the lotus and peacock is crisp and sharp. The wood frame is sturdy and the canvas is tightly stretched. Really happy with this purchase!',
+    title: 'Cooler surface than our old foam bed',
+    text: 'The Arctic Ice cover really does feel cooler to the touch. My husband runs hot and he has stopped hogging the fan side of the bed. Edge support is better than expected for a rolled mattress.',
     date: '1/18/2025',
     type: 'product'
   },
   {
     name: 'Riya Patel',
     rating: 5,
-    title: 'Perfect centerpiece for my drawing room',
-    text: 'I was looking for something to fill the large blank wall above my sofa and this painting was exactly right. The size is perfect, the colors match my interiors beautifully, and everyone who visits asks where I got it!',
+    title: 'Motion isolation works as advertised',
+    text: 'I am a light sleeper and my partner moves a lot — I barely notice now. The mattress has a premium look in person and matches the Duroflex World listing photos closely.',
     date: '1/15/2025',
     type: 'product'
   },
   {
     name: 'Kavya Reddy',
     rating: 4,
-    title: 'Great decor piece, fast delivery',
-    text: 'The canvas arrived well-packed and undamaged. The colors are true to the product photos and the print is very clear. The peacock design gives such a royal feel to the room. Would definitely buy again!',
+    title: 'Great for back sleepers',
+    text: 'I needed firmer lumbar support after a minor strain. This bed hits a nice middle ground — supportive without feeling like a slab. Delivery team placed it exactly where we asked.',
     date: '1/12/2025',
     type: 'product'
   },
   {
     name: 'Meera Singh',
     rating: 5,
-    title: 'Exceeded all my expectations!',
-    text: 'I gifted this to my mother for her new home and she absolutely loved it. The packaging was premium, the canvas quality is top-notch, and the colors are incredibly vivid. VibeCrafts never disappoints!',
+    title: 'Worth it for parents',
+    text: 'Bought for my parents who wanted orthopedic-style comfort. They are very happy and say getting out of bed is easier. Packaging and warranty booklet were clear.',
     date: '1/10/2025',
     type: 'product'
   },
   {
     name: 'Sneha Verma',
     rating: 5,
-    title: 'Best home decor purchase this year!',
-    text: 'This peacock painting has completely changed the look of my bedroom. The UV-resistant print means the colors stay bright — no fading even in sunlight. Delivery was quick and the frame is solid. 10/10!',
+    title: 'Second Duroflex in our home',
+    text: 'We already had a Duroflex in the guest room — this Airboost 6.8 for the master feels a step up in breathability. No regrets; would buy from Duroflex World again.',
     date: '1/08/2025',
     type: 'product'
   },
   {
     name: 'Divya Nair',
     rating: 4,
-    title: 'Stunning wall art at a great price',
-    text: 'For the price, the quality is outstanding. The canvas has a nice texture and the print is sharp with no pixelation. The ready-to-hang feature saved me a lot of effort. Very satisfied with VibeCrafts!',
+    title: 'Strong value vs imports we tried',
+    text: 'We almost bought an imported boxed brand. Duroflex gave similar specs, faster local support, and a better trial story from friends. The mattress feels high quality.',
     date: '1/05/2025',
     type: 'product'
   },
   {
     name: 'Pooja Mehta',
     rating: 5,
-    title: 'Museum quality art for your home',
-    text: 'I have bought many canvas prints before but nothing comes close to VibeCrafts. The colors pop, the details are sharp, and the frame is premium. My guests keep complimenting it. Already ordered two more!',
+    title: 'Consistent firmness across the surface',
+    text: 'No obvious dip in the middle after two months. We rotate per the care guide. The anti-microbial cover is a nice touch for our toddler jumping on the bed sometimes!',
     date: '1/03/2025',
     type: 'product'
   },
   {
     name: 'Neha Kapoor',
     rating: 4,
-    title: 'Elegant and sophisticated wall art',
-    text: 'The abstract peacock feather design is truly mesmerizing. It looks even better in real life than in the photos. The canvas is high quality and the colors are fade-proof. Very happy with this decor piece!',
+    title: 'Looks smart with our bed frame',
+    text: 'Height works with our existing king frame without looking too thick. Sheets fit well. Subtle quilting pattern looks modern, not clinical.',
     date: '12/30/2024',
     type: 'product'
   },
   {
     name: 'Aarti Desai',
     rating: 5,
-    title: 'A statement piece for any room',
-    text: 'This canvas painting is a true statement piece. The floral and peacock motif brings so much life and color to my otherwise neutral living room. Premium packaging, perfect print, quick delivery — loved everything!',
+    title: 'Recommended to two friends already',
+    text: 'Honest review — setup was easy, smell dissipated quickly, and we are both waking up less groggy. Duroflex earned our trust on this purchase.',
     date: '12/28/2024',
     type: 'product'
   }
@@ -266,17 +277,17 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
   // Instagram post URLs
   const instagramPosts = [
-    'https://www.instagram.com/p/DWOkJDuExMS/',
-    'https://www.instagram.com/p/DWGjpesAZvP/',
-    'https://www.instagram.com/p/DWRJ7kPD6_c/',
-    'https://www.instagram.com/p/DWBtR6vj3n3/',
-    'https://www.instagram.com/p/DWA3oX3Ewfc/',
-    'https://www.instagram.com/p/DWBGFbvDZ1S/',
-    'https://www.instagram.com/p/DV7r2UQD-d8/',
-    'https://www.instagram.com/p/DV27mLnCW2W/',
-    'https://www.instagram.com/p/DVqAumXkYQk/',
-    'https://www.instagram.com/p/DVlVxNkGTSg/',
-    'https://www.instagram.com/p/DU5k3k0j31C/',
+    'https://www.instagram.com/p/DUkDWOYiL8x/',
+    'https://www.instagram.com/p/DW1GPT3CLZt/',
+    'https://www.instagram.com/p/DWyteqICIrT/',
+    'https://www.instagram.com/p/DWvjkgfiG99/',
+    'https://www.instagram.com/p/DWndarEiAbr/',
+    'https://www.instagram.com/p/DWlF0FTCD73/',
+    'https://www.instagram.com/p/DWjPq5KCAIq/',
+    'https://www.instagram.com/p/DV8th8KiA24/',
+    'https://www.instagram.com/p/DViRz7QiFbi/',
+    'https://www.instagram.com/p/DUncBy-CL5c/',
+    'https://www.instagram.com/p/DShk_eXDQST/',
   ];
 
 
@@ -330,11 +341,13 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
   
   // productImages already set from passedProduct above
 
-  // Customer review images — repeat to fill grid
-  const customerReviewImages = Array.from({ length: 8 }, (_, i) => OLIVLIFE_IMGS[i % OLIVLIFE_IMGS.length]);
+  const nReviewAssets = PRODUCT_REVIEW_IMAGES.length;
 
-  // All review images for modal navigation
-  const allReviewImages = customerReviewImages;
+  // Customer review images — first 8 slots cycle local product review assets
+  const customerReviewImages = Array.from({ length: 8 }, (_, i) => PRODUCT_REVIEW_IMAGES[i % nReviewAssets]);
+
+  // Full set for modal indexOf (same files as brand, different pairings)
+  const allReviewImages = PRODUCT_REVIEW_IMAGES;
 
   // Short reviews for carousel widget — from very_small + small entries in review.json
   const shortReviewMinutes = [10, 360, 1440, 5760, 30, 120, 2880, 720, 180, 4320, 60, 240, 480, 1200, 3600];
@@ -360,10 +373,13 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       rating: r.rating,
       title: r.title || getReviewTitle(r.review),
       text: r.review,
-      images: [OLIVLIFE_IMGS[(i * 2) % OLIVLIFE_IMGS.length], OLIVLIFE_IMGS[(i * 2 + 1) % OLIVLIFE_IMGS.length]],
+      images: [
+        PRODUCT_REVIEW_IMAGES[(i * 2) % nReviewAssets],
+        PRODUCT_REVIEW_IMAGES[(i * 2 + 1) % nReviewAssets],
+      ],
     }));
 
-  // Brand Reviews — from 'mid' type entries in review.json
+  // Brand Reviews — from 'mid' type entries in review.json (images = reversed asset order)
   const brandReviewDates = ['1/12/2025', '1/08/2025', '1/05/2025', '12/30/2024', '12/25/2024', '12/20/2024', '12/15/2024', '12/10/2024'];
   const brandReviews = reviewData
     .filter(r => r.type === 'mid')
@@ -375,7 +391,10 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       rating: r.rating,
       title: r.title || getReviewTitle(r.review),
       text: r.review,
-      images: [OLIVLIFE_IMGS[(i * 2) % OLIVLIFE_IMGS.length], OLIVLIFE_IMGS[(i * 2 + 1) % OLIVLIFE_IMGS.length]],
+      images: [
+        BRAND_REVIEW_IMAGES[(i * 2) % nReviewAssets],
+        BRAND_REVIEW_IMAGES[(i * 2 + 1) % nReviewAssets],
+      ],
     }));
 
   // Handle like functionality
@@ -541,23 +560,23 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
     {
       type: 'bought',
       name: 'Pooja',
-      action: 'bought this dress',
+      action: 'bought this mattress',
       time: 'Just now',
-      image: OLIVLIFE_IMGS[0]
+      image: PRODUCT_REVIEW_IMAGES[0]
     },
     {
       type: 'review',
       name: 'Neha',
       action: 'gave the review',
       time: '30 min ago',
-      image: OLIVLIFE_IMGS[1]
+      image: PRODUCT_REVIEW_IMAGES[1]
     },
     {
       type: 'viewed',
       name: 'Priya',
       action: 'recently viewed',
       time: '1 hour ago',
-      image: OLIVLIFE_IMGS[2]
+      image: PRODUCT_REVIEW_IMAGES[2]
     }
   ];
 
@@ -596,7 +615,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium text-gray-900">
-            <span className="font-semibold text-[#351F31]">{socialProofItems[socialProofIndex].name}</span> {socialProofItems[socialProofIndex].action}
+            <span className="font-semibold text-[#DB2A20]">{socialProofItems[socialProofIndex].name}</span> {socialProofItems[socialProofIndex].action}
           </p>
           <p className="text-xs text-gray-500 mt-0.5">{socialProofItems[socialProofIndex].time}</p>
         </div>
@@ -622,8 +641,8 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
         </div>
       )}
 
-      {/* Product Page Header Banner */}
-      <div className="w-full">
+      {/* Product Page Header Banner — full width (no max-width) */}
+      <div className="w-full bg-white">
         <img src={productHeader} alt="Product Header" className="w-full object-cover" />
       </div>
 
@@ -695,8 +714,8 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
         </div>
       )}
       
-      <main className="flex-1 py-8 md:py-12" style={{ backgroundColor: '#f0ece3' }}>
-        <div className="w-full px-4 md:px-8">
+      <main className="flex-1 bg-white py-8 md:py-12">
+        <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
 
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
@@ -767,14 +786,14 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           {half && (
                             <defs>
                               <linearGradient id={`pdp-hg-${i}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="50%" stopColor="#f5a623"/>
+                                <stop offset="50%" stopColor="#DB2A20"/>
                                 <stop offset="50%" stopColor="#e0e0e0"/>
                               </linearGradient>
                             </defs>
                           )}
                           <path
                             d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                            fill={full ? '#f5a623' : half ? `url(#pdp-hg-${i})` : '#e0e0e0'}
+                            fill={full ? '#DB2A20' : half ? `url(#pdp-hg-${i})` : '#e0e0e0'}
                           />
                         </svg>
                       );
@@ -790,13 +809,12 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   </span>
                 </div>
 
-                {/* Feature tags */}
+                {/* Feature tags — soft pills, subtle brand accent */}
                 <div className="flex flex-wrap gap-2">
-                  {['Natural Ingredients', 'Silver-Infused', 'Paraben-Free', 'Cruelty-Free', 'Dermatologist Tested'].map(label => (
+                  {['Duropedic support', 'Airboost layers', 'Arctic Ice cover', 'Motion isolation', '10-year warranty'].map(label => (
                     <span
                       key={label}
-                      className="text-xs font-semibold px-3 py-1.5 text-white"
-                      style={{ backgroundColor: '#868753', borderRadius: '999px' }}
+                      className="inline-flex items-center rounded-full border border-stone-200/90 bg-linear-to-b from-white to-stone-50/90 px-3.5 py-1.5 text-xs font-medium tracking-wide text-stone-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] ring-1 ring-stone-900/3"
                     >
                       {label}
                     </span>
@@ -806,7 +824,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
               {/* Price row */}
               <div className="flex items-center gap-3 flex-wrap">
-                <span className="font-bold text-xl" style={{ color: '#868753' }}>
+                <span className="font-bold text-xl" style={{ color: '#DB2A20' }}>
                   Rs. {productPrice.toLocaleString('en-IN')}.00
                 </span>
                 <span className="line-through text-base" style={{ color: '#999' }}>
@@ -841,7 +859,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                 </div>
                 <button
                   className="flex-1 h-12 text-white text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: '#5c6b45', letterSpacing: '0.12em' }}
+                  style={{ backgroundColor: '#DB2A20', letterSpacing: '0.12em' }}
                 >
                   Add to Cart
                 </button>
@@ -870,19 +888,19 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                 {/* Estimated delivery */}
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0" style={{ backgroundColor: '#e8e3da' }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#868753" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DB2A20" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
                     </svg>
                   </div>
                   <p className="text-sm text-gray-700">
-                    <strong>Estimated deliver</strong> in 5-7 days
+                    <strong>Estimated delivery</strong> in 5–7 days
                   </p>
                 </div>
 
                 {/* Free shipping */}
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0" style={{ backgroundColor: '#e8e3da' }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#868753" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DB2A20" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>
                     </svg>
                   </div>
@@ -892,7 +910,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                 {/* Query */}
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0" style={{ backgroundColor: '#e8e3da' }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#868753" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DB2A20" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
                     </svg>
                   </div>
@@ -906,39 +924,64 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       </main>
 
 
-      {/* In Your Home */}
+      {/* Duroflex reels strip — white band */}
       {(() => {
-        const WILD_VIDEOS = [
-          'https://www.luxova.in/cdn/shop/files/quinn_vwgff828tv7lpcepnfgllnhr.mp4#t=0.1',
-          'https://www.luxova.in/cdn/shop/files/quinn_ep6v9azbcgyfirjy2k93jg1a.mp4#t=0.1',
-          'https://www.luxova.in/cdn/shop/files/quinn_prlxca5a18163gp9umry98em.mp4#t=0.1',
-          'https://www.luxova.in/cdn/shop/files/quinn_wz5nlug6cyex50opla3y46bj.mp4#t=0.1',
-          'https://www.luxova.in/cdn/shop/files/quinn_ftl1ge2kq7fzk5jq8w6p3eco.mp4#t=0.1',
-          'https://www.luxova.in/cdn/shop/files/quinn_urmhs7hbsh51h8sbwyiypex7.mp4#t=0.1',
-        ];
+        const WILD_VIDEOS = DUROFLEX_SHOP_VIDEOS;
         return (
           <>
-            <div className="w-full py-7" style={{ background: '#868753' }}>
-              <div className="w-full px-4">
-                <div className="flex items-center justify-between mb-5">
-                  <h2 className="text-base font-bold text-white tracking-wide">In Your Skincare Routine</h2>
-                  <a href="https://www.instagram.com/luxova_official/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full" style={{ color: 'rgba(255,255,255,0.85)', border: '1px solid rgba(255,255,255,0.25)', textDecoration: 'none' }}>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-                      <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeWidth="1.8"/>
-                      <circle cx="12" cy="12" r="4.5" stroke="white" strokeWidth="1.8"/>
-                      <circle cx="17.5" cy="6.5" r="1" fill="white"/>
+            <div className="w-full border-t border-b border-gray-100 bg-white py-7">
+              <div className="w-full px-4 max-w-7xl mx-auto">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+                  <div>
+                    <h2 className="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">
+                      See Duroflex in real homes
+                    </h2>
+                    <p className="text-xs text-gray-600 mt-1 max-w-md">
+                      Short clips from Duroflex World — mattresses, comfort layers & everyday rest.
+                    </p>
+                  </div>
+                  <a
+                    href="https://www.instagram.com/duroflexworld/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full shrink-0 bg-gray-50 text-gray-800 border border-gray-200 shadow-sm hover:bg-white hover:border-[#DB2A20]/40 transition-colors"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden>
+                      <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.8"/>
+                      <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.8"/>
+                      <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
                     </svg>
-                    luxova_official
+                    @duroflexworld
                   </a>
                 </div>
-                <div className="overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
-                  <div className="flex gap-3 min-w-max">
+                <div className="overflow-x-auto pb-2 scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
+                  <div className="flex gap-3 sm:gap-4 min-w-max">
                     {WILD_VIDEOS.map((url, idx) => (
-                      <button key={idx} className="focus:outline-none" onClick={() => setWildVideoIdx(idx)}>
-                        <div className="relative overflow-hidden" style={{ width: '108px', height: '180px', borderRadius: '999px', border: '2px solid rgba(255,255,255,0.18)' }}>
+                      <button
+                        key={idx}
+                        type="button"
+                        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB2A20] focus-visible:ring-offset-2 rounded-[999px] flex flex-col items-center"
+                        onClick={() => setWildVideoIdx(idx)}
+                      >
+                        <div
+                          className="relative overflow-hidden shadow-md"
+                          style={{
+                            width: '108px',
+                            height: '180px',
+                            borderRadius: '999px',
+                            border: '2px solid rgba(26, 26, 26, 0.1)',
+                          }}
+                        >
                           <video src={url} className="w-full h-full object-cover" autoPlay muted playsInline loop />
-                          <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%)' }} />
+                          <div
+                            className="absolute inset-0 pointer-events-none"
+                            style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 45%)' }}
+                          />
                         </div>
+                        <span className="mt-2 text-[11px] text-gray-600 text-center max-w-[108px] leading-snug line-clamp-2 px-0.5">
+                          {PDP_REEL_LABELS[idx % PDP_REEL_LABELS.length]}
+                        </span>
                       </button>
                     ))}
                   </div>
@@ -973,9 +1016,9 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
       {/* Best Sellers Section */}
       <section className="w-full py-12 md:py-16 bg-white border-t border-gray-100">
-        <div className="w-full px-4">
+        <div className="mx-auto w-full max-w-7xl px-4">
           <div className="text-center mb-8 md:mb-10">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#8B4513] tracking-wide">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#DB2A20] tracking-wide">
               SHOP OUR BEST SELLERS
             </h2>
           </div>
@@ -1012,13 +1055,13 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <div
                       className="w-32 h-32 rounded-full flex items-center justify-center mb-4 relative mx-auto"
                       style={{
-                        background: `conic-gradient(#868753 0% 96%, #d4e0d3 96% 100%)`,
-                        boxShadow: '0 8px 24px rgba(65,84,63,0.25)'
+                        background: `conic-gradient(#DB2A20 0% 96%, #fce8e7 96% 100%)`,
+                        boxShadow: '0 8px 24px rgba(219,42,32,0.25)'
                       }}
                     >
                       <div className="absolute inset-[6px] rounded-full bg-white flex items-center justify-center">
                         <div className="flex items-baseline gap-0.5">
-                          <span className="text-3xl font-bold" style={{ color: '#868753' }}>4.8</span>
+                          <span className="text-3xl font-bold" style={{ color: '#DB2A20' }}>4.8</span>
                           <span className="text-sm font-medium text-gray-400">/5</span>
                         </div>
                       </div>
@@ -1027,13 +1070,13 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <div className="flex justify-center gap-0.5 mb-2">
                       {[1,2,3,4,5].map(i => (
                         <svg key={i} width="18" height="18" viewBox="0 0 24 24" style={{ filter: 'drop-shadow(0 1px 1px rgba(245,158,11,0.4))' }}>
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill={i <= 4 ? '#f59e0b' : '#e5e7eb'}/>
-                          {i === 5 && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77V2z" fill="#f59e0b"/>}
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill={i <= 4 ? '#DB2A20' : '#e5e7eb'}/>
+                          {i === 5 && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77V2z" fill="#DB2A20"/>}
                         </svg>
                       ))}
                     </div>
                     <p className="text-sm text-gray-500 mb-3">Based on <strong className="text-gray-800">147</strong> reviews</p>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border" style={{ backgroundColor: 'rgba(65,84,63,0.07)', color: '#868753', borderColor: 'rgba(65,84,63,0.25)' }}>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border" style={{ backgroundColor: 'rgba(219,42,32,0.07)', color: '#DB2A20', borderColor: 'rgba(219,42,32,0.25)' }}>
                       <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                       </svg>
@@ -1052,7 +1095,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     ].map((item) => (
                       <div key={item.stars} className="flex items-center gap-2 sm:gap-3">
                         <div className="flex items-center gap-1 text-xs text-gray-600 w-8 flex-shrink-0">
-                          <svg className="w-3 h-3" fill="#f59e0b" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3" fill="#DB2A20" viewBox="0 0 24 24">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                           </svg>
                           <span>{item.stars}</span>
@@ -1063,7 +1106,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                             style={{
                               width: `${item.percent}%`,
                               minWidth: '2px',
-                              backgroundColor: '#868753',
+                              backgroundColor: '#DB2A20',
                               borderRadius: '1px'
                             }}
                           />
@@ -1091,7 +1134,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                           </svg>
                         ), 
-                        label: 'Love the perfect fit', 
+                        label: 'Say support feels “just right”', 
                         value: '9/10' 
                       },
                       { 
@@ -1100,12 +1143,12 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                             <path d="M12 2.69c-2.5 0-4.5 2-4.5 4.5 0 1.5.7 2.8 1.7 3.7L12 18l2.8-7.1c1-0.9 1.7-2.2 1.7-3.7 0-2.5-2-4.5-4.5-4.5z" />
                           </svg>
                         ), 
-                        label: 'Love the deep bass quality',
+                        label: 'Praise cooler, breathable sleep',
                         value: '92%'
                       },
                     ].map((stat, idx) => (
                       <div key={idx} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white" style={{ color: '#351F31' }}>
+                        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white" style={{ color: '#DB2A20' }}>
                           {stat.icon}
                         </div>
                         <div className="flex-1">
@@ -1133,8 +1176,8 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       fontWeight: '600',
                       borderRadius: '0',
                       border: '1.5px solid',
-                      borderColor: activeTab === id ? '#868753' : '#e0e0e0',
-                      background: activeTab === id ? '#868753' : '#fff',
+                      borderColor: activeTab === id ? '#DB2A20' : '#e0e0e0',
+                      background: activeTab === id ? '#DB2A20' : '#fff',
                       color: activeTab === id ? '#fff' : '#666',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease',
@@ -1155,7 +1198,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <div className="flex items-center gap-2">
                         <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wider">AI INSIGHT</h3>
                       </div>
-                      <button className="px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(53, 31, 49, 0.1)', color: '#351F31' }}>Verified reviews</button>
+                      <button className="px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(219, 42, 32, 0.1)', color: '#DB2A20' }}>Verified reviews</button>
                     </div>
                     
                     <h4 className="text-xl font-bold text-gray-900 mb-2">Customers say</h4>
@@ -1163,13 +1206,13 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <p className="text-gray-700 leading-relaxed mb-2 text-base">
                       {isAISummaryExpanded ? (
                         <>
-                          Customers consistently praise Luxova's Pure Silver Overnight Face Oil Serum for visibly improving skin texture within just one week of use. The lightweight, non-greasy formula is a standout highlight — reviewers love that it absorbs quickly and leaves the skin feeling plump and hydrated by morning. Many customers mention a noticeable reduction in fine lines, dark spots, and dullness after regular use. The natural ingredient blend, including the silver-infused formula, earns trust from buyers looking for clean, toxin-free skincare. Packaging is frequently described as premium and gift-worthy, and customers appreciate the brand's science-backed approach to natural skincare. Several long-term users mention switching from expensive international brands after discovering Luxova's results at an accessible price.
-                          <button onClick={() => setIsAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#868753' }}>Read less</button>
+                          Buyers consistently praise the Duropedic Airboost 6.8 for cooler, more breathable nights and dependable back support. Reviewers often mention balanced firmness — supportive without feeling stiff — and strong motion isolation for couples. The Arctic Ice cover and Airboost comfort layers come up repeatedly as reasons people sleep more deeply in warm weather. Many note clear communication on warranty and care, straightforward roll-pack delivery, and that the mattress matches Duroflex World imagery in person. Long-term owners say edge support and surface consistency hold up better than budget boxed alternatives they tried before.
+                          <button onClick={() => setIsAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#DB2A20' }}>Read less</button>
                         </>
                       ) : (
                         <>
-                          Customers love Luxova's Pure Silver Overnight Face Oil Serum for its lightweight formula and visible results — softer, brighter skin within days. The natural ingredient blend and science-backed approach are consistently praised.
-                          <button onClick={() => setIsAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#868753' }}>Read more</button>
+                          Customers love the Airboost 6.8 for cooler sleep, solid Duropedic support, and minimal partner disturbance — with many calling it a worthwhile upgrade over ordinary foam mattresses.
+                          <button onClick={() => setIsAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#DB2A20' }}>Read more</button>
                         </>
                       )}
                     </p>
@@ -1183,8 +1226,8 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <div>
                       <p className="text-[11px] font-medium text-gray-400 mb-3 uppercase tracking-widest">Customers Frequently Mention</p>
                       <div className="flex flex-wrap gap-x-4 gap-y-1.5">
-                        {['Glowing Skin', 'Natural Ingredients', 'Fast Absorption', 'Visible Results', 'Great Packaging', 'Science-backed'].map((item, index) => (
-                          <span key={index} className="text-xs font-semibold" style={{ color: '#868753' }}>
+                        {['Cooler nights', 'Back support', 'Motion isolation', 'Breathable layers', 'Easy delivery', 'Trusted warranty'].map((item, index) => (
+                          <span key={index} className="text-xs font-semibold" style={{ color: '#DB2A20' }}>
                             {item}
                           </span>
                         ))}
@@ -1266,7 +1309,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                               alt="more"
                               style={{ width: '100px', height: '100px', objectFit: 'cover', display: 'block' }}
                             />
-                            <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ backgroundColor: 'rgba(53,31,49,0.55)' }}>
+                            <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ backgroundColor: 'rgba(219,42,32,0.5)' }}>
                               <div className="text-sm font-bold text-white">+{customerReviewImages.length - 6}</div>
                               <div className="text-[10px] text-white/80 mt-0.5">View all</div>
                             </div>
@@ -1318,7 +1361,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                                     <svg key={i} width="16" height="16" viewBox="0 0 24 24">
                                       <defs>{half && <clipPath id={cId}><rect x="0" y="0" width="12" height="24"/></clipPath>}</defs>
                                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#e5e7eb"/>
-                                      {(full || half) && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#f59e0b" clipPath={half ? `url(#${cId})` : undefined}/>}
+                                      {(full || half) && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#DB2A20" clipPath={half ? `url(#${cId})` : undefined}/>}
                                     </svg>
                                   );
                                 })}
@@ -1367,7 +1410,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                                 (0)
                               </button>
                             </div>
-                            <button className="text-xs font-medium" style={{ color: '#2563eb' }}>Report</button>
+                            <button className="text-xs font-medium" style={{ color: '#DB2A20' }}>Report</button>
                           </div>
                         </div>
                       );
@@ -1404,7 +1447,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <div className="flex items-center gap-2">
                         <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wider">AI INSIGHT</h3>
                       </div>
-                      <button className="px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(53, 31, 49, 0.1)', color: '#351F31' }}>Verified reviews</button>
+                      <button className="px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(219, 42, 32, 0.1)', color: '#DB2A20' }}>Verified reviews</button>
                     </div>
                     
                     <h4 className="text-xl font-bold text-gray-900 mb-2">Customers say about the brand</h4>
@@ -1412,13 +1455,13 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <p className="text-gray-700 leading-relaxed mb-2 text-base">
                       {isBrandAISummaryExpanded ? (
                         <>
-                          Customers deeply trust Luxova Skincare for its commitment to blending science with nature. The brand is widely praised for formulating products that deliver real, visible results without relying on harsh chemicals or synthetic additives. Reviewers frequently highlight Luxova's transparency about ingredients — particularly the use of pure silver, natural oils, and botanical extracts that are clearly labelled and explained. The brand's skincare range is celebrated for being suitable for Indian skin types, addressing common concerns like pigmentation, dullness, uneven tone, and signs of ageing. Long-term customers mention switching from expensive international skincare brands after experiencing Luxova's results at a fraction of the price. The luxurious packaging, fast delivery, and responsive customer support further strengthen buyer confidence. Many reviewers describe Luxova as a brand that genuinely cares about skin health, not just sales.
-                          <button onClick={() => setIsBrandAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#868753' }}>Read less</button>
+                          Shoppers deeply trust Duroflex World for mattresses engineered for Indian homes — from humid coastal cities to dryer northern winters. The brand is praised for clear specifications, Duropedic and Airboost lines that deliver predictable firmness, and after-sales clarity on warranty and service. Reviewers highlight breathable foams and fabrics that stay comfortable without trapping heat, thoughtful roll-pack delivery, and consistency between online photos and real products. Long-term buyers often mention comparing imports and choosing Duroflex for local support, proven ranges like Duropedic, and value at each price tier. Many describe Duroflex as focused on sleep quality and durability, not one-season hype.
+                          <button onClick={() => setIsBrandAISummaryExpanded(false)} className="underline ml-1 cursor-pointer" style={{ color: '#DB2A20' }}>Read less</button>
                         </>
                       ) : (
                         <>
-                          Customers trust Luxova Skincare for science-backed, natural formulas that deliver real results. The brand's transparency about ingredients, suitability for Indian skin, and premium packaging make it a consistent favourite.
-                          <button onClick={() => setIsBrandAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#868753' }}>Read more</button>
+                          Customers trust Duroflex for honest specs, durable construction, and sleep-focused innovation — with Duropedic support and Airboost comfort cited again and again.
+                          <button onClick={() => setIsBrandAISummaryExpanded(true)} className="underline ml-1 cursor-pointer" style={{ color: '#DB2A20' }}>Read more</button>
                         </>
                       )}
                     </p>
@@ -1432,8 +1475,8 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <div>
                       <p className="text-[11px] font-medium text-gray-400 mb-3 uppercase tracking-widest">Brand Frequently Mentioned</p>
                       <div className="flex flex-wrap gap-x-4 gap-y-1.5">
-                        {['Clean Ingredients', 'Visible Glow', 'Fast Delivery', 'Trusted by Dermatologists', 'Cruelty-Free', 'Premium Packaging', 'Great Value'].map((item, index) => (
-                          <span key={index} className="text-xs font-semibold" style={{ color: '#868753' }}>
+                        {['Duroflex quality', 'Duropedic range', 'Fast delivery', 'All-India footprint', 'Warranty clarity', 'Breathable design', 'Family trusted'].map((item, index) => (
+                          <span key={index} className="text-xs font-semibold" style={{ color: '#DB2A20' }}>
                             {item}
                           </span>
                         ))}
@@ -1526,7 +1569,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                                 alt="more"
                                 style={{ width: '100px', height: '100px', objectFit: 'cover', display: 'block' }}
                               />
-                              <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ backgroundColor: 'rgba(53,31,49,0.55)' }}>
+                              <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ backgroundColor: 'rgba(219,42,32,0.5)' }}>
                                 <div className="text-sm font-bold text-white">+{allBrandImages.length - 6}</div>
                                 <div className="text-[10px] text-white/80 mt-0.5">View all</div>
                               </div>
@@ -1579,7 +1622,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                                     <svg key={i} width="16" height="16" viewBox="0 0 24 24">
                                       <defs>{half && <clipPath id={cId}><rect x="0" y="0" width="12" height="24"/></clipPath>}</defs>
                                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#e5e7eb"/>
-                                      {(full || half) && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#f59e0b" clipPath={half ? `url(#${cId})` : undefined}/>}
+                                      {(full || half) && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#DB2A20" clipPath={half ? `url(#${cId})` : undefined}/>}
                                     </svg>
                                   );
                                 })}
@@ -1630,7 +1673,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                                 (0)
                               </button>
                             </div>
-                            <button className="text-xs font-medium" style={{ color: '#2563eb' }}>Report</button>
+                            <button className="text-xs font-medium" style={{ color: '#DB2A20' }}>Report</button>
                           </div>
                         </div>
                       );
@@ -1784,53 +1827,20 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
         </div>
       )}
 
-      {/* Video Modal */}
-      {selectedVideo && (
-        <div 
-          className="video-modal-overlay"
-          onClick={() => setSelectedVideo(null)}
-        >
-          <div 
-            className="video-modal-container"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button 
-              className="video-modal-close"
-              onClick={() => setSelectedVideo(null)}
-              aria-label="Close video"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 6L6 18M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-            </button>
-            <video
-              src={selectedVideo}
-              className="video-modal-player"
-              controls
-              autoPlay
-              playsInline
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      )}
-
       {/* You May Also Like Section */}
       <section className="w-full py-12 md:py-16 bg-white">
-        <div className="w-full px-4">
+        <div className="mx-auto w-full max-w-7xl px-4">
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#8B4513] mb-3 tracking-wide">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#DB2A20] mb-3 tracking-wide">
               Best Sellers
             </h2>
           </div>
           <div className="overflow-x-auto -mx-4 px-4 scrollbar-hide">
             <div className="flex gap-4 md:gap-6 min-w-max">
               {bestSellerProducts.map((product) => (
-                <div 
-                  key={product.id} 
+                <div
+                  key={product.id}
                   className="w-[90vw] md:w-[380px] lg:w-[280px] flex-shrink-0 cursor-pointer"
-                  onClick={() => onProductClick && onProductClick()}
                 >
                   <ProductCard product={product} />
                 </div>
@@ -1996,9 +2006,9 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <svg width="0" height="0" style={{ position: 'absolute' }}>
                       <defs>
                         <linearGradient id="modalStarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#351F31" />
-                          <stop offset="50%" stopColor="#A855A5" />
-                          <stop offset="100%" stopColor="#C47BC5" />
+                          <stop offset="0%" stopColor="#DB2A20" />
+                          <stop offset="50%" stopColor="#E85C54" />
+                          <stop offset="100%" stopColor="#F28B86" />
                         </linearGradient>
                       </defs>
                     </svg>
@@ -2027,7 +2037,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   
                   {/* Review Type Badge */}
                   <div className="mt-4">
-                    <span className="inline-block px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(53, 31, 49, 0.1)', color: '#351F31' }}>
+                    <span className="inline-block px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(219, 42, 32, 0.1)', color: '#DB2A20' }}>
                       {selectedReview.type === 'product' ? 'Product Review' : 'Brand Review'}
                     </span>
                   </div>
@@ -2083,9 +2093,9 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <svg width="0" height="0" style={{ position: 'absolute' }}>
                     <defs>
                       <linearGradient id="mobileModalStarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#351F31" />
-                        <stop offset="50%" stopColor="#A855A5" />
-                        <stop offset="100%" stopColor="#C47BC5" />
+                        <stop offset="0%" stopColor="#DB2A20" />
+                        <stop offset="50%" stopColor="#E85C54" />
+                        <stop offset="100%" stopColor="#F28B86" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -2107,7 +2117,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <h3 className="font-medium text-gray-900 mb-2 text-base">{selectedReview.title}</h3>
                 )}
                 <p className="text-gray-700 text-sm leading-relaxed mb-2">{selectedReview.text}</p>
-                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(53, 31, 49, 0.1)', color: '#351F31' }}>
+                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(219, 42, 32, 0.1)', color: '#DB2A20' }}>
                   {selectedReview.type === 'product' ? 'Product Review' : 'Brand Review'}
                 </span>
               </div>

@@ -1,89 +1,203 @@
 import React from 'react';
+import './ProductCard.css';
+
+const SNAP_LOGO =
+  'https://assets.snapmint.com/assets/express_checkout/snap-logo-circle.png';
+
+function formatInr(price) {
+  const n = Number(price);
+  return `₹ ${n.toLocaleString('en-IN', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
+}
+
+function imageUrlWithWidth(image, width) {
+  if (!image) return '';
+  try {
+    const base =
+      image.startsWith('//') ? `https:${image}` : image;
+    const u = new URL(base);
+    u.searchParams.set('width', String(width));
+    return u.toString();
+  } catch {
+    const sep = image.includes('?') ? '&' : '?';
+    return `${image}${sep}width=${width}`;
+  }
+}
+
+function StarRow({ rating }) {
+  const rounded = Math.max(
+    0,
+    Math.min(5, Math.round(Number(rating) || 0))
+  );
+  return (
+    <span className="jdgm-prev-badge__stars" aria-hidden>
+      {[1, 2, 3, 4, 5].map((i) => (
+        <span
+          key={i}
+          className={`jdgm-star ${i <= rounded ? 'jdgm--on' : ''}`}
+        />
+      ))}
+    </span>
+  );
+}
 
 const ProductCard = ({ product, onClick }) => {
   if (!product) return null;
 
-  const { image, title, currentPrice, originalPrice, rating = 4.5, reviewCount = 128 } = product;
+  const {
+    image,
+    title,
+    currentPrice,
+    originalPrice,
+    rating = 4.5,
+    reviewCount = 128,
+    badge = 'Best Seller',
+    feature,
+    categoryLabel,
+    descriptionBullets,
+    handle,
+    emiPerMonth,
+    imageAlt,
+  } = product;
 
-  const discountPercent = originalPrice && currentPrice
-    ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100)
-    : 0;
+  const discountPercent =
+    originalPrice && currentPrice
+      ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100)
+      : 0;
 
-  const formatPrice = (price) =>
-    `Rs. ${Number(price).toLocaleString('en-IN')}.00`;
+  const productPath = handle
+    ? `/products/${handle.replace(/^\//, '')}`
+    : '#';
+
+  const label =
+    categoryLabel ||
+    (feature ? String(feature).toUpperCase() : '') ||
+    'FEATURED';
+
+  const bullets =
+    Array.isArray(descriptionBullets) && descriptionBullets.length > 0
+      ? descriptionBullets
+      : [feature].filter(Boolean);
+
+  const displayRating =
+    Math.round(Number(rating) * 10) / 10;
+
+  const monthly =
+    emiPerMonth != null
+      ? Number(emiPerMonth)
+      : Math.max(1, Math.round(Number(currentPrice) / 12));
+
+  const src352 = imageUrlWithWidth(image, 352);
+  const src500 = imageUrlWithWidth(image, 500);
+
+  const onNavigate = (e) => {
+    if (onClick) {
+      e.preventDefault();
+      onClick(e);
+      return;
+    }
+    if (productPath === '#') {
+      e.preventDefault();
+    }
+  };
 
   return (
-    <div
-      className="flex flex-col overflow-hidden cursor-pointer"
-      style={{ backgroundColor: '#f0ece3', minWidth: '250px', maxWidth: '320px' }}
-      onClick={onClick}
-    >
-      {/* Image area — portrait 3:4 */}
-      <div className="relative w-full" style={{ aspectRatio: '3 / 4', backgroundColor: '#e8e3da' }}>
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-
-        {/* OFF badge — top-left, black */}
-        {discountPercent > 0 && (
-          <div
-            className="absolute top-2 left-2 px-1.5 py-0.5"
-            style={{ backgroundColor: '#111', color: '#fff' }}
-          >
-            <span className="font-bold" style={{ fontSize: '10px' }}>OFF {discountPercent}%</span>
-          </div>
-        )}
+    <div className="product-item">
+      <div className="proimg">
+        <a href={productPath} onClick={onNavigate}>
+          {badge ? <span className="protag">{badge}</span> : null}
+          <img
+            src={src500 || image}
+            alt={imageAlt || title}
+            srcSet={
+              image
+                ? `${src352} 352w, ${src500} 500w`
+                : undefined
+            }
+            sizes="(max-width: 768px) 90vw, 280px"
+            width={500}
+            height={500}
+            loading="lazy"
+          />
+        </a>
       </div>
-
-      {/* Info */}
-      <div className="flex flex-col items-center gap-1.5 px-2.5 pt-3 pb-3" style={{ backgroundColor: '#f0ece3' }}>
-        {/* Title */}
-        <h3
-          className="text-center font-bold leading-snug line-clamp-2 w-full"
-          style={{ fontSize: '0.78rem', fontFamily: 'Georgia, serif', color: '#1a1a1a' }}
-        >
-          {title}
-        </h3>
-
-        {/* Rating & reviews */}
-        <div className="flex items-center justify-center gap-2 w-full">
-          {/* Dark pill */}
-          <div
-            className="flex items-center gap-1 px-2 py-1 rounded-md"
-            style={{ backgroundColor: '#3d4f35' }}
-          >
-            <svg width="11" height="11" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#f5c518"/>
-            </svg>
-            <span className="font-bold" style={{ fontSize: '11px', color: '#fff' }}>{rating}</span>
-          </div>
-          {/* Review count */}
-          <span style={{ fontSize: '11px', color: '#888' }}>{reviewCount.toLocaleString('en-IN')} reviews</span>
-        </div>
-
-        {/* Price row */}
-        <div className="flex items-baseline gap-1.5 justify-center flex-wrap">
-          <span className="font-bold text-xs" style={{ color: '#1a1a1a' }}>
-            {formatPrice(currentPrice)}
-          </span>
-          {originalPrice && (
-            <span className="line-through" style={{ fontSize: '10px', color: '#999' }}>
-              {formatPrice(originalPrice)}
+      <div className="prodata">
+        <a href={productPath} onClick={onNavigate}>
+          <div className="custom_review_star_block">
+            <span className="metafield_text_text">{label}</span>
+            <span className="review_count_block custom_product_card_everywhere">
+              <span
+                className="jdgm-widget jdgm-preview-badge jdgm-preview-badge--with-link jdgm--done-setup"
+                data-widget-name="preview_badge"
+              >
+                <div
+                  className="jdgm-prev-badge"
+                  data-average-rating={rating}
+                  data-number-of-reviews={reviewCount}
+                >
+                  <StarRow rating={Number(rating)} />
+                  <span className="jdgm-prev-badge__text">
+                    {displayRating.toFixed(1)}
+                  </span>
+                  <span className="jdgm-prev-badge__count">
+                    ({Number(reviewCount).toLocaleString('en-IN')} reviews)
+                  </span>
+                </div>
+              </span>
             </span>
-          )}
-        </div>
-
-        {/* Add to cart */}
-        <button
-          className="w-full py-1.5 text-white font-semibold uppercase mt-1"
-          style={{ backgroundColor: '#5c6b45', letterSpacing: '0.08em', fontSize: '10px' }}
-          onClick={(e) => { e.stopPropagation(); onClick && onClick(); }}
-        >
-          Add to Cart
-        </button>
+          </div>
+          <h3>{title}</h3>
+          <div className="pricearea">
+            <span className="price-item price-item--sale price-item--last">
+              {formatInr(currentPrice)}
+              {discountPercent > 0 ? (
+                <span className="saveamount"> {discountPercent}% off</span>
+              ) : null}
+            </span>
+            {originalPrice ? (
+              <span className="custom_span_compare">
+                <s className="price-item price-item--regular">
+                  {formatInr(originalPrice)}
+                </s>
+              </span>
+            ) : null}
+          </div>
+          <div className="snap_dp_list">
+            <div
+              className="snap_collection_category snap_mobile_widget"
+              role="presentation"
+              onClick={(e) => e.preventDefault()}
+            >
+              <span>
+                or{' '}
+                <span className="snap_blue_color_text">
+                  ₹
+                  <span className="dp-collection-price">
+                    {monthly.toLocaleString('en-IN')}
+                  </span>
+                </span>
+                /Month
+              </span>
+              <img
+                src={SNAP_LOGO}
+                alt=""
+                className="snap_circle_logo"
+              />
+              <span className="snap_know_more_text">Buy on EMI &gt;</span>
+            </div>
+          </div>
+          {bullets.length > 0 ? (
+            <div className="prodescription">
+              <ul>
+                {bullets.map((line, i) => (
+                  <li key={i}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </a>
       </div>
     </div>
   );

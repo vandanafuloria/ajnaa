@@ -24,7 +24,7 @@ const Sparkline = ({ data }) => {
           position: 'absolute', top: 0,
           left: `${(pts[hovered].x / w) * 100}%`,
           transform: 'translateX(-50%)',
-          background: '#868753', color: '#fff',
+          background: '#DB2A20', color: '#fff',
           fontSize: '9px', fontWeight: 600,
           padding: '3px 7px', borderRadius: '5px',
           whiteSpace: 'nowrap', pointerEvents: 'none', zIndex: 10,
@@ -35,17 +35,17 @@ const Sparkline = ({ data }) => {
       <svg width="100%" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" style={{ display: 'block' }}>
         <defs>
           <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#868753" stopOpacity="0.12"/>
-            <stop offset="100%" stopColor="#868753" stopOpacity="0"/>
+            <stop offset="0%" stopColor="#DB2A20" stopOpacity="0.12"/>
+            <stop offset="100%" stopColor="#DB2A20" stopOpacity="0"/>
           </linearGradient>
         </defs>
         <path d={areaD} fill="url(#sparkGrad)"/>
-        <path d={pathD} fill="none" stroke="#868753" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d={pathD} fill="none" stroke="#DB2A20" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
         {pts.map((p) => (
           <circle key={p.i} cx={p.x} cy={p.y}
             r={hovered === p.i ? 3.5 : 2}
-            fill={hovered === p.i ? '#868753' : '#fff'}
-            stroke="#868753" strokeWidth="1.4"
+            fill={hovered === p.i ? '#DB2A20' : '#fff'}
+            stroke="#DB2A20" strokeWidth="1.4"
             style={{ cursor: 'pointer', transition: 'r 0.15s' }}
             onMouseEnter={() => setHovered(p.i)}
             onMouseLeave={() => setHovered(null)}
@@ -281,7 +281,7 @@ const AIBrandEngine = ({ showExtras = true }) => {
                 <div className="score-arc-wrap">
                   <svg width="64" height="40" viewBox="0 0 64 40">
                     <path d="M 6 38 A 26 26 0 0 1 58 38" fill="none" stroke="#ebebeb" strokeWidth="5" strokeLinecap="round"/>
-                    <path d="M 6 38 A 26 26 0 0 1 58 38" fill="none" stroke="#868753" strokeWidth="5" strokeLinecap="round"
+                    <path d="M 6 38 A 26 26 0 0 1 58 38" fill="none" stroke="#DB2A20" strokeWidth="5" strokeLinecap="round"
                       strokeDasharray={`${(m.qualityScore / 100) * 81.7} 81.7`}/>
                   </svg>
                   <div className="score-arc-label">{m.qualityScore}%</div>

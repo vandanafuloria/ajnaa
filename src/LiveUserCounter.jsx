@@ -11,7 +11,7 @@ const LiveUserCounter = ({
   interval = 4500,
   label = 'Live',
   suffix = 'Glam Seekers Now',
-  indicatorColor = '#1fa971',
+  indicatorColor = '#DB2A20',
   className = '',
 }) => {
   const [count, setCount] = useState(() => getRandomInRange(initialMin, initialMax));
