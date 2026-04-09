@@ -7,6 +7,7 @@ import LiveUserCounter from './LiveUserCounter';
 import ActivityBanner from './ActivityBanner';
 import duroflexInstagramProfile from './assets/logo.png';
 import { DUROFLEX_SHOP_VIDEOS } from './duroflexShopVideos';
+import { bestSellerProducts } from './duroflexBestSellers';
 import InstagramTrustCarousel from './InstagramTrustCarousel';
 import './HomePage.css';
 
@@ -19,65 +20,6 @@ const SHOPIFY_VIDEO_URLS = DUROFLEX_SHOP_VIDEOS;
 
 const BRAND_NAME = "wordofmouth";
 
-// Best Seller Products data (Duroflex imagery)
-const bestSellerProducts = [
-  {
-    id: 1,
-    image: 'https://www.duroflexworld.com/cdn/shop/files/Airboost-6_8_jpg.jpg?v=1773923691',
-    title: 'Duropedic Airboost 6.8 Arctic Ice Mattress',
-    currentPrice: 26197,
-    originalPrice: 39693,
-    rating: 4.8,
-    reviewCount: 320,
-    badge: 'Best Seller',
-    feature: 'Adjustable firmness & Airknit core',
-  },
-  {
-    id: 2,
-    image: 'https://www.duroflexworld.com/cdn/shop/files/Airboost-3_6_jpg.jpg?v=1773923784',
-    title: 'Duroflex Airboost 3.6 Mattress',
-    currentPrice: 18999,
-    originalPrice: 24999,
-    rating: 4.7,
-    reviewCount: 218,
-    badge: 'Trending',
-    feature: 'Breathable Airboost comfort layers',
-  },
-  {
-    id: 3,
-    image: 'https://www.duroflexworld.com/cdn/shop/files/2_2026e6ee-a9e8-4ff5-88c7-104fea9cefb8.jpg?v=1744560694',
-    title: 'Duroflex Premium Quilted Mattress',
-    currentPrice: 22499,
-    originalPrice: 28999,
-    rating: 4.9,
-    reviewCount: 415,
-    badge: 'New Launch',
-    feature: 'Luxury quilted comfort',
-  },
-  {
-    id: 4,
-    image: 'https://www.duroflexworld.com/cdn/shop/files/1_caa4360f-a470-4da1-9d81-78570f9f02c1.jpg?v=1749639354',
-    title: 'Duroflex Natural Living Prana Mattress',
-    currentPrice: 32999,
-    originalPrice: 41999,
-    rating: 4.8,
-    reviewCount: 178,
-    badge: 'Best Sellers',
-    feature: 'Natural Living eco-friendly design',
-  },
-  {
-    id: 5,
-    image: 'https://www.duroflexworld.com/cdn/shop/files/1_e2b015b1-5d1a-4e42-986a-d7a482d19130.png?v=1755864195',
-    title: 'Duropedic Strength Mattress',
-    currentPrice: 27999,
-    originalPrice: 35999,
-    rating: 4.6,
-    reviewCount: 190,
-    badge: 'Best Sellers',
-    feature: 'Duropedic strength & support',
-  },
-];
-
 const getRandomSoldThisWeek = (min = 180, max = 420) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -86,6 +28,10 @@ const VIDEO_VIEWS = ['4.0K', '4.2K', '3.8K', '3.1K', '2.9K', '2.7K', '3.5K', '4.
 // Video Products data — one row per Duroflex clip; posters cycle best sellers
 const videoProducts = SHOPIFY_VIDEO_URLS.map((url, i) => {
   const bp = bestSellerProducts[i % bestSellerProducts.length];
+  const discount =
+    bp.originalPrice && bp.currentPrice
+      ? Math.round(((bp.originalPrice - bp.currentPrice) / bp.originalPrice) * 100)
+      : 0;
   return {
     id: i + 1,
     video: url,
@@ -94,6 +40,7 @@ const videoProducts = SHOPIFY_VIDEO_URLS.map((url, i) => {
     title: bp.title,
     currentPrice: bp.currentPrice,
     originalPrice: bp.originalPrice,
+    discount,
     soldThisWeek: getRandomSoldThisWeek(),
   };
 });
@@ -108,6 +55,7 @@ const HomePage = ({ onProductClick }) => {
   const [lookLiked, setLookLiked] = useState(false);
   const lookModalVideoRef = React.useRef(null);
   const lookTouchStartY = React.useRef(null);
+  const lookTouchStartX = React.useRef(null);
 
   const goToLookVideo = (n) => {
     lookVideoIndexRef.current = n;
@@ -115,6 +63,75 @@ const HomePage = ({ onProductClick }) => {
     setSelectedLookVideo(videoProducts[n]);
     setLookLiked(false);
   };
+
+  const canLookPrev = lookVideoIndex > 0;
+  const canLookNext = lookVideoIndex < videoProducts.length - 1;
+
+  const handleLookTouchStart = (e) => {
+    const t = e.touches?.[0];
+    if (!t) return;
+    lookTouchStartY.current = t.clientY;
+    lookTouchStartX.current = t.clientX;
+  };
+
+  const handleLookTouchEnd = (e) => {
+    if (lookTouchStartY.current == null || lookTouchStartX.current == null) return;
+    const t = e.changedTouches?.[0];
+    if (!t) return;
+    const dy = lookTouchStartY.current - t.clientY;
+    const dx = lookTouchStartX.current - t.clientX;
+    lookTouchStartY.current = null;
+    lookTouchStartX.current = null;
+
+    const threshold = 40;
+    if (Math.abs(dx) < threshold && Math.abs(dy) < threshold) return;
+
+    const now = Date.now();
+    if (now - lookLastSwitchTime.current < 320) return;
+
+    const cur = lookVideoIndexRef.current;
+    const last = videoProducts.length - 1;
+
+    const goNext = () => {
+      if (cur < last) {
+        lookLastSwitchTime.current = Date.now();
+        goToLookVideo(cur + 1);
+      }
+    };
+    const goPrev = () => {
+      if (cur > 0) {
+        lookLastSwitchTime.current = Date.now();
+        goToLookVideo(cur - 1);
+      }
+    };
+
+    if (Math.abs(dx) >= Math.abs(dy)) {
+      if (dx > threshold) goNext();
+      else if (dx < -threshold) goPrev();
+    } else {
+      if (dy > threshold) goNext();
+      else if (dy < -threshold) goPrev();
+    }
+  };
+
+  const handleLookTouchCancel = () => {
+    lookTouchStartY.current = null;
+    lookTouchStartX.current = null;
+  };
+
+  const lookSwipeLayerRef = React.useRef(null);
+
+  useEffect(() => {
+    if (!selectedLookVideo) return;
+    const el = lookSwipeLayerRef.current;
+    if (!el) return;
+    const preventScroll = (ev) => {
+      if (ev.cancelable) ev.preventDefault();
+    };
+    el.addEventListener('touchmove', preventScroll, { passive: false });
+    return () => el.removeEventListener('touchmove', preventScroll);
+  }, [selectedLookVideo]);
+
   const videoRefs = React.useRef({});
   const modalVideoRef = React.useRef(null);
   const [videoMuted, setVideoMuted] = useState(false);
@@ -263,6 +280,24 @@ const HomePage = ({ onProductClick }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Video modals — lock scroll, Escape to close
+  useEffect(() => {
+    if (!selectedVideo && !selectedLookVideo) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedVideo(null);
+        setSelectedLookVideo(null);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [selectedVideo, selectedLookVideo]);
+
   // Auto-play all videos
   useEffect(() => {
     videoProducts.forEach((product) => {
@@ -303,8 +338,6 @@ const HomePage = ({ onProductClick }) => {
       <LiveUserCounter className={`fixed left-4 z-50 transition-all duration-300 ${isScrolled ? 'top-4' : 'top-[46px]'}`} />
 
       <InstagramTrustCarousel instagramUrl={DUROFLEX_INSTAGRAM_URL} followersLabel="81.8K" />
-
-
 
       {/* Big Deals Section */}
       <section className="w-full py-12 md:py-16 bg-white">
@@ -884,16 +917,20 @@ const HomePage = ({ onProductClick }) => {
       {/* Video Modal */}
       {selectedVideo && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-stone-900/45 backdrop-blur-xl"
           onClick={() => setSelectedVideo(null)}
+          role="presentation"
         >
           {/* Modal card — centered, constrained */}
           <div
-            className="relative flex w-full h-full md:h-auto md:max-h-[85vh] md:max-w-3xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="relative flex w-full h-full max-h-[92dvh] md:h-auto md:max-h-[85vh] md:max-w-3xl md:rounded-3xl overflow-hidden shadow-[0_25px_80px_-16px_rgba(0,0,0,0.35)] ring-1 ring-white/20 bg-stone-950"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Product video"
           >
             {/* VIDEO PANEL */}
-            <div className="relative bg-black w-full md:w-[55%] flex-shrink-0" style={{ aspectRatio: undefined }}>
+            <div className="relative bg-stone-950 w-full md:w-[55%] shrink-0" style={{ aspectRatio: undefined }}>
               <video
                 key={`video-${selectedVideo.id}`}
                 ref={modalVideoRef}
@@ -1010,23 +1047,8 @@ const HomePage = ({ onProductClick }) => {
       {/* SHOP THE LOOK — Creative Reels Modal */}
       {selectedLookVideo && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ background: '#000' }}
-          onTouchStart={(e) => { lookTouchStartY.current = e.touches[0].clientY; }}
-          onTouchEnd={(e) => {
-            if (lookTouchStartY.current === null) return;
-            const diff = lookTouchStartY.current - e.changedTouches[0].clientY;
-            lookTouchStartY.current = null;
-            if (Math.abs(diff) < 50) return;
-            const now = Date.now();
-            if (now - lookLastSwitchTime.current < 400) return;
-            lookLastSwitchTime.current = now;
-            const cur = lookVideoIndexRef.current;
-            const next = diff > 0
-              ? Math.min(cur + 1, videoProducts.length - 1)
-              : Math.max(cur - 1, 0);
-            if (next !== cur) goToLookVideo(next);
-          }}
+          className="fixed inset-0 z-50 flex items-stretch md:items-center justify-center md:p-5 bg-gradient-to-b from-stone-100/85 via-stone-200/80 to-stone-400/50 backdrop-blur-2xl"
+          onClick={() => setSelectedLookVideo(null)}
           onWheel={(e) => {
             e.preventDefault();
             const now = Date.now();
@@ -1038,18 +1060,83 @@ const HomePage = ({ onProductClick }) => {
               : Math.max(cur - 1, 0);
             if (next !== cur) goToLookVideo(next);
           }}
+          role="presentation"
         >
           <div
-            className="relative w-full md:w-[400px] md:rounded-3xl overflow-hidden shadow-2xl"
-            style={{ height: '100dvh', maxHeight: '100dvh' }}
+            className="flex w-full max-w-6xl flex-col items-stretch gap-3 md:flex-row md:items-center md:justify-center md:gap-4"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Shop the look reel"
           >
-            {/* Video full-height */}
+            {/* Desktop: previous reel preview + button */}
+            <div className="hidden w-[148px] shrink-0 flex-col items-center gap-3 md:flex">
+              {canLookPrev ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => goToLookVideo(lookVideoIndex - 1)}
+                    className="group relative w-full overflow-hidden rounded-2xl bg-stone-900 shadow-lg ring-2 ring-white/50 aspect-[9/16] max-h-[300px]"
+                    aria-label="Previous reel preview"
+                  >
+                    <video
+                      src={videoProducts[lookVideoIndex - 1].video}
+                      muted
+                      playsInline
+                      loop
+                      preload="metadata"
+                      className="h-full w-full object-cover opacity-85 transition-opacity group-hover:opacity-100"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/25">
+                      <span className="rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white">
+                        Previous
+                      </span>
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => goToLookVideo(lookVideoIndex - 1)}
+                    className="w-full rounded-full border border-stone-300 bg-white py-2.5 text-sm font-semibold text-stone-800 shadow-md transition-colors hover:bg-stone-50"
+                  >
+                    Prev
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="flex w-full aspect-[9/16] max-h-[300px] items-center justify-center rounded-2xl border border-dashed border-stone-300/80 bg-stone-200/50 text-center text-xs font-medium text-stone-500">
+                    First reel
+                  </div>
+                  <button
+                    type="button"
+                    disabled
+                    className="w-full cursor-not-allowed rounded-full border border-stone-200 bg-stone-100 py-2.5 text-sm font-semibold text-stone-400"
+                  >
+                    Prev
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Main phone */}
+            <div
+              className="relative mx-auto w-full max-w-[420px] overflow-hidden shadow-[0_32px_90px_-20px_rgba(0,0,0,0.35)] ring-2 ring-white/25 md:rounded-[1.75rem] bg-stone-950 h-[100dvh] md:h-[min(88dvh,780px)] md:max-h-[88dvh]"
+            >
+              {/* Swipe capture — above video; touchmove default prevented so iOS doesn’t scroll the page */}
+              <div
+                ref={lookSwipeLayerRef}
+                className="absolute inset-0 z-[6]"
+                style={{ touchAction: 'none' }}
+                onTouchStart={handleLookTouchStart}
+                onTouchEnd={handleLookTouchEnd}
+                onTouchCancel={handleLookTouchCancel}
+                aria-hidden
+              />
+
             <video
               ref={lookModalVideoRef}
               key={`look-${selectedLookVideo.id}`}
               src={selectedLookVideo.video}
-              className="w-full h-full object-cover"
+              className="pointer-events-none relative z-0 h-full w-full object-cover"
               style={{ display: 'block' }}
               autoPlay
               loop
@@ -1057,15 +1144,39 @@ const HomePage = ({ onProductClick }) => {
               muted={lookVideoMuted}
             />
 
+            {/* Mobile: edge Prev / Next */}
+            <button
+              type="button"
+              disabled={!canLookPrev}
+              onClick={(e) => { e.stopPropagation(); goToLookVideo(lookVideoIndex - 1); }}
+              className="absolute left-2 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/25 text-white backdrop-blur-md transition-opacity md:hidden disabled:opacity-30"
+              aria-label="Previous reel"
+            >
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              disabled={!canLookNext}
+              onClick={(e) => { e.stopPropagation(); goToLookVideo(lookVideoIndex + 1); }}
+              className="absolute right-2 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/25 text-white backdrop-blur-md transition-opacity md:hidden disabled:opacity-30"
+              aria-label="Next reel"
+            >
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
             {/* Top bar */}
-            <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 pt-5 pb-2"
+            <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-4 pt-5 pb-2"
               style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6), transparent)' }}>
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white">
                   <img src={selectedLookVideo.image} alt="" className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <p className="text-white text-sm font-semibold leading-none">sotrue.beauty</p>
+                  <p className="text-white text-sm font-semibold leading-none">Duroflex World</p>
                   <p className="text-white/70 text-xs mt-0.5">{selectedLookVideo.views} views</p>
                 </div>
               </div>
@@ -1080,14 +1191,14 @@ const HomePage = ({ onProductClick }) => {
             </div>
 
             {/* Video index dots */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-4 flex gap-1 z-10">
+            <div className="absolute left-1/2 -translate-x-1/2 top-4 z-20 flex gap-1">
               {videoProducts.map((_, i) => (
                 <div key={i} className="rounded-full transition-all" style={{ width: i === lookVideoIndex ? '16px' : '6px', height: '6px', background: i === lookVideoIndex ? '#fff' : 'rgba(255,255,255,0.4)' }} />
               ))}
             </div>
 
             {/* Right side action buttons */}
-            <div className="absolute right-3 bottom-44 flex flex-col items-center gap-5">
+            <div className="absolute right-3 bottom-44 z-20 flex flex-col items-center gap-5">
               {/* Like */}
               <button
                 onClick={() => setLookLiked(l => !l)}
@@ -1124,7 +1235,7 @@ const HomePage = ({ onProductClick }) => {
 
               {/* Share */}
               <button
-                onClick={() => navigator.share ? navigator.share({ title: selectedLookVideo.title, text: `Check out ${selectedLookVideo.title} from SoTrue Beauty!`, url: window.location.href }) : navigator.clipboard?.writeText(window.location.href)}
+                onClick={() => navigator.share ? navigator.share({ title: selectedLookVideo.title, text: `Check out ${selectedLookVideo.title} from Duroflex World`, url: window.location.href }) : navigator.clipboard?.writeText(window.location.href)}
                 className="flex flex-col items-center gap-1"
               >
                 <div className="w-11 h-11 rounded-full bg-black/40 flex items-center justify-center">
@@ -1139,7 +1250,7 @@ const HomePage = ({ onProductClick }) => {
             </div>
 
             {/* Bottom product card */}
-            <div className="absolute bottom-0 left-0 right-0 px-4 pb-6 pt-16"
+            <div className="absolute bottom-0 left-0 right-0 z-20 px-4 pb-6 pt-16"
               style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.9) 60%, transparent)' }}>
               <p className="text-white text-base font-semibold mb-1 line-clamp-1">{selectedLookVideo.title}</p>
               <div className="flex items-center gap-2 mb-3">
@@ -1163,6 +1274,55 @@ const HomePage = ({ onProductClick }) => {
                   Add to Cart
                 </button>
               </div>
+            </div>
+            </div>
+
+            {/* Desktop: next reel preview + button */}
+            <div className="hidden w-[148px] shrink-0 flex-col items-center gap-3 md:flex">
+              {canLookNext ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => goToLookVideo(lookVideoIndex + 1)}
+                    className="group relative aspect-[9/16] max-h-[300px] w-full overflow-hidden rounded-2xl bg-stone-900 shadow-lg ring-2 ring-white/50"
+                    aria-label="Next reel preview"
+                  >
+                    <video
+                      src={videoProducts[lookVideoIndex + 1].video}
+                      muted
+                      playsInline
+                      loop
+                      preload="metadata"
+                      className="h-full w-full object-cover opacity-85 transition-opacity group-hover:opacity-100"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/25">
+                      <span className="rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white">
+                        Next
+                      </span>
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => goToLookVideo(lookVideoIndex + 1)}
+                    className="w-full rounded-full border border-stone-300 bg-white py-2.5 text-sm font-semibold text-stone-800 shadow-md transition-colors hover:bg-stone-50"
+                  >
+                    Next
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="flex aspect-[9/16] max-h-[300px] w-full items-center justify-center rounded-2xl border border-dashed border-stone-300/80 bg-stone-200/50 text-center text-xs font-medium text-stone-500">
+                    Last reel
+                  </div>
+                  <button
+                    type="button"
+                    disabled
+                    className="w-full cursor-not-allowed rounded-full border border-stone-200 bg-stone-100 py-2.5 text-sm font-semibold text-stone-400"
+                  >
+                    Next
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

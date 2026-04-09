@@ -65,7 +65,7 @@ const QuinnVideo = ({
         height: '100%',
         overflow: 'hidden',
         borderRadius,
-        background: '#000',
+        background: 'linear-gradient(180deg, #1c1917 0%, #292524 100%)',
         ...style,
       }}
     >

@@ -1,66 +1,78 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { bestSellerProducts } from './duroflexBestSellers';
 
-const IMG1 = 'https://vibecrafts.com/cdn/shop/files/vibrant-peacock-and-red-lotus-floral-canvas-wall-painting-PTVCH_4307_1.webp?v=1774351105&width=600';
-const IMG2 = 'https://vibecrafts.com/cdn/shop/files/abstract-mountain-lake-canvas-wall-art-painting-for-wall-decor-PTVCH_3616_1.webp?v=1774350796&width=600';
-const IMG3 = 'https://vibecrafts.com/cdn/shop/files/artistic-abstract-canvas-wall-art-painting-for-modern-decor-PTVCH_3615_1.webp?v=1774350665&width=600';
-const IMG4 = 'https://vibecrafts.com/cdn/shop/files/abstract-peacock-feather-canvas-wall-art-painting-PTVCH_3614_1.webp?v=1774350343&width=600';
-
-const activities = [
-  {
-    type: 'purchase',
-    name: 'Rahul M.',
-    location: 'Mumbai',
-    product: 'Vibrant Peacock Floral Canvas',
-    time: '2 min ago',
-    productImage: IMG1,
-  },
-  {
-    type: 'review',
-    name: 'Priya S.',
-    location: 'Bangalore',
-    product: 'Abstract Mountain Lake Canvas',
-    time: 'Just now',
-    stars: 5,
-    productImage: IMG2,
-    reviewImage: IMG2,
-  },
-  {
-    type: 'purchase',
-    name: 'Aditya K.',
-    location: 'Delhi',
-    product: 'Artistic Abstract Canvas',
-    time: '4 min ago',
-    productImage: IMG3,
-  },
-  {
-    type: 'review',
-    name: 'Sneha R.',
-    location: 'Pune',
-    product: 'Abstract Peacock Feather Canvas',
-    time: '6 min ago',
-    stars: 5,
-    productImage: IMG4,
-    reviewImage: IMG4,
-  },
-  {
-    type: 'purchase',
-    name: 'Vikram T.',
-    location: 'Chennai',
-    product: 'Vibrant Peacock Floral Canvas',
-    time: '1 min ago',
-    productImage: IMG1,
-  },
-  {
-    type: 'review',
-    name: 'Kavya N.',
-    location: 'Jaipur',
-    product: 'Artistic Abstract Canvas',
-    time: 'Just now',
-    stars: 5,
-    productImage: IMG3,
-    reviewImage: IMG3,
-  },
+const DISPLAY_NAMES = [
+  ['Rahul', 'M.'],
+  ['Priya', 'S.'],
+  ['Aditya', 'K.'],
+  ['Sneha', 'R.'],
+  ['Vikram', 'T.'],
+  ['Kavya', 'N.'],
+  ['Arjun', 'P.'],
+  ['Meera', 'L.'],
+  ['Sanjay', 'V.'],
+  ['Ananya', 'D.'],
 ];
+
+const CITIES = [
+  'Mumbai',
+  'Bengaluru',
+  'Delhi',
+  'Pune',
+  'Chennai',
+  'Jaipur',
+  'Hyderabad',
+  'Kolkata',
+  'Ahmedabad',
+  'Kochi',
+];
+
+const TIME_LABELS = [
+  'Just now',
+  '1 min ago',
+  '2 min ago',
+  '3 min ago',
+  '4 min ago',
+  '6 min ago',
+  '8 min ago',
+];
+
+/** Social-proof rotator — product titles & imagery from Duroflex World catalog */
+function buildActivitiesFromDuroflex(products) {
+  if (!products.length) return [];
+  const out = [];
+  const pattern = ['purchase', 'review', 'purchase', 'review', 'purchase', 'review'];
+  const n = Math.max(pattern.length, products.length * 2);
+  for (let i = 0; i < n; i++) {
+    const p = products[i % products.length];
+    const type = pattern[i % pattern.length];
+    const [first, last] = DISPLAY_NAMES[i % DISPLAY_NAMES.length];
+    const name = `${first} ${last}`;
+    const location = CITIES[i % CITIES.length];
+    const time = TIME_LABELS[i % TIME_LABELS.length];
+    const base = {
+      name,
+      location,
+      product: p.title,
+      time,
+      productImage: p.image,
+    };
+    if (type === 'purchase') {
+      out.push({ type: 'purchase', ...base });
+    } else {
+      const stars = Math.min(5, Math.max(4, Math.round(Number(p.rating) || 5)));
+      out.push({
+        type: 'review',
+        ...base,
+        stars,
+        reviewImage: p.image,
+      });
+    }
+  }
+  return out;
+}
+
+const activities = buildActivitiesFromDuroflex(bestSellerProducts);
 
 const Stars = ({ count }) => (
   <span style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>

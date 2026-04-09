@@ -26,21 +26,26 @@ function imageUrlWithWidth(image, width) {
   }
 }
 
-function StarRow({ rating }) {
-  const rounded = Math.max(
-    0,
-    Math.min(5, Math.round(Number(rating) || 0))
-  );
+function StarRow() {
   return (
-    <span className="jdgm-prev-badge__stars" aria-hidden>
-      {[1, 2, 3, 4, 5].map((i) => (
-        <span
-          key={i}
-          className={`jdgm-star ${i <= rounded ? 'jdgm--on' : ''}`}
-        />
-      ))}
+    <span className="jdgm-prev-badge__stars jdgm-prev-badge__stars--single" aria-hidden>
+      <span className="jdgm-star jdgm--on jdgm-star--orange" />
     </span>
   );
+}
+
+/** Stable “random” 3–50 per product so the number doesn’t flicker on re-render */
+function buyingThisWeekCount(product) {
+  if (product?.buyingThisWeek != null && Number.isFinite(Number(product.buyingThisWeek))) {
+    return Math.max(1, Math.round(Number(product.buyingThisWeek)));
+  }
+  const raw = `${product?.id ?? ''}|${product?.title ?? ''}|${product?.reviewCount ?? ''}|${product?.currentPrice ?? ''}`;
+  let h = 2166136261;
+  for (let i = 0; i < raw.length; i++) {
+    h ^= raw.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return 3 + (Math.abs(h) % 48);
 }
 
 const ProductCard = ({ product, onClick }) => {
@@ -92,6 +97,8 @@ const ProductCard = ({ product, onClick }) => {
   const src352 = imageUrlWithWidth(image, 352);
   const src500 = imageUrlWithWidth(image, 500);
 
+  const buyingThisWeek = buyingThisWeekCount(product);
+
   const onNavigate = (e) => {
     if (onClick) {
       e.preventDefault();
@@ -126,7 +133,9 @@ const ProductCard = ({ product, onClick }) => {
       <div className="prodata">
         <a href={productPath} onClick={onNavigate}>
           <div className="custom_review_star_block">
-            <span className="metafield_text_text">{label}</span>
+            <span className="metafield_text_text" title={label}>
+              {label}
+            </span>
             <span className="review_count_block custom_product_card_everywhere">
               <span
                 className="jdgm-widget jdgm-preview-badge jdgm-preview-badge--with-link jdgm--done-setup"
@@ -137,12 +146,15 @@ const ProductCard = ({ product, onClick }) => {
                   data-average-rating={rating}
                   data-number-of-reviews={reviewCount}
                 >
-                  <StarRow rating={Number(rating)} />
+                  <StarRow />
                   <span className="jdgm-prev-badge__text">
                     {displayRating.toFixed(1)}
                   </span>
                   <span className="jdgm-prev-badge__count">
                     ({Number(reviewCount).toLocaleString('en-IN')} reviews)
+                  </span>
+                  <span className="jdgm-prev-badge__buying">
+                    {buyingThisWeek.toLocaleString('en-IN')} bought this week
                   </span>
                 </div>
               </span>
