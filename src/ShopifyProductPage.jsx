@@ -4,6 +4,7 @@ import ShopifyFooter from './ShopifyFooter';
 import AIBrandEngine from './AIBrandEngine';
 import ProductCard from './ProductCard';
 import TrustSignalsRotator from './TrustSignals';
+import PdpHeroReviewRotator from './PdpHeroReviewRotator';
 
 // ============================================
 // EDIT THESE VALUES TO CUSTOMIZE YOUR PRODUCT
@@ -225,8 +226,14 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
     : PRODUCT_IMAGES;
   const productRating  = passedProduct?.rating        || 4.8;
   const productReviews = passedProduct?.reviewCount   || 320;
+  const soldThisWeekDisplay = React.useMemo(() => {
+    const s = String(productName);
+    let h = 0;
+    for (let i = 0; i < s.length; i++) h += s.charCodeAt(i);
+    return 220 + (h % 360);
+  }, [productName]);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [selectedSize, setSelectedSize] = useState('S');
+  const [selectedSize, setSelectedSize] = useState(PRODUCT_SIZES[0]);
   const [quantity, setQuantity] = useState(1);
   const [isAISummaryExpanded, setIsAISummaryExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -666,202 +673,331 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
             <span className="text-gray-800 font-medium truncate">{productName}</span>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16">
 
-            {/* LEFT: main image + thumbnails below */}
-            <div className="flex flex-col gap-4">
-              {/* Main image */}
-              <div
-                className="relative w-full overflow-hidden cursor-zoom-in"
-                style={{ backgroundColor: '#e8e3da' }}
-                onClick={() => setIsModalOpen(true)}
-              >
-                <img
-                  src={productImages[selectedImage] || productImages[0]}
-                  alt={productName}
-                  className="w-full object-cover"
-                  style={{ aspectRatio: '4/5' }}
-                />
-              </div>
-
-              {/* Thumbnails below */}
-              <div className="flex gap-3">
-                {productImages.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedImage(index)}
-                    className="overflow-hidden flex-shrink-0 transition-all"
-                    style={{
-                      width: '80px',
-                      height: '80px',
-                      border: selectedImage === index ? '2px solid #1a1a1a' : '2px solid transparent',
-                      backgroundColor: '#e8e3da',
-                    }}
-                  >
-                    <img src={img} alt={`View ${index + 1}`} className="w-full h-full object-cover" />
-                  </button>
-                ))}
-              </div>
+            {/* LEFT — desktop 2×2 mosaic, mobile hero + thumb strip */}
+            <div className="w-full">
+              {(() => {
+                const imgs = productImages.length ? productImages : [productHeader];
+                const rowA = imgs.slice(0, 2);
+                const rowB = imgs.slice(2);
+                const openAt = (idx) => {
+                  setSelectedImage(idx);
+                  setSelectedModalImageIndex(idx);
+                  setIsModalOpen(true);
+                };
+                return (
+                  <>
+                    <div className="mb-4 hidden gap-4 md:grid md:grid-cols-2">
+                      {rowA.map((img, i) => (
+                        <button
+                          key={`ga-${img}-${i}`}
+                          type="button"
+                          className="relative w-full cursor-pointer overflow-hidden rounded-lg bg-white"
+                          onClick={() => openAt(i)}
+                        >
+                          <img
+                            src={img}
+                            alt={`${productName} view ${i + 1}`}
+                            className="block h-auto w-full object-contain"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                    {rowB.length > 0 ? (
+                      <div className="mb-4 hidden gap-4 md:grid md:grid-cols-2">
+                        {rowB.map((img, i) => (
+                          <button
+                            key={`gb-${img}-${i}`}
+                            type="button"
+                            className="relative w-full cursor-pointer overflow-hidden rounded-lg bg-white"
+                            onClick={() => openAt(i + 2)}
+                          >
+                            <img
+                              src={img}
+                              alt={`${productName} view ${i + 3}`}
+                              className="block h-auto w-full object-contain"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    ) : null}
+                    <div className="md:hidden">
+                      <button
+                        type="button"
+                        className="relative mb-4 w-full overflow-hidden rounded-lg bg-white"
+                        style={{ backgroundColor: '#e8e3da' }}
+                        onClick={() => openAt(selectedImage)}
+                      >
+                        <img
+                          src={imgs[selectedImage] || imgs[0]}
+                          alt={productName}
+                          className="block h-auto w-full object-contain"
+                          style={{ aspectRatio: '4/5' }}
+                        />
+                      </button>
+                      <div className="scrollbar-hide flex w-full gap-3 overflow-x-auto pb-2">
+                        {imgs.map((img, index) => (
+                          <button
+                            key={`mth-${index}`}
+                            type="button"
+                            onClick={() => setSelectedImage(index)}
+                            className={`h-20 w-20 shrink-0 overflow-hidden rounded border-2 bg-white p-0 transition-all ${
+                              selectedImage === index ? 'border-gray-900 shadow-md' : 'border-gray-200'
+                            }`}
+                          >
+                            <img src={img} alt={`${productName} view ${index + 1}`} className="h-full w-full object-cover" />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                );
+              })()}
             </div>
 
-            {/* RIGHT: product info */}
-            <div className="flex flex-col gap-5">
+            {/* RIGHT — reference-style buy box */}
+            <div className="flex flex-col gap-4">
+              <div className="text-sm text-gray-600">SKU: {PRODUCT_SKU}</div>
 
-              {/* Title */}
-              <h1
-                className="leading-tight"
-                style={{ fontFamily: 'Georgia, serif', fontSize: '2rem', fontWeight: 700, color: '#1a1a1a' }}
-              >
-                {productName}
-              </h1>
+              <h1 className="text-2xl font-normal leading-tight text-gray-900 md:text-3xl">{productName}</h1>
 
-              {/* Stars + Reviews + Sold + Tags */}
+              {/* Minimal: stars + reviews + sold — light row; soft feature pills (no solid red blocks) */}
               <div className="flex flex-col gap-2.5">
-                {/* Stars row */}
-                <div className="flex items-center gap-3 flex-wrap">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600">
                   <div className="flex items-center gap-1">
-                    {[1,2,3,4,5].map(i => {
+                    {[1, 2, 3, 4, 5].map((i) => {
                       const full = i <= Math.floor(productRating);
                       const half = !full && i === Math.ceil(productRating) && productRating % 1 >= 0.5;
                       return (
-                        <svg key={i} width="18" height="18" viewBox="0 0 24 24">
-                          {half && (
+                        <svg key={`sr-${i}`} width="16" height="16" viewBox="0 0 24 24" aria-hidden>
+                          {half ? (
                             <defs>
-                              <linearGradient id={`pdp-hg-${i}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="50%" stopColor="#DB2A20"/>
-                                <stop offset="50%" stopColor="#e0e0e0"/>
+                              <linearGradient id={`srg-${i}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="50%" stopColor="#DB2A20" />
+                                <stop offset="50%" stopColor="#e0e0e0" />
                               </linearGradient>
                             </defs>
-                          )}
+                          ) : null}
                           <path
                             d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                            fill={full ? '#DB2A20' : half ? `url(#pdp-hg-${i})` : '#e0e0e0'}
+                            fill={full ? '#DB2A20' : half ? `url(#srg-${i})` : '#e0e0e0'}
                           />
                         </svg>
                       );
                     })}
-                    <span className="text-sm font-bold text-gray-800 ml-1">{productRating}</span>
+                    <span className="ml-0.5 text-sm font-bold text-gray-800">{productRating}</span>
                   </div>
                   <span className="text-gray-300">|</span>
-                  <span className="text-sm text-gray-600"><span className="font-bold text-gray-900">{productReviews}</span> Reviews</span>
+                  <span>
+                    <span className="font-bold text-gray-900">{productReviews}</span> reviews
+                  </span>
                   <span className="text-gray-300">|</span>
-                  <span className="text-sm text-gray-600">
-                    <span className="text-amber-500 mr-1">⚡</span>
-                    <span className="font-bold text-gray-900">684</span> Sold this week
+                  <span>
+                    <span className="mr-1 text-amber-500">⚡</span>
+                    <span className="font-bold text-gray-900">{soldThisWeekDisplay}</span>
+                    <span> sold this week</span>
                   </span>
                 </div>
 
-                {/* Feature tags — soft pills, subtle brand accent */}
                 <div className="flex flex-wrap gap-2">
-                  {['Duropedic support', 'Airboost layers', 'Arctic Ice cover', 'Motion isolation', '10-year warranty'].map(label => (
+                  {['Duropedic support', 'Airboost layers', 'Arctic Ice cover', 'Motion isolation', '10-year warranty'].map((label) => (
                     <span
                       key={label}
-                      className="inline-flex items-center rounded-full border border-stone-200/90 bg-linear-to-b from-white to-stone-50/90 px-3.5 py-1.5 text-xs font-medium tracking-wide text-stone-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] ring-1 ring-stone-900/3"
+                      className="inline-flex items-center rounded-full border border-stone-200/90 bg-linear-to-b from-white to-stone-50/90 px-3.5 py-1.5 text-xs font-medium tracking-wide text-stone-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] ring-1 ring-stone-900/5"
                     >
                       {label}
                     </span>
                   ))}
                 </div>
-
-                <TrustSignalsRotator productPage className="pt-0.5" />
               </div>
 
-              {/* Price row */}
-              <div className="flex items-center gap-3 flex-wrap">
-                <span className="font-bold text-xl" style={{ color: '#DB2A20' }}>
-                  Rs. {productPrice.toLocaleString('en-IN')}.00
-                </span>
-                <span className="line-through text-base" style={{ color: '#999' }}>
-                  Rs. {productOriginal.toLocaleString('en-IN')}.00
-                </span>
-                <span className="text-xs font-bold text-white px-2 py-1" style={{ backgroundColor: '#111' }}>
-                  OFF
-                </span>
+              <TrustSignalsRotator productPage className="pt-0.5" />
+
+              <div className="flex flex-col gap-2">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-lg text-gray-500 line-through md:text-xl">
+                    Rs. {productOriginal.toLocaleString('en-IN')}.00
+                  </span>
+                  <span className="text-2xl font-semibold text-gray-900 md:text-3xl">
+                    Rs. {productPrice.toLocaleString('en-IN')}.00
+                  </span>
+                  <span className="rounded bg-green-600 px-2 py-1 text-sm font-semibold text-white">
+                    {productDiscount}% off
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1 text-sm text-gray-700">
+                  <p>
+                    or 3 monthly payments of Rs.{Math.max(1, Math.round(productPrice / 3)).toLocaleString('en-IN')}
+                  </p>
+                  <p className="text-gray-600">0% EMI on select cards · check out for offers</p>
+                </div>
               </div>
 
-              {/* Shipping note */}
-              <p className="text-sm" style={{ color: '#555' }}>Shipping calculated at checkout.</p>
+              <div className="flex flex-col gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-sm font-medium text-gray-900">Size:</span>
+                  <span className="text-sm text-gray-700">{selectedSize}</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {PRODUCT_SIZES.map((sz) => (
+                    <button
+                      key={sz}
+                      type="button"
+                      title={sz}
+                      onClick={() => setSelectedSize(sz)}
+                      className={`rounded border-2 px-4 py-2 text-sm font-medium transition-all ${
+                        selectedSize === sz
+                          ? 'border-[#DB2A20] bg-red-50 text-[#DB2A20]'
+                          : 'border-gray-300 text-gray-700 hover:border-gray-400'
+                      }`}
+                    >
+                      {sz.replace(/\s*\([^)]*\)\s*$/, '').trim()}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-500">Tap for full size name; dimensions are in inches.</p>
+              </div>
+
+              <button type="button" className="flex w-fit items-center gap-2 text-sm text-gray-700 hover:text-gray-900">
+                <svg className="h-4 w-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                <span className="underline">Size guide</span>
+              </button>
+
+              <PdpHeroReviewRotator reviews={reviewData} />
+
+              <p className="text-sm text-gray-600">Shipping calculated at checkout.</p>
 
               <div className="border-t" style={{ borderColor: '#d4cfc7' }} />
 
-              {/* Quantity + Add to Cart */}
+              {/* Quantity + primary cart — earlier Duroflex pattern */}
               <div className="flex gap-3 items-stretch">
                 <div className="flex items-center border" style={{ borderColor: '#1a1a1a' }}>
                   <button
+                    type="button"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-11 h-12 flex items-center justify-center text-xl text-gray-700 hover:bg-gray-100 transition-colors"
+                    className="flex h-12 w-11 items-center justify-center text-xl text-gray-700 transition-colors hover:bg-gray-100"
                   >
                     −
                   </button>
                   <span className="w-10 text-center text-base font-semibold text-gray-900">{quantity}</span>
                   <button
+                    type="button"
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-11 h-12 flex items-center justify-center text-xl text-gray-700 hover:bg-gray-100 transition-colors"
+                    className="flex h-12 w-11 items-center justify-center text-xl text-gray-700 transition-colors hover:bg-gray-100"
                   >
                     +
                   </button>
                 </div>
                 <button
-                  className="flex-1 h-12 text-white text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-90"
+                  type="button"
+                  className="h-12 flex-1 text-sm font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
                   style={{ backgroundColor: '#DB2A20', letterSpacing: '0.12em' }}
                 >
                   Add to Cart
                 </button>
               </div>
 
-              {/* Buy Now */}
               <button
-                className="w-full py-3.5 text-white text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-90"
+                type="button"
+                className="w-full py-3.5 text-sm font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
                 style={{ backgroundColor: '#111', letterSpacing: '0.12em' }}
               >
                 Buy Now
               </button>
 
-              {/* Add to wishlist */}
-              <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors w-fit">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+              <button type="button" className="flex w-fit items-center gap-2 text-sm text-gray-600 transition-colors hover:text-gray-900">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
                 </svg>
                 Add to wishlist
               </button>
 
-              <div className="border-t" style={{ borderColor: '#d4cfc7' }} />
-
-              {/* Delivery info */}
-              <div className="flex flex-col gap-4">
-                {/* Estimated delivery */}
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0" style={{ backgroundColor: '#e8e3da' }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DB2A20" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-                    </svg>
+              <div className="border-t border-gray-200 pt-4" style={{ borderTopColor: '#d4cfc7' }}>
+                <button
+                  type="button"
+                  onClick={() => setIsShippingOpen((o) => !o)}
+                  className="flex w-full items-center justify-between py-3 text-sm font-semibold text-gray-900 hover:text-gray-700"
+                >
+                  <span>Shipping information</span>
+                  <svg
+                    className={`h-5 w-5 transition-transform ${isShippingOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {isShippingOpen && (
+                  <div className="flex flex-col gap-4 pb-2 text-sm text-gray-700">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: '#e8e3da' }}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DB2A20" strokeWidth="1.8">
+                          <rect x="1" y="3" width="15" height="13" rx="1" />
+                          <path d="M16 8h4l3 3v5h-7V8z" />
+                          <circle cx="5.5" cy="18.5" r="2.5" />
+                          <circle cx="18.5" cy="18.5" r="2.5" />
+                        </svg>
+                      </div>
+                      <p>
+                        <strong>Estimated delivery</strong> in 5–7 days
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: '#e8e3da' }}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DB2A20" strokeWidth="1.8">
+                          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                          <rect x="9" y="3" width="6" height="4" rx="1" />
+                        </svg>
+                      </div>
+                      <p className="font-semibold text-gray-800">Free shipping on this item</p>
+                    </div>
+                    <p className="text-gray-600">Shipping calculated at checkout for your pincode.</p>
                   </div>
-                  <p className="text-sm text-gray-700">
-                    <strong>Estimated delivery</strong> in 5–7 days
-                  </p>
-                </div>
-
-                {/* Free shipping */}
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0" style={{ backgroundColor: '#e8e3da' }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DB2A20" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>
-                    </svg>
-                  </div>
-                  <p className="text-sm font-semibold text-gray-800">Free Shipping</p>
-                </div>
-
-                {/* Query */}
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0" style={{ backgroundColor: '#e8e3da' }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DB2A20" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-                    </svg>
-                  </div>
-                  <p className="text-sm font-semibold text-gray-800">About your query!</p>
-                </div>
+                )}
               </div>
 
+              <div className="border-t border-gray-200 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setIsDescriptionOpen((o) => !o)}
+                  className="flex w-full items-center justify-between py-3 text-sm font-semibold text-gray-900 hover:text-gray-700"
+                >
+                  <span>Description</span>
+                  <svg
+                    className={`h-5 w-5 transition-transform ${isDescriptionOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {isDescriptionOpen && (
+                  <div className="space-y-3 pb-2 text-sm leading-relaxed text-gray-700">
+                    {passedProduct?.feature && (
+                      <p className="font-medium text-gray-900">{passedProduct.feature}</p>
+                    )}
+                    <p>{PRODUCT_DESCRIPTION}</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-6 border-t border-gray-200 pt-4">
+                <span className="text-sm text-gray-700">Share:</span>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=" className="text-sm text-gray-700 underline hover:text-gray-900" target="_blank" rel="noopener noreferrer">
+                  Facebook
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=Duroflex" className="text-sm text-gray-700 underline hover:text-gray-900" target="_blank" rel="noopener noreferrer">
+                  Twitter
+                </a>
+                <span className="text-sm text-gray-700">Pin it</span>
+              </div>
             </div>
           </div>
         </div>
