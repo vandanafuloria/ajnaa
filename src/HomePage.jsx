@@ -337,7 +337,10 @@ const HomePage = ({ onProductClick }) => {
       {/* Live User Counter */}
       <LiveUserCounter className={`fixed left-4 z-50 transition-all duration-300 ${isScrolled ? 'top-4' : 'top-[46px]'}`} />
 
-      <InstagramTrustCarousel instagramUrl={DUROFLEX_INSTAGRAM_URL} followersLabel="81.8K" />
+      {/* Instagram trust / mentions strip — off for now; set to true to restore */}
+      {false && (
+        <InstagramTrustCarousel instagramUrl={DUROFLEX_INSTAGRAM_URL} followersLabel="81.8K" />
+      )}
 
       {/* Big Deals Section */}
       <section className="w-full py-12 md:py-16 bg-white">
@@ -670,7 +673,8 @@ const HomePage = ({ onProductClick }) => {
 
 
 
-      {/* Instagram Profile Section */}
+      {/* Instagram profile (followers, posts, bio) — off for now; set to true to restore */}
+      {false && (
       <section className="w-full py-6 md:py-10 bg-white">
         <div className="w-full px-4">
 
@@ -875,6 +879,7 @@ const HomePage = ({ onProductClick }) => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Instagram Reels Carousel Section */}
       <section className="w-full py-8 md:py-12 bg-white overflow-hidden">
