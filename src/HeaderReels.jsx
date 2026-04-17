@@ -1,24 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { DUROFLEX_SHOP_VIDEOS } from './duroflexShopVideos';
 
-const REEL_URLS = [
-  'https://www.duroflexworld.com/cdn/shop/files/quinn_okircxgun9u10td4r6qc6g0z.mp4#t=0.1',
-  'https://www.duroflexworld.com/cdn/shop/files/quinn_jsgq5vyye1dmilj7zne9rnzt.mp4#t=0.1',
-  'https://www.duroflexworld.com/cdn/shop/files/quinn_lmznryqrwzauev3s397avtn4.mp4#t=0.1',
-  'https://www.duroflexworld.com/cdn/shop/files/quinn_wes92m2vvgwc4en2nloqw41x.mp4#t=0.1',
-  'https://www.duroflexworld.com/cdn/shop/files/quinn_gvww4nhiqe5br78eh2oj54vn.mp4#t=0.1',
-  'https://www.duroflexworld.com/cdn/shop/files/quinn_djau6vfis9hyb11kyk40m2bd.mp4#t=0.1',
-  'https://www.duroflexworld.com/cdn/shop/files/quinn_dxgxo8wni5yeqmj4e0juw7bx.mp4#t=0.1',
-];
+const REEL_URLS = DUROFLEX_SHOP_VIDEOS;
 
 /** One line per reel — stable copy (no random shuffle on navigation) */
 const REEL_CAPTIONS = [
-  'Designed to destress — sleep better tonight.',
-  'Duroflex mattresses · trusted since 1963.',
-  'Wake up refreshed with Duropedic comfort.',
-  'Natural Living range · eco-conscious sleep.',
-  'Airboost layers · breathable, supportive rest.',
-  '100-night trial on select mattresses.',
-  'Premium comfort, crafted for Indian homes.',
+  'Upcycled with love — giving waste a second life.',
+  'Scrapshala · crafted from what others throw away.',
+  'Eco-friendly products for everyday living.',
+  'As seen on Shark Tank India 🦈',
+  'Handcrafted bags from upcycled newspapers & tyres.',
+  'Sustainable gifting starts here.',
+  'Zero waste, full style.',
+  'Every product tells a story of reuse.',
 ];
 
 const BRAND_ACCENT = '#DB2A20';
@@ -183,7 +177,7 @@ export default function HeaderReels() {
               id="header-reels-heading"
               className="text-center text-base font-semibold tracking-tight text-stone-900 sm:text-lg"
             >
-              Duroflex reels
+              Scrapshala reels
             </h2>
             <p className="text-center text-xs text-stone-500 sm:text-[13px]">
               Tap a story to watch — swipe or use arrows to browse
@@ -236,7 +230,7 @@ export default function HeaderReels() {
           <div
             role="dialog"
             aria-modal="true"
-            aria-label="Duroflex reels"
+            aria-label="Scrapshala reels"
             className="relative z-10 flex w-full max-w-[min(100%,420px)] flex-col sm:max-h-[min(92dvh,880px)]"
             onClick={(e) => e.stopPropagation()}
           >
@@ -256,7 +250,7 @@ export default function HeaderReels() {
                         D
                       </div>
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-semibold text-white drop-shadow-sm">Duroflex World</p>
+                        <p className="truncate text-sm font-semibold text-white drop-shadow-sm">Scrapshala</p>
                         <p className="text-[11px] font-medium text-white/75">
                           Reel {viewerIndex + 1} of {n}
                         </p>

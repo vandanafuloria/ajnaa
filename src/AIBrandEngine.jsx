@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './AIBrandEngine.css';
 
-const STORE_LOCATOR_URL = 'https://stores.duroflexworld.com/';
-const SHOP_ONLINE_URL = 'https://www.duroflexworld.com/';
+const SHOP_URL = 'https://scrapshala.com/';
+const INSTAGRAM_URL = 'https://www.instagram.com/scrapshala/';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -32,7 +32,7 @@ const Sparkline = ({ data }) => {
             top: 0,
             left: `${(pts[hovered].x / w) * 100}%`,
             transform: 'translateX(-50%)',
-            background: '#DB2A20',
+            background: '#178604',
             color: '#fff',
             fontSize: '9px',
             fontWeight: 600,
@@ -43,21 +43,21 @@ const Sparkline = ({ data }) => {
             zIndex: 10,
           }}
         >
-          {MONTHS[hovered]}: {data[hovered] * 80 + 400} visits
+          {MONTHS[hovered]}: {data[hovered] * 60 + 300} orders
         </div>
       )}
       <svg width="100%" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" style={{ display: 'block' }}>
         <defs>
-          <linearGradient id="sparkGradDuro" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#DB2A20" stopOpacity="0.12" />
-            <stop offset="100%" stopColor="#DB2A20" stopOpacity="0" />
+          <linearGradient id="sparkGradScrap" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#178604" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="#178604" stopOpacity="0" />
           </linearGradient>
         </defs>
-        <path d={areaD} fill="url(#sparkGradDuro)" />
+        <path d={areaD} fill="url(#sparkGradScrap)" />
         <path
           d={pathD}
           fill="none"
-          stroke="#DB2A20"
+          stroke="#178604"
           strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -68,8 +68,8 @@ const Sparkline = ({ data }) => {
             cx={p.x}
             cy={p.y}
             r={hovered === p.i ? 3.5 : 2}
-            fill={hovered === p.i ? '#DB2A20' : '#fff'}
-            stroke="#DB2A20"
+            fill={hovered === p.i ? '#178604' : '#fff'}
+            stroke="#178604"
             strokeWidth="1.4"
             style={{ cursor: 'pointer', transition: 'r 0.15s' }}
             onMouseEnter={() => setHovered(p.i)}
@@ -83,127 +83,127 @@ const Sparkline = ({ data }) => {
 
 const AIBrandEngine = ({ showExtras = true }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [activeTab, setActiveTab] = useState('duropedic');
+  const [activeTab, setActiveTab] = useState('bags');
 
   if (!showExtras) return null;
 
   const tabs = [
-    { id: 'duropedic', label: 'Duropedic' },
-    { id: 'airboost', label: 'Airboost' },
-    { id: 'natural', label: 'Natural Living' },
-    { id: 'accessories', label: 'Accessories' },
-    { id: 'stores', label: 'Stores' },
-    { id: 'support', label: 'Expert care' },
+    { id: 'bags', label: 'Bags' },
+    { id: 'organizers', label: 'Organizers' },
+    { id: 'wallets', label: 'Wallets' },
+    { id: 'gifting', label: 'Gifting' },
+    { id: 'story', label: 'Our Story' },
+    { id: 'impact', label: 'Impact' },
   ];
 
   const content = {
-    duropedic: {
-      title: 'Duropedic engineered support',
-      category: 'Mattresses · Orthopedic & back care',
+    bags: {
+      title: 'Upcycled bags & totes',
+      category: 'Bags · Newspaper textile & tyre tubes',
       metrics: {
-        purchases: 128400,
-        reviews: 45200,
-        refundRate: 0.9,
-        qualityScore: 97,
-        trend: [42, 48, 44, 52, 58, 62, 68, 72, 76, 82, 88, 94],
-      },
-      highlights: [
-        'Zoned support for neutral spine alignment — built for Indian sleepers',
-        'Trusted by families upgrading from basic foam or spring mattresses',
-        'Pairs with roll-pack delivery and clear warranty documentation',
-        'Try feel & firmness at a Duroflex Experience Centre near you',
-      ],
-    },
-    airboost: {
-      title: 'Airboost breathable comfort',
-      category: 'Mattresses · Cooler, airier sleep',
-      metrics: {
-        purchases: 98600,
-        reviews: 31100,
-        refundRate: 1.1,
-        qualityScore: 98,
-        trend: [55, 58, 54, 60, 65, 70, 75, 78, 82, 88, 95, 102],
-      },
-      highlights: [
-        'Comfort layers designed for breathability in warm, humid climates',
-        'Popular for couples who want motion isolation without a “stuck” feel',
-        'Cool-touch and quilted covers match what you see on Duroflex World',
-        'See trims & specs online — then lie down in store to decide',
-      ],
-    },
-    natural: {
-      title: 'Natural Living range',
-      category: 'Mattresses · Eco-conscious materials',
-      metrics: {
-        purchases: 62400,
-        reviews: 18900,
-        refundRate: 1.2,
-        qualityScore: 96,
-        trend: [30, 34, 38, 42, 45, 48, 52, 56, 60, 65, 70, 76],
-      },
-      highlights: [
-        'Natural and eco-forward options for allergen-conscious households',
-        'Transparent specs — compare imports vs local service & warranty',
-        'Layering and fabrics chosen for durability in real Indian homes',
-        'Experience Centres stock multiple feels — no guesswork online only',
-      ],
-    },
-    accessories: {
-      title: 'Pillows, protectors & more',
-      category: 'Sleep accessories · Complete the bed',
-      metrics: {
-        purchases: 215000,
-        reviews: 67800,
-        refundRate: 1.4,
-        qualityScore: 95,
-        trend: [70, 72, 75, 78, 80, 82, 85, 88, 90, 92, 95, 98],
-      },
-      highlights: [
-        'Mattress protectors, pillows and toppers to extend mattress life',
-        'Designed to pair with Duropedic, Airboost and Natural Living beds',
-        'Add-ons available online and at Experience Centres',
-        'Staff can suggest height & size for your existing frame',
-      ],
-    },
-    stores: {
-      title: 'Duroflex Experience Centres',
-      category: 'Store locator · Try before you buy',
-      metrics: {
-        purchases: 89400,
-        reviews: 125000,
+        purchases: 42000,
+        reviews: 18600,
         refundRate: 0.8,
-        qualityScore: 99,
-        trend: [48, 52, 55, 60, 65, 72, 78, 85, 90, 96, 102, 110],
+        qualityScore: 97,
+        trend: [38, 42, 40, 50, 55, 62, 68, 74, 80, 88, 94, 102],
       },
       highlights: [
-        'Experience Centres across Bengaluru, Mumbai, Delhi NCR, Chennai, Hyderabad & more',
-        'Filter by state, city and locality — same flow as the official store finder',
-        'Highly rated locations (e.g. 4.8+ stars) with thousands of reviews nationwide',
-        'Step in to compare firmness, fabrics and Duropedic vs Airboost in person',
+        'Handcrafted from upcycled newspaper textile and tyre tubes',
+        'Each bag is one-of-a-kind — no two pieces look exactly alike',
+        'Water-resistant exterior, firm tyre tube handles for daily use',
+        'Fits laptops up to 15.6 inches — perfect for work and college',
       ],
     },
-    support: {
-      title: 'Expert shopping & aftercare',
-      category: 'Warranty · WhatsApp · Hours',
+    organizers: {
+      title: 'Desk & table organizers',
+      category: 'Home decor · E-waste & audio tape upcycle',
       metrics: {
-        purchases: 34200,
-        reviews: 28900,
+        purchases: 35800,
+        reviews: 14200,
+        refundRate: 1.0,
+        qualityScore: 96,
+        trend: [30, 35, 38, 44, 48, 54, 60, 66, 72, 78, 84, 90],
+      },
+      highlights: [
+        'Made from upcycled e-waste components and cassette tapes',
+        'Functional, colourful and a conversation starter on any desk',
+        'Holds pens, scissors, cards and stationery neatly',
+        'Great gifting option for colleagues and students',
+      ],
+    },
+    wallets: {
+      title: 'Wallets & zip pouches',
+      category: 'Accessories · Tyre tube craft',
+      metrics: {
+        purchases: 28400,
+        reviews: 11900,
+        refundRate: 0.9,
+        qualityScore: 98,
+        trend: [25, 28, 32, 37, 42, 48, 54, 60, 65, 72, 78, 86],
+      },
+      highlights: [
+        'Slim wallets and pouches crafted from reclaimed tyre tubes',
+        'Durable, waterproof and incredibly light for everyday carry',
+        'Available in multiple sizes — card holders to full zip pouches',
+        'Popular as eco-friendly birthday and anniversary gifts',
+      ],
+    },
+    gifting: {
+      title: 'Gifting & combos',
+      category: 'Gifting · Bulk orders · Corporate',
+      metrics: {
+        purchases: 19600,
+        reviews: 8400,
         refundRate: 0.7,
         qualityScore: 99,
-        trend: [25, 28, 32, 38, 42, 48, 52, 58, 62, 68, 72, 78],
+        trend: [20, 24, 28, 35, 42, 50, 58, 65, 74, 84, 92, 100],
       },
       highlights: [
-        '50+ years of sleep expertise — mattresses engineered for Indian homes',
-        'Warranty registration, blogs and policies on Duroflex World',
-        'Get shopping help like the locator: expert chat & store teams',
-        'Typical care hours: 10am–10pm — check WhatsApp / Talk to expert on the site',
+        'Custom gifting hampers for birthdays, weddings and corporate events',
+        'Each gift tells a sustainability story — meaningful and unique',
+        'Bulk orders accepted with personalisation and branded packaging',
+        'DM on Instagram or WhatsApp to discuss custom gift sets',
+      ],
+    },
+    story: {
+      title: 'As seen on Shark Tank India',
+      category: 'Brand story · Zero waste · Artisan craft',
+      metrics: {
+        purchases: 100000,
+        reviews: 52000,
+        refundRate: 0.6,
+        qualityScore: 99,
+        trend: [40, 46, 50, 58, 65, 72, 80, 88, 95, 100, 108, 116],
+      },
+      highlights: [
+        'Featured on Shark Tank India — built on a zero-waste philosophy',
+        'Every product gives industrial waste a beautiful second life',
+        'Skilled artisans handcraft each piece — supporting local livelihoods',
+        '52K+ Instagram followers and 1 lakh+ happy customers across India',
+      ],
+    },
+    impact: {
+      title: 'Our environmental impact',
+      category: 'Sustainability · Zero waste · Made in India',
+      metrics: {
+        purchases: 100000,
+        reviews: 52000,
+        refundRate: 0.5,
+        qualityScore: 99,
+        trend: [35, 42, 48, 55, 62, 70, 78, 86, 92, 98, 106, 114],
+      },
+      highlights: [
+        'Tonnes of newspaper, tyre rubber and e-waste diverted from landfills',
+        'Minimal, recycled packaging on every shipment',
+        'Pan-India delivery — buy directly from scrapshala.com',
+        'Every purchase directly funds artisan wages and zero-waste workshops',
       ],
     },
   };
 
   const current = content[activeTab];
   const m = current.metrics;
-  const fmt = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : n);
+  const fmt = (n) => (n >= 1000 ? `${(n / 1000).toFixed(0)}k` : n);
 
   return (
     <div className={`ai-brand-engine ${isExpanded ? 'expanded' : ''}`}>
@@ -212,7 +212,7 @@ const AIBrandEngine = ({ showExtras = true }) => {
           type="button"
           className="ai-brand-engine-trigger"
           onClick={() => setIsExpanded(true)}
-          aria-label="Open Duroflex brand guide and store help"
+          aria-label="Open Scrapshala brand guide"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
@@ -227,8 +227,8 @@ const AIBrandEngine = ({ showExtras = true }) => {
                 <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
               </svg>
               <div>
-                <h3 className="panel-title">Duroflex World</h3>
-                <p className="panel-subtitle">Mattresses · Experience Centres · 50+ years in India</p>
+                <h3 className="panel-title">Scrapshala</h3>
+                <p className="panel-subtitle">Upcycled craft · Zero waste · Shark Tank India</p>
               </div>
             </div>
             <button type="button" className="panel-close-btn" onClick={() => setIsExpanded(false)} aria-label="Close">
@@ -261,12 +261,12 @@ const AIBrandEngine = ({ showExtras = true }) => {
               <div className="metric-tile">
                 <div className="metric-icon" aria-hidden>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
+                    <path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z" />
+                    <path d="M16 3H8l-2 4h12l-2-4z" />
                   </svg>
                 </div>
-                <div className="metric-num">{fmt(m.purchases)}</div>
-                <div className="metric-lbl">Happy homes</div>
+                <div className="metric-num">{fmt(m.purchases)}+</div>
+                <div className="metric-lbl">Orders</div>
               </div>
               <div className="metric-tile">
                 <div className="metric-icon" aria-hidden>
@@ -289,8 +289,7 @@ const AIBrandEngine = ({ showExtras = true }) => {
               <div className="metric-tile">
                 <div className="metric-icon" aria-hidden>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="1 4 1 10 7 10" />
-                    <path d="M3.51 15a9 9 0 1 0 .49-3.27" />
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
                   </svg>
                 </div>
                 <div className="metric-num">{m.refundRate}%</div>
@@ -305,8 +304,8 @@ const AIBrandEngine = ({ showExtras = true }) => {
                     <path d="M 6 38 A 26 26 0 0 1 58 38" fill="none" stroke="#ebebeb" strokeWidth="5" strokeLinecap="round" />
                     <path
                       d="M 6 38 A 26 26 0 0 1 58 38"
-                       fill="none"
-                      stroke="#DB2A20"
+                      fill="none"
+                      stroke="#178604"
                       strokeWidth="5"
                       strokeLinecap="round"
                       strokeDasharray={`${(m.qualityScore / 100) * 81.7} 81.7`}
@@ -315,7 +314,7 @@ const AIBrandEngine = ({ showExtras = true }) => {
                   <div className="score-arc-label">{m.qualityScore}%</div>
                 </div>
                 <div className="score-title">Satisfaction</div>
-                <div className="score-sub">Across ranges & channels</div>
+                <div className="score-sub">Verified customer ratings</div>
               </div>
 
               <div className="score-card">
@@ -332,13 +331,13 @@ const AIBrandEngine = ({ showExtras = true }) => {
                   </div>
                 </div>
                 <div className="score-title">Returns</div>
-                <div className="score-sub">Industry-low dispute rate</div>
+                <div className="score-sub">Industry-low return rate</div>
               </div>
             </div>
 
             <div className="trend-card">
               <div className="trend-header">
-                <span className="trend-label">Experience Centre interest</span>
+                <span className="trend-label">Order interest trend</span>
                 <span className="trend-badge">Last 12 months</span>
               </div>
               <Sparkline data={m.trend} />
@@ -359,28 +358,27 @@ const AIBrandEngine = ({ showExtras = true }) => {
 
             <div className="ai-brand-cta-row">
               <a
-                href={STORE_LOCATOR_URL}
+                href={SHOP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ai-brand-cta ai-brand-cta--primary"
               >
-                Find a store
+                Shop Scrapshala
               </a>
               <a
-                href={SHOP_ONLINE_URL}
+                href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ai-brand-cta ai-brand-cta--secondary"
               >
-                Shop online
+                @scrapshala
               </a>
             </div>
             <p className="ai-brand-footnote">
-              Official store locator & Experience Centres:{' '}
-              <a href={STORE_LOCATOR_URL} target="_blank" rel="noopener noreferrer">
-                stores.duroflexworld.com
+              Handcrafted in India · Zero waste · As seen on Shark Tank India.{' '}
+              <a href={SHOP_URL} target="_blank" rel="noopener noreferrer">
+                scrapshala.com
               </a>
-              . Expert help & hours as on Duroflex sites (e.g. ~10am–10pm).
             </p>
           </div>
         </div>

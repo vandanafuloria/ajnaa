@@ -1,164 +1,124 @@
-/* Duroflex-style product card (matches site .product-item structure) */
+/* Scrapshala-style product card */
 
-.product-item {
+.pc-card {
   display: flex;
   flex-direction: column;
-  height: 100%;
   background: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 2px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 100%;
 }
 
-.product-item .proimg {
+/* ── Image area ── */
+.pc-img-wrap {
   position: relative;
-  background: #f5f5f5;
-}
-
-.product-item .proimg > a {
   display: block;
-  position: relative;
   text-decoration: none;
-  color: inherit;
+  background: #f7f7f7;
+  overflow: hidden;
 }
 
-.product-item .protag {
+.pc-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.pc-card:hover .pc-img {
+  transform: scale(1.03);
+}
+
+/* Sale badge */
+.pc-badge {
   position: absolute;
   top: 10px;
   left: 10px;
-  z-index: 2;
+  z-index: 3;
   background: #db2a20;
   color: #fff;
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 4px 10px;
-  text-transform: capitalize;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 2px;
   pointer-events: none;
+  text-transform: capitalize;
 }
 
-.product-item .proimg img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  display: block;
+/* CTA button row — sits at bottom of image */
+.pc-cta-row {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  gap: 0;
+  /* Always visible on mobile */
 }
 
-.product-item .prodata {
+/* On desktop, hide until hover */
+@media (min-width: 769px) {
+  .pc-cta-row {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+  .pc-cta-row--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pc-btn {
   flex: 1;
+  padding: 11px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.pc-btn:hover {
+  opacity: 0.88;
+}
+
+.pc-btn--cart {
+  background: #3d7d3a;
+  color: #fff;
+}
+
+.pc-btn--quick {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* ── Info area ── */
+.pc-info {
+  padding: 10px 12px 14px;
   display: flex;
   flex-direction: column;
-  padding: 12px 14px 14px;
-  font-family: inherit;
+  gap: 6px;
+  flex: 1;
 }
 
-.product-item .prodata > a {
-  display: block;
+.pc-title-link {
   text-decoration: none;
   color: inherit;
 }
 
-.product-item .custom_review_star_block {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 6px;
-  flex-wrap: nowrap;
-  min-width: 0;
-}
-
-.product-item .metafield_text_text {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #1a1a1a;
-  text-transform: uppercase;
-  flex: 1 1 0;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.product-item .review_count_block {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.product-item .jdgm-preview-badge--with-link {
-  display: unset !important;
-}
-
-.product-item .jdgm-prev-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px 6px;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-}
-
-.product-item .jdgm-prev-badge__stars {
-  display: inline-flex;
-  gap: 1px;
-  line-height: 0;
-}
-
-.product-item .jdgm-prev-badge__stars--single .jdgm-star {
-  width: 15px;
-  height: 15px;
-}
-
-.product-item .jdgm-star {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ccc' d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E")
-    center / contain no-repeat;
-}
-
-.product-item .jdgm-star.jdgm--on {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23db2a20' d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E");
-}
-
-/* Single preview star — orange */
-.product-item .jdgm-star.jdgm-star--orange.jdgm--on {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ea580c' d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E");
-}
-
-.product-item .jdgm-prev-badge__text {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1a1a1a;
-}
-
-.product-item .jdgm-prev-badge__count {
+.pc-title {
   font-size: 13px;
   font-weight: 500;
-  color: #666;
-}
-
-.product-item .jdgm-prev-badge__buying {
-  font-size: 12px;
-  font-weight: 600;
-  color: #555;
-  white-space: nowrap;
-}
-
-.product-item .jdgm-prev-badge__count + .jdgm-prev-badge__buying::before {
-  content: '·';
-  margin: 0 6px 0 2px;
-  font-weight: 500;
-  color: #999;
-}
-
-.product-item .prodata h3 {
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.35;
   color: #1a1a1a;
-  margin: 0 0 10px;
+  line-height: 1.4;
+  margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-clamp: 3;
@@ -166,125 +126,58 @@
   overflow: hidden;
 }
 
-.product-item .pricearea {
+/* ── Stars ── */
+.pc-review-row {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 10px;
-  margin-bottom: 4px;
+  align-items: center;
+  gap: 5px;
 }
 
-.product-item .price-item--sale {
-  font-size: 15px;
+.pc-rating-num {
+  font-size: 12px;
   font-weight: 700;
   color: #1a1a1a;
 }
 
-.product-item .saveamount {
-  display: inline-block;
-  margin-left: 6px;
+.pc-stars {
+  display: inline-flex;
+  gap: 1px;
+  line-height: 0;
+}
+
+.pc-star {
+  width: 17px;
+  height: 17px;
+  fill: #d1d5db;
+  stroke: none;
+}
+
+.pc-star--on {
+  fill: #f97316;
+}
+
+.pc-review-label {
   font-size: 12px;
-  font-weight: 600;
-  color: #db2a20;
+  color: #666;
 }
 
-.product-item .custom_span_compare {
-  font-size: 13px;
-  color: #888;
-}
-
-.product-item .price-item--regular {
-  color: #888;
-  font-weight: 400;
-}
-
-/* Snapmint-style EMI row */
-.product-item .snap_dp_list {
-  margin: 8px 0 10px;
-}
-
-.product-item .snap_collection_category.snap_mobile_widget {
-  cursor: pointer;
-  color: #000;
+/* ── Price ── */
+.pc-price-row {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-weight: 500;
-  font-family: inherit;
-  font-size: 11px;
-  line-height: normal;
-  letter-spacing: normal;
-  white-space: nowrap;
+  align-items: baseline;
+  gap: 8px;
   flex-wrap: wrap;
-  gap: 4px;
 }
 
-.product-item .snap_collection_category .snap_circle_logo {
-  width: 14px;
-  height: 14px;
-  object-fit: contain;
-  margin: -2px 4px 0;
-  display: inline;
+.pc-price-sale {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
 }
 
-.product-item .snap_blue_color_text {
-  color: #000;
-  font-weight: 500;
-}
-
-.product-item .snap_know_more_text {
-  color: #fff;
-  font-size: 8px;
-  padding: 4px 5px;
-  margin-left: 4px;
-  border-radius: 2.848px;
-  background: #db2a20;
-  border: 0;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.product-item .prodescription {
-  margin-top: 4px;
-  font-size: 12px;
-  color: #444;
-  line-height: 1.45;
-}
-
-.product-item .prodescription ul {
-  margin: 0;
-  padding-left: 18px;
-}
-
-.product-item .prodescription li {
-  margin-bottom: 4px;
-}
-
-.product-item .prodescription li:empty {
-  display: none;
-}
-
-@media (min-width: 346px) and (max-width: 390px) {
-  .product-item .snap_know_more_text {
-    font-size: 7.5px;
-  }
-  .product-item .snap_collection_category.snap_mobile_widget {
-    font-size: 11px;
-    margin: 5px 0 !important;
-  }
-  .product-item .snap_collection_category .snap_circle_logo {
-    width: 3vw;
-    min-width: 12px;
-    margin: 0 3px;
-  }
-}
-
-@media (min-width: 1050px) {
-  .product-item .snap_know_more_text {
-    font-size: 9.5px !important;
-  }
-  .product-item .snap_collection_category.snap_mobile_widget {
-    font-size: 14px !important;
-    margin: 10px 0 !important;
-  }
+.pc-price-orig {
+  font-size: 13px;
+  color: #999;
+  font-weight: 400;
+  text-decoration: line-through;
 }

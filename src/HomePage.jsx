@@ -9,6 +9,7 @@ import duroflexInstagramProfile from './assets/logo.png';
 import { DUROFLEX_SHOP_VIDEOS } from './duroflexShopVideos';
 import { bestSellerProducts } from './duroflexBestSellers';
 import InstagramTrustCarousel from './InstagramTrustCarousel';
+import PhotoGallery from './PhotoGallery';
 import './HomePage.css';
 
 const DUROFLEX_INSTAGRAM_URL = 'https://www.instagram.com/duroflexworld/';
@@ -23,7 +24,7 @@ const BRAND_NAME = "wordofmouth";
 const getRandomSoldThisWeek = (min = 180, max = 420) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
-const VIDEO_VIEWS = ['4.0K', '4.2K', '3.8K', '3.1K', '2.9K', '2.7K', '3.5K', '4.1K', '3.6K', '2.8K', '3.9K'];
+const VIDEO_VIEWS = ['4.0K', '4.2K', '3.8K', '3.1K', '2.9K', '2.7K', '3.5K', '4.1K'];
 
 // Video Products data — one row per Duroflex clip; posters cycle best sellers
 const videoProducts = SHOPIFY_VIDEO_URLS.map((url, i) => {
@@ -44,6 +45,113 @@ const videoProducts = SHOPIFY_VIDEO_URLS.map((url, i) => {
     soldThisWeek: getRandomSoldThisWeek(),
   };
 });
+
+const TRUST_SLIDES = [
+  {
+    content: (
+      <span className="flex items-center gap-1.5">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" width="13" height="13" alt="" style={{flexShrink:0}} />
+        <span className="text-xs font-bold text-gray-900">Instagram • 52K followers • @scrapshala</span>
+      </span>
+    ),
+  },
+  {
+    content: (
+      <span className="flex items-center gap-1.5">
+        <span style={{color:'#f97316',fontSize:'12px',letterSpacing:'1px'}}>★★★★★</span>
+        <span className="text-xs font-bold text-gray-900">1 Lakh+ Happy Customers</span>
+      </span>
+    ),
+  },
+  {
+    content: (
+      <span className="flex items-center gap-1.5">
+        <span style={{color:'#178604',fontSize:'13px',fontWeight:700}}>✦</span>
+        <span className="text-xs font-bold text-gray-900">Upcycled with Love • Zero Waste</span>
+      </span>
+    ),
+  },
+  {
+    content: (
+      <span className="flex items-center gap-1.5">
+        <span style={{color:'#178604',fontSize:'13px',fontWeight:700}}>✦</span>
+        <span className="text-xs font-bold text-gray-900">As Seen on Shark Tank India</span>
+      </span>
+    ),
+  },
+  {
+    content: (
+      <span className="flex items-center gap-1.5">
+        <span style={{color:'#f97316',fontSize:'12px',letterSpacing:'1px'}}>★★★★★</span>
+        <span className="text-xs font-bold text-gray-900">4.6 Rated • 1,00,000+ Orders</span>
+      </span>
+    ),
+  },
+  {
+    content: (
+      <span className="flex items-center gap-1.5">
+        <span style={{color:'#178604',fontSize:'13px',fontWeight:700}}>✦</span>
+        <span className="text-xs font-bold text-gray-900">100% Eco-Friendly Products</span>
+      </span>
+    ),
+  },
+];
+
+function RightRailTrust() {
+  const [current, setCurrent] = React.useState(0);
+  const [phase, setPhase] = React.useState('idle'); // 'idle' | 'exit' | 'enter'
+
+  React.useEffect(() => {
+    const id = setInterval(() => {
+      // slide current out to the left
+      setPhase('exit');
+      setTimeout(() => {
+        // swap slide, place incoming off-screen to the right
+        setCurrent(i => (i + 1) % TRUST_SLIDES.length);
+        setPhase('enter');
+        // slide new one in from right to center
+        setTimeout(() => setPhase('idle'), 320);
+      }, 320);
+    }, 3200);
+    return () => clearInterval(id);
+  }, []);
+
+  const slideStyle = {
+    transition: 'transform 320ms cubic-bezier(0.4,0,0.2,1), opacity 320ms ease',
+    transform:
+      phase === 'exit'  ? 'translateX(-110%)' :
+      phase === 'enter' ? 'translateX(110%)'  :
+      'translateX(0)',
+    opacity: phase === 'idle' ? 1 : 0,
+  };
+
+  return (
+    <div
+      className="fixed z-30 rounded-lg shadow-lg overflow-hidden"
+      aria-label="Social proof"
+      style={{
+        top: '30%',
+        right: '16px',
+        transform: 'translateY(-30%) rotate(270deg)',
+        transformOrigin: 'right center',
+        minWidth: '270px',
+        height: '36px',
+        backgroundColor: '#fff',
+        display: 'flex',
+        alignItems: 'center',
+        paddingLeft: '14px',
+        paddingRight: '14px',
+      }}
+    >
+      <div
+        className="flex items-center gap-2 whitespace-nowrap h-full w-full overflow-hidden"
+        style={slideStyle}
+      >
+        {TRUST_SLIDES[current].content}
+      </div>
+    </div>
+  );
+}
 
 const HomePage = ({ onProductClick }) => {
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -146,17 +254,12 @@ const HomePage = ({ onProductClick }) => {
   
   // Instagram post URLs
   const instagramPosts = [
-    'https://www.instagram.com/p/DUkDWOYiL8x/',
-    'https://www.instagram.com/p/DW1GPT3CLZt/',
-    'https://www.instagram.com/p/DWyteqICIrT/',
-    'https://www.instagram.com/p/DWvjkgfiG99/',
-    'https://www.instagram.com/p/DWndarEiAbr/',
-    'https://www.instagram.com/p/DWlF0FTCD73/',
-    'https://www.instagram.com/p/DWjPq5KCAIq/',
-    'https://www.instagram.com/p/DV8th8KiA24/',
-    'https://www.instagram.com/p/DViRz7QiFbi/',
-    'https://www.instagram.com/p/DUncBy-CL5c/',
-    'https://www.instagram.com/p/DShk_eXDQST/',
+    'https://www.instagram.com/reel/C9SEMuqIHFx/',
+    'https://www.instagram.com/reel/DUdNVqmj8bP/',
+    'https://www.instagram.com/reel/DPlGDg4ktcQ/',
+    'https://www.instagram.com/reel/DIhE9rVTvXt/',
+    'https://www.instagram.com/reel/DIO2D9yPn7m/',
+    'https://www.instagram.com/reel/DGcbuqGiCea/',
   ];
 
   // Load Instagram embed script
@@ -336,6 +439,9 @@ const HomePage = ({ onProductClick }) => {
       
       {/* Live User Counter */}
       <LiveUserCounter className={`fixed left-4 z-50 transition-all duration-300 ${isScrolled ? 'top-4' : 'top-[46px]'}`} />
+
+      {/* Right rail trust carousel */}
+      <RightRailTrust />
 
       {/* Instagram trust / mentions strip — off for now; set to true to restore */}
       {false && (
@@ -569,7 +675,7 @@ const HomePage = ({ onProductClick }) => {
                           e.stopPropagation();
                           console.log('Add to cart:', product);
                         }}
-                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#DB2A20', marginTop: '12px' }}
+                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#178604', marginTop: '12px' }}
                       >
                         ADD TO CART
                       </button>
@@ -658,7 +764,7 @@ const HomePage = ({ onProductClick }) => {
                       </div>
                       <button
                         onClick={(e) => e.stopPropagation()}
-                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#DB2A20' }}
+                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#178604' }}
                       >
                         ADD TO CART
                       </button>
@@ -881,6 +987,9 @@ const HomePage = ({ onProductClick }) => {
       </section>
       )}
 
+      {/* Photo Gallery */}
+      <PhotoGallery title="Our Gallery" subtitle="Real moments, real craft — made from what others throw away" />
+
       {/* Instagram Reels Carousel Section */}
       <section className="w-full py-8 md:py-12 bg-white overflow-hidden">
         <div className="w-full">
@@ -995,7 +1104,7 @@ const HomePage = ({ onProductClick }) => {
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-xs font-medium line-clamp-1">{p.title}</p>
                         <p className="text-yellow-300 text-sm font-bold">₹{p.currentPrice?.toLocaleString('en-IN')}</p>
-                        <button className="mt-1 px-3 py-0.5 rounded text-xs font-bold text-white bg-[#DB2A20]">
+                        <button className="mt-1 px-3 py-0.5 rounded text-xs font-bold text-white bg-[#178604]">
                           Add
                         </button>
                       </div>
@@ -1026,7 +1135,7 @@ const HomePage = ({ onProductClick }) => {
                       <p className="text-white text-sm font-bold">₹{p.currentPrice?.toLocaleString('en-IN')}</p>
                       <button
                         onClick={(e) => { e.stopPropagation(); }}
-                        className="mt-1.5 px-3 py-1 rounded text-xs font-bold text-white bg-[#DB2A20] hover:opacity-90 transition-opacity"
+                        className="mt-1.5 px-3 py-1 rounded text-xs font-bold text-white bg-[#178604] hover:opacity-90 transition-opacity"
                       >
                         Add to Cart
                       </button>
@@ -1274,7 +1383,7 @@ const HomePage = ({ onProductClick }) => {
                 <button
                   onClick={(e) => e.stopPropagation()}
                   className="flex-1 py-3 rounded-2xl text-sm font-bold text-white"
-                  style={{ background: '#DB2A20' }}
+                  style={{ background: '#178604' }}
                 >
                   Add to Cart
                 </button>

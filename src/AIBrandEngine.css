@@ -1,7 +1,7 @@
 :root {
-  --brand: #DB2A20;
-  --brand-light: rgba(65, 84, 63, 0.07);
-  --brand-mid: rgba(65, 84, 63, 0.18);
+  --brand: #178604;
+  --brand-light: rgba(23, 134, 4, 0.07);
+  --brand-mid: rgba(23, 134, 4, 0.18);
   --border: #ebebeb;
   --bg: #f8f8f8;
   --text-muted: #9a9a9a;
@@ -318,7 +318,7 @@
 }
 
 .refund-seg.filled {
-  background: #DB2A20;
+  background: #178604;
 }
 
 .score-title {
@@ -458,7 +458,7 @@
 
 .ai-brand-cta--primary:hover {
   filter: brightness(1.05);
-  box-shadow: 0 4px 14px rgba(219, 42, 32, 0.35);
+  box-shadow: 0 4px 14px rgba(23, 134, 4, 0.35);
 }
 
 .ai-brand-cta--secondary {

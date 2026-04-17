@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import ShopifyHeader from './ShopifyHeader';
 import ShopifyFooter from './ShopifyFooter';
 import AIBrandEngine from './AIBrandEngine';
+import PhotoGallery, { GALLERY_IMAGES } from './PhotoGallery';
 import ProductCard from './ProductCard';
 import TrustSignalsRotator from './TrustSignals';
 import PdpHeroReviewRotator from './PdpHeroReviewRotator';
@@ -11,52 +12,18 @@ import PdpHeroReviewRotator from './PdpHeroReviewRotator';
 // ============================================
 
 import productHeader from './assets/product_header.png';
-import productReviewImg1 from './assets/Product Images/1.png';
-import productReviewImg2 from './assets/Product Images/2.png';
-import productReviewImg3 from './assets/Product Images/3.png';
-import productReviewImg4 from './assets/Product Images/4.png';
-import productReviewImg5 from './assets/Product Images/5.png';
-import productReviewImg6 from './assets/Product Images/6.png';
-import productReviewImg7 from './assets/Product Images/7.png';
-import productReviewImg8 from './assets/Product Images/8.png';
-import productReviewImg9 from './assets/Product Images/9.png';
-import productReviewImg10 from './assets/Product Images/10.png';
-import productReviewImg11 from './assets/Product Images/11.png';
-import productReviewImg12 from './assets/Product Images/12.png';
-import productReviewImg13 from './assets/Product Images/13.png';
-import productReviewImg14 from './assets/Product Images/14.png';
-import productReviewImg15 from './assets/Product Images/15.png';
 import { DUROFLEX_SHOP_VIDEOS } from './duroflexShopVideos';
 import { bestSellerProducts } from './duroflexBestSellers';
 
 import reviewData from '../review.json';
 
-/** Local assets for review UIs — product tab uses this order; brand tab uses {@link BRAND_REVIEW_IMAGES} (reversed). */
-const PRODUCT_REVIEW_IMAGES = [
-  productReviewImg1,
-  productReviewImg2,
-  productReviewImg3,
-  productReviewImg4,
-  productReviewImg5,
-  productReviewImg6,
-  productReviewImg7,
-  productReviewImg8,
-  productReviewImg9,
-  productReviewImg10,
-  productReviewImg11,
-  productReviewImg12,
-  productReviewImg13,
-  productReviewImg14,
-  productReviewImg15,
-];
-const BRAND_REVIEW_IMAGES = [...PRODUCT_REVIEW_IMAGES].reverse();
+/** Review images — use gallery images */
+const PRODUCT_REVIEW_IMAGES = GALLERY_IMAGES;
+const BRAND_REVIEW_IMAGES = [...GALLERY_IMAGES].reverse();
 
-// Duroflex product imagery — main gallery only (CDN)
+// Scrapshala product imagery — main gallery
 const DUROFLEX_PDP_IMAGES = [
-  'https://www.duroflexworld.com/cdn/shop/files/Airboost-6_8_jpg.jpg?v=1773923691',
-  'https://www.duroflexworld.com/cdn/shop/files/Airboost-3_6_jpg.jpg?v=1773923784',
-  'https://www.duroflexworld.com/cdn/shop/files/2_2026e6ee-a9e8-4ff5-88c7-104fea9cefb8.jpg?v=1744560694',
-  'https://www.duroflexworld.com/cdn/shop/files/1_caa4360f-a470-4da1-9d81-78570f9f02c1.jpg?v=1749639354',
+  'https://scrapshala.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_3.45.06_PM.jpg?format=webp&v=1773310830&width=713',
 ];
 
 function getReviewTitle(text) {
@@ -66,13 +33,13 @@ function getReviewTitle(text) {
 
 
 // Brand Name (footer / assets)
-const BRAND_NAME = "Duroflex World";
+const BRAND_NAME = "Scrapshala";
 
 /** Reviews UI — brand red (matches PDP accents) */
-const REVIEW_ACCENT = '#DB2A20';
-const REVIEW_RING_TRACK = '#fce8e7';
-const REVIEW_SOFT = 'rgba(219, 42, 32, 0.09)';
-const REVIEW_ACCENT_BORDER = 'rgba(219, 42, 32, 0.25)';
+const REVIEW_ACCENT = '#178604';
+const REVIEW_RING_TRACK = '#dcf5d8';
+const REVIEW_SOFT = 'rgba(23, 134, 4, 0.09)';
+const REVIEW_ACCENT_BORDER = 'rgba(23, 134, 4, 0.25)';
 
 // Product Images Array - All product images
 const PRODUCT_IMAGES = [...DUROFLEX_PDP_IMAGES];
@@ -81,23 +48,15 @@ const PRODUCT_IMAGES = [...DUROFLEX_PDP_IMAGES];
 const PRODUCT_VIDEO = DUROFLEX_SHOP_VIDEOS[0];
 
 // Product Details
-const PRODUCT_NAME = "Duropedic Airboost 6.8 Arctic Ice Mattress";
-const PRODUCT_PRICE = 26197;
-const PRODUCT_ORIGINAL_PRICE = 39693;
-const PRODUCT_DISCOUNT = 34;
-const PRODUCT_SKU = "DF-AIRBOOST-68-ARCTIC";
-const PRODUCT_DESCRIPTION = "The Duropedic Airboost 6.8 combines breathable Airboost comfort layers with a cool-touch Arctic Ice quilted cover — designed for deeper, undisturbed sleep in Indian weather. Duropedic engineering supports neutral spine alignment for back and side sleepers, while advanced foams help isolate motion so partners sleep peacefully. Premium knit fabric with anti-microbial treatment keeps the sleep surface fresher between washes; roll-pack delivery makes setup straightforward in any bedroom.";
-const PRODUCT_BRAND = "Duroflex";
-const PRODUCT_COLORS = [
-  { name: "Arctic Ice", value: "#7eb8c9" },
-  { name: "Pearl Grey", value: "#b8b5b0" },
-];
-const PRODUCT_SIZES = [
-  "72 × 36 in (Single)",
-  "72 × 60 in (Queen)",
-  "72 × 72 in (King)",
-  "78 × 72 in (King XL)",
-];
+const PRODUCT_NAME = "Ghats of Varanasi Wall Decor | Rectangular | Backside Hanging Hook | Handpainted | Made in India | Scrapshala";
+const PRODUCT_PRICE = 1945;
+const PRODUCT_ORIGINAL_PRICE = 2145;
+const PRODUCT_DISCOUNT = 9;
+const PRODUCT_SKU = "SS-LB-NP-TT-001";
+const PRODUCT_DESCRIPTION = "Handcrafted from upcycled newspaper textile and tyre tubes, this eco-friendly laptop bag is a statement of sustainable style. Each bag is one-of-a-kind, made by skilled artisans who give waste materials a beautiful second life. The newspaper textile exterior is water-resistant and surprisingly durable, while the tyre tube handles provide a firm, comfortable grip. Fits laptops up to 15.6 inches. By choosing this bag, you are directly contributing to reducing landfill waste and supporting local craftspeople.";
+const PRODUCT_BRAND = "Scrapshala";
+const PRODUCT_COLORS = [];
+const PRODUCT_SIZES = [];
 
 // You May Also Like — aligned with best sellers (reserved for future alternate carousels)
 const RELATED_PRODUCTS = bestSellerProducts.slice(0, 4).map((p) => ({
@@ -110,18 +69,18 @@ const RELATED_PRODUCTS = bestSellerProducts.slice(0, 4).map((p) => ({
   reviews: p.reviewCount,
 }));
 
-// Short captions under PDP reel pills (Duroflex shop clips)
+// Short captions under PDP reel pills
 const PDP_REEL_LABELS = [
-  'Airboost comfort',
-  'Designed to destress',
-  'Natural Living',
+  'Upcycled with love',
+  'Zero waste craft',
+  'Shark Tank India',
   'Customer favourites',
-  'Better sleep tonight',
-  'Duropedic support',
-  'Breathable layers',
-  'Real Indian homes',
-  'Mattress innovation',
-  'Shop Duroflex World',
+  'Eco-friendly bags',
+  'Newspaper textile',
+  'Tyre tube handles',
+  'Real customer stories',
+  'Sustainable gifting',
+  'Shop Scrapshala',
   'Rest worth dreaming of',
 ];
 
@@ -129,89 +88,114 @@ const PDP_REEL_LABELS = [
 // END OF EDITABLE SECTION
 // ============================================
 
-// Dummy review templates for images without reviews
+// Dummy review templates — Scrapshala upcycled product content
 const dummyReviews = [
   {
     name: 'Priya Sharma',
     rating: 5,
-    title: 'Finally sleeping through the night',
-    text: 'We switched from a budget spring mattress to this Duropedic Airboost — the difference in support and temperature is night and day. Unboxing was simple and it fluffed up evenly within a day.',
+    title: 'Love the concept and the quality!',
+    text: 'Ordered the laptop bag and I am absolutely in love. The fact that it is made from upcycled newspaper and tyre tubes is incredible. Got so many compliments at my office. Packaging was minimal and eco-friendly too.',
     date: '1/20/2025',
     type: 'product'
   },
   {
     name: 'Anjali Mehta',
-    rating: 4,
-    title: 'Cooler surface than our old foam bed',
-    text: 'The Arctic Ice cover really does feel cooler to the touch. My husband runs hot and he has stopped hogging the fan side of the bed. Edge support is better than expected for a rolled mattress.',
+    rating: 5,
+    title: 'Sturdy, unique and sustainable',
+    text: 'The bag is much sturdier than I expected. It fits my 15 inch laptop perfectly and the handles are very comfortable. Really happy to support a brand that upcycles waste into something so beautiful.',
     date: '1/18/2025',
     type: 'product'
   },
   {
     name: 'Riya Patel',
-    rating: 5,
-    title: 'Motion isolation works as advertised',
-    text: 'I am a light sleeper and my partner moves a lot — I barely notice now. The mattress has a premium look in person and matches the Duroflex World listing photos closely.',
+    rating: 4,
+    title: 'Great gifting option',
+    text: 'Bought the zip pouch as a gift for my friend and she absolutely loved it. It looks very premium in person. The tyre tube material feels durable and the stitching is neat. Will order more products soon.',
     date: '1/15/2025',
     type: 'product'
   },
   {
     name: 'Kavya Reddy',
-    rating: 4,
-    title: 'Great for back sleepers',
-    text: 'I needed firmer lumbar support after a minor strain. This bed hits a nice middle ground — supportive without feeling like a slab. Delivery team placed it exactly where we asked.',
+    rating: 5,
+    title: 'As seen on Shark Tank — and it shows!',
+    text: 'I had seen Scrapshala on Shark Tank and immediately knew I had to order. The table organizer is so well made and looks great on my desk. Love that it is made from e-waste. Very unique and purposeful.',
     date: '1/12/2025',
     type: 'product'
   },
   {
     name: 'Meera Singh',
     rating: 5,
-    title: 'Worth it for parents',
-    text: 'Bought for my parents who wanted orthopedic-style comfort. They are very happy and say getting out of bed is easier. Packaging and warranty booklet were clear.',
+    title: 'Worth every rupee',
+    text: 'The pen stand from audio tapes is such a creative product. It is colourful, sturdy and holds all my stationery neatly. My kids also love the story behind it. Will definitely order again.',
     date: '1/10/2025',
     type: 'product'
   },
   {
     name: 'Sneha Verma',
     rating: 5,
-    title: 'Second Duroflex in our home',
-    text: 'We already had a Duroflex in the guest room — this Airboost 6.8 for the master feels a step up in breathability. No regrets; would buy from Duroflex World again.',
+    title: 'Conscious shopping done right',
+    text: 'Finally a brand that makes sustainability cool. The bag looks stylish and feels very well crafted. Delivery was quick and the product was wrapped in recycled material. 10 out of 10 experience.',
     date: '1/08/2025',
     type: 'product'
   },
   {
     name: 'Divya Nair',
     rating: 4,
-    title: 'Strong value vs imports we tried',
-    text: 'We almost bought an imported boxed brand. Duroflex gave similar specs, faster local support, and a better trial story from friends. The mattress feels high quality.',
+    title: 'Unique product, great quality',
+    text: 'I was a little unsure about ordering but the product exceeded my expectations. The newspaper print pattern on the bag is very eye-catching and the tyre tube handles are solid. Recommended!',
     date: '1/05/2025',
     type: 'product'
   },
   {
     name: 'Pooja Mehta',
     rating: 5,
-    title: 'Consistent firmness across the surface',
-    text: 'No obvious dip in the middle after two months. We rotate per the care guide. The anti-microbial cover is a nice touch for our toddler jumping on the bed sometimes!',
+    title: 'Gifted it and got rave reviews',
+    text: 'Gifted the multipurpose pouch to my colleague on her birthday and she was thrilled. Everyone in the office asked where it was from. So happy to spread the word about Scrapshala.',
     date: '1/03/2025',
     type: 'product'
   },
   {
     name: 'Neha Kapoor',
-    rating: 4,
-    title: 'Looks smart with our bed frame',
-    text: 'Height works with our existing king frame without looking too thick. Sheets fit well. Subtle quilting pattern looks modern, not clinical.',
+    rating: 5,
+    title: 'Eco-friendly and actually beautiful',
+    text: 'I was looking for sustainable home accessories and Scrapshala was a perfect find. The desk organizer is functional, aesthetically pleasing and the craftsmanship is excellent.',
     date: '12/30/2024',
     type: 'product'
   },
   {
     name: 'Aarti Desai',
     rating: 5,
-    title: 'Recommended to two friends already',
-    text: 'Honest review — setup was easy, smell dissipated quickly, and we are both waking up less groggy. Duroflex earned our trust on this purchase.',
+    title: 'Recommended to everyone I know',
+    text: 'Placed my second order already. The products are genuinely high quality and the idea of giving waste a second life is something I deeply believe in. Scrapshala is doing amazing work.',
     date: '12/28/2024',
     type: 'product'
   }
 ];
+
+function AccordionRow({ label, content }) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div className="border-t border-gray-200">
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        className="flex w-full items-center justify-between py-3.5 text-xs font-semibold tracking-widest text-gray-800 hover:text-gray-600 transition-colors"
+      >
+        <span>{label}</span>
+        <svg
+          className="h-4 w-4 shrink-0 transition-transform"
+          style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
+          fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      {open && (
+        <p className="pb-4 text-sm leading-relaxed text-gray-600">{content}</p>
+      )}
+    </div>
+  );
+}
 
 const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
   // Use passed product data when available, fall back to defaults
@@ -226,14 +210,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
     : PRODUCT_IMAGES;
   const productRating  = passedProduct?.rating        || 4.8;
   const productReviews = passedProduct?.reviewCount   || 320;
-  const soldThisWeekDisplay = React.useMemo(() => {
-    const s = String(productName);
-    let h = 0;
-    for (let i = 0; i < s.length; i++) h += s.charCodeAt(i);
-    return 220 + (h % 360);
-  }, [productName]);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [selectedSize, setSelectedSize] = useState(PRODUCT_SIZES[0]);
   const [quantity, setQuantity] = useState(1);
   const [isAISummaryExpanded, setIsAISummaryExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -244,19 +221,12 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
   const [gridModalReview, setGridModalReview] = useState(null);
   const [activeTab, setActiveTab] = useState('product');
   const [reviewsToShow, setReviewsToShow] = useState(3);
-  const [brandReviewsToShow, setBrandReviewsToShow] = useState(3);
-  const [isBrandAISummaryExpanded, setIsBrandAISummaryExpanded] = useState(false);
   const [reviewLikes, setReviewLikes] = useState({});
-  const [reviewReplies, setReviewReplies] = useState({});
   const [expandedReviews, setExpandedReviews] = useState({});
   const [productSortBy, setProductSortBy] = useState('most-recent');
-  const [brandSortBy, setBrandSortBy] = useState('most-recent');
   const [showInstagramModal, setShowInstagramModal] = useState(false);
   const [instagramLoading, setInstagramLoading] = useState(true);
-  const [isShippingOpen, setIsShippingOpen] = useState(false);
-  const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [showVideoCard, setShowVideoCard] = useState(true);
   const [wildVideoIdx, setWildVideoIdx] = useState(null);
   const dragCardRef = React.useRef(null);
@@ -425,15 +395,6 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
     }));
   };
 
-  // Handle reply functionality
-  const handleReply = (reviewId, type = 'product') => {
-    const key = `${type}-${reviewId}`;
-    setReviewReplies(prev => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
-  };
-
   const handleReadMore = (reviewId, type = 'product') => {
     const key = `${type}-${reviewId}`;
     setExpandedReviews(prev => ({
@@ -561,17 +522,6 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isModalOpen, allReviewImages, findReviewForImage]);
 
-  // Auto-rotate reviews carousel every 3 seconds
-  useEffect(() => {
-    if (shortReviews.length === 0) return;
-    
-    const interval = setInterval(() => {
-      setCurrentReviewIndex((prevIndex) => (prevIndex + 1) % shortReviews.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [shortReviews.length]);
-
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 relative">
 
@@ -663,341 +613,202 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
         </div>
       )}
       
-      <main className="flex-1 bg-white py-8 md:py-12">
-        <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
+      <main className="flex-1 bg-white py-6 md:py-10">
+        <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
 
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
+          <nav className="flex items-center gap-2 text-xs text-gray-400 mb-5">
             <button onClick={onHomeClick} className="hover:text-gray-700 transition-colors">Home</button>
-            <span>›</span>
-            <span className="text-gray-800 font-medium truncate">{productName}</span>
+            <span>/</span>
+            <span className="text-gray-700 truncate">{productName}</span>
           </nav>
 
-          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16">
+          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
 
-            {/* LEFT — desktop 2×2 mosaic, mobile hero + thumb strip */}
-            <div className="w-full">
-              {(() => {
-                const imgs = productImages.length ? productImages : [productHeader];
-                const rowA = imgs.slice(0, 2);
-                const rowB = imgs.slice(2);
-                const openAt = (idx) => {
-                  setSelectedImage(idx);
-                  setSelectedModalImageIndex(idx);
-                  setIsModalOpen(true);
-                };
-                return (
-                  <>
-                    <div className="mb-4 hidden gap-4 md:grid md:grid-cols-2">
-                      {rowA.map((img, i) => (
+            {/* LEFT — thumbnail strip + main image + arrows */}
+            {(() => {
+              const imgs = productImages.length ? productImages : [productHeader];
+              return (
+                <div className="flex gap-3">
+                  {/* Thumbnail strip */}
+                  <div className="hidden md:flex flex-col gap-2 w-[72px] shrink-0">
+                    {imgs.map((img, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setSelectedImage(i)}
+                        className="w-full aspect-square overflow-hidden rounded border-2 transition-all"
+                        style={{ borderColor: selectedImage === i ? '#1a1a1a' : '#e5e7eb' }}
+                      >
+                        <img src={img} alt="" className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Main image + arrows */}
+                  <div className="relative flex-1 rounded-lg overflow-hidden bg-gray-50">
+                    <img
+                      src={imgs[selectedImage] || imgs[0]}
+                      alt={productName}
+                      className="w-full h-auto object-contain"
+                      style={{ aspectRatio: '1/1' }}
+                    />
+                    {/* Prev arrow */}
+                    {imgs.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedImage(i => (i - 1 + imgs.length) % imgs.length)}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow flex items-center justify-center hover:bg-gray-100 transition-colors"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                      </button>
+                    )}
+                    {/* Next arrow */}
+                    {imgs.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedImage(i => (i + 1) % imgs.length)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow flex items-center justify-center hover:bg-gray-100 transition-colors"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                      </button>
+                    )}
+                    {/* Mobile thumb strip below */}
+                    <div className="md:hidden flex gap-2 overflow-x-auto mt-3 pb-1 scrollbar-hide">
+                      {imgs.map((img, i) => (
                         <button
-                          key={`ga-${img}-${i}`}
+                          key={i}
                           type="button"
-                          className="relative w-full cursor-pointer overflow-hidden rounded-lg bg-white"
-                          onClick={() => openAt(i)}
+                          onClick={() => setSelectedImage(i)}
+                          className="w-16 h-16 shrink-0 rounded border-2 overflow-hidden transition-all"
+                          style={{ borderColor: selectedImage === i ? '#1a1a1a' : '#e5e7eb' }}
                         >
-                          <img
-                            src={img}
-                            alt={`${productName} view ${i + 1}`}
-                            className="block h-auto w-full object-contain"
-                          />
+                          <img src={img} alt="" className="w-full h-full object-cover" />
                         </button>
                       ))}
                     </div>
-                    {rowB.length > 0 ? (
-                      <div className="mb-4 hidden gap-4 md:grid md:grid-cols-2">
-                        {rowB.map((img, i) => (
-                          <button
-                            key={`gb-${img}-${i}`}
-                            type="button"
-                            className="relative w-full cursor-pointer overflow-hidden rounded-lg bg-white"
-                            onClick={() => openAt(i + 2)}
-                          >
-                            <img
-                              src={img}
-                              alt={`${productName} view ${i + 3}`}
-                              className="block h-auto w-full object-contain"
-                            />
-                          </button>
-                        ))}
-                      </div>
-                    ) : null}
-                    <div className="md:hidden">
-                      <button
-                        type="button"
-                        className="relative mb-4 w-full overflow-hidden rounded-lg bg-white"
-                        style={{ backgroundColor: '#e8e3da' }}
-                        onClick={() => openAt(selectedImage)}
-                      >
-                        <img
-                          src={imgs[selectedImage] || imgs[0]}
-                          alt={productName}
-                          className="block h-auto w-full object-contain"
-                          style={{ aspectRatio: '4/5' }}
-                        />
-                      </button>
-                      <div className="scrollbar-hide flex w-full gap-3 overflow-x-auto pb-2">
-                        {imgs.map((img, index) => (
-                          <button
-                            key={`mth-${index}`}
-                            type="button"
-                            onClick={() => setSelectedImage(index)}
-                            className={`h-20 w-20 shrink-0 overflow-hidden rounded border-2 bg-white p-0 transition-all ${
-                              selectedImage === index ? 'border-gray-900 shadow-md' : 'border-gray-200'
-                            }`}
-                          >
-                            <img src={img} alt={`${productName} view ${index + 1}`} className="h-full w-full object-cover" />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                );
-              })()}
-            </div>
-
-            {/* RIGHT — reference-style buy box */}
-            <div className="flex flex-col gap-4">
-              <div className="text-sm text-gray-600">SKU: {PRODUCT_SKU}</div>
-
-              <h1 className="text-2xl font-normal leading-tight text-gray-900 md:text-3xl">{productName}</h1>
-
-              {/* Minimal: stars + reviews + sold — light row; soft feature pills (no solid red blocks) */}
-              <div className="flex flex-col gap-2.5">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600">
-                  <div className="flex items-center gap-1">
-                    {[1, 2, 3, 4, 5].map((i) => {
-                      const full = i <= Math.floor(productRating);
-                      const half = !full && i === Math.ceil(productRating) && productRating % 1 >= 0.5;
-                      return (
-                        <svg key={`sr-${i}`} width="16" height="16" viewBox="0 0 24 24" aria-hidden>
-                          {half ? (
-                            <defs>
-                              <linearGradient id={`srg-${i}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="50%" stopColor="#DB2A20" />
-                                <stop offset="50%" stopColor="#e0e0e0" />
-                              </linearGradient>
-                            </defs>
-                          ) : null}
-                          <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                            fill={full ? '#DB2A20' : half ? `url(#srg-${i})` : '#e0e0e0'}
-                          />
-                        </svg>
-                      );
-                    })}
-                    <span className="ml-0.5 text-sm font-bold text-gray-800">{productRating}</span>
                   </div>
-                  <span className="text-gray-300">|</span>
-                  <span>
-                    <span className="font-bold text-gray-900">{productReviews}</span> reviews
-                  </span>
-                  <span className="text-gray-300">|</span>
-                  <span>
-                    <span className="mr-1 text-amber-500">⚡</span>
-                    <span className="font-bold text-gray-900">{soldThisWeekDisplay}</span>
-                    <span> sold this week</span>
-                  </span>
                 </div>
+              );
+            })()}
 
-                <div className="flex flex-wrap gap-2">
-                  {['Duropedic support', 'Airboost layers', 'Arctic Ice cover', 'Motion isolation', '10-year warranty'].map((label) => (
-                    <span
-                      key={label}
-                      className="inline-flex items-center rounded-full border border-stone-200/90 bg-linear-to-b from-white to-stone-50/90 px-3.5 py-1.5 text-xs font-medium tracking-wide text-stone-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] ring-1 ring-stone-900/5"
-                    >
-                      {label}
-                    </span>
+            {/* RIGHT — buy box */}
+            <div className="flex flex-col gap-4">
+
+              {/* Title */}
+              <h1 className="text-xl font-semibold leading-snug text-gray-900 md:text-2xl">{productName}</h1>
+
+              {/* Stars + review count */}
+              <div className="flex items-center gap-2">
+                <span className="flex items-center gap-0.5">
+                  {[1,2,3,4,5].map(i => (
+                    <svg key={i} width="15" height="15" viewBox="0 0 24 24">
+                      <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        fill={i <= Math.round(productRating) ? '#f97316' : '#e5e7eb'}
+                      />
+                    </svg>
                   ))}
-                </div>
+                </span>
+                <span className="text-sm text-gray-500">
+                  {productReviews > 0 ? `${productReviews} reviews` : 'No reviews'}
+                </span>
               </div>
 
-              <TrustSignalsRotator productPage className="pt-0.5" />
-
-              <div className="flex flex-col gap-2">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="text-lg text-gray-500 line-through md:text-xl">
-                    Rs. {productOriginal.toLocaleString('en-IN')}.00
-                  </span>
-                  <span className="text-2xl font-semibold text-gray-900 md:text-3xl">
+              {/* Price */}
+              <div>
+                <div className="flex items-center gap-3 flex-wrap">
+                  {productOriginal && (
+                    <span className="text-sm text-gray-400 line-through">
+                      Rs. {productOriginal.toLocaleString('en-IN')}.00
+                    </span>
+                  )}
+                  <span className="text-xl font-semibold text-gray-900">
                     Rs. {productPrice.toLocaleString('en-IN')}.00
                   </span>
-                  <span className="rounded bg-green-600 px-2 py-1 text-sm font-semibold text-white">
-                    {productDiscount}% off
-                  </span>
+                  {productDiscount > 0 && (
+                    <span className="text-xs font-semibold text-white px-2 py-0.5 rounded" style={{ backgroundColor: '#178604' }}>
+                      Sale
+                    </span>
+                  )}
                 </div>
-                <div className="flex flex-col gap-1 text-sm text-gray-700">
-                  <p>
-                    or 3 monthly payments of Rs.{Math.max(1, Math.round(productPrice / 3)).toLocaleString('en-IN')}
-                  </p>
-                  <p className="text-gray-600">0% EMI on select cards · check out for offers</p>
-                </div>
+                <p className="text-xs text-gray-400 mt-1">Tax included.</p>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-sm font-medium text-gray-900">Size:</span>
-                  <span className="text-sm text-gray-700">{selectedSize}</span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {PRODUCT_SIZES.map((sz) => (
-                    <button
-                      key={sz}
-                      type="button"
-                      title={sz}
-                      onClick={() => setSelectedSize(sz)}
-                      className={`rounded border-2 px-4 py-2 text-sm font-medium transition-all ${
-                        selectedSize === sz
-                          ? 'border-[#DB2A20] bg-red-50 text-[#DB2A20]'
-                          : 'border-gray-300 text-gray-700 hover:border-gray-400'
-                      }`}
-                    >
-                      {sz.replace(/\s*\([^)]*\)\s*$/, '').trim()}
-                    </button>
-                  ))}
-                </div>
-                <p className="text-xs text-gray-500">Tap for full size name; dimensions are in inches.</p>
-              </div>
+              <div className="border-t border-gray-100" />
 
-              <button type="button" className="flex w-fit items-center gap-2 text-sm text-gray-700 hover:text-gray-900">
-                <svg className="h-4 w-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-                <span className="underline">Size guide</span>
-              </button>
-
-              <PdpHeroReviewRotator reviews={reviewData} />
-
-              <p className="text-sm text-gray-600">Shipping calculated at checkout.</p>
-
-              <div className="border-t" style={{ borderColor: '#d4cfc7' }} />
-
-              {/* Quantity + primary cart — earlier Duroflex pattern */}
-              <div className="flex gap-3 items-stretch">
-                <div className="flex items-center border" style={{ borderColor: '#1a1a1a' }}>
+              {/* Quantity */}
+              <div>
+                <p className="text-sm font-medium text-gray-700 mb-2">Quantity</p>
+                <div className="flex items-center border border-gray-300 rounded w-fit">
                   <button
                     type="button"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="flex h-12 w-11 items-center justify-center text-xl text-gray-700 transition-colors hover:bg-gray-100"
+                    className="w-10 h-10 flex items-center justify-center text-lg text-gray-600 hover:bg-gray-50 transition-colors"
                   >
                     −
                   </button>
-                  <span className="w-10 text-center text-base font-semibold text-gray-900">{quantity}</span>
+                  <span className="w-10 text-center text-sm font-semibold text-gray-900">{quantity}</span>
                   <button
                     type="button"
                     onClick={() => setQuantity(quantity + 1)}
-                    className="flex h-12 w-11 items-center justify-center text-xl text-gray-700 transition-colors hover:bg-gray-100"
+                    className="w-10 h-10 flex items-center justify-center text-lg text-gray-600 hover:bg-gray-50 transition-colors"
                   >
                     +
                   </button>
                 </div>
+              </div>
+
+              {/* Add to Cart + Buy Now */}
+              <div className="flex gap-3">
                 <button
                   type="button"
-                  className="h-12 flex-1 text-sm font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: '#DB2A20', letterSpacing: '0.12em' }}
+                  className="flex-1 h-11 rounded text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: '#1a1a1a' }}
                 >
-                  Add to Cart
+                  Add to cart
+                </button>
+                <button
+                  type="button"
+                  className="flex-1 h-11 rounded text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: '#178604' }}
+                >
+                  Buy Now
                 </button>
               </div>
 
-              <button
-                type="button"
-                className="w-full py-3.5 text-sm font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
-                style={{ backgroundColor: '#111', letterSpacing: '0.12em' }}
-              >
-                Buy Now
-              </button>
+              {/* Accordions */}
+              {[
+                {
+                  label: 'DESCRIPTION',
+                  content: passedProduct?.feature
+                    ? `${passedProduct.feature}. ${PRODUCT_DESCRIPTION}`
+                    : PRODUCT_DESCRIPTION,
+                },
+                {
+                  label: 'PREPARATION DAYS',
+                  content: 'This product is handcrafted and requires 3–5 working days of preparation before dispatch.',
+                },
+                {
+                  label: 'RETURN/EXCHANGE POLICY',
+                  content: 'We accept returns and exchanges within 7 days of delivery. The product must be unused and in its original packaging.',
+                },
+                {
+                  label: 'CANCELLATION POLICY',
+                  content: 'Orders can be cancelled within 24 hours of placement. Once dispatched, cancellations are not accepted.',
+                },
+                {
+                  label: 'SHIPPING POLICY',
+                  content: 'Free shipping on all orders. Estimated delivery in 5–7 business days across India.',
+                },
+              ].map(({ label, content }) => (
+                <AccordionRow key={label} label={label} content={content} />
+              ))}
 
-              <button type="button" className="flex w-fit items-center gap-2 text-sm text-gray-600 transition-colors hover:text-gray-900">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-                </svg>
-                Add to wishlist
-              </button>
-
-              <div className="border-t border-gray-200 pt-4" style={{ borderTopColor: '#d4cfc7' }}>
-                <button
-                  type="button"
-                  onClick={() => setIsShippingOpen((o) => !o)}
-                  className="flex w-full items-center justify-between py-3 text-sm font-semibold text-gray-900 hover:text-gray-700"
-                >
-                  <span>Shipping information</span>
-                  <svg
-                    className={`h-5 w-5 transition-transform ${isShippingOpen ? 'rotate-180' : ''}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {isShippingOpen && (
-                  <div className="flex flex-col gap-4 pb-2 text-sm text-gray-700">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: '#e8e3da' }}>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DB2A20" strokeWidth="1.8">
-                          <rect x="1" y="3" width="15" height="13" rx="1" />
-                          <path d="M16 8h4l3 3v5h-7V8z" />
-                          <circle cx="5.5" cy="18.5" r="2.5" />
-                          <circle cx="18.5" cy="18.5" r="2.5" />
-                        </svg>
-                      </div>
-                      <p>
-                        <strong>Estimated delivery</strong> in 5–7 days
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: '#e8e3da' }}>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DB2A20" strokeWidth="1.8">
-                          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
-                          <rect x="9" y="3" width="6" height="4" rx="1" />
-                        </svg>
-                      </div>
-                      <p className="font-semibold text-gray-800">Free shipping on this item</p>
-                    </div>
-                    <p className="text-gray-600">Shipping calculated at checkout for your pincode.</p>
-                  </div>
-                )}
-              </div>
-
-              <div className="border-t border-gray-200 pt-4">
-                <button
-                  type="button"
-                  onClick={() => setIsDescriptionOpen((o) => !o)}
-                  className="flex w-full items-center justify-between py-3 text-sm font-semibold text-gray-900 hover:text-gray-700"
-                >
-                  <span>Description</span>
-                  <svg
-                    className={`h-5 w-5 transition-transform ${isDescriptionOpen ? 'rotate-180' : ''}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {isDescriptionOpen && (
-                  <div className="space-y-3 pb-2 text-sm leading-relaxed text-gray-700">
-                    {passedProduct?.feature && (
-                      <p className="font-medium text-gray-900">{passedProduct.feature}</p>
-                    )}
-                    <p>{PRODUCT_DESCRIPTION}</p>
-                  </div>
-                )}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-6 border-t border-gray-200 pt-4">
-                <span className="text-sm text-gray-700">Share:</span>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=" className="text-sm text-gray-700 underline hover:text-gray-900" target="_blank" rel="noopener noreferrer">
-                  Facebook
-                </a>
-                <a href="https://twitter.com/intent/tweet?text=Duroflex" className="text-sm text-gray-700 underline hover:text-gray-900" target="_blank" rel="noopener noreferrer">
-                  Twitter
-                </a>
-                <span className="text-sm text-gray-700">Pin it</span>
-              </div>
             </div>
           </div>
         </div>
@@ -1024,7 +835,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     href="https://www.instagram.com/duroflexworld/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full shrink-0 bg-gray-50 text-gray-800 border border-gray-200 shadow-sm hover:bg-white hover:border-[#DB2A20]/40 transition-colors"
+                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full shrink-0 bg-gray-50 text-gray-800 border border-gray-200 shadow-sm hover:bg-white hover:border-[#178604]/40 transition-colors"
                     style={{ textDecoration: 'none' }}
                   >
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -1041,7 +852,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <button
                         key={idx}
                         type="button"
-                        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DB2A20] focus-visible:ring-offset-2 rounded-[999px] flex flex-col items-center"
+                        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#178604] focus-visible:ring-offset-2 rounded-[999px] flex flex-col items-center"
                         onClick={() => setWildVideoIdx(idx)}
                       >
                         <div
@@ -1131,7 +942,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       <section className="w-full py-12 md:py-16 bg-white border-t border-gray-100">
         <div className="mx-auto w-full max-w-7xl px-4">
           <div className="text-center mb-8 md:mb-10">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#DB2A20] tracking-wide">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#178604] tracking-wide">
               SHOP OUR BEST SELLERS
             </h2>
           </div>
@@ -1206,7 +1017,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           clipRule="evenodd"
                         />
                       </svg>
-                      93% would buy again
+                      96% would gift it
                     </div>
                   </div>
 
@@ -1248,8 +1059,8 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                         ),
-                        label: 'Would recommend',
-                        value: '93%',
+                        label: 'Would recommend to a friend',
+                        value: '96%',
                       },
                       {
                         icon: (
@@ -1257,17 +1068,17 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                           </svg>
                         ),
-                        label: 'Say support feels “just right”',
+                        label: 'Praise unique upcycled design',
                         value: '9/10',
                       },
                       {
                         icon: (
-                          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.69c-2.5 0-4.5 2-4.5 4.5 0 1.5.7 2.8 1.7 3.7L12 18l2.8-7.1c1-0.9 1.7-2.2 1.7-3.7 0-2.5-2-4.5-4.5-4.5z" />
+                          <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                           </svg>
                         ),
-                        label: 'Praise cooler, breathable sleep',
-                        value: '92%',
+                        label: 'Love the eco-friendly mission',
+                        value: '98%',
                       },
                     ].map((stat, idx) => (
                       <div
@@ -1293,94 +1104,97 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
             {/* Right Side - Reviews */}
             <div className="mt-10 lg:mt-0 lg:col-span-2">
-              <div className="mb-8 flex gap-1 rounded-[3px] bg-stone-100/90 p-1 ring-1 ring-stone-200/60">
-                {[
-                  ['product', 'Product Reviews'],
-                  ['brand', 'Brand Reviews'],
-                ].map(([id, label]) => (
-                  <button
-                    key={id}
-                    type="button"
-                    onClick={() => setActiveTab(id)}
-                    className={`min-h-[44px] flex-1 rounded-[3px] px-3 py-2.5 text-center text-xs font-semibold tracking-wide transition-all md:min-h-0 md:text-sm ${
-                      activeTab === id
-                        ? 'bg-white text-stone-900 shadow-sm ring-1 ring-stone-200/80'
-                        : 'text-stone-500 hover:text-stone-800'
-                    }`}
+
+              {/* AI Insight card — redesigned clean + attractive */}
+              <div
+                className="mb-6 overflow-hidden rounded-xl border border-stone-200/70 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
+                style={{ borderTop: `3px solid ${REVIEW_ACCENT}` }}
+              >
+                {/* Top row */}
+                <div className="flex items-center justify-between px-5 pt-4 pb-3">
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="flex h-7 w-7 items-center justify-center rounded-full"
+                      style={{ background: REVIEW_SOFT }}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={REVIEW_ACCENT} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="3" /><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                      </svg>
+                    </div>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.16em]" style={{ color: REVIEW_ACCENT }}>AI Insight</span>
+                  </div>
+                  <span
+                    className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-semibold"
+                    style={{ background: REVIEW_SOFT, color: REVIEW_ACCENT }}
                   >
-                    {label}
-                  </button>
-                ))}
+                    <svg width="10" height="10" viewBox="0 0 20 20" fill={REVIEW_ACCENT}>
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    Verified reviews
+                  </span>
+                </div>
+
+                {/* Headline + body */}
+                <div className="px-5 pb-4">
+                  <h4 className="mb-2 text-[1.1rem] font-bold tracking-tight text-stone-900">What customers are saying</h4>
+                  <p className="text-sm leading-relaxed text-stone-600">
+                    {isAISummaryExpanded ? (
+                      <>
+                        Customers consistently love Scrapshala products for their unique, handcrafted appeal and the story behind each piece. Buyers highlight the premium build quality — especially the tyre tube handles and newspaper textile that hold up far better than expected. Many mention getting compliments at work and gifting Scrapshala products to friends and family. Shoppers who saw the brand on Shark Tank say the real products exceed what they saw on screen. Eco-conscious buyers appreciate the zero-waste philosophy and minimal, recycled packaging. Repeat customers often mention picking up multiple products as they trust the craft and want to support the artisans behind each piece.
+                        <button type="button" onClick={() => setIsAISummaryExpanded(false)}
+                          className="ml-1 cursor-pointer font-semibold underline underline-offset-2 transition-opacity hover:opacity-75"
+                          style={{ color: REVIEW_ACCENT }}>Read less</button>
+                      </>
+                    ) : (
+                      <>
+                        Customers love Scrapshala for its unique upcycled craft, premium build quality, and the meaningful story behind every product — many say it makes the perfect eco-conscious gift.
+                        <button type="button" onClick={() => setIsAISummaryExpanded(true)}
+                          className="ml-1 cursor-pointer font-semibold underline underline-offset-2 transition-opacity hover:opacity-75"
+                          style={{ color: REVIEW_ACCENT }}>Read more</button>
+                      </>
+                    )}
+                  </p>
+                </div>
+
+                {/* Tags */}
+                <div className="border-t border-stone-100 px-5 py-3">
+                  <div className="flex flex-wrap gap-1.5">
+                    {['Upcycled craft', 'Eco-friendly', 'Shark Tank India', 'Unique gifting', 'Premium quality', 'Zero waste', 'Artisan made'].map((item, index) => (
+                      <span
+                        key={index}
+                        className="rounded-full px-2.5 py-0.5 text-[11px] font-medium"
+                        style={{ background: REVIEW_SOFT, color: REVIEW_ACCENT }}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tabs — compact pills, right inside the card at the bottom */}
+                <div className="border-t border-stone-100 px-5 py-3">
+                  <div className="flex gap-2">
+                    {[['product', 'Product Reviews'], ['brand', 'Brand Reviews']].map(([id, label]) => (
+                      <button
+                        key={id}
+                        type="button"
+                        onClick={() => setActiveTab(id)}
+                        className="rounded-full px-4 py-1.5 text-xs font-semibold transition-all"
+                        style={activeTab === id
+                          ? { background: REVIEW_ACCENT, color: '#fff', boxShadow: '0 2px 8px rgba(23,134,4,0.25)' }
+                          : { background: '#f5f5f4', color: '#78716c' }
+                        }
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Product Tab Content - AI Insight & Customer Photos */}
+              {/* Product Tab Content */}
               {activeTab === 'product' && (
                 <div className="mb-8">
-                  <div className="mb-10 rounded-[3px] border border-stone-200/80 bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] md:mb-12 md:p-7">
-                    <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-                      <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">AI INSIGHT</h3>
-                      <button
-                        type="button"
-                        className="rounded-[3px] border px-3 py-1.5 text-xs font-medium"
-                        style={{
-                          backgroundColor: REVIEW_SOFT,
-                          color: REVIEW_ACCENT,
-                          borderColor: REVIEW_ACCENT_BORDER,
-                        }}
-                      >
-                        Verified reviews
-                      </button>
-                    </div>
-
-                    <h4 className="mb-3 text-xl font-semibold tracking-tight text-stone-900 md:text-[1.35rem]">Customers say</h4>
-
-                    <p className="mb-2 text-base leading-relaxed text-stone-700">
-                      {isAISummaryExpanded ? (
-                        <>
-                          Buyers consistently praise the Duropedic Airboost 6.8 for cooler, more breathable nights and dependable back support. Reviewers often mention balanced firmness — supportive without feeling stiff — and strong motion isolation for couples. The Arctic Ice cover and Airboost comfort layers come up repeatedly as reasons people sleep more deeply in warm weather. Many note clear communication on warranty and care, straightforward roll-pack delivery, and that the mattress matches Duroflex World imagery in person. Long-term owners say edge support and surface consistency hold up better than budget boxed alternatives they tried before.
-                          <button
-                            type="button"
-                            onClick={() => setIsAISummaryExpanded(false)}
-                            className="ml-1 cursor-pointer font-medium underline decoration-stone-300 underline-offset-2 transition-colors hover:opacity-90"
-                            style={{ color: REVIEW_ACCENT }}
-                          >
-                            Read less
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          Customers love the Airboost 6.8 for cooler sleep, solid Duropedic support, and minimal partner disturbance — with many calling it a worthwhile upgrade over ordinary foam mattresses.
-                          <button
-                            type="button"
-                            onClick={() => setIsAISummaryExpanded(true)}
-                            className="ml-1 cursor-pointer font-medium underline decoration-stone-300 underline-offset-2 transition-colors hover:opacity-90"
-                            style={{ color: REVIEW_ACCENT }}
-                          >
-                            Read more
-                          </button>
-                        </>
-                      )}
-                    </p>
-
-                    <p className="mb-5 text-xs text-stone-500">Updated in near real-time as new feedback arrives.</p>
-
-                    <div className="mb-5 border-t border-stone-200/80" />
-
-                    <div>
-                      <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.14em] text-stone-400">Customers Frequently Mention</p>
-                      <div className="flex flex-wrap gap-2">
-                        {['Cooler nights', 'Back support', 'Motion isolation', 'Breathable layers', 'Easy delivery', 'Trusted warranty'].map((item, index) => (
-                          <span
-                            key={index}
-                            className="rounded-[3px] border border-stone-200/90 bg-stone-50 px-3 py-1 text-xs font-medium text-stone-700"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
                   <div className="mb-12">
                     <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
                       <div>
@@ -1611,304 +1425,55 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
               {/* Brand Tab Content */}
               {activeTab === 'brand' && (
                 <div className="mb-8">
-                  <div className="mb-10 rounded-[3px] border border-stone-200/80 bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] md:mb-12 md:p-7">
-                    <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-                      <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">AI INSIGHT</h3>
-                      <button
-                        type="button"
-                        className="rounded-[3px] border px-3 py-1.5 text-xs font-medium"
-                        style={{
-                          backgroundColor: REVIEW_SOFT,
-                          color: REVIEW_ACCENT,
-                          borderColor: REVIEW_ACCENT_BORDER,
-                        }}
-                      >
-                        Verified reviews
-                      </button>
-                    </div>
-
-                    <h4 className="mb-3 text-xl font-semibold tracking-tight text-stone-900 md:text-[1.35rem]">Customers say about the brand</h4>
-
-                    <p className="mb-2 text-base leading-relaxed text-stone-700">
-                      {isBrandAISummaryExpanded ? (
-                        <>
-                          Shoppers deeply trust Duroflex World for mattresses engineered for Indian homes — from humid coastal cities to dryer northern winters. The brand is praised for clear specifications, Duropedic and Airboost lines that deliver predictable firmness, and after-sales clarity on warranty and service. Reviewers highlight breathable foams and fabrics that stay comfortable without trapping heat, thoughtful roll-pack delivery, and consistency between online photos and real products. Long-term buyers often mention comparing imports and choosing Duroflex for local support, proven ranges like Duropedic, and value at each price tier. Many describe Duroflex as focused on sleep quality and durability, not one-season hype.
-                          <button
-                            type="button"
-                            onClick={() => setIsBrandAISummaryExpanded(false)}
-                            className="ml-1 cursor-pointer font-medium underline decoration-stone-300 underline-offset-2 transition-colors hover:opacity-90"
-                            style={{ color: REVIEW_ACCENT }}
-                          >
-                            Read less
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          Customers trust Duroflex for honest specs, durable construction, and sleep-focused innovation — with Duropedic support and Airboost comfort cited again and again.
-                          <button
-                            type="button"
-                            onClick={() => setIsBrandAISummaryExpanded(true)}
-                            className="ml-1 cursor-pointer font-medium underline decoration-stone-300 underline-offset-2 transition-colors hover:opacity-90"
-                            style={{ color: REVIEW_ACCENT }}
-                          >
-                            Read more
-                          </button>
-                        </>
-                      )}
-                    </p>
-
-                    <p className="mb-5 text-xs text-stone-500">Updated in near real-time as new feedback arrives.</p>
-
-                    <div className="mb-5 border-t border-stone-200/80" />
-
-                    <div>
-                      <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.14em] text-stone-400">Brand Frequently Mentioned</p>
-                      <div className="flex flex-wrap gap-2">
-                        {['Duroflex quality', 'Duropedic range', 'Fast delivery', 'All-India footprint', 'Warranty clarity', 'Breathable design', 'Family trusted'].map((item, index) => (
-                          <span key={index} className="rounded-[3px] border border-stone-200/90 bg-stone-50 px-3 py-1 text-xs font-medium text-stone-700">
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
+                  {/* Brand Gallery — image-only masonry, click reveals review text */}
                   <div className="mb-12">
                     <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
                       <div>
                         <h3 className="mb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">CUSTOMER PHOTOS</h3>
-                        <p className="text-sm text-stone-600">Real results from the community</p>
+                        <p className="text-sm text-stone-600">Real moments, real craft — click any photo to read the story</p>
                       </div>
                       <span className="rounded-[3px] bg-stone-100 px-3 py-1 text-xs font-medium tabular-nums text-stone-600">
-                        {brandReviews.reduce((total, review) => total + (review.images?.length || 0), 0)} uploads
+                        {GALLERY_IMAGES.length} photos
                       </span>
                     </div>
-                    
-                    {/* Get all brand review images */}
-                    {(() => {
-                      const allBrandImages = brandReviews.flatMap(review => review.images || []);
-                      return allBrandImages.length > 0 ? (
-                        <div className="mb-6 flex gap-2.5 overflow-x-auto pb-2 scrollbar-hide md:flex-wrap md:overflow-x-visible md:pb-0">
-                          {allBrandImages.slice(0, 6).map((image, i) => {
-                            const imageIndex = allReviewImages.indexOf(image);
-                            return (
-                              <div
-                                key={i}
-                                className="group relative shrink-0 cursor-pointer overflow-hidden rounded-[3px] ring-1 ring-stone-200/80 transition-shadow hover:shadow-md"
-                                onClick={() => {
-                                  if (imageIndex !== -1) {
-                                    handleImageClick(imageIndex);
-                                  }
-                                }}
-                                style={{
-                                  backgroundColor: '#f5f5f4',
-                                  width: '100px',
-                                  height: '100px',
-                                }}
-                              >
-                                <img
-                                  src={image}
-                                  alt={`Brand review photo ${i + 1}`}
-                                  style={{
-                                    width: '100px',
-                                    height: '100px',
-                                    objectFit: 'cover',
-                                    display: 'block',
-                                    backgroundColor: 'transparent',
-                                    color: 'transparent',
-                                    opacity: 1,
-                                  }}
-                                  onError={(e) => {
-                                    e.target.style.display = 'none';
-                                  }}
-                                  onLoad={(e) => {
-                                    e.target.style.opacity = '1';
-                                  }}
-                                />
-                                <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/15" />
-                              </div>
-                            );
-                          })}
-                          {allBrandImages.length > 6 && (
+
+                    {/* Masonry grid — images only */}
+                    <style>{`
+                      .brand-gallery-grid { columns: 3; column-gap: 6px; }
+                      @media (min-width: 640px) { .brand-gallery-grid { columns: 4; } }
+                      @media (min-width: 1024px) { .brand-gallery-grid { columns: 5; } }
+                      .bg-item:hover .bg-overlay { background: rgba(0,0,0,0.32) !important; }
+                      .bg-item:hover img { transform: scale(1.04); }
+                    `}</style>
+                    <div className="brand-gallery-grid">
+                      {GALLERY_IMAGES.map((src, idx) => {
+                        return (
+                          <div
+                            key={idx}
+                            className="bg-item"
+                            style={{ breakInside: 'avoid', marginBottom: '6px', cursor: 'pointer', position: 'relative', overflow: 'hidden', borderRadius: '6px', display: 'block' }}
+                            onClick={() => handleImageClick(idx)}
+                          >
+                            <img
+                              src={src}
+                              alt={`Customer photo ${idx + 1}`}
+                              loading="lazy"
+                              style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '6px', transition: 'transform 0.35s ease' }}
+                            />
                             <div
-                              className="relative shrink-0 cursor-pointer overflow-hidden rounded-[3px] ring-1 ring-stone-200/80 transition-opacity hover:opacity-95"
-                              onClick={() => {
-                                setGridModalImages(allBrandImages);
-                                setGridModalReview(null);
-                                setIsGridModalOpen(true);
+                              className="bg-overlay"
+                              style={{
+                                position: 'absolute', inset: 0, borderRadius: '6px',
+                                background: 'rgba(0,0,0,0)', transition: 'background 0.3s ease',
+                                pointerEvents: 'none',
                               }}
-                              style={{ width: '100px', height: '100px' }}
-                            >
-                              <img
-                                src={allBrandImages[6]}
-                                alt="more"
-                                style={{ width: '100px', height: '100px', objectFit: 'cover', display: 'block' }}
-                              />
-                              <div className="absolute inset-0 flex flex-col items-center justify-center bg-stone-900/55 backdrop-blur-[1px]">
-                                <div className="text-sm font-semibold text-white">+{allBrandImages.length - 6}</div>
-                                <div className="mt-0.5 text-[10px] font-medium text-white/90">View all</div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      ) : (
-                        <p className="text-sm text-stone-500">No customer photos available</p>
-                      );
-                    })()}
-                  </div>
-
-                  <div className="mb-6 flex flex-wrap items-center gap-3">
-                    <span className="text-sm font-medium text-stone-700 md:text-[15px]">Sort &amp; Filter:</span>
-                    <div className="relative">
-                      <select
-                        value={brandSortBy}
-                        onChange={(e) => setBrandSortBy(e.target.value)}
-                        className="min-h-[44px] cursor-pointer appearance-none rounded-[3px] border border-stone-200 bg-white px-4 py-2 pr-9 text-[17px] font-medium text-stone-800 shadow-sm transition-colors hover:border-stone-300 focus:outline-none focus:ring-2 focus:ring-stone-300/40 md:min-h-0 md:text-sm"
-                      >
-                        <option value="most-recent">Most Recent</option>
-                        <option value="highest-rated">Highest Rated</option>
-                        <option value="lowest-rated">Lowest Rated</option>
-                        <option value="oldest">Oldest First</option>
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5">
-                        <svg className="h-4 w-4 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
+                            />
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 
-                  <div className="space-y-3 md:space-y-4">
-                    {brandReviews.slice(0, brandReviewsToShow).map((review) => {
-                      const likeKey = `brand-${review.id}`;
-                      return (
-                        <div
-                          key={review.id}
-                          className="rounded-[3px] border border-stone-200/70 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)] md:p-5"
-                        >
-                          <div className="mb-2 flex items-center justify-between gap-2">
-                            <div className="flex min-w-0 flex-wrap items-center gap-1.5">
-                              <div className="flex shrink-0 items-center gap-0.5">
-                                {[1, 2, 3, 4, 5].map((i) => {
-                                  const full = i <= Math.floor(review.rating);
-                                  const half = !full && i === Math.ceil(review.rating) && review.rating % 1 >= 0.3;
-                                  const cId = `br-clip-${review.id}-${i}`;
-                                  return (
-                                    <svg key={i} width="16" height="16" viewBox="0 0 24 24">
-                                      <defs>
-                                        {half && (
-                                          <clipPath id={cId}>
-                                            <rect x="0" y="0" width="12" height="24" />
-                                          </clipPath>
-                                        )}
-                                      </defs>
-                                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#e7e5e4" />
-                                      {(full || half) && (
-                                        <path
-                                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                                          fill={REVIEW_ACCENT}
-                                          clipPath={half ? `url(#${cId})` : undefined}
-                                        />
-                                      )}
-                                    </svg>
-                                  );
-                                })}
-                              </div>
-                              <span className="truncate text-xs font-semibold text-stone-900">{review.name}</span>
-                              <svg className="h-3 w-3 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                  fillRule="evenodd"
-                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                            <span className="shrink-0 text-xs text-stone-400">{getDaysAgo(review.date)}</span>
-                          </div>
-
-                          {review.title && <p className="mb-1 text-sm font-semibold text-stone-800">{review.title}</p>}
-
-                          <p className="mb-2 text-sm leading-relaxed text-stone-600 md:text-base">
-                            {expandedReviews[`brand-${review.id}`] ? review.text : `${review.text.slice(0, 140)}...`}
-                            {review.text.length > 140 && (
-                              <button
-                                type="button"
-                                onClick={() => handleReadMore(review.id, 'brand')}
-                                className="ml-1 text-xs font-medium text-stone-500 underline decoration-stone-200 underline-offset-2 hover:text-stone-800"
-                              >
-                                {expandedReviews[`brand-${review.id}`] ? 'less' : 'more'}
-                              </button>
-                            )}
-                          </p>
-
-                          {review.images?.length > 0 && (
-                            <div className="mb-2 flex gap-2">
-                              {review.images.map((image, imgIndex) => (
-                                <div
-                                  key={imgIndex}
-                                  className="h-14 w-14 shrink-0 cursor-pointer overflow-hidden rounded-[3px] ring-1 ring-stone-200/80 transition-opacity hover:opacity-85"
-                                  onClick={() => {
-                                    const idx = allReviewImages.indexOf(image);
-                                    if (idx !== -1) handleImageClick(idx);
-                                  }}
-                                >
-                                  <img src={image} alt="" className="h-full w-full object-cover" />
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-[3px] border border-stone-100 bg-stone-50/90 px-3 py-2.5 md:px-4">
-                            <div className="flex flex-wrap items-center gap-3">
-                              <span className="text-xs text-stone-500">Helpful?</span>
-                              <button
-                                type="button"
-                                onClick={() => handleLike(review.id, 'brand')}
-                                className="flex items-center gap-1 text-xs text-stone-600 transition-colors hover:text-[#b91c1c]"
-                              >
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z" />
-                                  <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-                                </svg>
-                                ({reviewLikes[likeKey] || 716})
-                              </button>
-                              <button type="button" className="flex items-center gap-1 text-xs text-stone-400 transition-colors hover:text-stone-600">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z" />
-                                  <path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" />
-                                </svg>
-                                (0)
-                              </button>
-                            </div>
-                            <button type="button" className="text-xs font-semibold text-stone-600 underline-offset-2 hover:underline" style={{ color: REVIEW_ACCENT }}>
-                              Report
-                            </button>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {brandReviewsToShow < brandReviews.length && (
-                    <div className="mt-8 text-center">
-                      <button
-                        type="button"
-                        onClick={() => setBrandReviewsToShow(brandReviews.length)}
-                        className="rounded-[3px] border border-stone-300 bg-white px-8 py-3 text-sm font-semibold text-stone-800 shadow-sm transition-all hover:border-stone-400 hover:bg-stone-50 md:text-base"
-                      >
-                        View More Reviews
-                      </button>
-                    </div>
-                  )}
-
-                  <div className="mt-6 text-center">
-                    <button
-                      type="button"
-                      className="rounded-[3px] bg-stone-900 px-8 py-3 text-sm font-semibold text-white shadow-md transition-colors hover:bg-stone-800 md:text-base"
-                    >
-                      Write a Review
-                    </button>
-                  </div>
                 </div>
               )}
 
@@ -2042,7 +1607,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       <section className="w-full py-12 md:py-16 bg-white">
         <div className="mx-auto w-full max-w-7xl px-4">
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#DB2A20] mb-3 tracking-wide">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#178604] mb-3 tracking-wide">
               Best Sellers
             </h2>
           </div>
@@ -2060,6 +1625,9 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
           </div>
         </div>
       </section>
+
+      {/* Photo Gallery */}
+      <PhotoGallery title="More from Scrapshala" subtitle="Handcrafted with love — upcycled for a better tomorrow" />
 
       <ShopifyFooter brandName={BRAND_NAME} />
       
@@ -2214,23 +1782,11 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   
                   {/* Star Rating */}
                   <div className="flex items-center gap-1 mb-3">
-                    <svg width="0" height="0" style={{ position: 'absolute' }}>
-                      <defs>
-                        <linearGradient id="modalStarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#DB2A20" />
-                          <stop offset="50%" stopColor="#E85C54" />
-                          <stop offset="100%" stopColor="#F28B86" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
                     {[...Array(5)].map((_, i) => (
-                      <svg 
+                      <svg
                         key={i}
                         className="w-5 h-5"
-                        style={i < selectedReview.rating ? { 
-                          fill: 'url(#modalStarGradient)',
-                          filter: 'drop-shadow(0 1px 2px rgba(53, 31, 49, 0.3))'
-                        } : { fill: '#d1d5db' }}
+                        style={{ fill: i < selectedReview.rating ? '#178604' : '#d1d5db' }}
                         viewBox="0 0 20 20"
                       >
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -2248,7 +1804,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   
                   {/* Review Type Badge */}
                   <div className="mt-4">
-                    <span className="inline-block px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(219, 42, 32, 0.1)', color: '#DB2A20' }}>
+                    <span className="inline-block px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(23, 134, 4, 0.1)', color: '#178604' }}>
                       {selectedReview.type === 'product' ? 'Product Review' : 'Brand Review'}
                     </span>
                   </div>
@@ -2304,7 +1860,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <svg width="0" height="0" style={{ position: 'absolute' }}>
                     <defs>
                       <linearGradient id="mobileModalStarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#DB2A20" />
+                        <stop offset="0%" stopColor="#178604" />
                         <stop offset="50%" stopColor="#E85C54" />
                         <stop offset="100%" stopColor="#F28B86" />
                       </linearGradient>
@@ -2328,7 +1884,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <h3 className="font-medium text-gray-900 mb-2 text-base">{selectedReview.title}</h3>
                 )}
                 <p className="text-gray-700 text-sm leading-relaxed mb-2">{selectedReview.text}</p>
-                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(219, 42, 32, 0.1)', color: '#DB2A20' }}>
+                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(23, 134, 4, 0.1)', color: '#178604' }}>
                   {selectedReview.type === 'product' ? 'Product Review' : 'Brand Review'}
                 </span>
               </div>

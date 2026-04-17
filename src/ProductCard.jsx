@@ -1,54 +1,26 @@
-import React from 'react';
+import  React, { useState } from 'react';
 import './ProductCard.css';
 
-const SNAP_LOGO =
-  'https://assets.snapmint.com/assets/express_checkout/snap-logo-circle.png';
-
-function formatInr(price) {
-  const n = Number(price);
-  return `₹ ${n.toLocaleString('en-IN', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`;
-}
-
-function imageUrlWithWidth(image, width) {
-  if (!image) return '';
-  try {
-    const base =
-      image.startsWith('//') ? `https:${image}` : image;
-    const u = new URL(base);
-    u.searchParams.set('width', String(width));
-    return u.toString();
-  } catch {
-    const sep = image.includes('?') ? '&' : '?';
-    return `${image}${sep}width=${width}`;
-  }
-}
-
-function StarRow() {
+function StarRow({ rating = 0 }) {
   return (
-    <span className="jdgm-prev-badge__stars jdgm-prev-badge__stars--single" aria-hidden>
-      <span className="jdgm-star jdgm--on jdgm-star--orange" />
+    <span className="pc-stars" aria-label={`${rating} out of 5 stars`}>
+      {[1, 2, 3, 4, 5].map((i) => (
+        <svg
+          key={i}
+          className={`pc-star${i <= Math.round(rating) ? ' pc-star--on' : ''}`}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        </svg>
+      ))}
     </span>
   );
 }
 
-/** Stable “random” 3–50 per product so the number doesn’t flicker on re-render */
-function buyingThisWeekCount(product) {
-  if (product?.buyingThisWeek != null && Number.isFinite(Number(product.buyingThisWeek))) {
-    return Math.max(1, Math.round(Number(product.buyingThisWeek)));
-  }
-  const raw = `${product?.id ?? ''}|${product?.title ?? ''}|${product?.reviewCount ?? ''}|${product?.currentPrice ?? ''}`;
-  let h = 2166136261;
-  for (let i = 0; i < raw.length; i++) {
-    h ^= raw.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return 3 + (Math.abs(h) % 48);
-}
-
 const ProductCard = ({ product, onClick }) => {
+  const [hovered, setHovered] = useState(false);
+
   if (!product) return null;
 
   const {
@@ -56,14 +28,10 @@ const ProductCard = ({ product, onClick }) => {
     title,
     currentPrice,
     originalPrice,
-    rating = 4.5,
-    reviewCount = 128,
-    badge = 'Best Seller',
-    feature,
-    categoryLabel,
-    descriptionBullets,
+    rating = 0,
+    reviewCount = 0,
+    badge,
     handle,
-    emiPerMonth,
     imageAlt,
   } = product;
 
@@ -76,140 +44,92 @@ const ProductCard = ({ product, onClick }) => {
     ? `/products/${handle.replace(/^\//, '')}`
     : '#';
 
-  const label =
-    categoryLabel ||
-    (feature ? String(feature).toUpperCase() : '') ||
-    'FEATURED';
-
-  const bullets =
-    Array.isArray(descriptionBullets) && descriptionBullets.length > 0
-      ? descriptionBullets
-      : [feature].filter(Boolean);
-
-  const displayRating =
-    Math.round(Number(rating) * 10) / 10;
-
-  const monthly =
-    emiPerMonth != null
-      ? Number(emiPerMonth)
-      : Math.max(1, Math.round(Number(currentPrice) / 12));
-
-  const src352 = imageUrlWithWidth(image, 352);
-  const src500 = imageUrlWithWidth(image, 500);
-
-  const buyingThisWeek = buyingThisWeekCount(product);
+  const src720 = image || '';
+  const src360 = image || '';
 
   const onNavigate = (e) => {
     if (onClick) {
       e.preventDefault();
       onClick(e);
-      return;
-    }
-    if (productPath === '#') {
+    } else if (productPath === '#') {
       e.preventDefault();
     }
   };
 
+  const reviewLabel =
+    reviewCount > 0
+      ? `${Number(reviewCount).toLocaleString('en-IN')} review${reviewCount === 1 ? '' : 's'}`
+      : 'No reviews';
+
+  const priceFormatted = currentPrice
+    ? `Rs. ${Number(currentPrice).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    : '';
+  const origFormatted = originalPrice
+    ? `Rs. ${Number(originalPrice).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    : '';
+
   return (
-    <div className="product-item">
-      <div className="proimg">
-        <a href={productPath} onClick={onNavigate}>
-          {badge ? <span className="protag">{badge}</span> : null}
-          <img
-            src={src500 || image}
-            alt={imageAlt || title}
-            srcSet={
-              image
-                ? `${src352} 352w, ${src500} 500w`
-                : undefined
-            }
-            sizes="(max-width: 768px) 90vw, 280px"
-            width={500}
-            height={500}
-            loading="lazy"
-          />
+    <div
+      className="pc-card"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Image area */}
+      <a href={productPath} onClick={onNavigate} className="pc-img-wrap">
+        {(badge || discountPercent > 0) && (
+          <span className="pc-badge">{badge || 'Sale'}</span>
+        )}
+        <img
+          src={src720 || image}
+          alt={imageAlt || title}
+          srcSet={image ? `${src360} 360w, ${src720} 720w` : undefined}
+          sizes="(max-width: 768px) 90vw, 300px"
+          width={720}
+          height={720}
+          loading="lazy"
+          className="pc-img"
+        />
+        {/* CTA buttons — always visible on mobile, visible on hover for desktop */}
+        <div className={`pc-cta-row${hovered ? ' pc-cta-row--visible' : ''}`}>
+          <button
+            className="pc-btn pc-btn--cart"
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+          >
+            ADD TO CART
+          </button>
+          <button
+            className="pc-btn pc-btn--quick"
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+          >
+            QUICK VIEW
+          </button>
+        </div>
+      </a>
+
+      {/* Info area */}
+      <div className="pc-info">
+        <a href={productPath} onClick={onNavigate} className="pc-title-link">
+          <p className="pc-title">{title}</p>
         </a>
-      </div>
-      <div className="prodata">
-        <a href={productPath} onClick={onNavigate}>
-          <div className="custom_review_star_block">
-            <span className="metafield_text_text" title={label}>
-              {label}
-            </span>
-            <span className="review_count_block custom_product_card_everywhere">
-              <span
-                className="jdgm-widget jdgm-preview-badge jdgm-preview-badge--with-link jdgm--done-setup"
-                data-widget-name="preview_badge"
-              >
-                <div
-                  className="jdgm-prev-badge"
-                  data-average-rating={rating}
-                  data-number-of-reviews={reviewCount}
-                >
-                  <StarRow />
-                  <span className="jdgm-prev-badge__text">
-                    {displayRating.toFixed(1)}
-                  </span>
-                  <span className="jdgm-prev-badge__count">
-                    ({Number(reviewCount).toLocaleString('en-IN')} reviews)
-                  </span>
-                  <span className="jdgm-prev-badge__buying">
-                    {buyingThisWeek.toLocaleString('en-IN')} bought this week
-                  </span>
-                </div>
-              </span>
-            </span>
-          </div>
-          <h3>{title}</h3>
-          <div className="pricearea">
-            <span className="price-item price-item--sale price-item--last">
-              {formatInr(currentPrice)}
-              {discountPercent > 0 ? (
-                <span className="saveamount"> {discountPercent}% off</span>
-              ) : null}
-            </span>
-            {originalPrice ? (
-              <span className="custom_span_compare">
-                <s className="price-item price-item--regular">
-                  {formatInr(originalPrice)}
-                </s>
-              </span>
-            ) : null}
-          </div>
-          <div className="snap_dp_list">
-            <div
-              className="snap_collection_category snap_mobile_widget"
-              role="presentation"
-              onClick={(e) => e.preventDefault()}
-            >
-              <span>
-                or{' '}
-                <span className="snap_blue_color_text">
-                  ₹
-                  <span className="dp-collection-price">
-                    {monthly.toLocaleString('en-IN')}
-                  </span>
-                </span>
-                /Month
-              </span>
-              <img
-                src={SNAP_LOGO}
-                alt=""
-                className="snap_circle_logo"
-              />
-              <span className="snap_know_more_text">Buy on EMI &gt;</span>
-            </div>
-          </div>
-          {bullets.length > 0 ? (
-            <div className="prodescription">
-              <ul>
-                {bullets.map((line, i) => (
-                  <li key={i}>{line}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-        </a>
+
+        <div className="pc-review-row">
+          {rating > 0 && (
+            <span className="pc-rating-num">{rating.toFixed(1)}</span>
+          )}
+          <StarRow rating={rating} />
+          <span className="pc-review-label">{reviewLabel}</span>
+        </div>
+
+        <div className="pc-price-row">
+          {discountPercent > 0 && origFormatted ? (
+            <>
+              <s className="pc-price-orig">{origFormatted}</s>
+              <span className="pc-price-sale">{priceFormatted}</span>
+            </>
+          ) : (
+            <span className="pc-price-sale">{priceFormatted}</span>
+          )}
+        </div>
       </div>
     </div>
   );
