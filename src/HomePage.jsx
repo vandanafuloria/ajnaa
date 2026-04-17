@@ -9,8 +9,27 @@ import duroflexInstagramProfile from './assets/logo.png';
 import { DUROFLEX_SHOP_VIDEOS } from './duroflexShopVideos';
 import { bestSellerProducts } from './duroflexBestSellers';
 import InstagramTrustCarousel from './InstagramTrustCarousel';
-import PhotoGallery from './PhotoGallery';
+import PhotoGallery, { GALLERY_IMAGES } from './PhotoGallery';
+import BrandTestimonialsPdp from './BrandTestimonialsPdp';
+import reviewData from '../review.json';
 import './HomePage.css';
+
+const BRAND_TESTIMONIAL_ACCENT = '#178604';
+
+/** Brand love — only strong positive ratings (4.5+) for marketing; each paired with a gallery photo */
+const brandTestimonialItems = reviewData
+  .filter(
+    (r) =>
+      (r.type === 'mid' || r.type === 'small' || r.type === 'very_small') &&
+      (typeof r.rating === 'number' ? r.rating : 5) >= 4.5
+  )
+  .map((r, i) => ({
+    image: GALLERY_IMAGES[(i * 5 + 3) % GALLERY_IMAGES.length],
+    quote: r.review,
+    name: r.name,
+    location: r.location,
+    rating: typeof r.rating === 'number' ? r.rating : 5,
+  }));
 
 const DUROFLEX_INSTAGRAM_URL = 'https://www.instagram.com/duroflexworld/';
 const DUROFLEX_LINKTR_URL = 'https://linktr.ee/duroflexworld';
@@ -1027,6 +1046,8 @@ const HomePage = ({ onProductClick }) => {
           </div>
         </div>
       </section>
+
+      <BrandTestimonialsPdp items={brandTestimonialItems} accent={BRAND_TESTIMONIAL_ACCENT} />
 
       {/* Video Modal */}
       {selectedVideo && (

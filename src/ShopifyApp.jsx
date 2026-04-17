@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import HomePage from './HomePage';
 import ShopifyProductPage from './ShopifyProductPage';
 
@@ -8,8 +8,15 @@ function ShopifyApp() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const handleProductClick = () => {
-    setSelectedProduct(null);
+  /** After switching home ↔ product, land at the top (SPA keeps scroll position otherwise). */
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [currentPage]);
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product ?? null);
     setCurrentPage('product');
   };
 

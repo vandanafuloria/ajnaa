@@ -38,8 +38,8 @@ export function TrustSignalsRotator({
           key: 'orders',
           node: (
             <>
-              <strong className="font-semibold text-gray-900">{ordersCount}</strong> mattress orders placed in the
-              last <strong className="font-semibold text-gray-900">{hoursWindow}</strong> hours
+              <strong className="font-semibold text-gray-900">{ordersCount}</strong> orders placed in the last{' '}
+              <strong className="font-semibold text-gray-900">{hoursWindow}</strong> hours
             </>
           ),
         },

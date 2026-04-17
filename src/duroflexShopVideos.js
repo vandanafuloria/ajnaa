@@ -9,3 +9,6 @@ import v7 from './assets/videos/scrapshala_1752904855_3679954644395436112_299694
 import v8 from './assets/videos/sharktank.india_1755588600_3702468333345456969_48338019887.mp4';
 
 export const DUROFLEX_SHOP_VIDEOS = [v1, v2, v3, v4, v5, v6, v7, v8];
+
+/** Floating draggable reel on the product (PDP) page */
+export const PDP_DRAGGABLE_VIDEO = v5;

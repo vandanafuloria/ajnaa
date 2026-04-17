@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react';
 import ShopifyHeader from './ShopifyHeader';
 import ShopifyFooter from './ShopifyFooter';
 import AIBrandEngine from './AIBrandEngine';
@@ -12,7 +12,7 @@ import PdpHeroReviewRotator from './PdpHeroReviewRotator';
 // ============================================
 
 import productHeader from './assets/product_header.png';
-import { DUROFLEX_SHOP_VIDEOS } from './duroflexShopVideos';
+import { DUROFLEX_SHOP_VIDEOS, PDP_DRAGGABLE_VIDEO } from './duroflexShopVideos';
 import { bestSellerProducts } from './duroflexBestSellers';
 
 import reviewData from '../review.json';
@@ -31,6 +31,17 @@ function getReviewTitle(text) {
   return first.length > 5 ? first : text.substring(0, 50);
 }
 
+function formatSoldLabel(n) {
+  if (n == null || Number.isNaN(Number(n))) return '';
+  const num = Math.max(0, Math.floor(Number(n)));
+  if (num >= 1000) {
+    const k = num / 1000;
+    const s = k >= 10 ? String(Math.round(k)) : k.toFixed(1).replace(/\.0$/, '');
+    return `${s}k+ sold`;
+  }
+  return `${num.toLocaleString('en-IN')}+ sold`;
+}
+
 
 // Brand Name (footer / assets)
 const BRAND_NAME = "Scrapshala";
@@ -41,11 +52,22 @@ const REVIEW_RING_TRACK = '#dcf5d8';
 const REVIEW_SOFT = 'rgba(23, 134, 4, 0.09)';
 const REVIEW_ACCENT_BORDER = 'rgba(23, 134, 4, 0.25)';
 
+/** AI Insight card — neutral-forward; subtle sage for links only (less saturated than REVIEW_ACCENT) */
+const AI_INSIGHT_ICON_BG = 'rgba(120, 113, 108, 0.14)';
+const AI_INSIGHT_ICON_STROKE = '#57534e';
+const AI_INSIGHT_LABEL = '#44403c';
+const AI_INSIGHT_BADGE_BG = 'rgba(120, 113, 108, 0.1)';
+const AI_INSIGHT_BADGE_TEXT = '#57534e';
+const AI_INSIGHT_LINK = '#5f6d62';
+const AI_INSIGHT_TAG_BG = 'rgba(120, 113, 108, 0.08)';
+const AI_INSIGHT_TAG_TEXT = '#57534e';
+const AI_INSIGHT_TAB_ACTIVE = '#292524';
+
 // Product Images Array - All product images
 const PRODUCT_IMAGES = [...DUROFLEX_PDP_IMAGES];
 
-// Product Video — draggable card + modals use Duroflex CDN reels
-const PRODUCT_VIDEO = DUROFLEX_SHOP_VIDEOS[0];
+// Product Video — draggable floating card (scrapshala_1744214900… clip)
+const PRODUCT_VIDEO = PDP_DRAGGABLE_VIDEO;
 
 // Product Details
 const PRODUCT_NAME = "Ghats of Varanasi Wall Decor | Rectangular | Backside Hanging Hook | Handpainted | Made in India | Scrapshala";
@@ -57,6 +79,9 @@ const PRODUCT_DESCRIPTION = "Handcrafted from upcycled newspaper textile and tyr
 const PRODUCT_BRAND = "Scrapshala";
 const PRODUCT_COLORS = [];
 const PRODUCT_SIZES = [];
+/** Social proof — shown next to rating & reviews on the buy box */
+const PRODUCT_REVIEW_COUNT = 320;
+const PRODUCT_SOLD_COUNT = 480;
 
 // You May Also Like — aligned with best sellers (reserved for future alternate carousels)
 const RELATED_PRODUCTS = bestSellerProducts.slice(0, 4).map((p) => ({
@@ -81,95 +106,25 @@ const PDP_REEL_LABELS = [
   'Real customer stories',
   'Sustainable gifting',
   'Shop Scrapshala',
-  'Rest worth dreaming of',
+  'Handmade in India',
 ];
 
 // ============================================
 // END OF EDITABLE SECTION
 // ============================================
 
-// Dummy review templates — Scrapshala upcycled product content
+// Fallback blurbs for image modals — short, casual (matches review.json tone)
 const dummyReviews = [
-  {
-    name: 'Priya Sharma',
-    rating: 5,
-    title: 'Love the concept and the quality!',
-    text: 'Ordered the laptop bag and I am absolutely in love. The fact that it is made from upcycled newspaper and tyre tubes is incredible. Got so many compliments at my office. Packaging was minimal and eco-friendly too.',
-    date: '1/20/2025',
-    type: 'product'
-  },
-  {
-    name: 'Anjali Mehta',
-    rating: 5,
-    title: 'Sturdy, unique and sustainable',
-    text: 'The bag is much sturdier than I expected. It fits my 15 inch laptop perfectly and the handles are very comfortable. Really happy to support a brand that upcycles waste into something so beautiful.',
-    date: '1/18/2025',
-    type: 'product'
-  },
-  {
-    name: 'Riya Patel',
-    rating: 4,
-    title: 'Great gifting option',
-    text: 'Bought the zip pouch as a gift for my friend and she absolutely loved it. It looks very premium in person. The tyre tube material feels durable and the stitching is neat. Will order more products soon.',
-    date: '1/15/2025',
-    type: 'product'
-  },
-  {
-    name: 'Kavya Reddy',
-    rating: 5,
-    title: 'As seen on Shark Tank — and it shows!',
-    text: 'I had seen Scrapshala on Shark Tank and immediately knew I had to order. The table organizer is so well made and looks great on my desk. Love that it is made from e-waste. Very unique and purposeful.',
-    date: '1/12/2025',
-    type: 'product'
-  },
-  {
-    name: 'Meera Singh',
-    rating: 5,
-    title: 'Worth every rupee',
-    text: 'The pen stand from audio tapes is such a creative product. It is colourful, sturdy and holds all my stationery neatly. My kids also love the story behind it. Will definitely order again.',
-    date: '1/10/2025',
-    type: 'product'
-  },
-  {
-    name: 'Sneha Verma',
-    rating: 5,
-    title: 'Conscious shopping done right',
-    text: 'Finally a brand that makes sustainability cool. The bag looks stylish and feels very well crafted. Delivery was quick and the product was wrapped in recycled material. 10 out of 10 experience.',
-    date: '1/08/2025',
-    type: 'product'
-  },
-  {
-    name: 'Divya Nair',
-    rating: 4,
-    title: 'Unique product, great quality',
-    text: 'I was a little unsure about ordering but the product exceeded my expectations. The newspaper print pattern on the bag is very eye-catching and the tyre tube handles are solid. Recommended!',
-    date: '1/05/2025',
-    type: 'product'
-  },
-  {
-    name: 'Pooja Mehta',
-    rating: 5,
-    title: 'Gifted it and got rave reviews',
-    text: 'Gifted the multipurpose pouch to my colleague on her birthday and she was thrilled. Everyone in the office asked where it was from. So happy to spread the word about Scrapshala.',
-    date: '1/03/2025',
-    type: 'product'
-  },
-  {
-    name: 'Neha Kapoor',
-    rating: 5,
-    title: 'Eco-friendly and actually beautiful',
-    text: 'I was looking for sustainable home accessories and Scrapshala was a perfect find. The desk organizer is functional, aesthetically pleasing and the craftsmanship is excellent.',
-    date: '12/30/2024',
-    type: 'product'
-  },
-  {
-    name: 'Aarti Desai',
-    rating: 5,
-    title: 'Recommended to everyone I know',
-    text: 'Placed my second order already. The products are genuinely high quality and the idea of giving waste a second life is something I deeply believe in. Scrapshala is doing amazing work.',
-    date: '12/28/2024',
-    type: 'product'
-  }
+  { name: 'Priya Sharma', rating: 5, title: 'Bag is good', text: 'Laptop fits. Handles don\'t dig in. Office people asked price range lol.', date: '1/20/2025', type: 'product' },
+  { name: 'Anjali Mehta', rating: 5, title: 'Sturdy', text: 'Heavier than cheap bags but feels solid. Monsoon no leaks yet.', date: '1/18/2025', type: 'product' },
+  { name: 'Riya Patel', rating: 4, title: 'Gift', text: 'Pouch for friend — she said zip is smooth. 4 star only bc took 4 days.', date: '1/15/2025', type: 'product' },
+  { name: 'Kavya Reddy', rating: 5, title: 'Desk thing', text: 'Saw on Shark Tank reel. Organizer fits phone + pens. No wobble.', date: '1/12/2025', type: 'product' },
+  { name: 'Meera Singh', rating: 5, title: 'Pen stand ok', text: 'Kids liked colours. Holds pens fine. Small footprint.', date: '1/10/2025', type: 'product' },
+  { name: 'Sneha Verma', rating: 5, title: 'Quick delivery', text: 'Wrapped in paper not plastic. Appreciated that.', date: '1/08/2025', type: 'product' },
+  { name: 'Divya Nair', rating: 4, title: 'Print nice', text: 'Newspaper pattern visible up close. Tyre handles stiff at first.', date: '1/05/2025', type: 'product' },
+  { name: 'Pooja Mehta', rating: 5, title: 'Colleague gift', text: 'Birthday pouch — she uses daily now.', date: '1/03/2025', type: 'product' },
+  { name: 'Neha Kapoor', rating: 5, title: 'Desk tidy', text: 'Messy drawer before — better now. Matches brown table.', date: '12/30/2024', type: 'product' },
+  { name: 'Aarti Desai', rating: 5, title: '2nd order', text: 'First was pouch. This time wall piece — same finish quality.', date: '12/28/2024', type: 'product' },
 ];
 
 function AccordionRow({ label, content }) {
@@ -208,8 +163,10 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
   const productImages  = passedProduct?.image
     ? [passedProduct.image, ...PRODUCT_IMAGES]
     : PRODUCT_IMAGES;
-  const productRating  = passedProduct?.rating        || 4.8;
-  const productReviews = passedProduct?.reviewCount   || 320;
+  const productRating  = passedProduct?.rating        ?? 4.8;
+  const productReviews = passedProduct?.reviewCount   ?? PRODUCT_REVIEW_COUNT;
+  const productSoldCount =
+    passedProduct?.soldCount ?? passedProduct?.sold ?? PRODUCT_SOLD_COUNT;
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isAISummaryExpanded, setIsAISummaryExpanded] = useState(false);
@@ -221,9 +178,14 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
   const [gridModalReview, setGridModalReview] = useState(null);
   const [activeTab, setActiveTab] = useState('product');
   const [reviewsToShow, setReviewsToShow] = useState(3);
-  const [reviewLikes, setReviewLikes] = useState({});
   const [expandedReviews, setExpandedReviews] = useState({});
   const [productSortBy, setProductSortBy] = useState('most-recent');
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, []);
   const [showInstagramModal, setShowInstagramModal] = useState(false);
   const [instagramLoading, setInstagramLoading] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -385,15 +347,6 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
         BRAND_REVIEW_IMAGES[(i * 2 + 1) % nReviewAssets],
       ],
     }));
-
-  // Handle like functionality
-  const handleLike = (reviewId, type = 'product') => {
-    const key = `${type}-${reviewId}`;
-    setReviewLikes(prev => ({
-      ...prev,
-      [key]: (prev[key] || 0) + 1
-    }));
-  };
 
   const handleReadMore = (reviewId, type = 'product') => {
     const key = `${type}-${reviewId}`;
@@ -702,11 +655,14 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
               {/* Title */}
               <h1 className="text-xl font-semibold leading-snug text-gray-900 md:text-2xl">{productName}</h1>
 
-              {/* Stars + review count */}
-              <div className="flex items-center gap-2">
-                <span className="flex items-center gap-0.5">
-                  {[1,2,3,4,5].map(i => (
-                    <svg key={i} width="15" height="15" viewBox="0 0 24 24">
+              {/* Rating, stars, reviews & sold count */}
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                <span className="font-semibold tabular-nums text-gray-900" aria-hidden>
+                  {productRating.toFixed(1)}
+                </span>
+                <span className="flex items-center gap-0.5" aria-label={`${productRating.toFixed(1)} out of 5 stars`}>
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <svg key={i} width="15" height="15" viewBox="0 0 24 24" aria-hidden>
                       <path
                         d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
                         fill={i <= Math.round(productRating) ? '#f97316' : '#e5e7eb'}
@@ -714,9 +670,22 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     </svg>
                   ))}
                 </span>
-                <span className="text-sm text-gray-500">
-                  {productReviews > 0 ? `${productReviews} reviews` : 'No reviews'}
+                <span className="hidden sm:inline text-gray-600" aria-hidden>
+                  ·
                 </span>
+                <span className="text-gray-500">
+                  {productReviews > 0
+                    ? `${Number(productReviews).toLocaleString('en-IN')} reviews`
+                    : 'No reviews'}
+                </span>
+                {Number(productSoldCount) > 0 && (
+                  <>
+                    <span className="hidden sm:inline text-gray-600" aria-hidden>
+                      ·
+                    </span>
+                    <span className="text-gray-500">{formatSoldLabel(productSoldCount)}</span>
+                  </>
+                )}
               </div>
 
               {/* Price */}
@@ -815,7 +784,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       </main>
 
 
-      {/* Duroflex reels strip — white band */}
+      {/* Scrapshala reels strip — white band */}
       {(() => {
         const WILD_VIDEOS = DUROFLEX_SHOP_VIDEOS;
         return (
@@ -825,14 +794,14 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
                   <div>
                     <h2 className="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">
-                      See Duroflex in real homes
+                      See Scrapshala in action
                     </h2>
                     <p className="text-xs text-gray-600 mt-1 max-w-md">
-                      Short clips from Duroflex World — mattresses, comfort layers & everyday rest.
+                      Short clips — upcycled craft, behind-the-scenes making, and real customer spaces.
                     </p>
                   </div>
                   <a
-                    href="https://www.instagram.com/duroflexworld/"
+                    href="https://www.instagram.com/scrapshala/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full shrink-0 bg-gray-50 text-gray-800 border border-gray-200 shadow-sm hover:bg-white hover:border-[#178604]/40 transition-colors"
@@ -843,7 +812,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.8"/>
                       <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
                     </svg>
-                    @duroflexworld
+                    @scrapshala
                   </a>
                 </div>
                 <div className="overflow-x-auto pb-2 scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
@@ -1106,28 +1075,25 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
             <div className="mt-10 lg:mt-0 lg:col-span-2">
 
               {/* AI Insight card — redesigned clean + attractive */}
-              <div
-                className="mb-6 overflow-hidden rounded-xl border border-stone-200/70 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
-                style={{ borderTop: `3px solid ${REVIEW_ACCENT}` }}
-              >
+              <div className="mb-6 overflow-hidden rounded-xl border border-stone-200/70 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
                 {/* Top row */}
                 <div className="flex items-center justify-between px-5 pt-4 pb-3">
                   <div className="flex items-center gap-2">
                     <div
                       className="flex h-7 w-7 items-center justify-center rounded-full"
-                      style={{ background: REVIEW_SOFT }}
+                      style={{ background: AI_INSIGHT_ICON_BG }}
                     >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={REVIEW_ACCENT} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={AI_INSIGHT_ICON_STROKE} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="3" /><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
                       </svg>
                     </div>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.16em]" style={{ color: REVIEW_ACCENT }}>AI Insight</span>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.16em]" style={{ color: AI_INSIGHT_LABEL }}>AI Insight</span>
                   </div>
                   <span
                     className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-semibold"
-                    style={{ background: REVIEW_SOFT, color: REVIEW_ACCENT }}
+                    style={{ background: AI_INSIGHT_BADGE_BG, color: AI_INSIGHT_BADGE_TEXT }}
                   >
-                    <svg width="10" height="10" viewBox="0 0 20 20" fill={REVIEW_ACCENT}>
+                    <svg width="10" height="10" viewBox="0 0 20 20" fill={AI_INSIGHT_BADGE_TEXT}>
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                     </svg>
                     Verified reviews
@@ -1143,14 +1109,14 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         Customers consistently love Scrapshala products for their unique, handcrafted appeal and the story behind each piece. Buyers highlight the premium build quality — especially the tyre tube handles and newspaper textile that hold up far better than expected. Many mention getting compliments at work and gifting Scrapshala products to friends and family. Shoppers who saw the brand on Shark Tank say the real products exceed what they saw on screen. Eco-conscious buyers appreciate the zero-waste philosophy and minimal, recycled packaging. Repeat customers often mention picking up multiple products as they trust the craft and want to support the artisans behind each piece.
                         <button type="button" onClick={() => setIsAISummaryExpanded(false)}
                           className="ml-1 cursor-pointer font-semibold underline underline-offset-2 transition-opacity hover:opacity-75"
-                          style={{ color: REVIEW_ACCENT }}>Read less</button>
+                          style={{ color: AI_INSIGHT_LINK }}>Read less</button>
                       </>
                     ) : (
                       <>
                         Customers love Scrapshala for its unique upcycled craft, premium build quality, and the meaningful story behind every product — many say it makes the perfect eco-conscious gift.
                         <button type="button" onClick={() => setIsAISummaryExpanded(true)}
                           className="ml-1 cursor-pointer font-semibold underline underline-offset-2 transition-opacity hover:opacity-75"
-                          style={{ color: REVIEW_ACCENT }}>Read more</button>
+                          style={{ color: AI_INSIGHT_LINK }}>Read more</button>
                       </>
                     )}
                   </p>
@@ -1163,7 +1129,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <span
                         key={index}
                         className="rounded-full px-2.5 py-0.5 text-[11px] font-medium"
-                        style={{ background: REVIEW_SOFT, color: REVIEW_ACCENT }}
+                        style={{ background: AI_INSIGHT_TAG_BG, color: AI_INSIGHT_TAG_TEXT }}
                       >
                         {item}
                       </span>
@@ -1181,7 +1147,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         onClick={() => setActiveTab(id)}
                         className="rounded-full px-4 py-1.5 text-xs font-semibold transition-all"
                         style={activeTab === id
-                          ? { background: REVIEW_ACCENT, color: '#fff', boxShadow: '0 2px 8px rgba(23,134,4,0.25)' }
+                          ? { background: AI_INSIGHT_TAB_ACTIVE, color: '#fff', boxShadow: '0 2px 10px rgba(0,0,0,0.12)' }
                           : { background: '#f5f5f4', color: '#78716c' }
                         }
                       >
@@ -1292,7 +1258,6 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
                   <div className="space-y-3 md:space-y-4">
                     {reviews.slice(0, reviewsToShow).map((review) => {
-                      const likeKey = `product-${review.id}`;
                       return (
                         <div
                           key={review.id}
@@ -1341,14 +1306,18 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           {review.title && <p className="mb-1 text-sm font-semibold text-stone-800">{review.title}</p>}
 
                           <p className="mb-2 text-sm leading-relaxed text-stone-600 md:text-base">
-                            {expandedReviews[`product-${review.id}`] ? review.text : `${review.text.slice(0, 140)}...`}
-                            <button
-                              type="button"
-                              onClick={() => handleReadMore(review.id, 'product')}
-                              className="ml-1 text-xs font-medium text-stone-500 underline decoration-stone-200 underline-offset-2 hover:text-stone-800"
-                            >
-                              {expandedReviews[`product-${review.id}`] ? 'less' : 'more'}
-                            </button>
+                            {review.text.length <= 140 || expandedReviews[`product-${review.id}`]
+                              ? review.text
+                              : `${review.text.slice(0, 140)}...`}
+                            {review.text.length > 140 && (
+                              <button
+                                type="button"
+                                onClick={() => handleReadMore(review.id, 'product')}
+                                className="ml-1 text-xs font-medium text-stone-500 underline decoration-stone-200 underline-offset-2 hover:text-stone-800"
+                              >
+                                {expandedReviews[`product-${review.id}`] ? 'less' : 'more'}
+                              </button>
+                            )}
                           </p>
 
                           {review.images?.length > 0 && (
@@ -1367,33 +1336,6 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                               ))}
                             </div>
                           )}
-
-                          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-[3px] border border-stone-100 bg-stone-50/90 px-3 py-2.5 md:px-4">
-                            <div className="flex flex-wrap items-center gap-3">
-                              <span className="text-xs text-stone-500">Helpful?</span>
-                              <button
-                                type="button"
-                                onClick={() => handleLike(review.id, 'product')}
-                                className="flex items-center gap-1 text-xs text-stone-600 transition-colors hover:text-[#b91c1c]"
-                              >
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z" />
-                                  <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-                                </svg>
-                                ({reviewLikes[likeKey] || 716})
-                              </button>
-                              <button type="button" className="flex items-center gap-1 text-xs text-stone-400 transition-colors hover:text-stone-600">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z" />
-                                  <path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" />
-                                </svg>
-                                (0)
-                              </button>
-                            </div>
-                            <button type="button" className="text-xs font-semibold text-stone-600 underline-offset-2 hover:underline" style={{ color: REVIEW_ACCENT }}>
-                              Report
-                            </button>
-                          </div>
                         </div>
                       );
                     })}
