@@ -3,7 +3,7 @@
 /* Override root gray-900 color variable if it's causing issues */
 :root {
   --color-gray-900-override: #111827;
-  /* Duroflex brand */
+  /* Scrapshala brand */
   --brand-primary: #db2a20;
   --brand-primary-hover: #b8221a;
   --brand-soft: rgba(219, 42, 32, 0.1);

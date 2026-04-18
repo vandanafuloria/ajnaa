@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { DUROFLEX_SHOP_VIDEOS } from './duroflexShopVideos';
+import { SCRAPSHALA_SHOP_VIDEOS } from './scrapshalaShopVideos';
 
-const REEL_URLS = DUROFLEX_SHOP_VIDEOS;
+const REEL_URLS = SCRAPSHALA_SHOP_VIDEOS;
 
 /** One line per reel — stable copy (no random shuffle on navigation) */
 const REEL_CAPTIONS = [

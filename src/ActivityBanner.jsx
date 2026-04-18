@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { bestSellerProducts } from './duroflexBestSellers';
+import { bestSellerProducts } from './scrapshalaBestSellers';
 
 const DISPLAY_NAMES = [
   ['Rahul', 'M.'],
@@ -37,8 +37,8 @@ const TIME_LABELS = [
   '8 min ago',
 ];
 
-/** Social-proof rotator — product titles & imagery from Duroflex World catalog */
-function buildActivitiesFromDuroflex(products) {
+/** Social-proof rotator — product titles & imagery from Scrapshala catalog */
+function buildActivitiesFromScrapshala(products) {
   if (!products.length) return [];
   const out = [];
   const pattern = ['purchase', 'review', 'purchase', 'review', 'purchase', 'review'];
@@ -72,7 +72,7 @@ function buildActivitiesFromDuroflex(products) {
   return out;
 }
 
-const activities = buildActivitiesFromDuroflex(bestSellerProducts);
+const activities = buildActivitiesFromScrapshala(bestSellerProducts);
 
 const Stars = ({ count }) => (
   <span style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>

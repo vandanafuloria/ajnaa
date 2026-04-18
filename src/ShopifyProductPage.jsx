@@ -12,8 +12,8 @@ import PdpHeroReviewRotator from './PdpHeroReviewRotator';
 // ============================================
 
 import productHeader from './assets/product_header.png';
-import { DUROFLEX_SHOP_VIDEOS, PDP_DRAGGABLE_VIDEO } from './duroflexShopVideos';
-import { bestSellerProducts } from './duroflexBestSellers';
+import { SCRAPSHALA_SHOP_VIDEOS, PDP_DRAGGABLE_VIDEO } from './scrapshalaShopVideos';
+import { bestSellerProducts } from './scrapshalaBestSellers';
 
 import reviewData from '../review.json';
 
@@ -22,7 +22,7 @@ const PRODUCT_REVIEW_IMAGES = GALLERY_IMAGES;
 const BRAND_REVIEW_IMAGES = [...GALLERY_IMAGES].reverse();
 
 // Scrapshala product imagery — main gallery
-const DUROFLEX_PDP_IMAGES = [
+const SCRAPSHALA_PDP_IMAGES = [
   'https://scrapshala.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_3.45.06_PM.jpg?format=webp&v=1773310830&width=713',
 ];
 
@@ -64,7 +64,7 @@ const AI_INSIGHT_TAG_TEXT = '#57534e';
 const AI_INSIGHT_TAB_ACTIVE = '#292524';
 
 // Product Images Array - All product images
-const PRODUCT_IMAGES = [...DUROFLEX_PDP_IMAGES];
+const PRODUCT_IMAGES = [...SCRAPSHALA_PDP_IMAGES];
 
 // Product Video — draggable floating card (scrapshala_1744214900… clip)
 const PRODUCT_VIDEO = PDP_DRAGGABLE_VIDEO;
@@ -786,7 +786,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
       {/* Scrapshala reels strip — white band */}
       {(() => {
-        const WILD_VIDEOS = DUROFLEX_SHOP_VIDEOS;
+        const WILD_VIDEOS = SCRAPSHALA_SHOP_VIDEOS;
         return (
           <>
             <div className="w-full border-t border-b border-gray-100 bg-white py-7">

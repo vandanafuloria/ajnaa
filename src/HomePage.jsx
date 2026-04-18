@@ -5,9 +5,9 @@ import ProductCard from './ProductCard';
 import AIBrandEngine from './AIBrandEngine';
 import LiveUserCounter from './LiveUserCounter';
 import ActivityBanner from './ActivityBanner';
-import duroflexInstagramProfile from './assets/logo.png';
-import { DUROFLEX_SHOP_VIDEOS } from './duroflexShopVideos';
-import { bestSellerProducts } from './duroflexBestSellers';
+import scrapshalaInstagramProfile from './assets/logo.png';
+import { SCRAPSHALA_SHOP_VIDEOS } from './scrapshalaShopVideos';
+import { bestSellerProducts } from './scrapshalaBestSellers';
 import InstagramTrustCarousel from './InstagramTrustCarousel';
 import PhotoGallery, { GALLERY_IMAGES } from './PhotoGallery';
 import BrandTestimonialsPdp from './BrandTestimonialsPdp';
@@ -31,12 +31,12 @@ const brandTestimonialItems = reviewData
     rating: typeof r.rating === 'number' ? r.rating : 5,
   }));
 
-const DUROFLEX_INSTAGRAM_URL = 'https://www.instagram.com/duroflexworld/';
-const DUROFLEX_LINKTR_URL = 'https://linktr.ee/duroflexworld';
-const DUROFLEX_HASHTAG_URL =
-  'https://www.instagram.com/explore/tags/designedtodestress/';
+const SCRAPSHALA_INSTAGRAM_URL = 'https://www.instagram.com/scrapshala/';
+const SCRAPSHALA_LINKTR_URL = 'https://linktr.ee/scrapshala';
+const SCRAPSHALA_HASHTAG_URL =
+  'https://www.instagram.com/explore/tags/scrapshala/';
 
-const SHOPIFY_VIDEO_URLS = DUROFLEX_SHOP_VIDEOS;
+const SHOPIFY_VIDEO_URLS = SCRAPSHALA_SHOP_VIDEOS;
 
 const BRAND_NAME = "wordofmouth";
 
@@ -45,7 +45,7 @@ const getRandomSoldThisWeek = (min = 180, max = 420) =>
 
 const VIDEO_VIEWS = ['4.0K', '4.2K', '3.8K', '3.1K', '2.9K', '2.7K', '3.5K', '4.1K'];
 
-// Video Products data — one row per Duroflex clip; posters cycle best sellers
+// Video Products data — one row per Scrapshala clip; posters cycle best sellers
 const videoProducts = SHOPIFY_VIDEO_URLS.map((url, i) => {
   const bp = bestSellerProducts[i % bestSellerProducts.length];
   const discount =
@@ -464,7 +464,7 @@ const HomePage = ({ onProductClick }) => {
 
       {/* Instagram trust / mentions strip — off for now; set to true to restore */}
       {false && (
-        <InstagramTrustCarousel instagramUrl={DUROFLEX_INSTAGRAM_URL} followersLabel="81.8K" />
+        <InstagramTrustCarousel instagramUrl={SCRAPSHALA_INSTAGRAM_URL} followersLabel="81.8K" />
       )}
 
       {/* Big Deals Section */}
@@ -813,8 +813,8 @@ const HomePage = ({ onProductClick }) => {
               >
                 <div className="w-32 h-32 rounded-full overflow-hidden">
                   <img
-                    src={duroflexInstagramProfile}
-                    alt="Duroflex on Instagram"
+                    src={scrapshalaInstagramProfile}
+                    alt="Scrapshala on Instagram"
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -825,12 +825,12 @@ const HomePage = ({ onProductClick }) => {
             <div className="flex flex-col items-center gap-3 text-center">
               <div className="flex items-center gap-3">
                 <a
-                  href={DUROFLEX_INSTAGRAM_URL}
+                  href={SCRAPSHALA_INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-900 font-semibold text-xl hover:opacity-70 transition-opacity"
                 >
-                  duroflexworld
+                  scrapshala
                 </a>
                 <span className="text-gray-400 text-base tracking-widest">···</span>
               </div>
@@ -850,7 +850,7 @@ const HomePage = ({ onProductClick }) => {
               </div>
               <div className="flex gap-2 pt-1">
                 <a
-                  href={DUROFLEX_INSTAGRAM_URL}
+                  href={SCRAPSHALA_INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-1.5 rounded-lg text-sm font-semibold text-white"
@@ -859,7 +859,7 @@ const HomePage = ({ onProductClick }) => {
                   Follow
                 </a>
                 <a
-                  href={DUROFLEX_INSTAGRAM_URL}
+                  href={SCRAPSHALA_INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-1.5 rounded-lg text-sm font-semibold text-white hover:opacity-80 transition-opacity"
@@ -881,30 +881,30 @@ const HomePage = ({ onProductClick }) => {
             </div>
 
             <div className="space-y-1">
-              <p className="text-gray-900 text-sm font-semibold">Duroflex</p>
-              <p className="text-gray-400 text-sm">Mattresses, Recliners &amp; Comfort</p>
-              <p className="text-gray-800 text-sm">Where the world de-stresses.</p>
-              <p className="text-gray-800 text-sm">Since 1963 🛏️</p>
-              <p className="text-gray-800 text-sm">Mattresses, Recliners &amp; Comfort Solutions</p>
+              <p className="text-gray-900 text-sm font-semibold">Scrapshala</p>
+              <p className="text-gray-400 text-sm">Upcycled decor, bags &amp; gifts</p>
+              <p className="text-gray-800 text-sm">Giving waste a beautiful second life.</p>
+              <p className="text-gray-800 text-sm">As seen on Shark Tank India 🦈</p>
+              <p className="text-gray-800 text-sm">Handmade in India · Sustainable craft</p>
               <p className="text-sm">
                 <a
-                  href={DUROFLEX_HASHTAG_URL}
+                  href={SCRAPSHALA_HASHTAG_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium"
                   style={{ color: '#DB2A20' }}
                 >
-                  #DesignedtoDestress
+                  #Scrapshala
                 </a>
               </p>
               <a
-                href={DUROFLEX_LINKTR_URL}
+                href={SCRAPSHALA_LINKTR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm font-medium"
                 style={{ color: '#DB2A20' }}
               >
-                linktr.ee/duroflexworld
+                linktr.ee/scrapshala
               </a>
             </div>
           </div>
@@ -919,8 +919,8 @@ const HomePage = ({ onProductClick }) => {
                 >
                   <div className="w-20 h-20 rounded-full overflow-hidden">
                     <img
-                      src={duroflexInstagramProfile}
-                      alt="Duroflex on Instagram"
+                      src={scrapshalaInstagramProfile}
+                      alt="Scrapshala on Instagram"
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
@@ -944,36 +944,36 @@ const HomePage = ({ onProductClick }) => {
             </div>
 
             <div className="space-y-0.5">
-              <p className="text-gray-900 text-sm font-semibold">Duroflex</p>
-              <p className="text-gray-400 text-xs">Mattresses, Recliners &amp; Comfort</p>
-              <p className="text-gray-800 text-sm">Where the world de-stresses.</p>
-              <p className="text-gray-800 text-sm">Since 1963 🛏️</p>
-              <p className="text-gray-800 text-sm">Mattresses, Recliners &amp; Comfort Solutions</p>
+              <p className="text-gray-900 text-sm font-semibold">Scrapshala</p>
+              <p className="text-gray-400 text-xs">Upcycled decor, bags &amp; gifts</p>
+              <p className="text-gray-800 text-sm">Giving waste a beautiful second life.</p>
+              <p className="text-gray-800 text-sm">As seen on Shark Tank India 🦈</p>
+              <p className="text-gray-800 text-sm">Handmade in India · Sustainable craft</p>
               <p className="text-sm">
                 <a
-                  href={DUROFLEX_HASHTAG_URL}
+                  href={SCRAPSHALA_HASHTAG_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium"
                   style={{ color: '#DB2A20' }}
                 >
-                  #DesignedtoDestress
+                  #Scrapshala
                 </a>
               </p>
               <a
-                href={DUROFLEX_LINKTR_URL}
+                href={SCRAPSHALA_LINKTR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm font-medium"
                 style={{ color: '#DB2A20' }}
               >
-                linktr.ee/duroflexworld
+                linktr.ee/scrapshala
               </a>
             </div>
 
             <div className="flex gap-2">
               <a
-                href={DUROFLEX_INSTAGRAM_URL}
+                href={SCRAPSHALA_INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center"
@@ -982,7 +982,7 @@ const HomePage = ({ onProductClick }) => {
                 Follow
               </a>
               <a
-                href={DUROFLEX_INSTAGRAM_URL}
+                href={SCRAPSHALA_INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center"
@@ -1311,7 +1311,7 @@ const HomePage = ({ onProductClick }) => {
                   <img src={selectedLookVideo.image} alt="" className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <p className="text-white text-sm font-semibold leading-none">Duroflex World</p>
+                  <p className="text-white text-sm font-semibold leading-none">Scrapshala</p>
                   <p className="text-white/70 text-xs mt-0.5">{selectedLookVideo.views} views</p>
                 </div>
               </div>
@@ -1370,7 +1370,7 @@ const HomePage = ({ onProductClick }) => {
 
               {/* Share */}
               <button
-                onClick={() => navigator.share ? navigator.share({ title: selectedLookVideo.title, text: `Check out ${selectedLookVideo.title} from Duroflex World`, url: window.location.href }) : navigator.clipboard?.writeText(window.location.href)}
+                onClick={() => navigator.share ? navigator.share({ title: selectedLookVideo.title, text: `Check out ${selectedLookVideo.title} from Scrapshala`, url: window.location.href }) : navigator.clipboard?.writeText(window.location.href)}
                 className="flex flex-col items-center gap-1"
               >
                 <div className="w-11 h-11 rounded-full bg-black/40 flex items-center justify-center">

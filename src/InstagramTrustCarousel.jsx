@@ -56,16 +56,16 @@ function RatingBadge({ value }) {
 export default function InstagramTrustCarousel({
   instagramUrl,
   followersLabel = '81.8K',
-  shopUrl = 'https://www.duroflexworld.com',
-  amazonUrl = 'https://www.amazon.in/s?k=Duroflex+mattress',
-  flipkartUrl = 'https://www.flipkart.com/search?q=duroflex+mattress',
+  shopUrl = 'https://scrapshala.com',
+  amazonUrl = 'https://www.amazon.in/s?k=Scrapshala',
+  flipkartUrl = 'https://www.flipkart.com/search?q=scrapshala',
 }) {
   const trustSlides = useMemo(
     () => [
       {
         key: 'trusted',
         href: shopUrl,
-        ariaLabel: 'Trusted customers — visit Duroflex World',
+        ariaLabel: 'Trusted customers — visit Scrapshala',
         icon: <StarRow />,
         text: 'Trusted by 10,000+ Customers',
         badge: null,
@@ -73,15 +73,15 @@ export default function InstagramTrustCarousel({
       {
         key: 'instagram',
         href: instagramUrl,
-        ariaLabel: 'Duroflex on Instagram',
+        ariaLabel: 'Scrapshala on Instagram',
         icon: <InstaRealIcon />,
-        text: `${followersLabel}+ followers · @duroflexworld`,
+        text: `${followersLabel}+ followers · @scrapshala`,
         badge: null,
       },
       {
         key: 'amazon',
         href: amazonUrl,
-        ariaLabel: 'Duroflex mattresses on Amazon India',
+        ariaLabel: 'Scrapshala on Amazon India',
         icon: (
           <img src={AMAZON_LOGO} alt="" className="h-4 w-auto object-contain" style={{ maxHeight: '16px' }} />
         ),
@@ -91,7 +91,7 @@ export default function InstagramTrustCarousel({
       {
         key: 'flipkart',
         href: flipkartUrl,
-        ariaLabel: 'Duroflex mattresses on Flipkart',
+        ariaLabel: 'Scrapshala on Flipkart',
         icon: (
           <img src={FLIPKART_LOGO} alt="" className="h-4 w-auto object-contain" style={{ maxHeight: '16px' }} />
         ),
@@ -101,9 +101,9 @@ export default function InstagramTrustCarousel({
       {
         key: 'comfort',
         href: shopUrl,
-        ariaLabel: 'Comfort-first mattresses — Duroflex World',
+        ariaLabel: 'Upcycled craft — Scrapshala',
         icon: <ComfortIcon />,
-        text: 'Comfort-first sleep · Designed to destress',
+        text: 'Eco-conscious craft · Handmade in India',
         badge: null,
       },
     ],
