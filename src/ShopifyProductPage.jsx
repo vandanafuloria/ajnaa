@@ -55,17 +55,6 @@ const REVIEW_RING_TRACK = '#ede4e8';
 const REVIEW_SOFT = 'rgba(101, 31, 57, 0.09)';
 const REVIEW_ACCENT_BORDER = 'rgba(101, 31, 57, 0.25)';
 
-/** AI Insight card — neutral-forward; subtle sage for links only (less saturated than REVIEW_ACCENT) */
-const AI_INSIGHT_ICON_BG = 'rgba(120, 113, 108, 0.14)';
-const AI_INSIGHT_ICON_STROKE = '#57534e';
-const AI_INSIGHT_LABEL = '#44403c';
-const AI_INSIGHT_BADGE_BG = 'rgba(120, 113, 108, 0.1)';
-const AI_INSIGHT_BADGE_TEXT = '#57534e';
-const AI_INSIGHT_LINK = '#5f6d62';
-const AI_INSIGHT_TAG_BG = 'rgba(120, 113, 108, 0.08)';
-const AI_INSIGHT_TAG_TEXT = '#57534e';
-const AI_INSIGHT_TAB_ACTIVE = '#292524';
-
 // Product Video — draggable floating card (rana_kavita25 reel clip)
 const PRODUCT_VIDEO = PDP_DRAGGABLE_VIDEO;
 
@@ -111,6 +100,54 @@ const PDP_REEL_LABELS = [
 
 /** Short keyword chips under rating / reviews on the buy box */
 const PDP_KEYWORD_TAGS = ['Perfect gifting', 'Timeless design', 'Trusted quality', 'Festive ready'];
+
+const PDP_BREADCRUMB_MID = 'Deal of the Week';
+const PDP_GIFT_PROMO =
+  'Complimentary Festive Gift worth ₹599/- with every order';
+const PDP_COUPON_CODE = 'DEAL10';
+const PDP_COUPON_COPY =
+  'Get an extra 10% off on top picks — use code DEAL10';
+
+/** Trust row below CTAs (icons + labels) */
+const PDP_TRUST_FEATURES = [
+  {
+    label: 'Easy 3 Days Return',
+    icon: (
+      <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+        />
+      </svg>
+    ),
+  },
+  {
+    label: 'COD Available',
+    icon: (
+      <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      </svg>
+    ),
+  },
+  {
+    label: '6 Month Maintenance Warranty',
+    icon: (
+      <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Anti-Tarnish',
+    icon: (
+      <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3c2.5 3 4 5.5 4 8a4 4 0 11-8 0c0-2.5 1.5-5 4-8z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 11v2M10 13h4" />
+      </svg>
+    ),
+  },
+];
 
 // ============================================
 // END OF EDITABLE SECTION
@@ -174,6 +211,8 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
     passedProduct?.soldCount ?? passedProduct?.sold ?? PRODUCT_SOLD_COUNT;
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [wishlisted, setWishlisted] = useState(false);
+  const [pincodeInput, setPincodeInput] = useState('');
   const [isAISummaryExpanded, setIsAISummaryExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedModalImageIndex, setSelectedModalImageIndex] = useState(0);
@@ -554,7 +593,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
         >
           {/* Close button */}
           <button
-            className="close-btn absolute top-2 right-2 z-20 w-7 h-7 bg-black/60 hover:bg-black/80 rounded-full flex items-center justify-center text-white"
+            className="close-btn absolute top-2 right-2 z-20 w-7 h-7 bg-black/60 hover:bg-black/80 rounded-none flex items-center justify-center text-white"
             onClick={(e) => { e.stopPropagation(); setShowVideoCard(false); }}
           >
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
@@ -579,11 +618,19 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       <main className="flex-1 bg-white py-6 md:py-10">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
 
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-xs text-gray-400 mb-5">
-            <button onClick={onHomeClick} className="hover:text-gray-700 transition-colors">Home</button>
-            <span>/</span>
-            <span className="text-gray-700 truncate">{productName}</span>
+          {/* Breadcrumb — reference-style trail */}
+          <nav className="mb-5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs text-gray-500">
+            <button type="button" onClick={onHomeClick} className="text-gray-500 transition-colors hover:text-gray-800">
+              Home
+            </button>
+            <span className="text-gray-400" aria-hidden>
+              &gt;
+            </span>
+            <span className="text-gray-500">{PDP_BREADCRUMB_MID}</span>
+            <span className="text-gray-400" aria-hidden>
+              &gt;
+            </span>
+            <span className="max-w-[min(100%,14rem)] truncate font-medium text-gray-800 sm:max-w-none">{productName}</span>
           </nav>
 
           <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
@@ -600,7 +647,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         key={i}
                         type="button"
                         onClick={() => setSelectedImage(i)}
-                        className="w-full aspect-square overflow-hidden rounded border-2 transition-all"
+                        className="w-full aspect-square overflow-hidden rounded-none border-2 transition-all"
                         style={{ borderColor: selectedImage === i ? '#1a1a1a' : '#e5e7eb' }}
                       >
                         <img src={img} alt="" className="w-full h-full object-cover" />
@@ -609,7 +656,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   </div>
 
                   {/* Main image + arrows */}
-                  <div className="relative flex-1 rounded-lg overflow-hidden bg-gray-50">
+                  <div className="relative flex-1 rounded-none overflow-hidden bg-gray-50">
                     <img
                       src={imgs[selectedImage] || imgs[0]}
                       alt={productName}
@@ -621,7 +668,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <button
                         type="button"
                         onClick={() => setSelectedImage(i => (i - 1 + imgs.length) % imgs.length)}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow flex items-center justify-center hover:bg-gray-100 transition-colors"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-none bg-white shadow flex items-center justify-center hover:bg-gray-100 transition-colors"
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M15 18l-6-6 6-6"/>
@@ -633,7 +680,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <button
                         type="button"
                         onClick={() => setSelectedImage(i => (i + 1) % imgs.length)}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow flex items-center justify-center hover:bg-gray-100 transition-colors"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-none bg-white shadow flex items-center justify-center hover:bg-gray-100 transition-colors"
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M9 18l6-6-6-6"/>
@@ -647,7 +694,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           key={i}
                           type="button"
                           onClick={() => setSelectedImage(i)}
-                          className="w-16 h-16 shrink-0 rounded border-2 overflow-hidden transition-all"
+                          className="w-16 h-16 shrink-0 rounded-none border-2 overflow-hidden transition-all"
                           style={{ borderColor: selectedImage === i ? '#1a1a1a' : '#e5e7eb' }}
                         >
                           <img src={img} alt="" className="w-full h-full object-cover" />
@@ -659,13 +706,34 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
               );
             })()}
 
-            {/* RIGHT — buy box */}
-            <div className="flex flex-col gap-4">
+            {/* RIGHT — buy box (reference-style layout; rating + keyword block preserved) */}
+            <div className="flex flex-col gap-4 lg:max-w-xl lg:justify-self-end">
+              {/* Title + wishlist */}
+              <div className="flex items-start justify-between gap-3">
+                <h1 className="text-xl font-semibold leading-snug text-gray-900 md:text-2xl">{productName}</h1>
+                <button
+                  type="button"
+                  onClick={() => setWishlisted((w) => !w)}
+                  className="mt-0.5 shrink-0 rounded-none p-1.5 text-gray-400 transition-colors hover:bg-stone-100 hover:text-[#651F39]"
+                  aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+                >
+                  <svg
+                    className="h-7 w-7"
+                    viewBox="0 0 24 24"
+                    fill={wishlisted ? '#651F39' : 'none'}
+                    stroke={wishlisted ? '#651F39' : 'currentColor'}
+                    strokeWidth="1.8"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
 
-              {/* Title */}
-              <h1 className="text-xl font-semibold leading-snug text-gray-900 md:text-2xl">{productName}</h1>
-
-              {/* Rating, stars, reviews & sold count + keyword chips */}
+              {/* Rating, stars, reviews & sold + keyword checkmarks — unchanged content */}
               <div className="flex flex-col gap-2">
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
                   <span className="font-semibold tabular-nums text-gray-900" aria-hidden>
@@ -699,59 +767,107 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   )}
                 </div>
                 <ul
-                  className="m-0 flex flex-col gap-1.5 list-none p-0 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-1.5"
+                  className="m-0 flex list-none flex-wrap items-center gap-y-1.5 p-0"
                   aria-label="Product highlights"
                 >
-                  {PDP_KEYWORD_TAGS.map((kw) => (
-                    <li key={kw} className="flex items-center gap-2 text-[13px] text-stone-700 sm:text-sm">
-                      <svg
-                        className="h-4 w-4 shrink-0 text-[#651F39]"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
+                  {PDP_KEYWORD_TAGS.map((kw, i) => (
+                    <li key={kw} className="flex items-center text-[13px] text-stone-700 sm:text-sm">
+                      {i > 0 && (
+                        <span
+                          className="mx-2.5 h-3.5 w-px shrink-0 bg-stone-300 sm:mx-3"
+                          aria-hidden
                         />
-                      </svg>
+                      )}
                       <span>{kw}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
+              {/* Social share */}
+              <div className="flex items-center gap-2">
+                <a
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-none text-white transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: '#1877f2' }}
+                  aria-label="Share on Facebook"
+                >
+                  <span className="text-[11px] font-bold">f</span>
+                </a>
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(`${productName} ${typeof window !== 'undefined' ? window.location.href : ''}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-none text-white transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: '#25d366' }}
+                  aria-label="Share on WhatsApp"
+                >
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
+                </a>
+                <a
+                  href={`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&description=${encodeURIComponent(productName)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-none text-white transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: '#e60023' }}
+                  aria-label="Share on Pinterest"
+                >
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.132 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.397 2.967 7.397 6.931 0 4.136-2.607 7.466-6.233 7.466-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" />
+                  </svg>
+                </a>
+              </div>
+
               {/* Price */}
               <div>
-                <div className="flex items-center gap-3 flex-wrap">
-                  {productOriginal && (
-                    <span className="text-sm text-gray-400 line-through">
-                      Rs. {productOriginal.toLocaleString('en-IN')}.00
-                    </span>
-                  )}
-                  <span className="text-xl font-semibold text-gray-900">
-                    Rs. {productPrice.toLocaleString('en-IN')}.00
+                <div className="flex flex-wrap items-baseline gap-2 gap-y-1">
+                  <span className="text-2xl font-bold text-gray-900">
+                    ₹{productPrice.toLocaleString('en-IN')}
                   </span>
-                  {productDiscount > 0 && (
-                    <span className="text-xs font-semibold text-white px-2 py-0.5 rounded" style={{ backgroundColor: '#651F39' }}>
-                      Sale
+                  {productOriginal ? (
+                    <span className="text-base text-gray-400 line-through">
+                      ₹{productOriginal.toLocaleString('en-IN')}
                     </span>
-                  )}
+                  ) : null}
+                  {productDiscount > 0 ? (
+                    <span className="text-sm font-semibold text-orange-500">{productDiscount}% off</span>
+                  ) : null}
                 </div>
-                <p className="text-xs text-gray-400 mt-1">Tax included.</p>
+                <p className="mt-1 text-xs text-gray-500">(Inclusive of all taxes)</p>
+              </div>
+
+              <p className="text-sm font-medium text-orange-500">{PDP_GIFT_PROMO}</p>
+
+              {/* Coupon */}
+              <div className="rounded-none border border-dashed border-gray-300 bg-gray-50/80 px-3 py-3">
+                <div className="flex items-start gap-3">
+                  <div
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-none text-sm font-bold text-white"
+                    style={{ backgroundColor: '#f97316' }}
+                  >
+                    %
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-base font-bold text-gray-900">{PDP_COUPON_CODE}</p>
+                    <p className="mt-0.5 text-[13px] leading-snug text-gray-600">{PDP_COUPON_COPY}</p>
+                  </div>
+                </div>
               </div>
 
               <div className="border-t border-gray-100" />
 
               {/* Quantity */}
               <div>
-                <p className="text-sm font-medium text-gray-700 mb-2">Quantity</p>
-                <div className="flex items-center border border-gray-300 rounded w-fit">
+                <p className="mb-2 text-sm font-medium text-gray-700">Quantity</p>
+                <div className="flex w-fit items-center rounded-none border border-gray-300">
                   <button
                     type="button"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 h-10 flex items-center justify-center text-lg text-gray-600 hover:bg-gray-50 transition-colors"
+                    className="flex h-10 w-10 items-center justify-center text-lg text-gray-600 transition-colors hover:bg-gray-50"
                   >
                     −
                   </button>
@@ -759,29 +875,69 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <button
                     type="button"
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-10 h-10 flex items-center justify-center text-lg text-gray-600 hover:bg-gray-50 transition-colors"
+                    className="flex h-10 w-10 items-center justify-center text-lg text-gray-600 transition-colors hover:bg-gray-50"
                   >
                     +
                   </button>
                 </div>
               </div>
 
-              {/* Add to Cart + Buy Now */}
-              <div className="flex gap-3">
+              {/* Add to Cart + Buy Now — full-width stacked */}
+              <div className="flex flex-col gap-2.5">
                 <button
                   type="button"
-                  className="flex-1 h-11 rounded text-sm font-semibold text-white transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: '#1a1a1a' }}
+                  className="flex h-12 w-full items-center justify-center gap-2 rounded-none text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: '#f97316' }}
                 >
-                  Add to cart
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                  Add To Cart
                 </button>
                 <button
                   type="button"
-                  className="flex-1 h-11 rounded text-sm font-semibold text-white transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: '#651F39' }}
+                  className="flex h-12 w-full items-center justify-center gap-2 rounded-none text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: '#111111' }}
                 >
-                  Buy Now
+                  <span className="flex items-center gap-0.5 opacity-90" aria-hidden>
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                    </svg>
+                  </span>
+                  BUY NOW
                 </button>
+              </div>
+
+              {/* Trust icons row */}
+              <div className="grid grid-cols-2 gap-4 border-t border-gray-100 pt-4 sm:grid-cols-4 sm:gap-3">
+                {PDP_TRUST_FEATURES.map(({ label, icon }) => (
+                  <div key={label} className="flex flex-col items-center gap-2 text-center">
+                    <div className="text-gray-600">{icon}</div>
+                    <p className="text-[11px] font-medium leading-snug text-gray-700 sm:text-xs">{label}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Pincode */}
+              <div className="border-t border-gray-100 pt-4">
+                <p className="mb-2 text-xs font-semibold text-gray-900">Check Pincode For COD</p>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={6}
+                    placeholder="ENTER YOUR PINCODE"
+                    value={pincodeInput}
+                    onChange={(e) => setPincodeInput(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                    className="min-w-0 flex-1 rounded-none border border-gray-300 bg-white px-3 py-2.5 text-xs font-medium uppercase tracking-wide text-gray-800 placeholder:text-gray-400 placeholder:normal-case"
+                  />
+                  <button
+                    type="button"
+                    className="shrink-0 rounded-none border border-gray-300 bg-white px-4 py-2.5 text-xs font-semibold text-gray-800 transition-colors hover:bg-gray-50"
+                  >
+                    Check
+                  </button>
+                </div>
               </div>
 
               {/* Accordions */}
@@ -837,15 +993,12 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <h2 className="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">
                       See Ajnaa Jewels in action
                     </h2>
-                    <p className="text-xs text-gray-600 mt-1 max-w-md leading-relaxed">
-                      Short clips — styling ideas, craft moments, and real customers in our jewellery. Tap any reel for the full-screen view.
-                    </p>
                   </div>
                   <a
                     href="https://www.instagram.com/ajnaajewels/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full shrink-0 bg-white text-gray-800 border border-gray-200 shadow-sm hover:bg-white hover:border-[#651F39]/40 transition-colors"
+                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-none shrink-0 bg-white text-gray-800 border border-gray-200 shadow-sm hover:bg-white hover:border-[#651F39]/40 transition-colors"
                     style={{ textDecoration: 'none' }}
                   >
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -862,7 +1015,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <button
                         key={idx}
                         type="button"
-                        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#651F39] focus-visible:ring-offset-2 rounded-[999px] flex flex-col items-center"
+                        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#651F39] focus-visible:ring-offset-2 rounded-none flex flex-col items-center"
                         onClick={() => {
                           setPdpWildMuted(false);
                           setWildVideoIdx(idx);
@@ -962,7 +1115,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       type="button"
                       disabled={!canWildPrev}
                       onClick={(e) => { e.stopPropagation(); setWildVideoIdx((i) => (i != null && i > 0 ? i - 1 : i)); }}
-                      className="absolute left-2 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/25 text-white backdrop-blur-md transition-opacity md:hidden disabled:opacity-25"
+                      className="absolute left-2 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-none bg-white/25 text-white backdrop-blur-md transition-opacity md:hidden disabled:opacity-25"
                       aria-label="Previous reel"
                     >
                       <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
@@ -973,7 +1126,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       type="button"
                       disabled={!canWildNext}
                       onClick={(e) => { e.stopPropagation(); setWildVideoIdx((i) => (i != null && i < n - 1 ? i + 1 : i)); }}
-                      className="absolute right-2 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/25 text-white backdrop-blur-md transition-opacity md:hidden disabled:opacity-25"
+                      className="absolute right-2 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-none bg-white/25 text-white backdrop-blur-md transition-opacity md:hidden disabled:opacity-25"
                       aria-label="Next reel"
                     >
                       <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
@@ -986,7 +1139,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.65), transparent)' }}
                     >
                       <div className="flex items-center gap-2 min-w-0">
-                        <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white shrink-0 bg-stone-800">
+                        <div className="w-8 h-8 rounded-none overflow-hidden border-2 border-white shrink-0 bg-stone-800">
                           <img src={thumbImg} alt="" className="w-full h-full object-cover" />
                         </div>
                         <div className="min-w-0">
@@ -999,7 +1152,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <button
                         type="button"
                         onClick={() => setWildVideoIdx(null)}
-                        className="w-8 h-8 rounded-full bg-black/45 flex items-center justify-center text-white shrink-0"
+                        className="w-8 h-8 rounded-none bg-black/45 flex items-center justify-center text-white shrink-0"
                         aria-label="Close reels"
                       >
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4">
@@ -1014,7 +1167,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           key={i}
                           type="button"
                           onClick={() => setWildVideoIdx(i)}
-                          className="rounded-full transition-all"
+                          className="rounded-none transition-all"
                           style={{
                             width: i === idx ? '16px' : '6px',
                             height: '6px',
@@ -1027,7 +1180,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
                     <div className="absolute right-3 bottom-44 z-20 flex flex-col items-center gap-5">
                       <button type="button" onClick={() => setPdpWildLiked((l) => !l)} className="flex flex-col items-center gap-1">
-                        <div className={`w-11 h-11 rounded-full flex items-center justify-center ${pdpWildLiked ? 'bg-pink-500' : 'bg-black/40'}`}>
+                        <div className={`w-11 h-11 rounded-none flex items-center justify-center ${pdpWildLiked ? 'bg-pink-500' : 'bg-black/40'}`}>
                           <svg viewBox="0 0 24 24" fill={pdpWildLiked ? 'white' : 'none'} stroke="white" strokeWidth="2" className="w-5 h-5">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                           </svg>
@@ -1043,7 +1196,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         }}
                         className="flex flex-col items-center gap-1"
                       >
-                        <div className="w-11 h-11 rounded-full bg-black/40 flex items-center justify-center">
+                        <div className="w-11 h-11 rounded-none bg-black/40 flex items-center justify-center">
                           {pdpWildMuted ? (
                             <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-5 h-5">
                               <path d="M11 5L6 9H2v6h4l5 4V5z"/>
@@ -1067,7 +1220,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         }
                         className="flex flex-col items-center gap-1"
                       >
-                        <div className="w-11 h-11 rounded-full bg-black/40 flex items-center justify-center">
+                        <div className="w-11 h-11 rounded-none bg-black/40 flex items-center justify-center">
                           <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-5 h-5">
                             <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
                             <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
@@ -1160,11 +1313,11 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
             {/* Left Side - Rating Breakdown — full row height so sticky has room to track while scrolling reviews */}
             <div className="lg:col-span-1">
               <div className="relative lg:sticky lg:top-[100px]">
-                <div className="rounded-[3px] border border-stone-200/80 bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.05)] md:p-7">
+                <div className="rounded-none border border-stone-200/80 bg-white px-4 py-5 md:p-5">
                   {/* Rating Score Card */}
-                  <div className="mb-7 text-center">
+                  <div className="mb-5 text-center">
                     <div
-                      className="relative mx-auto mb-5 flex h-[7.25rem] w-[7.25rem] items-center justify-center rounded-full"
+                      className="relative mx-auto mb-4 flex h-[7.25rem] w-[7.25rem] items-center justify-center rounded-full"
                       style={{
                         background: `conic-gradient(${REVIEW_ACCENT} 0% 96%, ${REVIEW_RING_TRACK} 96% 100%)`,
                         boxShadow: '0 10px 28px rgba(219, 42, 32, 0.22)',
@@ -1191,7 +1344,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       Based on <strong className="font-semibold text-stone-900">147</strong> reviews
                     </p>
                     <div
-                      className="inline-flex items-center gap-2 rounded-[3px] border px-3.5 py-1.5 text-xs font-medium"
+                      className="inline-flex items-center gap-2 rounded-none border border-stone-200/70 px-3.5 py-1.5 text-xs font-medium"
                       style={{
                         backgroundColor: REVIEW_SOFT,
                         color: REVIEW_ACCENT,
@@ -1205,11 +1358,11 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           clipRule="evenodd"
                         />
                       </svg>
-                      96% say it’s perfect for gifting
+                      96% perfect for gifting
                     </div>
                   </div>
 
-                  <div className="mb-7 space-y-2.5">
+                  <div className="mb-4 space-y-1.5">
                     {[
                       { stars: 5, percent: 75 },
                       { stars: 4, percent: 17 },
@@ -1224,9 +1377,9 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           </svg>
                           <span>{item.stars}</span>
                         </div>
-                        <div className="h-3.5 min-w-0 flex-1 overflow-hidden rounded-full bg-stone-200/90">
+                        <div className="h-3 min-w-0 flex-1 overflow-hidden rounded-none bg-stone-200/90">
                           <div
-                            className="h-full rounded-full transition-all duration-300"
+                            className="h-full rounded-none transition-all duration-300"
                             style={{
                               width: `${item.percent}%`,
                               minWidth: item.percent ? '2px' : 0,
@@ -1239,66 +1392,60 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     ))}
                   </div>
 
-                  <div className="space-y-2.5">
+                  <div className="divide-y divide-stone-200/80 border-t border-stone-200/80">
                     {[
                       {
                         icon: (
-                          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                         ),
-                        label: 'Would recommend for weddings & festive wear',
+                        label: 'Weddings & festive',
                         value: '96%',
                       },
                       {
                         icon: (
-                          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                          <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                           </svg>
                         ),
-                        label: 'Praise kundan finish & stone sparkle in person',
+                        label: 'Kundan sparkle',
                         value: '9/10',
                       },
                       {
                         icon: (
-                          <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                           </svg>
                         ),
-                        label: 'Love comfort & weight — easy to wear all evening',
+                        label: 'Comfortable wear',
                         value: '98%',
                       },
                     ].map((stat, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-center gap-3 rounded-[3px] border border-stone-100 bg-stone-50/60 px-3 py-3"
-                      >
-                        <div
-                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[3px] bg-white shadow-sm ring-1 ring-stone-100"
-                          style={{ color: REVIEW_ACCENT }}
-                        >
+                      <div key={idx} className="flex items-center gap-2.5 py-2 first:pt-2.5">
+                        <div className="shrink-0" style={{ color: REVIEW_ACCENT }}>
                           {stat.icon}
                         </div>
-                        <div className="min-w-0 flex-1 text-left">
-                          <div className="text-sm font-semibold text-stone-900">{stat.value}</div>
-                          <div className="text-xs leading-snug text-stone-600">{stat.label}</div>
+                        <div className="min-w-0 flex-1 text-left leading-tight">
+                          <span className="text-sm font-semibold text-stone-900">{stat.value}</span>
+                          <span className="text-xs text-stone-600"> · {stat.label}</span>
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-7 border-t border-stone-200/80 pt-6">
-                    <p className="mb-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+                  <div className="mt-4 border-t border-stone-200/80 pt-4">
+                    <p className="mb-2 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-500">
                       Follow us
                     </p>
                     <a
                       href={AJNAA_INSTAGRAM_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 rounded-[3px] border border-stone-200/90 bg-gradient-to-br from-stone-50 to-white px-3 py-3 transition-colors hover:border-stone-300 hover:bg-stone-50/90"
+                      className="flex items-center gap-3 rounded-none border border-stone-200/70 bg-stone-50/40 px-3 py-2.5 transition-colors hover:bg-stone-50/80"
                       style={{ textDecoration: 'none' }}
                     >
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-stone-100">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center text-[#651F39]">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
                           <rect x="2" y="2" width="20" height="20" rx="5" stroke="#651F39" strokeWidth="1.6" />
                           <circle cx="12" cy="12" r="4.2" stroke="#651F39" strokeWidth="1.6" />
@@ -1325,87 +1472,74 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
             {/* Right Side - Reviews */}
             <div className="mt-10 lg:mt-0 lg:col-span-2">
 
-              {/* AI Insight card — redesigned clean + attractive */}
-              <div className="mb-6 overflow-hidden rounded-xl border border-stone-200/70 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
-                {/* Top row */}
-                <div className="flex items-center justify-between px-5 pt-4 pb-3">
-                  <div className="flex items-center gap-2">
-                    <div
-                      className="flex h-7 w-7 items-center justify-center rounded-full"
-                      style={{ background: AI_INSIGHT_ICON_BG }}
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={AI_INSIGHT_ICON_STROKE} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="3" /><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-                      </svg>
-                    </div>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.16em]" style={{ color: AI_INSIGHT_LABEL }}>AI Insight</span>
-                  </div>
-                  <span
-                    className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-semibold"
-                    style={{ background: AI_INSIGHT_BADGE_BG, color: AI_INSIGHT_BADGE_TEXT }}
-                  >
-                    <svg width="10" height="10" viewBox="0 0 20 20" fill={AI_INSIGHT_BADGE_TEXT}>
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Verified reviews
-                  </span>
+              {/* AI Insight — premium, minimal */}
+              <div className="mb-8 overflow-hidden rounded-none border border-stone-200/60 bg-gradient-to-b from-white to-stone-50/40 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+                <div className="flex items-baseline justify-between gap-4 border-b border-stone-200/50 px-6 py-4">
+                  <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-stone-400">Insight</span>
+                  <span className="text-[11px] text-stone-500">Verified reviews</span>
                 </div>
 
-                {/* Headline + body */}
-                <div className="px-5 pb-4">
-                  <h4 className="mb-2 text-[1.1rem] font-bold tracking-tight text-stone-900">What customers are saying</h4>
-                  <p className="text-sm leading-relaxed text-stone-600">
+                <div className="px-6 pb-2 pt-5">
+                  <h4 className="mb-3 font-serif text-xl font-normal tracking-tight text-stone-900 md:text-[1.35rem]">
+                    What jewellery lovers are saying
+                  </h4>
+                  <p className="text-[15px] leading-[1.65] text-stone-600">
                     {isAISummaryExpanded ? (
                       <>
-                        Customers consistently love Ajnaa Jewels for thoughtful design, solid craftsmanship, and pieces that feel special in person. Buyers highlight finish quality, comfortable wear, and how the jewelry photographs for occasions and gifting. Many mention compliments at events and coming back for matching sets. Shoppers say the real pieces match or exceed what they saw online — with packaging that feels premium and gift-ready.
-                        <button type="button" onClick={() => setIsAISummaryExpanded(false)}
-                          className="ml-1 cursor-pointer font-semibold underline underline-offset-2 transition-opacity hover:opacity-75"
-                          style={{ color: AI_INSIGHT_LINK }}>Read less</button>
+                        Shoppers praise Ajnaa Jewels for fine jewellery that feels comfortable to wear for hours — secure clasps, smooth settings, and stones that match what they saw online. Reviews often mention kundan and pearl work, lightweight necklaces and earrings for weddings and festivals, and pieces that photograph well for reels and family events. Many buy again for matching sets or gifts, and note premium boxes and pouches that feel occasion-ready.{' '}
+                        <button
+                          type="button"
+                          onClick={() => setIsAISummaryExpanded(false)}
+                          className="text-[13px] font-medium text-stone-800 underline decoration-stone-300 underline-offset-[3px] transition-colors hover:text-stone-950 hover:decoration-stone-400"
+                        >
+                          Read less
+                        </button>
                       </>
                     ) : (
                       <>
-                        Customers love Ajnaa Jewels for elegant detailing, reliable quality, and designs that work across traditional and modern looks — many say it makes the perfect gift.
-                        <button type="button" onClick={() => setIsAISummaryExpanded(true)}
-                          className="ml-1 cursor-pointer font-semibold underline underline-offset-2 transition-opacity hover:opacity-75"
-                          style={{ color: AI_INSIGHT_LINK }}>Read more</button>
+                        Buyers love our handcrafted jewellery for weddings, festive wear, and gifting — with attention to finish, stone sparkle, and pieces that work from silk to everyday fusion looks.{' '}
+                        <button
+                          type="button"
+                          onClick={() => setIsAISummaryExpanded(true)}
+                          className="text-[13px] font-medium text-stone-800 underline decoration-stone-300 underline-offset-[3px] transition-colors hover:text-stone-950 hover:decoration-stone-400"
+                        >
+                          Read more
+                        </button>
                       </>
                     )}
                   </p>
                 </div>
 
-                {/* Tags */}
-                <div className="border-t border-stone-100 px-5 py-3">
-                  <div className="flex flex-wrap gap-1.5">
-                    {['Upcycled craft', 'Eco-friendly', 'Shark Tank India', 'Unique gifting', 'Premium quality', 'Zero waste', 'Artisan made'].map((item, index) => (
-                      <span
-                        key={index}
-                        className="rounded-full px-2.5 py-0.5 text-[11px] font-medium"
-                        style={{ background: AI_INSIGHT_TAG_BG, color: AI_INSIGHT_TAG_TEXT }}
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <p className="px-6 pb-5 text-[12px] leading-relaxed text-stone-500">
+                  {[
+                    'Kundan & pearls',
+                    'Bridal & festive',
+                    'Handcrafted',
+                    'Lightweight wear',
+                    'Gift-ready',
+                    'Made in India',
+                    'Everyday & occasion',
+                  ].join(' · ')}
+                </p>
 
-                {/* Tabs — compact pills, right inside the card at the bottom */}
-                <div className="border-t border-stone-100 px-5 py-3">
-                  <div className="flex gap-2">
-                    {[['product', 'Product Reviews'], ['brand', 'Brand Reviews']].map(([id, label]) => (
-                      <button
-                        key={id}
-                        type="button"
-                        onClick={() => setActiveTab(id)}
-                        className="rounded-full px-4 py-1.5 text-xs font-semibold transition-all"
-                        style={activeTab === id
-                          ? { background: AI_INSIGHT_TAB_ACTIVE, color: '#fff', boxShadow: '0 2px 10px rgba(0,0,0,0.12)' }
-                          : { background: '#f5f5f4', color: '#78716c' }
-                        }
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
+                <div className="flex border-t border-stone-200/50">
+                  {[
+                    ['product', 'Product reviews'],
+                    ['brand', 'Brand reviews'],
+                  ].map(([id, label]) => (
+                    <button
+                      key={id}
+                      type="button"
+                      onClick={() => setActiveTab(id)}
+                      className={`flex-1 py-3.5 text-center text-[13px] font-medium transition-colors ${
+                        activeTab === id
+                          ? 'border-b-2 border-stone-900 text-stone-900'
+                          : 'border-b-2 border-transparent text-stone-500 hover:text-stone-700'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -1418,7 +1552,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         <h3 className="mb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">CUSTOMER PHOTOS</h3>
                         <p className="text-sm text-stone-600">Real results from the community</p>
                       </div>
-                      <span className="rounded-[3px] bg-stone-100 px-3 py-1 text-xs font-medium tabular-nums text-stone-600">
+                      <span className="rounded-none bg-stone-100 px-3 py-1 text-xs font-medium tabular-nums text-stone-600">
                         {customerReviewImages.length} uploads
                       </span>
                     </div>
@@ -1429,7 +1563,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         {customerReviewImages.slice(0, 6).map((image, i) => (
                           <div
                             key={i}
-                            className="group relative shrink-0 cursor-pointer overflow-hidden rounded-[3px] ring-1 ring-stone-200/80 transition-shadow hover:shadow-md"
+                            className="group relative shrink-0 cursor-pointer overflow-hidden rounded-none ring-1 ring-stone-200/80 transition-shadow hover:shadow-md"
                             onClick={() => handleImageClick(i)}
                             style={{
                               backgroundColor: '#f5f5f4',
@@ -1461,7 +1595,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         ))}
                         {customerReviewImages.length > 6 && (
                           <div
-                            className="relative shrink-0 cursor-pointer overflow-hidden rounded-[3px] ring-1 ring-stone-200/80 transition-opacity hover:opacity-95"
+                            className="relative shrink-0 cursor-pointer overflow-hidden rounded-none ring-1 ring-stone-200/80 transition-opacity hover:opacity-95"
                             onClick={() => {
                               setGridModalImages(customerReviewImages);
                               setGridModalReview(null);
@@ -1492,7 +1626,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <select
                         value={productSortBy}
                         onChange={(e) => setProductSortBy(e.target.value)}
-                        className="min-h-[44px] cursor-pointer appearance-none rounded-[3px] border border-stone-200 bg-white px-4 py-2 pr-9 text-[17px] font-medium text-stone-800 shadow-sm transition-colors hover:border-stone-300 focus:outline-none focus:ring-2 focus:ring-stone-300/40 md:min-h-0 md:text-sm"
+                        className="min-h-[44px] cursor-pointer appearance-none rounded-none border border-stone-200 bg-white px-4 py-2 pr-9 text-[17px] font-medium text-stone-800 shadow-sm transition-colors hover:border-stone-300 focus:outline-none focus:ring-2 focus:ring-stone-300/40 md:min-h-0 md:text-sm"
                       >
                         <option value="most-recent">Most Recent</option>
                         <option value="highest-rated">Highest Rated</option>
@@ -1512,7 +1646,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       return (
                         <div
                           key={review.id}
-                          className="rounded-[3px] border border-stone-200/70 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)] md:p-5"
+                          className="rounded-none border border-stone-200/70 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)] md:p-5"
                         >
                           <div className="mb-2 flex items-center justify-between gap-2">
                             <div className="flex min-w-0 flex-wrap items-center gap-1.5">
@@ -1576,7 +1710,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                               {review.images.map((image, imgIndex) => (
                                 <div
                                   key={imgIndex}
-                                  className="h-14 w-14 shrink-0 cursor-pointer overflow-hidden rounded-[3px] ring-1 ring-stone-200/80 transition-opacity hover:opacity-85"
+                                  className="h-14 w-14 shrink-0 cursor-pointer overflow-hidden rounded-none ring-1 ring-stone-200/80 transition-opacity hover:opacity-85"
                                   onClick={() => {
                                     const idx = allReviewImages.indexOf(image);
                                     if (idx !== -1) handleImageClick(idx);
@@ -1597,7 +1731,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <button
                         type="button"
                         onClick={() => setReviewsToShow(reviews.length)}
-                        className="rounded-[3px] border border-stone-300 bg-white px-8 py-3 text-sm font-semibold text-stone-800 shadow-sm transition-all hover:border-stone-400 hover:bg-stone-50 md:text-base"
+                        className="rounded-none border border-stone-300 bg-white px-8 py-3 text-sm font-semibold text-stone-800 shadow-sm transition-all hover:border-stone-400 hover:bg-stone-50 md:text-base"
                       >
                         View More Reviews
                       </button>
@@ -1607,7 +1741,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <div className="mt-6 text-center">
                     <button
                       type="button"
-                      className="rounded-[3px] bg-stone-900 px-8 py-3 text-sm font-semibold text-white shadow-md transition-colors hover:bg-stone-800 md:text-base"
+                      className="rounded-none bg-stone-900 px-8 py-3 text-sm font-semibold text-white shadow-md transition-colors hover:bg-stone-800 md:text-base"
                     >
                       Write a Review
                     </button>
@@ -1625,7 +1759,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         <h3 className="mb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">CUSTOMER PHOTOS</h3>
                         <p className="text-sm text-stone-600">Real moments, real craft — click any photo to read the story</p>
                       </div>
-                      <span className="rounded-[3px] bg-stone-100 px-3 py-1 text-xs font-medium tabular-nums text-stone-600">
+                      <span className="rounded-none bg-stone-100 px-3 py-1 text-xs font-medium tabular-nums text-stone-600">
                         {GALLERY_IMAGES.length} photos
                       </span>
                     </div>
@@ -1677,7 +1811,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
       {/* Floating Instagram Button — icon only on mobile, pill on desktop */}
       <button
-        className="fixed bottom-5 left-5 w-12 h-12 md:w-auto md:h-auto md:px-5 md:py-3 rounded-full flex items-center justify-center md:gap-2.5 text-sm font-semibold text-white cursor-pointer z-[1000] transition-all duration-300 hover:scale-105 active:scale-95"
+        className="fixed bottom-5 left-5 w-12 h-12 md:w-auto md:h-auto md:px-5 md:py-3 rounded-none flex items-center justify-center md:gap-2.5 text-sm font-semibold text-white cursor-pointer z-[1000] transition-all duration-300 hover:scale-105 active:scale-95"
         style={{
           background: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
           boxShadow: '0 4px 15px rgba(188, 24, 136, 0.4)'
@@ -1698,11 +1832,11 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
           onClick={() => setShowInstagramModal(false)}
         >
           <div 
-            className="relative w-full md:w-2/5 max-w-4xl h-full md:h-[90vh] bg-gray-50 rounded-2xl shadow-2xl overflow-hidden"
+            className="relative w-full md:w-2/5 max-w-4xl h-full md:h-[90vh] bg-gray-50 rounded-none shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <button 
-              className="absolute top-4 right-4 bg-black bg-opacity-60 border-none rounded-full w-10 h-10 flex items-center justify-center cursor-pointer transition-all duration-200 z-[10001] hover:bg-opacity-80"
+              className="absolute top-4 right-4 bg-black bg-opacity-60 border-none rounded-none w-10 h-10 flex items-center justify-center cursor-pointer transition-all duration-200 z-[10001] hover:bg-opacity-80"
               onClick={() => setShowInstagramModal(false)}
               aria-label="Close Instagram"
             >
@@ -1723,7 +1857,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       {[1, 2, 3, 4].map((i) => (
                     <div
                           key={`skeleton-${i}`}
-                          className="w-full bg-gray-200 rounded-lg overflow-hidden animate-pulse"
+                          className="w-full bg-gray-200 rounded-none overflow-hidden animate-pulse"
                           style={{ height: '380px' }}
                         >
                           <div className="h-full bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200"></div>
@@ -1845,7 +1979,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
             </div>
             <button
               onClick={() => setIsGridModalOpen(false)}
-              className="text-gray-600 hover:text-gray-900 transition-colors p-2 rounded-full hover:bg-gray-100"
+              className="text-gray-600 hover:text-gray-900 transition-colors p-2 rounded-none hover:bg-gray-100"
               aria-label="Close modal"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1863,7 +1997,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
               {gridModalImages.map((image, index) => (
                 <div
                   key={index}
-                  className="relative aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity bg-gray-200 shadow-sm"
+                  className="relative aspect-square rounded-none overflow-hidden cursor-pointer hover:opacity-90 transition-opacity bg-gray-200 shadow-sm"
                   onClick={() => {
                     const imageIndex = allReviewImages.indexOf(image);
                     if (imageIndex !== -1) {
@@ -1899,13 +2033,13 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
         >
           {/* Modal Content Container - Myntra Style Side-by-Side for Desktop */}
           <div 
-            className="relative w-full max-w-6xl h-[90vh] bg-white rounded-lg overflow-hidden flex flex-col md:flex-row shadow-2xl"
+            className="relative w-full max-w-6xl h-[90vh] bg-white rounded-none overflow-hidden flex flex-col md:flex-row shadow-2xl"
             onClick={(e) => e.stopPropagation()}
         >
           {/* Close Button */}
           <button
             onClick={handleCloseModal}
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors z-20 bg-white rounded-full p-2 shadow-lg"
+              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors z-20 bg-white rounded-none p-2 shadow-lg"
             aria-label="Close modal"
           >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1921,7 +2055,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
               e.stopPropagation();
               handlePrevious();
             }}
-                className="md:hidden absolute left-2 top-1/2 -translate-y-1/2 text-gray-700 hover:text-gray-900 transition-colors z-10 bg-white bg-opacity-80 rounded-full p-2 shadow-lg"
+                className="md:hidden absolute left-2 top-1/2 -translate-y-1/2 text-gray-700 hover:text-gray-900 transition-colors z-10 bg-white bg-opacity-80 rounded-none p-2 shadow-lg"
             aria-label="Previous image"
           >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1935,7 +2069,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
               e.stopPropagation();
               handleNext();
             }}
-                className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 text-gray-700 hover:text-gray-900 transition-colors z-10 bg-white bg-opacity-80 rounded-full p-2 shadow-lg"
+                className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 text-gray-700 hover:text-gray-900 transition-colors z-10 bg-white bg-opacity-80 rounded-none p-2 shadow-lg"
             aria-label="Next image"
           >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1947,11 +2081,11 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
             <img
                 src={allReviewImages[selectedModalImageIndex]}
                 alt={`Review image ${selectedModalImageIndex + 1}`}
-              className="max-w-full max-h-full object-contain rounded-lg"
+              className="max-w-full max-h-full object-contain rounded-none"
             />
             
               {/* Image Counter - Bottom Left */}
-              <div className="absolute bottom-4 left-4 bg-black bg-opacity-75 text-white px-3 py-1.5 rounded-full text-xs md:text-sm">
+              <div className="absolute bottom-4 left-4 bg-black bg-opacity-75 text-white px-3 py-1.5 rounded-none text-xs md:text-sm">
                 {selectedModalImageIndex + 1} / {allReviewImages.length}
             </div>
           </div>
@@ -1997,7 +2131,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   
                   {/* Review Type Badge */}
                   <div className="mt-4">
-                    <span className="inline-block px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(101, 31, 57, 0.1)', color: '#651F39' }}>
+                    <span className="inline-block px-3 py-1.5 text-xs font-medium rounded-none" style={{ backgroundColor: 'rgba(101, 31, 57, 0.1)', color: '#651F39' }}>
                       {selectedReview.type === 'product' ? 'Product Review' : 'Brand Review'}
                     </span>
                   </div>
@@ -2009,7 +2143,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         e.stopPropagation();
                         handlePrevious();
                       }}
-                      className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors px-4 py-2 rounded-lg hover:bg-gray-50"
+                      className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors px-4 py-2 rounded-none hover:bg-gray-50"
                       aria-label="Previous image"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2022,7 +2156,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         e.stopPropagation();
                         handleNext();
                       }}
-                      className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors px-4 py-2 rounded-lg hover:bg-gray-50"
+                      className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors px-4 py-2 rounded-none hover:bg-gray-50"
                       aria-label="Next image"
                     >
                       <span className="text-sm font-medium">Next</span>
@@ -2077,7 +2211,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <h3 className="font-medium text-gray-900 mb-2 text-base">{selectedReview.title}</h3>
                 )}
                 <p className="text-gray-700 text-sm leading-relaxed mb-2">{selectedReview.text}</p>
-                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(101, 31, 57, 0.1)', color: '#651F39' }}>
+                <span className="inline-block px-3 py-1 text-xs font-medium rounded-none" style={{ backgroundColor: 'rgba(101, 31, 57, 0.1)', color: '#651F39' }}>
                   {selectedReview.type === 'product' ? 'Product Review' : 'Brand Review'}
                 </span>
               </div>
