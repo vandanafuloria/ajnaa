@@ -1003,7 +1003,10 @@ const HomePage = ({ onProductClick }) => {
       )}
 
       {/* Photo Gallery */}
-      <PhotoGallery title="Our Gallery" subtitle="Real moments, real craft — made from what others throw away" />
+      <PhotoGallery
+        title="Our Gallery"
+        subtitle="Handcrafted fine jewellery for weddings, festivals, and the moments you remember."
+      />
 
       {/* Instagram Reels Carousel Section */}
       <section className="w-full py-8 md:py-12 bg-white overflow-hidden">

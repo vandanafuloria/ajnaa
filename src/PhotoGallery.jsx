@@ -50,7 +50,10 @@ function getGalleryProductDetail(index) {
   };
 }
 
-export default function PhotoGallery({ title = 'Our Gallery', subtitle = 'Real moments, real craft' }) {
+export default function PhotoGallery({
+  title = 'Our Gallery',
+  subtitle = 'Handcrafted for celebrations, gifts, and everyday shine.',
+}) {
   const [lightbox, setLightbox] = useState(null); // index or null
   const [showAll, setShowAll] = useState(false);
 
