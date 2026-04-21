@@ -106,6 +106,17 @@ function AIBrandEngine({ showExtras = true }) {
           <path d="M8 12L10.5 14.5L16 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
+      gift: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M20 12V20H4V12M2 7H22V12H2V7ZM12 7V20M12 7H7.5C6.12 7 5 5.88 5 4.5C5 3.12 6.12 2 7.5 2C10.5 2 12 7 12 7ZM12 7H16.5C17.88 7 19 5.88 19 4.5C19 3.12 17.88 2 16.5 2C13.5 2 12 7 12 7Z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
       metrics: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M3 3V21H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -119,167 +130,191 @@ function AIBrandEngine({ showExtras = true }) {
 
   const brandInfo = {
     craft: {
-      title: 'Craft & finish',
+      title: 'Fine jewellery craft',
       iconType: 'craft',
       content: [
         {
-          label: 'Artisan-made',
-          value: 'India',
-          description: 'Kundan, pearls, and gold-tone finishing by skilled craftspeople.',
+          label: 'Heritage techniques',
+          value: 'Kundan · pearls',
+          description: 'Hand-set work and gold-tone finishes suited to bridal necklaces, chokers, and statement earrings.',
         },
         {
-          label: 'Quality focus',
-          value: 'High',
-          description: 'Secure settings, smooth edges, and even stone alignment checked before dispatch.',
+          label: 'Made for milestones',
+          value: 'Wedding-ready',
+          description: 'Pieces chosen for mandap light, sangeet sparkle, and reception photos — secure clasps for long wear.',
         },
         {
-          label: 'Detail',
-          value: 'Hand-finished',
-          description: 'Pieces meant to photograph well and feel comfortable for long events.',
+          label: 'Finish',
+          value: 'Hand-checked',
+          description: 'Smooth edges and even stones so jewellery sits comfortably through rituals and family photos.',
         },
       ],
-      highlights: ['Comfortable weight for weddings & festivals.', 'Nickel-conscious picks where noted.', 'Premium boxes and pouches, occasion-ready.'],
+      highlights: [
+        'Lightweight options for mehendi and haldi without weighing you down.',
+        'Sets that pair with lehenga, saree, or sharara lines.',
+        'Packaging that feels worthy of trousseau and milestone gifts.',
+      ],
     },
     occasions: {
-      title: 'How customers wear Ajnaa',
+      title: 'Wedding & marriage moments',
       iconType: 'occasions',
       content: [
         {
-          label: 'Popular for',
-          value: 'Bridal & festive',
-          description: 'Roka, sangeet, and family events — styling that reads on camera.',
+          label: 'Bridal journey',
+          value: 'Roka → reception',
+          description: 'Engagement, roka, sangeet, wedding day, and reception — coordinated sets and matching pieces for each function.',
         },
         {
-          label: 'Pairs with',
-          value: 'Silk to fusion',
-          description: 'Organza, silk, and clean contemporary looks.',
+          label: 'Family rituals',
+          value: 'Karva · festivals',
+          description: 'Karva Chauth, Teej, Diwali pooja, and anniversary dinners — pieces that feel traditional yet wearable.',
         },
         {
-          label: 'Gifting',
-          value: 'Strong',
-          description: 'Matching sets and gift-ready packaging shoppers mention often.',
+          label: 'On camera',
+          value: 'Photo-friendly',
+          description: 'Stones and polish chosen to read clearly in daylight, flash, and reel lighting.',
         },
       ],
-      highlights: ['Lightweight necklaces and earrings for long days.', 'Sets that work for photos and real life.', 'Repeat buys for matching pieces.'],
+      highlights: [
+        'Necklaces and earrings that frame the face for bridal portraits.',
+        'Matching sets for the bride and coordinated tones for sisters / mothers.',
+        'Comfort for long ceremonies — so you enjoy the day, not just the photos.',
+      ],
     },
-    returns: {
-      title: 'Returns & exchanges',
-      iconType: 'returns',
+    gifting: {
+      title: 'Gifting that feels personal',
+      iconType: 'gift',
       content: [
         {
-          label: 'Window',
-          value: 'Policy-based',
-          description: 'Follow site policy for returns and size exchanges where applicable.',
+          label: "Who it's for",
+          value: 'Her · them',
+          description: 'Mother of the bride, sister of the groom, wife, daughter-in-law, or friend — jewellery as a keepsake, not a generic box.',
         },
         {
-          label: 'Support',
-          value: 'Responsive',
-          description: 'Reach out with order ID for help with defects or wrong items.',
+          label: 'Occasions',
+          value: 'Festive · life',
+          description: 'Housewarming, baby shower, promotion, anniversary, Diwali, Eid, Rakhi, birthdays, and “just because” surprises.',
         },
         {
-          label: 'Packaging',
-          value: 'Secure',
-          description: 'Items packed to reduce movement in transit.',
+          label: 'Presentation',
+          value: 'Gift-ready',
+          description: 'Premium boxes and pouches so gifts feel occasion-appropriate without extra wrapping stress.',
         },
       ],
-      highlights: ['Check product page for category-specific rules.', 'Keep pieces in original condition when eligible.', 'Track requests via your confirmation email.'],
+      highlights: [
+        'Thoughtful sets for first Diwali after marriage or first Karva Chauth.',
+        'Elevated gifting for colleagues and clients when you want more than sweets.',
+        'Easy to pair with sarees, suits, and fusion fits the recipient already owns.',
+      ],
     },
     care: {
-      title: 'Care & storage',
+      title: 'Care for heirloom-worthy pieces',
       iconType: 'care',
       content: [
         {
-          label: 'Storage',
-          value: 'Dry & soft',
-          description: 'Store in provided pouch; avoid moisture and harsh chemicals.',
+          label: 'After the wedding',
+          value: 'Store right',
+          description: 'Keep sets in soft pouches, separate heavy necklaces so chains and stones don’t rub.',
+        },
+        {
+          label: 'Daily wear',
+          value: 'Last on',
+          description: 'Perfume, hair spray, and haldi stains stay off the metal — put jewellery on after dressing.',
         },
         {
           label: 'Cleaning',
-          value: 'Gentle',
-          description: 'Soft cloth only unless the product page says otherwise.',
-        },
-        {
-          label: 'Longevity',
-          value: 'Wear-aware',
-          description: 'Perfume and sprays last — put jewellery on after dressing.',
+          value: 'Soft cloth',
+          description: 'Gentle wipe-down; follow product-specific care for kundan, pearls, and plated pieces.',
         },
       ],
-      highlights: ['Avoid sleeping in delicate stone work.', 'Separate pieces to prevent scratches.', 'Occasion rotation keeps favourites looking fresh.'],
+      highlights: [
+        'Rotate heavy bridal pieces with lighter everyday jewels to preserve finish.',
+        'Avoid sleeping in delicate ear hooks and maang tikka chains.',
+        'Re-wear wedding jewellery for anniversaries — store it so it stays photo-ready.',
+      ],
     },
     shipping: {
-      title: 'Shipping',
+      title: 'Delivery to your door',
       iconType: 'shipping',
       content: [
         {
-          label: 'Coverage',
-          value: 'Pan-India',
-          description: 'Delivery timelines shown at checkout for your PIN code.',
+          label: 'Pan-India',
+          value: 'Trackable',
+          description: 'Wedding timelines and festival gifting — check estimated delivery at checkout for your PIN.',
         },
         {
-          label: 'Tracking',
-          value: 'Updates',
-          description: 'Notifications as your order moves through dispatch.',
+          label: 'Orders & help',
+          value: 'Support',
+          description: 'Questions on sizing, sets, or dispatch — use site contact with your order ID.',
         },
         {
-          label: 'Free shipping',
-          value: 'Where offered',
-          description: 'See cart and promotions for current free-shipping rules.',
+          label: 'Returns',
+          value: 'As per policy',
+          description: 'Eligibility and windows are on each product and policy page — keep pieces unused where required.',
         },
       ],
-      highlights: ['Estimated delivery in line with policy copy on site.', 'Secure outer packaging.', 'Support for delivery questions via site contact.'],
+      highlights: [
+        'Secure outer packaging for high-value jewellery in transit.',
+        'Plan ahead for wedding dates — order with buffer for alterations or exchanges if needed.',
+        'Free or promotional shipping when shown in cart — see current offers on ajnaajewels.com.',
+      ],
     },
     brand: {
       title: 'Ajnaa Jewels',
       iconType: 'brand',
       content: [
         {
-          label: 'Origin',
-          value: 'India',
-          description: 'Fine jewellery handmade with care for detail and wearability.',
+          label: 'Promise',
+          value: 'Fine · Indian',
+          description: 'Jewellery imagined for real weddings, festivals, and gifts — not shelf decoration.',
         },
         {
           label: 'Shop',
           value: 'Online',
-          description: 'Browse the full collection and new drops on the store.',
+          description: 'Browse bridal edits, festive drops, and gifting-friendly sets on the store.',
         },
         {
-          label: 'Social',
+          label: 'Inspiration',
           value: '@ajnaajewels',
-          description: 'Reels, styling, and launches on Instagram.',
+          description: 'Reels and styling for marriage seasons, festivals, and everyday shine.',
         },
       ],
-      highlights: ['Trusted by shoppers for festive and bridal edits.', 'Pieces designed to feel as good as they look.', 'Community stories from real customers.'],
+      highlights: [
+        'Built around how Indian women actually wear jewellery — from engagement to anniversary.',
+        'Community love for kundan, pearls, and lightweight glam.',
+        'When in doubt, match the moment: wedding, festival, or a gift they’ll remember.',
+      ],
     },
   };
 
   const graphData = {
     fit: {
-      label: 'Wear comfort',
+      label: 'Bridal comfort (wear)',
       data: [85, 88, 86, 90, 87, 91, 92],
       color: '#651f39',
     },
     positive: {
-      label: 'Positive sentiment',
+      label: 'Love for craft & look',
       data: [78, 82, 84, 87, 85, 88, 90],
       color: '#8b4a62',
     },
     repeat: {
-      label: 'Repeat interest',
+      label: 'Repeat buys & gifts',
       data: [62, 65, 68, 70, 72, 75, 78],
       color: '#c9a227',
     },
     delivery: {
-      label: 'Delivery satisfaction',
+      label: 'Delivery (wedding timelines)',
       data: [86, 88, 89, 91, 90, 92, 93],
       color: '#b76e79',
     },
     rating: {
-      label: 'Avg. rating (proxy)',
+      label: 'Avg. rating (illustrative)',
       data: [4.2, 4.3, 4.4, 4.5, 4.5, 4.6, 4.7],
       color: '#4a1942',
     },
     issue: {
-      label: 'Resolution (proxy)',
+      label: 'Care & resolution (proxy)',
       data: [80, 82, 85, 87, 88, 90, 91],
       color: '#7c2d42',
     },
@@ -287,8 +322,8 @@ function AIBrandEngine({ showExtras = true }) {
 
   const metrics = [
     { id: 'positive', label: 'Love' },
-    { id: 'repeat', label: 'Repeat' },
-    { id: 'fit', label: 'Comfort' },
+    { id: 'repeat', label: 'Gifts' },
+    { id: 'fit', label: 'Bridal' },
     { id: 'delivery', label: 'Ship' },
     { id: 'rating', label: 'Stars' },
     { id: 'issue', label: 'Care' },
@@ -327,7 +362,7 @@ function AIBrandEngine({ showExtras = true }) {
     return (
       <div className="chart-container">
         <div className="chart-header">
-          <h5 className="chart-title">Trust snapshot</h5>
+          <h5 className="chart-title">Jewellery trust snapshot</h5>
           <div className="chart-value">{displayValue}</div>
         </div>
         <svg width="100%" height={height} viewBox={`0 0 ${width} ${height}`} className="chart-svg" preserveAspectRatio="xMidYMid meet">
@@ -374,7 +409,7 @@ function AIBrandEngine({ showExtras = true }) {
               fontSize="10"
               fontWeight="500"
             >
-              P{index + 1}
+              S{index + 1}
             </text>
           ))}
         </svg>
@@ -390,16 +425,18 @@ function AIBrandEngine({ showExtras = true }) {
             </button>
           ))}
         </div>
-        <p className="chart-footnote">Illustrative trend — not live analytics. For jewellery trust & satisfaction themes.</p>
+        <p className="chart-footnote">
+          Illustrative trend only — not live data. Themes: bridal wear, gifting, and festival shopping satisfaction.
+        </p>
       </div>
     );
   };
 
   const tabs = [
-    { id: 'metrics', label: 'Metrics', iconType: 'metrics' },
+    { id: 'metrics', label: 'Signals', iconType: 'metrics' },
     { id: 'craft', label: 'Craft', iconType: 'craft' },
-    { id: 'occasions', label: 'Wear', iconType: 'occasions' },
-    { id: 'returns', label: 'Returns', iconType: 'returns' },
+    { id: 'occasions', label: 'Wedding', iconType: 'occasions' },
+    { id: 'gifting', label: 'Gifts', iconType: 'gift' },
     { id: 'care', label: 'Care', iconType: 'care' },
     { id: 'shipping', label: 'Ship', iconType: 'shipping' },
     { id: 'brand', label: 'Brand', iconType: 'brand' },
@@ -417,7 +454,7 @@ function AIBrandEngine({ showExtras = true }) {
             type="button"
             className="ai-brand-engine-trigger"
             onClick={() => setIsExpanded(true)}
-            aria-label="Open AI brand insights for Ajnaa Jewels"
+            aria-label="Open jewellery and gifting insights for Ajnaa Jewels"
           >
             <div className="trigger-icon">
               <span className="ai-gemini-rotator" aria-hidden="true">
@@ -425,18 +462,18 @@ function AIBrandEngine({ showExtras = true }) {
               </span>
             </div>
             <div className="trigger-text">
-              <span className="trigger-label">AI insights</span>
+              <span className="trigger-label">Bridal & gifts</span>
               <span className="trigger-sublabel">Ajnaa Jewels</span>
             </div>
             <span className="trigger-badge">AI</span>
           </button>
           <div className="ai-brand-engine-tooltip" role="note">
-            Craft, care & trust — tap to explore
+            Weddings, gifting & fine jewellery — tap to explore
             <span className="ai-brand-engine-tooltip__arrow" aria-hidden />
           </div>
         </div>
       ) : (
-        <div className="ai-brand-engine-panel" role="dialog" aria-label="AI brand insights">
+        <div className="ai-brand-engine-panel" role="dialog" aria-label="Ajnaa Jewels jewellery and gifting insights">
           <div className="panel-header">
             <div className="header-left">
               <div className="header-icon">
@@ -444,7 +481,7 @@ function AIBrandEngine({ showExtras = true }) {
               </div>
               <div>
                 <h3 className="panel-title">AI Brand Engine</h3>
-                <p className="panel-subtitle">Ajnaa Jewels · curated signals</p>
+                <p className="panel-subtitle">Fine jewellery · weddings · gifting</p>
               </div>
             </div>
             <button type="button" className="panel-close-btn" onClick={() => setIsExpanded(false)} aria-label="Close">
@@ -489,7 +526,7 @@ function AIBrandEngine({ showExtras = true }) {
                   ))}
                 </div>
                 <div className="highlights-section">
-                  <h5 className="highlights-title">Highlights</h5>
+                  <h5 className="highlights-title">Why it matters</h5>
                   <ul className="highlights-list">
                     {currentInfo.highlights.map((highlight) => (
                       <li key={highlight} className="highlight-item">
@@ -503,7 +540,7 @@ function AIBrandEngine({ showExtras = true }) {
                 </div>
                 <div className="panel-content-cta">
                   <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" className="abe-cta abe-cta--primary">
-                    Shop collection
+                    Shop bridal & gifts
                   </a>
                   <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="abe-cta abe-cta--ghost">
                     Instagram
@@ -518,9 +555,11 @@ function AIBrandEngine({ showExtras = true }) {
               <span className="footer-badge-icon" aria-hidden>
                 <PremiumAIIcon gradientId={`${baseId}-foot`} size={18} />
               </span>
-              <span>AI-assisted brand story</span>
+              <span>Curated for bridal & gifting moments</span>
             </div>
-            <p className="footer-note">Summaries are for guidance; always refer to product pages and policies on ajnaajewels.com.</p>
+            <p className="footer-note">
+              For weddings, festivals, and gifts — summaries are for inspiration only. Check product pages and policies on ajnaajewels.com before you buy.
+            </p>
           </div>
         </div>
       )}
