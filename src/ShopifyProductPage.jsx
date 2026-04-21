@@ -13,18 +13,18 @@ import PdpHeroReviewRotator from './PdpHeroReviewRotator';
 
 import productHeader from './assets/product_header.png';
 import { SCRAPSHALA_SHOP_VIDEOS, PDP_DRAGGABLE_VIDEO } from './scrapshalaShopVideos';
-import { bestSellerProducts } from './scrapshalaBestSellers';
+import {
+  bestSellerProducts,
+  AJNAA_PRODUCT_IMAGES,
+  LE108_PDP_GALLERY_IMAGES,
+} from './scrapshalaBestSellers';
 
 import reviewData from '../review.json';
+import { INSTAGRAM_POST_URLS } from './instagramPosts';
 
 /** Review images — use gallery images */
 const PRODUCT_REVIEW_IMAGES = GALLERY_IMAGES;
 const BRAND_REVIEW_IMAGES = [...GALLERY_IMAGES].reverse();
-
-// Scrapshala product imagery — main gallery
-const SCRAPSHALA_PDP_IMAGES = [
-  'https://scrapshala.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_3.45.06_PM.jpg?format=webp&v=1773310830&width=713',
-];
 
 function getReviewTitle(text) {
   const first = text.split(/[.!,]/)[0].trim();
@@ -44,13 +44,13 @@ function formatSoldLabel(n) {
 
 
 // Brand Name (footer / assets)
-const BRAND_NAME = "Scrapshala";
+const BRAND_NAME = "Ajnaa Jewels";
 
-/** Reviews UI — brand red (matches PDP accents) */
-const REVIEW_ACCENT = '#178604';
-const REVIEW_RING_TRACK = '#dcf5d8';
-const REVIEW_SOFT = 'rgba(23, 134, 4, 0.09)';
-const REVIEW_ACCENT_BORDER = 'rgba(23, 134, 4, 0.25)';
+/** Reviews UI — brand burgundy accent */
+const REVIEW_ACCENT = '#651F39';
+const REVIEW_RING_TRACK = '#ede4e8';
+const REVIEW_SOFT = 'rgba(101, 31, 57, 0.09)';
+const REVIEW_ACCENT_BORDER = 'rgba(101, 31, 57, 0.25)';
 
 /** AI Insight card — neutral-forward; subtle sage for links only (less saturated than REVIEW_ACCENT) */
 const AI_INSIGHT_ICON_BG = 'rgba(120, 113, 108, 0.14)';
@@ -63,20 +63,17 @@ const AI_INSIGHT_TAG_BG = 'rgba(120, 113, 108, 0.08)';
 const AI_INSIGHT_TAG_TEXT = '#57534e';
 const AI_INSIGHT_TAB_ACTIVE = '#292524';
 
-// Product Images Array - All product images
-const PRODUCT_IMAGES = [...SCRAPSHALA_PDP_IMAGES];
-
-// Product Video — draggable floating card (scrapshala_1744214900… clip)
+// Product Video — draggable floating card (rana_kavita25 reel clip)
 const PRODUCT_VIDEO = PDP_DRAGGABLE_VIDEO;
 
 // Product Details
-const PRODUCT_NAME = "Ghats of Varanasi Wall Decor | Rectangular | Backside Hanging Hook | Handpainted | Made in India | Scrapshala";
+const PRODUCT_NAME = "Ghats of Varanasi Wall Decor | Rectangular | Backside Hanging Hook | Handpainted | Made in India | Ajnaa Jewels";
 const PRODUCT_PRICE = 1945;
 const PRODUCT_ORIGINAL_PRICE = 2145;
 const PRODUCT_DISCOUNT = 9;
 const PRODUCT_SKU = "SS-LB-NP-TT-001";
-const PRODUCT_DESCRIPTION = "Handcrafted from upcycled newspaper textile and tyre tubes, this eco-friendly laptop bag is a statement of sustainable style. Each bag is one-of-a-kind, made by skilled artisans who give waste materials a beautiful second life. The newspaper textile exterior is water-resistant and surprisingly durable, while the tyre tube handles provide a firm, comfortable grip. Fits laptops up to 15.6 inches. By choosing this bag, you are directly contributing to reducing landfill waste and supporting local craftspeople.";
-const PRODUCT_BRAND = "Scrapshala";
+const PRODUCT_DESCRIPTION = "Hand-finished kundan and pearl work by Indian artisans — this piece is designed for weddings, festivals, and occasions where you want jewellery that photographs beautifully and feels comfortable to wear for hours. The setting is checked for smooth edges, secure clasps, and even stone alignment. Pair it with silk, organza, or minimal fusion fits. Each order supports small workshops and careful quality control before dispatch.";
+const PRODUCT_BRAND = "Ajnaa Jewels";
 const PRODUCT_COLORS = [];
 const PRODUCT_SIZES = [];
 /** Social proof — shown next to rating & reviews on the buy box */
@@ -96,16 +93,16 @@ const RELATED_PRODUCTS = bestSellerProducts.slice(0, 4).map((p) => ({
 
 // Short captions under PDP reel pills
 const PDP_REEL_LABELS = [
-  'Upcycled with love',
-  'Zero waste craft',
-  'Shark Tank India',
+  'Kundan & pearls',
+  'Wedding edits',
+  'Hand-set stones',
   'Customer favourites',
-  'Eco-friendly bags',
-  'Newspaper textile',
-  'Tyre tube handles',
+  'Lightweight wear',
   'Real customer stories',
-  'Sustainable gifting',
-  'Shop Scrapshala',
+  'Festive & bridal',
+  'Nickel-conscious picks',
+  'Gift-ready boxes',
+  'Shop Ajnaa Jewels',
   'Handmade in India',
 ];
 
@@ -115,16 +112,16 @@ const PDP_REEL_LABELS = [
 
 // Fallback blurbs for image modals — short, casual (matches review.json tone)
 const dummyReviews = [
-  { name: 'Priya Sharma', rating: 5, title: 'Bag is good', text: 'Laptop fits. Handles don\'t dig in. Office people asked price range lol.', date: '1/20/2025', type: 'product' },
-  { name: 'Anjali Mehta', rating: 5, title: 'Sturdy', text: 'Heavier than cheap bags but feels solid. Monsoon no leaks yet.', date: '1/18/2025', type: 'product' },
-  { name: 'Riya Patel', rating: 4, title: 'Gift', text: 'Pouch for friend — she said zip is smooth. 4 star only bc took 4 days.', date: '1/15/2025', type: 'product' },
-  { name: 'Kavya Reddy', rating: 5, title: 'Desk thing', text: 'Saw on Shark Tank reel. Organizer fits phone + pens. No wobble.', date: '1/12/2025', type: 'product' },
-  { name: 'Meera Singh', rating: 5, title: 'Pen stand ok', text: 'Kids liked colours. Holds pens fine. Small footprint.', date: '1/10/2025', type: 'product' },
-  { name: 'Sneha Verma', rating: 5, title: 'Quick delivery', text: 'Wrapped in paper not plastic. Appreciated that.', date: '1/08/2025', type: 'product' },
-  { name: 'Divya Nair', rating: 4, title: 'Print nice', text: 'Newspaper pattern visible up close. Tyre handles stiff at first.', date: '1/05/2025', type: 'product' },
-  { name: 'Pooja Mehta', rating: 5, title: 'Colleague gift', text: 'Birthday pouch — she uses daily now.', date: '1/03/2025', type: 'product' },
-  { name: 'Neha Kapoor', rating: 5, title: 'Desk tidy', text: 'Messy drawer before — better now. Matches brown table.', date: '12/30/2024', type: 'product' },
-  { name: 'Aarti Desai', rating: 5, title: '2nd order', text: 'First was pouch. This time wall piece — same finish quality.', date: '12/28/2024', type: 'product' },
+  { name: 'Priya Sharma', rating: 5, title: 'Wedding ready', text: 'Choker sat perfectly with my lehenga. Didn’t feel heavy by midnight — cousins asked where I got it.', date: '1/20/2025', type: 'product' },
+  { name: 'Anjali Mehta', rating: 5, title: 'Secure clasp', text: 'Back of the necklace doesn’t poke. Clasp clicks in properly; I’m not worried about it opening on the dance floor.', date: '1/18/2025', type: 'product' },
+  { name: 'Riya Patel', rating: 4, title: 'Gift for sister', text: 'Earrings for roka — she said hooks don’t hurt. 4 stars only because delivery took 4 days.', date: '1/15/2025', type: 'product' },
+  { name: 'Kavya Reddy', rating: 5, title: 'Looks like the reel', text: 'Saw styling on IG — stones match what arrived. Pearls are evenly sized, not lumpy.', date: '1/12/2025', type: 'product' },
+  { name: 'Meera Singh', rating: 5, title: 'Office day subtle', text: 'Small studs for everyday — not loud under office lights. Comfortable full day.', date: '1/10/2025', type: 'product' },
+  { name: 'Sneha Verma', rating: 5, title: 'Quick delivery', text: 'Came in a proper box with cloth pouches. No rattling in transit.', date: '1/08/2025', type: 'product' },
+  { name: 'Divya Nair', rating: 4, title: 'Nice finish', text: 'Gold tone even across the set. One tiny thread on the pouch — jewellery itself fine.', date: '1/05/2025', type: 'product' },
+  { name: 'Pooja Mehta', rating: 5, title: 'Mother’s gift', text: 'Bought bangles for mum — she has thin wrists; fit was ok with the extra links.', date: '1/03/2025', type: 'product' },
+  { name: 'Neha Kapoor', rating: 5, title: 'Second buy', text: 'First was jhumkas. This time a long necklace — same quality of setting.', date: '12/30/2024', type: 'product' },
+  { name: 'Aarti Desai', rating: 5, title: 'Photos well', text: 'Wore for a shoot — didn’t reflect weird under camera flash. Makeup artist kept the set.', date: '12/28/2024', type: 'product' },
 ];
 
 function AccordionRow({ label, content }) {
@@ -160,9 +157,11 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
   const productDiscount= passedProduct?.originalPrice
     ? Math.round(((passedProduct.originalPrice - passedProduct.currentPrice) / passedProduct.originalPrice) * 100)
     : PRODUCT_DISCOUNT;
-  const productImages  = passedProduct?.image
-    ? [passedProduct.image, ...PRODUCT_IMAGES]
-    : PRODUCT_IMAGES;
+  const productImages = passedProduct?.galleryImages?.length
+    ? passedProduct.galleryImages
+    : passedProduct?.image
+      ? [passedProduct.image, ...AJNAA_PRODUCT_IMAGES.filter((u) => u !== passedProduct.image)]
+      : LE108_PDP_GALLERY_IMAGES;
   const productRating  = passedProduct?.rating        ?? 4.8;
   const productReviews = passedProduct?.reviewCount   ?? PRODUCT_REVIEW_COUNT;
   const productSoldCount =
@@ -212,20 +211,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
     }
   }, [showVideoCard]);
 
-  // Instagram post URLs
-  const instagramPosts = [
-    'https://www.instagram.com/p/DUkDWOYiL8x/',
-    'https://www.instagram.com/p/DW1GPT3CLZt/',
-    'https://www.instagram.com/p/DWyteqICIrT/',
-    'https://www.instagram.com/p/DWvjkgfiG99/',
-    'https://www.instagram.com/p/DWndarEiAbr/',
-    'https://www.instagram.com/p/DWlF0FTCD73/',
-    'https://www.instagram.com/p/DWjPq5KCAIq/',
-    'https://www.instagram.com/p/DV8th8KiA24/',
-    'https://www.instagram.com/p/DViRz7QiFbi/',
-    'https://www.instagram.com/p/DUncBy-CL5c/',
-    'https://www.instagram.com/p/DShk_eXDQST/',
-  ];
+  const instagramPosts = INSTAGRAM_POST_URLS;
 
 
   // Load Instagram embed script
@@ -566,7 +552,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
         </div>
       )}
       
-      <main className="flex-1 bg-white py-6 md:py-10">
+      <main className="flex-1 bg-[#F0DBE3] py-6 md:py-10">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
 
           {/* Breadcrumb */}
@@ -700,7 +686,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     Rs. {productPrice.toLocaleString('en-IN')}.00
                   </span>
                   {productDiscount > 0 && (
-                    <span className="text-xs font-semibold text-white px-2 py-0.5 rounded" style={{ backgroundColor: '#178604' }}>
+                    <span className="text-xs font-semibold text-white px-2 py-0.5 rounded" style={{ backgroundColor: '#651F39' }}>
                       Sale
                     </span>
                   )}
@@ -744,7 +730,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                 <button
                   type="button"
                   className="flex-1 h-11 rounded text-sm font-semibold text-white transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: '#178604' }}
+                  style={{ backgroundColor: '#651F39' }}
                 >
                   Buy Now
                 </button>
@@ -784,27 +770,27 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       </main>
 
 
-      {/* Scrapshala reels strip — white band */}
+      {/* Reels strip — brand soft pink */}
       {(() => {
         const WILD_VIDEOS = SCRAPSHALA_SHOP_VIDEOS;
         return (
           <>
-            <div className="w-full border-t border-b border-gray-100 bg-white py-7">
+            <div className="w-full border-t border-b border-gray-100/80 bg-[#F0DBE3] py-7">
               <div className="w-full px-4 max-w-7xl mx-auto">
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
                   <div>
                     <h2 className="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">
-                      See Scrapshala in action
+                      See Ajnaa Jewels in action
                     </h2>
                     <p className="text-xs text-gray-600 mt-1 max-w-md">
                       Short clips — upcycled craft, behind-the-scenes making, and real customer spaces.
                     </p>
                   </div>
                   <a
-                    href="https://www.instagram.com/scrapshala/"
+                    href="https://www.instagram.com/ajnaajewels/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full shrink-0 bg-gray-50 text-gray-800 border border-gray-200 shadow-sm hover:bg-white hover:border-[#178604]/40 transition-colors"
+                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full shrink-0 bg-white/90 text-gray-800 border border-gray-200/80 shadow-sm hover:bg-white hover:border-[#651F39]/40 transition-colors"
                     style={{ textDecoration: 'none' }}
                   >
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -812,7 +798,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.8"/>
                       <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
                     </svg>
-                    @scrapshala
+                    @ajnaajewels
                   </a>
                 </div>
                 <div className="overflow-x-auto pb-2 scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
@@ -821,7 +807,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <button
                         key={idx}
                         type="button"
-                        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#178604] focus-visible:ring-offset-2 rounded-[999px] flex flex-col items-center"
+                        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#651F39] focus-visible:ring-offset-2 rounded-[999px] flex flex-col items-center"
                         onClick={() => setWildVideoIdx(idx)}
                       >
                         <div
@@ -911,7 +897,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       <section className="w-full py-12 md:py-16 bg-white border-t border-gray-100">
         <div className="mx-auto w-full max-w-7xl px-4">
           <div className="text-center mb-8 md:mb-10">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#178604] tracking-wide">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#651F39] tracking-wide">
               SHOP OUR BEST SELLERS
             </h2>
           </div>
@@ -1106,14 +1092,14 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <p className="text-sm leading-relaxed text-stone-600">
                     {isAISummaryExpanded ? (
                       <>
-                        Customers consistently love Scrapshala products for their unique, handcrafted appeal and the story behind each piece. Buyers highlight the premium build quality — especially the tyre tube handles and newspaper textile that hold up far better than expected. Many mention getting compliments at work and gifting Scrapshala products to friends and family. Shoppers who saw the brand on Shark Tank say the real products exceed what they saw on screen. Eco-conscious buyers appreciate the zero-waste philosophy and minimal, recycled packaging. Repeat customers often mention picking up multiple products as they trust the craft and want to support the artisans behind each piece.
+                        Customers consistently love Ajnaa Jewels for thoughtful design, solid craftsmanship, and pieces that feel special in person. Buyers highlight finish quality, comfortable wear, and how the jewelry photographs for occasions and gifting. Many mention compliments at events and coming back for matching sets. Shoppers say the real pieces match or exceed what they saw online — with packaging that feels premium and gift-ready.
                         <button type="button" onClick={() => setIsAISummaryExpanded(false)}
                           className="ml-1 cursor-pointer font-semibold underline underline-offset-2 transition-opacity hover:opacity-75"
                           style={{ color: AI_INSIGHT_LINK }}>Read less</button>
                       </>
                     ) : (
                       <>
-                        Customers love Scrapshala for its unique upcycled craft, premium build quality, and the meaningful story behind every product — many say it makes the perfect eco-conscious gift.
+                        Customers love Ajnaa Jewels for elegant detailing, reliable quality, and designs that work across traditional and modern looks — many say it makes the perfect gift.
                         <button type="button" onClick={() => setIsAISummaryExpanded(true)}
                           className="ml-1 cursor-pointer font-semibold underline underline-offset-2 transition-opacity hover:opacity-75"
                           style={{ color: AI_INSIGHT_LINK }}>Read more</button>
@@ -1292,7 +1278,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                                 })}
                               </div>
                               <span className="truncate text-xs font-semibold text-stone-900">{review.name}</span>
-                              <svg className="h-3 w-3 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                              <svg className="h-3 w-3 shrink-0 text-[#651F39]" fill="currentColor" viewBox="0 0 20 20">
                                 <path
                                   fillRule="evenodd"
                                   d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -1465,7 +1451,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                 <p className="text-base text-gray-600 m-0">Check out our latest posts and reels</p>
               </div>
               <div className="flex-1 overflow-y-auto py-4 px-4">
-                <div className="max-w-2xl mx-auto w-full">
+                <div className="max-w-xs mx-auto w-full">
                   {/* Loading Skeleton */}
                   {instagramLoading && (
                     <div className="space-y-6">
@@ -1473,7 +1459,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     <div
                           key={`skeleton-${i}`}
                           className="w-full bg-gray-200 rounded-lg overflow-hidden animate-pulse"
-                          style={{ height: '600px' }}
+                          style={{ height: '380px' }}
                         >
                           <div className="h-full bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200"></div>
                         </div>
@@ -1492,16 +1478,16 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
                   {/* Instagram Posts */}
                   <div style={{ display: instagramLoading ? 'none' : 'block' }}>
-                    {instagramPosts.map((url, index) => (
+                    {instagramPosts.map((url) => (
                       <div
-                        key={`instagram-post-${index}`}
-                        className="w-full flex justify-center mb-6 last:mb-0"
+                        key={url}
+                        className="w-full flex justify-center mb-4 last:mb-0"
                       >
                         <blockquote 
                           className="instagram-media" 
                           data-instgrm-permalink={url}
                           data-instgrm-version="14"
-                          style={{ maxWidth: '100%', width: '100%' }}
+                          style={{ maxWidth: '260px', width: '100%' }}
                       />
                     </div>
                   ))}
@@ -1549,7 +1535,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       <section className="w-full py-12 md:py-16 bg-white">
         <div className="mx-auto w-full max-w-7xl px-4">
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#178604] mb-3 tracking-wide">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-[#651F39] mb-3 tracking-wide">
               Best Sellers
             </h2>
           </div>
@@ -1569,7 +1555,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       </section>
 
       {/* Photo Gallery */}
-      <PhotoGallery title="More from Scrapshala" subtitle="Handcrafted with love — upcycled for a better tomorrow" />
+      <PhotoGallery title="More from Ajnaa Jewels" subtitle="Handcrafted with love — jewelry for every moment" />
 
       <ShopifyFooter brandName={BRAND_NAME} />
       
@@ -1713,7 +1699,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-gray-900 text-lg md:text-xl">{selectedReview.name}</span>
-                      <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-5 h-5 text-[#651F39] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
         </div>
@@ -1728,7 +1714,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                       <svg
                         key={i}
                         className="w-5 h-5"
-                        style={{ fill: i < selectedReview.rating ? '#178604' : '#d1d5db' }}
+                        style={{ fill: i < selectedReview.rating ? '#651F39' : '#d1d5db' }}
                         viewBox="0 0 20 20"
                       >
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -1746,7 +1732,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   
                   {/* Review Type Badge */}
                   <div className="mt-4">
-                    <span className="inline-block px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(23, 134, 4, 0.1)', color: '#178604' }}>
+                    <span className="inline-block px-3 py-1.5 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(101, 31, 57, 0.1)', color: '#651F39' }}>
                       {selectedReview.type === 'product' ? 'Product Review' : 'Brand Review'}
                     </span>
                   </div>
@@ -1790,7 +1776,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold text-gray-900 text-base">{selectedReview.name}</span>
-                    <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-4 h-4 text-[#651F39]" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -1802,7 +1788,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <svg width="0" height="0" style={{ position: 'absolute' }}>
                     <defs>
                       <linearGradient id="mobileModalStarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#178604" />
+                        <stop offset="0%" stopColor="#651F39" />
                         <stop offset="50%" stopColor="#E85C54" />
                         <stop offset="100%" stopColor="#F28B86" />
                       </linearGradient>
@@ -1826,7 +1812,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   <h3 className="font-medium text-gray-900 mb-2 text-base">{selectedReview.title}</h3>
                 )}
                 <p className="text-gray-700 text-sm leading-relaxed mb-2">{selectedReview.text}</p>
-                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(23, 134, 4, 0.1)', color: '#178604' }}>
+                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full" style={{ backgroundColor: 'rgba(101, 31, 57, 0.1)', color: '#651F39' }}>
                   {selectedReview.type === 'product' ? 'Product Review' : 'Brand Review'}
                 </span>
               </div>

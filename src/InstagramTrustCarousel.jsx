@@ -56,16 +56,16 @@ function RatingBadge({ value }) {
 export default function InstagramTrustCarousel({
   instagramUrl,
   followersLabel = '81.8K',
-  shopUrl = 'https://scrapshala.com',
-  amazonUrl = 'https://www.amazon.in/s?k=Scrapshala',
-  flipkartUrl = 'https://www.flipkart.com/search?q=scrapshala',
+  shopUrl = 'https://ajnaajewels.com',
+  amazonUrl = 'https://www.amazon.in/s?k=Ajnaa+Jewels',
+  flipkartUrl = 'https://www.flipkart.com/search?q=ajnaa+jewels',
 }) {
   const trustSlides = useMemo(
     () => [
       {
         key: 'trusted',
         href: shopUrl,
-        ariaLabel: 'Trusted customers — visit Scrapshala',
+        ariaLabel: 'Trusted customers — visit Ajnaa Jewels',
         icon: <StarRow />,
         text: 'Trusted by 10,000+ Customers',
         badge: null,
@@ -73,15 +73,15 @@ export default function InstagramTrustCarousel({
       {
         key: 'instagram',
         href: instagramUrl,
-        ariaLabel: 'Scrapshala on Instagram',
+        ariaLabel: 'Ajnaa Jewels on Instagram',
         icon: <InstaRealIcon />,
-        text: `${followersLabel}+ followers · @scrapshala`,
+        text: `${followersLabel}+ followers · @ajnaajewels`,
         badge: null,
       },
       {
         key: 'amazon',
         href: amazonUrl,
-        ariaLabel: 'Scrapshala on Amazon India',
+        ariaLabel: 'Ajnaa Jewels on Amazon India',
         icon: (
           <img src={AMAZON_LOGO} alt="" className="h-4 w-auto object-contain" style={{ maxHeight: '16px' }} />
         ),
@@ -91,7 +91,7 @@ export default function InstagramTrustCarousel({
       {
         key: 'flipkart',
         href: flipkartUrl,
-        ariaLabel: 'Scrapshala on Flipkart',
+        ariaLabel: 'Ajnaa Jewels on Flipkart',
         icon: (
           <img src={FLIPKART_LOGO} alt="" className="h-4 w-auto object-contain" style={{ maxHeight: '16px' }} />
         ),
@@ -101,7 +101,7 @@ export default function InstagramTrustCarousel({
       {
         key: 'comfort',
         href: shopUrl,
-        ariaLabel: 'Upcycled craft — Scrapshala',
+        ariaLabel: 'Fine jewelry — Ajnaa Jewels',
         icon: <ComfortIcon />,
         text: 'Eco-conscious craft · Handmade in India',
         badge: null,

@@ -7,7 +7,7 @@ import headerPhone1 from './assets/header_phone1.png';
 import h1Phone from './assets/h1_phone.png';
 import HeaderReels from './HeaderReels';
 
-const ShopifyHeader = () => {
+const ShopifyHeader = ({ onProductClick }) => {
   return (
     <header className="w-full">
       <img
@@ -21,11 +21,6 @@ const ShopifyHeader = () => {
         className="hidden md:block w-full h-auto"
       />
       <img
-        src={h1Lap}
-        alt="Header"
-        className="hidden md:block w-full h-auto"
-      />
-      <img
         src={headerPhone}
         alt="Header"
         className="block md:hidden w-full h-auto"
@@ -35,12 +30,17 @@ const ShopifyHeader = () => {
         alt="Header"
         className="block md:hidden w-full h-auto"
       />
+      <HeaderReels onViewProduct={onProductClick} />
+      <img
+        src={h1Lap}
+        alt="Featured products"
+        className="hidden md:block w-full h-auto"
+      />
       <img
         src={h1Phone}
-        alt="Header"
+        alt="Featured products"
         className="block md:hidden w-full h-auto"
       />
-      <HeaderReels />
     </header>
   );
 };

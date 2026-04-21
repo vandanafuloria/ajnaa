@@ -3,12 +3,15 @@
 /* Override root gray-900 color variable if it's causing issues */
 :root {
   --color-gray-900-override: #111827;
-  /* Scrapshala brand */
+  /* Ajnaa Jewels — primary red + burgundy accent */
   --brand-primary: #db2a20;
   --brand-primary-hover: #b8221a;
   --brand-soft: rgba(219, 42, 32, 0.1);
   --brand-soft-bg: rgba(219, 42, 32, 0.07);
   --brand-border: rgba(219, 42, 32, 0.25);
+  --brand-accent: #651f39;
+  --brand-accent-soft: rgba(101, 31, 57, 0.1);
+  --brand-accent-muted: #ede4e8;
 }
 
 /* Vertical scrollbar: transparent track, minimal thumb (Chrome, Safari, Edge) */
@@ -65,23 +68,23 @@ img {
   opacity: 1 !important;
 }
 
-/* Instagram embeds: Full Instagram post UI styling */
+/* Instagram embeds — compact cards (iframe scales with container) */
 .instagram-media,
 .instagram-media-rendered {
   width: 100% !important;
-  max-width: 100% !important;
+  max-width: 260px !important;
   margin: 0 auto !important;
   background: #000 !important;
   border: 1px solid #dbdbdb !important;
   border-radius: 4px !important;
   padding: 0 !important;
-  min-width: 326px !important;
+  min-width: 0 !important;
 }
 
 .instagram-media iframe {
   max-width: 100% !important;
   width: 100% !important;
-  min-height: 500px !important;
+  min-height: 340px !important;
 }
 
 /* Ensure Instagram embed container has proper spacing */
@@ -90,6 +93,7 @@ img {
   justify-content: center;
   align-items: center;
   width: 100%;
+  max-width: 260px;
   margin: 0 auto;
 }
 

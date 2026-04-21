@@ -56,8 +56,8 @@ const LiveUserCounter = ({
     >
       {/* Pulsating dot - in front of number */}
       <div className="relative flex items-center justify-center">
-        <span className="w-2 h-2 rounded-full bg-green-500 shadow-sm">
-          <span className="absolute inset-0 w-2 h-2 rounded-full bg-green-500 animate-ping opacity-75"></span>
+        <span className="w-2 h-2 rounded-full bg-[#651F39] shadow-sm">
+          <span className="absolute inset-0 w-2 h-2 rounded-full bg-[#651F39] animate-ping opacity-75"></span>
         </span>
       </div>
       

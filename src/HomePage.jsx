@@ -5,16 +5,17 @@ import ProductCard from './ProductCard';
 import AIBrandEngine from './AIBrandEngine';
 import LiveUserCounter from './LiveUserCounter';
 import ActivityBanner from './ActivityBanner';
-import scrapshalaInstagramProfile from './assets/logo.png';
+import brandInstagramProfile from './assets/logo.png';
 import { SCRAPSHALA_SHOP_VIDEOS } from './scrapshalaShopVideos';
 import { bestSellerProducts } from './scrapshalaBestSellers';
 import InstagramTrustCarousel from './InstagramTrustCarousel';
 import PhotoGallery, { GALLERY_IMAGES } from './PhotoGallery';
+import { INSTAGRAM_POST_URLS } from './instagramPosts';
 import BrandTestimonialsPdp from './BrandTestimonialsPdp';
 import reviewData from '../review.json';
 import './HomePage.css';
 
-const BRAND_TESTIMONIAL_ACCENT = '#178604';
+const BRAND_TESTIMONIAL_ACCENT = '#651F39';
 
 /** Brand love — only strong positive ratings (4.5+) for marketing; each paired with a gallery photo */
 const brandTestimonialItems = reviewData
@@ -31,10 +32,10 @@ const brandTestimonialItems = reviewData
     rating: typeof r.rating === 'number' ? r.rating : 5,
   }));
 
-const SCRAPSHALA_INSTAGRAM_URL = 'https://www.instagram.com/scrapshala/';
-const SCRAPSHALA_LINKTR_URL = 'https://linktr.ee/scrapshala';
-const SCRAPSHALA_HASHTAG_URL =
-  'https://www.instagram.com/explore/tags/scrapshala/';
+const AJNAA_INSTAGRAM_URL = 'https://www.instagram.com/ajnaajewels/';
+const AJNAA_LINKTR_URL = 'https://linktr.ee/ajnaajewels';
+const AJNAA_HASHTAG_URL =
+  'https://www.instagram.com/explore/tags/ajnaajewels/';
 
 const SHOPIFY_VIDEO_URLS = SCRAPSHALA_SHOP_VIDEOS;
 
@@ -45,7 +46,7 @@ const getRandomSoldThisWeek = (min = 180, max = 420) =>
 
 const VIDEO_VIEWS = ['4.0K', '4.2K', '3.8K', '3.1K', '2.9K', '2.7K', '3.5K', '4.1K'];
 
-// Video Products data — one row per Scrapshala clip; posters cycle best sellers
+// Video Products data — one row per reel clip; posters cycle best sellers
 const videoProducts = SHOPIFY_VIDEO_URLS.map((url, i) => {
   const bp = bestSellerProducts[i % bestSellerProducts.length];
   const discount =
@@ -70,7 +71,7 @@ const TRUST_SLIDES = [
     content: (
       <span className="flex items-center gap-1.5">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" width="13" height="13" alt="" style={{flexShrink:0}} />
-        <span className="text-xs font-bold text-gray-900">Instagram • 52K followers • @scrapshala</span>
+        <span className="text-xs font-bold text-gray-900">Instagram • 52K followers • @ajnaajewels</span>
       </span>
     ),
   },
@@ -85,16 +86,16 @@ const TRUST_SLIDES = [
   {
     content: (
       <span className="flex items-center gap-1.5">
-        <span style={{color:'#178604',fontSize:'13px',fontWeight:700}}>✦</span>
-        <span className="text-xs font-bold text-gray-900">Upcycled with Love • Zero Waste</span>
+        <span style={{color:'#651F39',fontSize:'13px',fontWeight:700}}>✦</span>
+        <span className="text-xs font-bold text-gray-900">Kundan & pearls • Handcrafted</span>
       </span>
     ),
   },
   {
     content: (
       <span className="flex items-center gap-1.5">
-        <span style={{color:'#178604',fontSize:'13px',fontWeight:700}}>✦</span>
-        <span className="text-xs font-bold text-gray-900">As Seen on Shark Tank India</span>
+        <span style={{color:'#651F39',fontSize:'13px',fontWeight:700}}>✦</span>
+        <span className="text-xs font-bold text-gray-900">Loved for weddings & festivals</span>
       </span>
     ),
   },
@@ -109,8 +110,8 @@ const TRUST_SLIDES = [
   {
     content: (
       <span className="flex items-center gap-1.5">
-        <span style={{color:'#178604',fontSize:'13px',fontWeight:700}}>✦</span>
-        <span className="text-xs font-bold text-gray-900">100% Eco-Friendly Products</span>
+        <span style={{color:'#651F39',fontSize:'13px',fontWeight:700}}>✦</span>
+        <span className="text-xs font-bold text-gray-900">Gift-ready boxes • Pan-India</span>
       </span>
     ),
   },
@@ -271,15 +272,7 @@ const HomePage = ({ onProductClick }) => {
   const [showInstagramModal, setShowInstagramModal] = useState(false);
   const [instagramLoading, setInstagramLoading] = useState(true);
   
-  // Instagram post URLs
-  const instagramPosts = [
-    'https://www.instagram.com/reel/C9SEMuqIHFx/',
-    'https://www.instagram.com/reel/DUdNVqmj8bP/',
-    'https://www.instagram.com/reel/DPlGDg4ktcQ/',
-    'https://www.instagram.com/reel/DIhE9rVTvXt/',
-    'https://www.instagram.com/reel/DIO2D9yPn7m/',
-    'https://www.instagram.com/reel/DGcbuqGiCea/',
-  ];
+  const instagramPosts = INSTAGRAM_POST_URLS;
 
   // Load Instagram embed script
   useEffect(() => {
@@ -454,7 +447,7 @@ const HomePage = ({ onProductClick }) => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <ShopifyHeader brandName={BRAND_NAME} />
+      <ShopifyHeader onProductClick={onProductClick} />
       
       {/* Live User Counter */}
       <LiveUserCounter className={`fixed left-4 z-50 transition-all duration-300 ${isScrolled ? 'top-4' : 'top-[46px]'}`} />
@@ -464,7 +457,7 @@ const HomePage = ({ onProductClick }) => {
 
       {/* Instagram trust / mentions strip — off for now; set to true to restore */}
       {false && (
-        <InstagramTrustCarousel instagramUrl={SCRAPSHALA_INSTAGRAM_URL} followersLabel="81.8K" />
+        <InstagramTrustCarousel instagramUrl={AJNAA_INSTAGRAM_URL} followersLabel="81.8K" />
       )}
 
       {/* Big Deals Section */}
@@ -694,7 +687,7 @@ const HomePage = ({ onProductClick }) => {
                           e.stopPropagation();
                           console.log('Add to cart:', product);
                         }}
-                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#178604', marginTop: '12px' }}
+                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#651F39', marginTop: '12px' }}
                       >
                         ADD TO CART
                       </button>
@@ -783,7 +776,7 @@ const HomePage = ({ onProductClick }) => {
                       </div>
                       <button
                         onClick={(e) => e.stopPropagation()}
-                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#178604' }}
+                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#651F39' }}
                       >
                         ADD TO CART
                       </button>
@@ -813,8 +806,8 @@ const HomePage = ({ onProductClick }) => {
               >
                 <div className="w-32 h-32 rounded-full overflow-hidden">
                   <img
-                    src={scrapshalaInstagramProfile}
-                    alt="Scrapshala on Instagram"
+                    src={brandInstagramProfile}
+                    alt="Ajnaa Jewels on Instagram"
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -825,12 +818,12 @@ const HomePage = ({ onProductClick }) => {
             <div className="flex flex-col items-center gap-3 text-center">
               <div className="flex items-center gap-3">
                 <a
-                  href={SCRAPSHALA_INSTAGRAM_URL}
+                  href={AJNAA_INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-900 font-semibold text-xl hover:opacity-70 transition-opacity"
                 >
-                  scrapshala
+                  ajnaajewels
                 </a>
                 <span className="text-gray-400 text-base tracking-widest">···</span>
               </div>
@@ -850,7 +843,7 @@ const HomePage = ({ onProductClick }) => {
               </div>
               <div className="flex gap-2 pt-1">
                 <a
-                  href={SCRAPSHALA_INSTAGRAM_URL}
+                  href={AJNAA_INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-1.5 rounded-lg text-sm font-semibold text-white"
@@ -859,7 +852,7 @@ const HomePage = ({ onProductClick }) => {
                   Follow
                 </a>
                 <a
-                  href={SCRAPSHALA_INSTAGRAM_URL}
+                  href={AJNAA_INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-1.5 rounded-lg text-sm font-semibold text-white hover:opacity-80 transition-opacity"
@@ -881,30 +874,30 @@ const HomePage = ({ onProductClick }) => {
             </div>
 
             <div className="space-y-1">
-              <p className="text-gray-900 text-sm font-semibold">Scrapshala</p>
-              <p className="text-gray-400 text-sm">Upcycled decor, bags &amp; gifts</p>
-              <p className="text-gray-800 text-sm">Giving waste a beautiful second life.</p>
-              <p className="text-gray-800 text-sm">As seen on Shark Tank India 🦈</p>
-              <p className="text-gray-800 text-sm">Handmade in India · Sustainable craft</p>
+              <p className="text-gray-900 text-sm font-semibold">Ajnaa Jewels</p>
+              <p className="text-gray-400 text-sm">Fine jewelry &amp; everyday classics</p>
+              <p className="text-gray-800 text-sm">Thoughtfully crafted designs for every look.</p>
+              <p className="text-gray-800 text-sm">Handmade in India · Trusted quality</p>
+              <p className="text-gray-800 text-sm">Celebrate tradition with a modern touch</p>
               <p className="text-sm">
                 <a
-                  href={SCRAPSHALA_HASHTAG_URL}
+                  href={AJNAA_HASHTAG_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium"
                   style={{ color: '#DB2A20' }}
                 >
-                  #Scrapshala
+                  #AjnaaJewels
                 </a>
               </p>
               <a
-                href={SCRAPSHALA_LINKTR_URL}
+                href={AJNAA_LINKTR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm font-medium"
                 style={{ color: '#DB2A20' }}
               >
-                linktr.ee/scrapshala
+                linktr.ee/ajnaajewels
               </a>
             </div>
           </div>
@@ -919,8 +912,8 @@ const HomePage = ({ onProductClick }) => {
                 >
                   <div className="w-20 h-20 rounded-full overflow-hidden">
                     <img
-                      src={scrapshalaInstagramProfile}
-                      alt="Scrapshala on Instagram"
+                      src={brandInstagramProfile}
+                      alt="Ajnaa Jewels on Instagram"
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
@@ -944,36 +937,36 @@ const HomePage = ({ onProductClick }) => {
             </div>
 
             <div className="space-y-0.5">
-              <p className="text-gray-900 text-sm font-semibold">Scrapshala</p>
-              <p className="text-gray-400 text-xs">Upcycled decor, bags &amp; gifts</p>
-              <p className="text-gray-800 text-sm">Giving waste a beautiful second life.</p>
-              <p className="text-gray-800 text-sm">As seen on Shark Tank India 🦈</p>
-              <p className="text-gray-800 text-sm">Handmade in India · Sustainable craft</p>
+              <p className="text-gray-900 text-sm font-semibold">Ajnaa Jewels</p>
+              <p className="text-gray-400 text-xs">Fine jewelry &amp; everyday classics</p>
+              <p className="text-gray-800 text-sm">Thoughtfully crafted designs for every look.</p>
+              <p className="text-gray-800 text-sm">Handmade in India · Trusted quality</p>
+              <p className="text-gray-800 text-sm">Celebrate tradition with a modern touch</p>
               <p className="text-sm">
                 <a
-                  href={SCRAPSHALA_HASHTAG_URL}
+                  href={AJNAA_HASHTAG_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium"
                   style={{ color: '#DB2A20' }}
                 >
-                  #Scrapshala
+                  #AjnaaJewels
                 </a>
               </p>
               <a
-                href={SCRAPSHALA_LINKTR_URL}
+                href={AJNAA_LINKTR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm font-medium"
                 style={{ color: '#DB2A20' }}
               >
-                linktr.ee/scrapshala
+                linktr.ee/ajnaajewels
               </a>
             </div>
 
             <div className="flex gap-2">
               <a
-                href={SCRAPSHALA_INSTAGRAM_URL}
+                href={AJNAA_INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center"
@@ -982,7 +975,7 @@ const HomePage = ({ onProductClick }) => {
                 Follow
               </a>
               <a
-                href={SCRAPSHALA_INSTAGRAM_URL}
+                href={AJNAA_INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 py-1.5 rounded-lg text-sm font-semibold text-white text-center"
@@ -1018,11 +1011,11 @@ const HomePage = ({ onProductClick }) => {
             style={{ scrollBehavior: 'auto', overflowX: 'auto' }}
           >
             <div className="flex gap-8 md:gap-10 px-4 md:px-6" style={{ width: 'max-content' }}>
-              {instagramPosts.map((url, index) => (
+              {instagramPosts.map((url) => (
                 <div
-                  key={`instagram-reel-${index}`}
+                  key={url}
                   className="flex-shrink-0"
-                  style={{ width: '300px', minWidth: '300px' }}
+                  style={{ width: '260px', minWidth: '260px', maxWidth: '260px' }}
                 >
                   <blockquote 
                     className="instagram-media" 
@@ -1034,8 +1027,8 @@ const HomePage = ({ onProductClick }) => {
                       borderRadius: '3px', 
                       boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
                       margin: '1px',
-                      maxWidth: '100%',
-                      minWidth: '300px',
+                      maxWidth: '260px',
+                      minWidth: '0',
                       padding: '0',
                       width: '100%'
                     }}
@@ -1125,7 +1118,7 @@ const HomePage = ({ onProductClick }) => {
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-xs font-medium line-clamp-1">{p.title}</p>
                         <p className="text-yellow-300 text-sm font-bold">₹{p.currentPrice?.toLocaleString('en-IN')}</p>
-                        <button className="mt-1 px-3 py-0.5 rounded text-xs font-bold text-white bg-[#178604]">
+                        <button className="mt-1 px-3 py-0.5 rounded text-xs font-bold text-white bg-[#651F39]">
                           Add
                         </button>
                       </div>
@@ -1156,7 +1149,7 @@ const HomePage = ({ onProductClick }) => {
                       <p className="text-white text-sm font-bold">₹{p.currentPrice?.toLocaleString('en-IN')}</p>
                       <button
                         onClick={(e) => { e.stopPropagation(); }}
-                        className="mt-1.5 px-3 py-1 rounded text-xs font-bold text-white bg-[#178604] hover:opacity-90 transition-opacity"
+                        className="mt-1.5 px-3 py-1 rounded text-xs font-bold text-white bg-[#651F39] hover:opacity-90 transition-opacity"
                       >
                         Add to Cart
                       </button>
@@ -1311,7 +1304,7 @@ const HomePage = ({ onProductClick }) => {
                   <img src={selectedLookVideo.image} alt="" className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <p className="text-white text-sm font-semibold leading-none">Scrapshala</p>
+                  <p className="text-white text-sm font-semibold leading-none">Ajnaa Jewels</p>
                   <p className="text-white/70 text-xs mt-0.5">{selectedLookVideo.views} views</p>
                 </div>
               </div>
@@ -1370,7 +1363,7 @@ const HomePage = ({ onProductClick }) => {
 
               {/* Share */}
               <button
-                onClick={() => navigator.share ? navigator.share({ title: selectedLookVideo.title, text: `Check out ${selectedLookVideo.title} from Scrapshala`, url: window.location.href }) : navigator.clipboard?.writeText(window.location.href)}
+                onClick={() => navigator.share ? navigator.share({ title: selectedLookVideo.title, text: `Check out ${selectedLookVideo.title} from Ajnaa Jewels`, url: window.location.href }) : navigator.clipboard?.writeText(window.location.href)}
                 className="flex flex-col items-center gap-1"
               >
                 <div className="w-11 h-11 rounded-full bg-black/40 flex items-center justify-center">
@@ -1404,7 +1397,7 @@ const HomePage = ({ onProductClick }) => {
                 <button
                   onClick={(e) => e.stopPropagation()}
                   className="flex-1 py-3 rounded-2xl text-sm font-bold text-white"
-                  style={{ background: '#178604' }}
+                  style={{ background: '#651F39' }}
                 >
                   Add to Cart
                 </button>
@@ -1505,7 +1498,7 @@ const HomePage = ({ onProductClick }) => {
                 <p className="text-base text-gray-600 m-0">Check out our latest posts and reels</p>
               </div>
               <div className="flex-1 overflow-y-auto py-4 px-4">
-                <div className="max-w-2xl mx-auto w-full">
+                <div className="max-w-xs mx-auto w-full">
                   {/* Loading Skeleton */}
                   {instagramLoading && (
                     <div className="space-y-6">
@@ -1513,7 +1506,7 @@ const HomePage = ({ onProductClick }) => {
                         <div
                           key={`skeleton-${i}`}
                           className="w-full bg-gray-200 rounded-lg overflow-hidden animate-pulse"
-                          style={{ height: '600px' }}
+                          style={{ height: '380px' }}
                         >
                           <div className="h-full bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200"></div>
                         </div>
@@ -1532,16 +1525,16 @@ const HomePage = ({ onProductClick }) => {
 
                   {/* Instagram Posts */}
                   <div style={{ display: instagramLoading ? 'none' : 'block' }}>
-                    {instagramPosts.map((url, index) => (
+                    {instagramPosts.map((url) => (
                       <div
-                        key={`instagram-post-${index}`}
-                        className="w-full flex justify-center mb-6 last:mb-0"
+                        key={url}
+                        className="w-full flex justify-center mb-4 last:mb-0"
                       >
                         <blockquote 
                           className="instagram-media" 
                           data-instgrm-permalink={url}
                           data-instgrm-version="14"
-                          style={{ maxWidth: '100%', width: '100%' }}
+                          style={{ maxWidth: '260px', width: '100%' }}
                         />
                       </div>
                     ))}

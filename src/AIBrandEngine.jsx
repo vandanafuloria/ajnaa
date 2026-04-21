@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './AIBrandEngine.css';
 
-const SHOP_URL = 'https://scrapshala.com/';
-const INSTAGRAM_URL = 'https://www.instagram.com/scrapshala/';
+const SHOP_URL = 'https://ajnaajewels.com/';
+const INSTAGRAM_URL = 'https://www.instagram.com/ajnaajewels/';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -32,7 +32,7 @@ const Sparkline = ({ data }) => {
             top: 0,
             left: `${(pts[hovered].x / w) * 100}%`,
             transform: 'translateX(-50%)',
-            background: '#178604',
+            background: '#651F39',
             color: '#fff',
             fontSize: '9px',
             fontWeight: 600,
@@ -49,15 +49,15 @@ const Sparkline = ({ data }) => {
       <svg width="100%" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" style={{ display: 'block' }}>
         <defs>
           <linearGradient id="sparkGradScrap" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#178604" stopOpacity="0.14" />
-            <stop offset="100%" stopColor="#178604" stopOpacity="0" />
+            <stop offset="0%" stopColor="#651F39" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="#651F39" stopOpacity="0" />
           </linearGradient>
         </defs>
         <path d={areaD} fill="url(#sparkGradScrap)" />
         <path
           d={pathD}
           fill="none"
-          stroke="#178604"
+          stroke="#651F39"
           strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -68,8 +68,8 @@ const Sparkline = ({ data }) => {
             cx={p.x}
             cy={p.y}
             r={hovered === p.i ? 3.5 : 2}
-            fill={hovered === p.i ? '#178604' : '#fff'}
-            stroke="#178604"
+            fill={hovered === p.i ? '#651F39' : '#fff'}
+            stroke="#651F39"
             strokeWidth="1.4"
             style={{ cursor: 'pointer', transition: 'r 0.15s' }}
             onMouseEnter={() => setHovered(p.i)}
@@ -195,7 +195,7 @@ const AIBrandEngine = ({ showExtras = true }) => {
       highlights: [
         'Tonnes of newspaper, tyre rubber and e-waste diverted from landfills',
         'Minimal, recycled packaging on every shipment',
-        'Pan-India delivery — buy directly from scrapshala.com',
+        'Pan-India delivery — buy directly from ajnaajewels.com',
         'Every purchase directly funds artisan wages and zero-waste workshops',
       ],
     },
@@ -212,7 +212,7 @@ const AIBrandEngine = ({ showExtras = true }) => {
           type="button"
           className="ai-brand-engine-trigger"
           onClick={() => setIsExpanded(true)}
-          aria-label="Open Scrapshala brand guide"
+          aria-label="Open Ajnaa Jewels brand guide"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
@@ -227,8 +227,8 @@ const AIBrandEngine = ({ showExtras = true }) => {
                 <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
               </svg>
               <div>
-                <h3 className="panel-title">Scrapshala</h3>
-                <p className="panel-subtitle">Upcycled craft · Zero waste · Shark Tank India</p>
+                <h3 className="panel-title">Ajnaa Jewels</h3>
+                <p className="panel-subtitle">Fine jewelry · Handmade in India · Trusted quality</p>
               </div>
             </div>
             <button type="button" className="panel-close-btn" onClick={() => setIsExpanded(false)} aria-label="Close">
@@ -305,7 +305,7 @@ const AIBrandEngine = ({ showExtras = true }) => {
                     <path
                       d="M 6 38 A 26 26 0 0 1 58 38"
                       fill="none"
-                      stroke="#178604"
+                      stroke="#651F39"
                       strokeWidth="5"
                       strokeLinecap="round"
                       strokeDasharray={`${(m.qualityScore / 100) * 81.7} 81.7`}
@@ -363,7 +363,7 @@ const AIBrandEngine = ({ showExtras = true }) => {
                 rel="noopener noreferrer"
                 className="ai-brand-cta ai-brand-cta--primary"
               >
-                Shop Scrapshala
+                Shop Ajnaa Jewels
               </a>
               <a
                 href={INSTAGRAM_URL}
@@ -371,13 +371,13 @@ const AIBrandEngine = ({ showExtras = true }) => {
                 rel="noopener noreferrer"
                 className="ai-brand-cta ai-brand-cta--secondary"
               >
-                @scrapshala
+                @ajnaajewels
               </a>
             </div>
             <p className="ai-brand-footnote">
               Handcrafted in India · Zero waste · As seen on Shark Tank India.{' '}
               <a href={SHOP_URL} target="_blank" rel="noopener noreferrer">
-                scrapshala.com
+                ajnaajewels.com
               </a>
             </p>
           </div>

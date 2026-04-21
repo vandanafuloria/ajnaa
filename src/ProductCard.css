@@ -1,4 +1,4 @@
-/* Scrapshala-style product card */
+/* Ajnaa Jewels product card — portrait 300×458 imagery */
 
 .pc-card {
   display: flex;
@@ -14,21 +14,53 @@
 .pc-img-wrap {
   position: relative;
   display: block;
-  text-decoration: none;
   background: #f7f7f7;
   overflow: hidden;
 }
 
+.pc-img-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
 .pc-img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 300 / 458;
   object-fit: cover;
+  object-position: center top;
   display: block;
   transition: transform 0.35s ease;
 }
 
 .pc-card:hover .pc-img {
   transform: scale(1.03);
+}
+
+/* Wishlist — top-right on image */
+.pc-wishlist {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.pc-wishlist:hover {
+  transform: scale(1.06);
+  background: #fff;
 }
 
 /* Sale badge */
@@ -90,7 +122,7 @@
 }
 
 .pc-btn--cart {
-  background: #3d7d3a;
+  background: #651F39;
   color: #fff;
 }
 
@@ -169,6 +201,12 @@
   flex-wrap: wrap;
 }
 
+.pc-price-current {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
 .pc-price-sale {
   font-size: 14px;
   font-weight: 600;
@@ -177,7 +215,13 @@
 
 .pc-price-orig {
   font-size: 13px;
-  color: #999;
+  color: #9ca3af;
   font-weight: 400;
   text-decoration: line-through;
+}
+
+.pc-price-discount {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ea580c;
 }

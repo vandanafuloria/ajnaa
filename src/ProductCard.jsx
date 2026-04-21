@@ -62,10 +62,10 @@ const ProductCard = ({ product, onClick }) => {
       : 'No reviews';
 
   const priceFormatted = currentPrice
-    ? `Rs. ${Number(currentPrice).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    ? `₹ ${Number(currentPrice).toLocaleString('en-IN')}`
     : '';
   const origFormatted = originalPrice
-    ? `Rs. ${Number(originalPrice).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    ? `₹ ${Number(originalPrice).toLocaleString('en-IN')}`
     : '';
 
   return (
@@ -74,37 +74,50 @@ const ProductCard = ({ product, onClick }) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Image area */}
-      <a href={productPath} onClick={onNavigate} className="pc-img-wrap">
-        {(badge || discountPercent > 0) && (
-          <span className="pc-badge">{badge || 'Sale'}</span>
-        )}
-        <img
-          src={src720 || image}
-          alt={imageAlt || title}
-          srcSet={image ? `${src360} 360w, ${src720} 720w` : undefined}
-          sizes="(max-width: 768px) 90vw, 300px"
-          width={720}
-          height={720}
-          loading="lazy"
-          className="pc-img"
-        />
-        {/* CTA buttons — always visible on mobile, visible on hover for desktop */}
+      {/* Image area — wishlist + CTAs are outside the image link (valid HTML) */}
+      <div className="pc-img-wrap">
+        <button
+          type="button"
+          className="pc-wishlist"
+          aria-label="Add to wishlist"
+          onClick={(e) => e.preventDefault()}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+        </button>
+        <a href={productPath} onClick={onNavigate} className="pc-img-link">
+          {(badge || discountPercent > 0) && (
+            <span className="pc-badge">{badge || 'Sale'}</span>
+          )}
+          <img
+            src={src720 || image}
+            alt={imageAlt || title}
+            srcSet={image ? `${src360} 360w, ${src720} 720w` : undefined}
+            sizes="(max-width: 768px) 90vw, 300px"
+            width={300}
+            height={458}
+            loading="lazy"
+            className="pc-img"
+          />
+        </a>
         <div className={`pc-cta-row${hovered ? ' pc-cta-row--visible' : ''}`}>
           <button
+            type="button"
             className="pc-btn pc-btn--cart"
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
           >
             ADD TO CART
           </button>
           <button
+            type="button"
             className="pc-btn pc-btn--quick"
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
           >
             QUICK VIEW
           </button>
         </div>
-      </a>
+      </div>
 
       {/* Info area */}
       <div className="pc-info">
@@ -121,14 +134,13 @@ const ProductCard = ({ product, onClick }) => {
         </div>
 
         <div className="pc-price-row">
+          <span className="pc-price-current">{priceFormatted}</span>
           {discountPercent > 0 && origFormatted ? (
             <>
               <s className="pc-price-orig">{origFormatted}</s>
-              <span className="pc-price-sale">{priceFormatted}</span>
+              <span className="pc-price-discount">{discountPercent}% off</span>
             </>
-          ) : (
-            <span className="pc-price-sale">{priceFormatted}</span>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

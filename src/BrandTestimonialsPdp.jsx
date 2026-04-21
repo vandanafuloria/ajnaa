@@ -52,8 +52,8 @@ function StarRow({ rating, accent, idPrefix = 'star' }) {
 export default function BrandTestimonialsPdp({
   items = [],
   title = 'Brand love',
-  subtitle = 'Real photos, real words — from Scrapshala customers across India',
-  accent = '#178604',
+  subtitle = 'Real photos, real words — from Ajnaa Jewels customers across India',
+  accent = '#651F39',
 }) {
   const [visibleCount, setVisibleCount] = useState(() => Math.min(INITIAL_COUNT, items.length));
 
