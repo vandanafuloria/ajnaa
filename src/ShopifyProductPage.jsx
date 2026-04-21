@@ -986,7 +986,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
         return (
           <>
-            <div className="w-full border-t border-b border-gray-100/80 bg-[#F0DBE3] py-7 md:py-8">
+            <div className="w-full border-t border-b border-gray-100/80 bg-white py-7 md:py-8">
               <div className="w-full px-4 max-w-7xl mx-auto">
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
                   <div>
@@ -1021,20 +1021,21 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           setWildVideoIdx(idx);
                         }}
                       >
-                        <div
-                          className="relative overflow-hidden shadow-md"
-                          style={{
-                            width: '108px',
-                            height: '180px',
-                            borderRadius: '999px',
-                            border: '2px solid rgba(26, 26, 26, 0.1)',
-                          }}
-                        >
-                          <video src={url} className="w-full h-full object-cover" autoPlay muted playsInline loop />
+                        <div className="rounded-[999px] bg-[linear-gradient(135deg,#feda75_0%,#fa7e1e_35%,#d62976_68%,#962fbf_100%)] p-[2.5px] sm:p-[3px]">
                           <div
-                            className="absolute inset-0 pointer-events-none"
-                            style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 45%)' }}
-                          />
+                            className="relative overflow-hidden"
+                            style={{
+                              width: '103px',
+                              height: '175px',
+                              borderRadius: '999px',
+                            }}
+                          >
+                            <video src={url} className="h-full w-full object-cover" autoPlay muted playsInline loop />
+                            <div
+                              className="pointer-events-none absolute inset-0"
+                              style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 45%)' }}
+                            />
+                          </div>
                         </div>
                         <span className="mt-2 text-[11px] text-gray-600 text-center max-w-[108px] leading-snug line-clamp-2 px-0.5">
                           {PDP_REEL_LABELS[idx % PDP_REEL_LABELS.length]}
@@ -1434,33 +1435,49 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     ))}
                   </div>
 
-                  <div className="mt-4 border-t border-stone-200/80 pt-4">
-                    <p className="mb-2 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-500">
-                      Follow us
-                    </p>
+                  <div className="mt-3 border-t border-stone-200/80 pt-3">
                     <a
                       href={AJNAA_INSTAGRAM_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 rounded-none border border-stone-200/70 bg-stone-50/40 px-3 py-2.5 transition-colors hover:bg-stone-50/80"
+                      aria-label="Open @ajnaajewels on Instagram"
+                      className="flex items-center gap-3.5 rounded-none border border-stone-200/70 bg-white px-3.5 py-3 transition-colors hover:bg-stone-50/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#651F39]/35 focus-visible:ring-offset-2"
                       style={{ textDecoration: 'none' }}
                     >
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center text-[#651F39]">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-                          <rect x="2" y="2" width="20" height="20" rx="5" stroke="#651F39" strokeWidth="1.6" />
-                          <circle cx="12" cy="12" r="4.2" stroke="#651F39" strokeWidth="1.6" />
-                          <circle cx="17.5" cy="6.5" r="1.1" fill="#651F39" />
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center" aria-hidden>
+                        <svg width="28" height="28" viewBox="0 0 24 24" className="overflow-visible">
+                          <defs>
+                            <linearGradient
+                              id="igGradReviewsSidebar"
+                              x1="0%"
+                              y1="100%"
+                              x2="100%"
+                              y2="0%"
+                            >
+                              <stop offset="0%" stopColor="#f09433" />
+                              <stop offset="25%" stopColor="#e6683c" />
+                              <stop offset="50%" stopColor="#dc2743" />
+                              <stop offset="75%" stopColor="#cc2366" />
+                              <stop offset="100%" stopColor="#bc1888" />
+                            </linearGradient>
+                          </defs>
+                          <path
+                            fill="url(#igGradReviewsSidebar)"
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                          />
                         </svg>
                       </span>
                       <div className="min-w-0 flex-1 text-left">
-                        <p className="text-sm font-semibold text-stone-900">@ajnaajewels</p>
-                        <p className="text-xs text-stone-600">
-                          <span className="font-semibold tabular-nums text-stone-800">{AJNAA_INSTAGRAM_FOLLOWERS_LABEL}</span>
-                          {' '}
-                          followers
-                        </p>
+                        <div className="flex flex-col gap-1.5">
+                          <p className="text-[13px] font-semibold leading-snug text-stone-900">@ajnaajewels</p>
+                          <p className="text-[11px] leading-snug text-stone-600">
+                            <span className="font-semibold tabular-nums text-stone-800">{AJNAA_INSTAGRAM_FOLLOWERS_LABEL}</span>
+                            {' '}
+                            followers
+                          </p>
+                        </div>
                       </div>
-                      <svg className="h-4 w-4 shrink-0 text-stone-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                      <svg className="h-4 w-4 shrink-0 self-center text-stone-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                       </svg>
                     </a>
@@ -1510,7 +1527,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                   </p>
                 </div>
 
-                <p className="px-6 pb-5 text-[12px] leading-relaxed text-stone-500">
+                <div className="px-6 pb-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] leading-relaxed text-stone-500">
                   {[
                     'Kundan & pearls',
                     'Bridal & festive',
@@ -1519,8 +1536,17 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                     'Gift-ready',
                     'Made in India',
                     'Everyday & occasion',
-                  ].join(' · ')}
-                </p>
+                  ].map((kw, i) => (
+                    <span key={kw} className="inline-flex items-center gap-2">
+                      {i > 0 && (
+                        <span className="text-stone-300 select-none" aria-hidden>
+                          ·
+                        </span>
+                      )}
+                      {kw}
+                    </span>
+                  ))}
+                </div>
 
                 <div className="flex border-t border-stone-200/50">
                   {[

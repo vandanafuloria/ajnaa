@@ -7,6 +7,10 @@ const REEL_URLS = SCRAPSHALA_SHOP_VIDEOS;
 const BRAND_NAME = 'Ajnaa Jewels';
 const SHOP_CTA_URL = 'https://ajnaajewels.com';
 
+/** Instagram-style story ring (gradient border) */
+const IG_STORY_RING =
+  'rounded-full bg-[linear-gradient(135deg,#feda75_0%,#fa7e1e_35%,#d62976_68%,#962fbf_100%)] p-[2.5px] sm:p-[3px]';
+
 /** One line per reel — jewelry / brand tone */
 const REEL_CAPTIONS = [
   'Thoughtfully crafted designs that define every look.',
@@ -219,7 +223,7 @@ export default function HeaderReels({ onViewProduct }) {
   return (
     <>
       <section
-        className="w-full border-b border-stone-200/90 bg-gradient-to-b from-white to-stone-50/80"
+        className="w-full border-b border-stone-200/90 bg-white"
         aria-labelledby="header-reels-heading"
       >
         <div className="mx-auto w-full max-w-6xl px-3 pb-3 pt-4 sm:px-4 sm:pb-4 sm:pt-5">
@@ -236,29 +240,35 @@ export default function HeaderReels({ onViewProduct }) {
           </div>
           <div className="flex snap-x snap-mandatory justify-start gap-2.5 overflow-x-auto py-1 scrollbar-hide sm:justify-center sm:gap-3.5">
             {REEL_URLS.map((url, i) => (
-              <button
+              <div
                 key={url}
-                type="button"
-                onClick={() => openViewer(i)}
-                className={`group relative h-[78px] w-[78px] shrink-0 snap-start overflow-hidden rounded-full shadow-md transition-all duration-200 hover:scale-[1.06] hover:shadow-lg active:scale-[0.96] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a227] focus-visible:ring-offset-2 sm:h-[92px] sm:w-[92px] ${
+                className={`shrink-0 snap-start transition-transform duration-200 hover:scale-[1.06] active:scale-[0.96] ${
                   i === viewerIndex && viewerOpen
-                    ? 'ring-[3px] ring-[#c9a227] ring-offset-2 ring-offset-white'
-                    : 'ring-2 ring-stone-200/90 ring-offset-0 hover:ring-stone-300'
+                    ? 'rounded-full ring-[3px] ring-[#c9a227] ring-offset-2 ring-offset-white'
+                    : ''
                 }`}
-                aria-label={`Watch reel ${i + 1} of ${n}`}
               >
-                <CircleStripVideo src={url} />
-                <span
-                  className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/25 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-                  aria-hidden
-                >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-stone-900 shadow-lg backdrop-blur-sm">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5" aria-hidden>
-                      <path d="M8 5v14l11-7L8 5z" />
-                    </svg>
-                  </span>
-                </span>
-              </button>
+                <div className={IG_STORY_RING}>
+                  <button
+                    type="button"
+                    onClick={() => openViewer(i)}
+                    className="group relative flex h-[73px] w-[73px] shrink-0 overflow-hidden rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a227] focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:h-[86px] sm:w-[86px]"
+                    aria-label={`Watch reel ${i + 1} of ${n}`}
+                  >
+                    <CircleStripVideo src={url} />
+                    <span
+                      className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/25 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                      aria-hidden
+                    >
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-stone-900 shadow-lg backdrop-blur-sm">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5" aria-hidden>
+                          <path d="M8 5v14l11-7L8 5z" />
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
         </div>
