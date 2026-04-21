@@ -55,7 +55,7 @@ function RatingBadge({ value }) {
  */
 export default function InstagramTrustCarousel({
   instagramUrl,
-  followersLabel = '81.8K',
+  followersLabel = '78.6K',
   shopUrl = 'https://ajnaajewels.com',
   amazonUrl = 'https://www.amazon.in/s?k=Ajnaa+Jewels',
   flipkartUrl = 'https://www.flipkart.com/search?q=ajnaa+jewels',

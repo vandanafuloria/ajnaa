@@ -179,7 +179,7 @@ const AIBrandEngine = ({ showExtras = true }) => {
         'Featured on Shark Tank India — built on a zero-waste philosophy',
         'Every product gives industrial waste a beautiful second life',
         'Skilled artisans handcraft each piece — supporting local livelihoods',
-        '52K+ Instagram followers and 1 lakh+ happy customers across India',
+        '78.6K+ Instagram followers and 1 lakh+ happy customers across India',
       ],
     },
     impact: {

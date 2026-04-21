@@ -71,7 +71,7 @@ const TRUST_SLIDES = [
     content: (
       <span className="flex items-center gap-1.5">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" width="13" height="13" alt="" style={{flexShrink:0}} />
-        <span className="text-xs font-bold text-gray-900">Instagram • 52K followers • @ajnaajewels</span>
+        <span className="text-xs font-bold text-gray-900">Instagram • 78.6K followers • @ajnaajewels</span>
       </span>
     ),
   },
@@ -457,7 +457,7 @@ const HomePage = ({ onProductClick }) => {
 
       {/* Instagram trust / mentions strip — off for now; set to true to restore */}
       {false && (
-        <InstagramTrustCarousel instagramUrl={AJNAA_INSTAGRAM_URL} followersLabel="81.8K" />
+        <InstagramTrustCarousel instagramUrl={AJNAA_INSTAGRAM_URL} followersLabel="78.6K" />
       )}
 
       {/* Big Deals Section */}
@@ -705,8 +705,11 @@ const HomePage = ({ onProductClick }) => {
         <div className="w-full px-4">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <p className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">New Arrivals</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">🛋️ Shop the Vibe</h2>
+              <p className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-1">Latest drops</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                Jewels in motion
+                <span className="ml-2 text-[#651F39]" aria-hidden>✦</span>
+              </h2>
             </div>
             <button className="text-sm font-bold text-gray-900 hover:opacity-70 transition-opacity">View All</button>
           </div>
@@ -716,17 +719,17 @@ const HomePage = ({ onProductClick }) => {
                 <div
                   key={product.id}
                   className="w-[240px] md:w-[280px] flex-shrink-0 cursor-pointer"
-                  style={{ minHeight: '330px', boxShadow: 'rgba(0,0,0,0.2) 0px 4px 8px', borderRadius: '8px' }}
+                  style={{ minHeight: '330px', boxShadow: 'rgba(0,0,0,0.2) 0px 4px 8px', borderRadius: 0 }}
                   onClick={() => { const idx = videoProducts.findIndex(p => p.id === product.id); goToLookVideo(idx); }}
                 >
-                  <div className="bg-white rounded-lg overflow-hidden h-full flex flex-col">
+                  <div className="bg-white rounded-none overflow-hidden h-full flex flex-col">
                     {/* Video */}
                     <div className="relative w-full h-[360px] md:h-[440px]">
-                      <div className="w-full h-full" style={{ backgroundColor: 'rgb(242,242,242)', borderRadius: '8px 8px 0 0' }}>
+                      <div className="w-full h-full" style={{ backgroundColor: 'rgb(242,242,242)', borderRadius: 0 }}>
                         <video
                           src={product.video}
                           className="w-full h-full object-cover"
-                          style={{ borderRadius: '8px 8px 0 0', pointerEvents: 'none' }}
+                          style={{ borderRadius: 0, pointerEvents: 'none' }}
                           loop
                           muted
                           autoPlay
@@ -776,7 +779,7 @@ const HomePage = ({ onProductClick }) => {
                       </div>
                       <button
                         onClick={(e) => e.stopPropagation()}
-                        className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#651F39' }}
+                        className="w-full text-white py-2.5 px-4 rounded-none font-semibold text-xs uppercase tracking-wide transition-all duration-300 hover:shadow-md mt-3" style={{ backgroundColor: '#651F39' }}
                       >
                         ADD TO CART
                       </button>
@@ -833,7 +836,7 @@ const HomePage = ({ onProductClick }) => {
                   <p className="text-gray-400 text-sm">posts</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-bold text-gray-900 text-base">81.8K</p>
+                  <p className="font-bold text-gray-900 text-base">78.6K</p>
                   <p className="text-gray-400 text-sm">followers</p>
                 </div>
                 <div className="text-center">
@@ -926,7 +929,7 @@ const HomePage = ({ onProductClick }) => {
                   <p className="text-gray-400 text-xs">posts</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-base">81.8K</p>
+                  <p className="font-semibold text-gray-900 text-base">78.6K</p>
                   <p className="text-gray-400 text-xs">followers</p>
                 </div>
                 <div className="text-center">
@@ -1197,57 +1200,34 @@ const HomePage = ({ onProductClick }) => {
             aria-modal="true"
             aria-label="Shop the look reel"
           >
-            {/* Desktop: previous reel preview + button */}
+            {/* Desktop: previous reel preview (tap to go back) */}
             <div className="hidden w-[148px] shrink-0 flex-col items-center gap-3 md:flex">
               {canLookPrev ? (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => goToLookVideo(lookVideoIndex - 1)}
-                    className="group relative w-full overflow-hidden rounded-2xl bg-stone-900 shadow-lg ring-2 ring-white/50 aspect-[9/16] max-h-[300px]"
-                    aria-label="Previous reel preview"
-                  >
-                    <video
-                      src={videoProducts[lookVideoIndex - 1].video}
-                      muted
-                      playsInline
-                      loop
-                      preload="metadata"
-                      className="h-full w-full object-cover opacity-85 transition-opacity group-hover:opacity-100"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/25">
-                      <span className="rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white">
-                        Previous
-                      </span>
-                    </div>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => goToLookVideo(lookVideoIndex - 1)}
-                    className="w-full rounded-full border border-stone-300 bg-white py-2.5 text-sm font-semibold text-stone-800 shadow-md transition-colors hover:bg-stone-50"
-                  >
-                    Prev
-                  </button>
-                </>
+                <button
+                  type="button"
+                  onClick={() => goToLookVideo(lookVideoIndex - 1)}
+                  className="group relative w-full overflow-hidden rounded-none bg-stone-900 shadow-lg ring-2 ring-white/50 aspect-[9/16] max-h-[300px]"
+                  aria-label="Previous reel preview"
+                >
+                  <video
+                    src={videoProducts[lookVideoIndex - 1].video}
+                    muted
+                    playsInline
+                    loop
+                    preload="metadata"
+                    className="h-full w-full object-cover opacity-85 transition-opacity group-hover:opacity-100"
+                  />
+                </button>
               ) : (
-                <>
-                  <div className="flex w-full aspect-[9/16] max-h-[300px] items-center justify-center rounded-2xl border border-dashed border-stone-300/80 bg-stone-200/50 text-center text-xs font-medium text-stone-500">
-                    First reel
-                  </div>
-                  <button
-                    type="button"
-                    disabled
-                    className="w-full cursor-not-allowed rounded-full border border-stone-200 bg-stone-100 py-2.5 text-sm font-semibold text-stone-400"
-                  >
-                    Prev
-                  </button>
-                </>
+                <div className="flex w-full aspect-[9/16] max-h-[300px] items-center justify-center rounded-none border border-dashed border-stone-300/80 bg-stone-200/50 text-center text-xs font-medium text-stone-500">
+                  First reel
+                </div>
               )}
             </div>
 
             {/* Main phone */}
             <div
-              className="relative mx-auto w-full max-w-[420px] overflow-hidden shadow-[0_32px_90px_-20px_rgba(0,0,0,0.35)] ring-2 ring-white/25 md:rounded-[1.75rem] bg-stone-950 h-[100dvh] md:h-[min(88dvh,780px)] md:max-h-[88dvh]"
+              className="relative mx-auto w-full max-w-[420px] overflow-hidden shadow-[0_32px_90px_-20px_rgba(0,0,0,0.35)] ring-2 ring-white/25 rounded-none bg-stone-950 h-[100dvh] md:h-[min(88dvh,780px)] md:max-h-[88dvh]"
             >
               {/* Swipe capture — above video; touchmove default prevented so iOS doesn’t scroll the page */}
               <div
@@ -1389,14 +1369,14 @@ const HomePage = ({ onProductClick }) => {
               <div className="flex gap-2">
                 <button
                   onClick={(e) => e.stopPropagation()}
-                  className="flex-1 py-3 rounded-2xl text-sm font-bold text-white border border-white/40"
+                  className="flex-1 py-3 rounded-none text-sm font-bold text-white border border-white/40"
                   style={{ background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)' }}
                 >
                   Wishlist
                 </button>
                 <button
                   onClick={(e) => e.stopPropagation()}
-                  className="flex-1 py-3 rounded-2xl text-sm font-bold text-white"
+                  className="flex-1 py-3 rounded-none text-sm font-bold text-white"
                   style={{ background: '#651F39' }}
                 >
                   Add to Cart
@@ -1405,51 +1385,28 @@ const HomePage = ({ onProductClick }) => {
             </div>
             </div>
 
-            {/* Desktop: next reel preview + button */}
+            {/* Desktop: next reel preview (tap to advance) */}
             <div className="hidden w-[148px] shrink-0 flex-col items-center gap-3 md:flex">
               {canLookNext ? (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => goToLookVideo(lookVideoIndex + 1)}
-                    className="group relative aspect-[9/16] max-h-[300px] w-full overflow-hidden rounded-2xl bg-stone-900 shadow-lg ring-2 ring-white/50"
-                    aria-label="Next reel preview"
-                  >
-                    <video
-                      src={videoProducts[lookVideoIndex + 1].video}
-                      muted
-                      playsInline
-                      loop
-                      preload="metadata"
-                      className="h-full w-full object-cover opacity-85 transition-opacity group-hover:opacity-100"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/25">
-                      <span className="rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white">
-                        Next
-                      </span>
-                    </div>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => goToLookVideo(lookVideoIndex + 1)}
-                    className="w-full rounded-full border border-stone-300 bg-white py-2.5 text-sm font-semibold text-stone-800 shadow-md transition-colors hover:bg-stone-50"
-                  >
-                    Next
-                  </button>
-                </>
+                <button
+                  type="button"
+                  onClick={() => goToLookVideo(lookVideoIndex + 1)}
+                  className="group relative aspect-[9/16] max-h-[300px] w-full overflow-hidden rounded-none bg-stone-900 shadow-lg ring-2 ring-white/50"
+                  aria-label="Next reel preview"
+                >
+                  <video
+                    src={videoProducts[lookVideoIndex + 1].video}
+                    muted
+                    playsInline
+                    loop
+                    preload="metadata"
+                    className="h-full w-full object-cover opacity-85 transition-opacity group-hover:opacity-100"
+                  />
+                </button>
               ) : (
-                <>
-                  <div className="flex aspect-[9/16] max-h-[300px] w-full items-center justify-center rounded-2xl border border-dashed border-stone-300/80 bg-stone-200/50 text-center text-xs font-medium text-stone-500">
-                    Last reel
-                  </div>
-                  <button
-                    type="button"
-                    disabled
-                    className="w-full cursor-not-allowed rounded-full border border-stone-200 bg-stone-100 py-2.5 text-sm font-semibold text-stone-400"
-                  >
-                    Next
-                  </button>
-                </>
+                <div className="flex aspect-[9/16] max-h-[300px] w-full items-center justify-center rounded-none border border-dashed border-stone-300/80 bg-stone-200/50 text-center text-xs font-medium text-stone-500">
+                  Last reel
+                </div>
               )}
             </div>
           </div>

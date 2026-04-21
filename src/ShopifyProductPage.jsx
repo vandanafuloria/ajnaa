@@ -45,6 +45,9 @@ function formatSoldLabel(n) {
 
 // Brand Name (footer / assets)
 const BRAND_NAME = "Ajnaa Jewels";
+const AJNAA_INSTAGRAM_URL = 'https://www.instagram.com/ajnaajewels/';
+/** Display label for Instagram follower count (reviews sidebar + links) */
+const AJNAA_INSTAGRAM_FOLLOWERS_LABEL = '78.6K';
 
 /** Reviews UI — brand burgundy accent */
 const REVIEW_ACCENT = '#651F39';
@@ -105,6 +108,9 @@ const PDP_REEL_LABELS = [
   'Shop Ajnaa Jewels',
   'Handmade in India',
 ];
+
+/** Short keyword chips under rating / reviews on the buy box */
+const PDP_KEYWORD_TAGS = ['Perfect gifting', 'Timeless design', 'Trusted quality', 'Festive ready'];
 
 // ============================================
 // END OF EDITABLE SECTION
@@ -190,6 +196,10 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [showVideoCard, setShowVideoCard] = useState(true);
   const [wildVideoIdx, setWildVideoIdx] = useState(null);
+  const [pdpWildMuted, setPdpWildMuted] = useState(true);
+  const [pdpWildLiked, setPdpWildLiked] = useState(false);
+  const pdpWildVideoRef = React.useRef(null);
+  const pdpWildLastWheel = React.useRef(0);
   const dragCardRef = React.useRef(null);
   const dragOffset = React.useRef({ x: 0, y: 0 });
   const dragPos = React.useRef({ x: null, y: null });
@@ -261,19 +271,33 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       };
   }, [showInstagramModal]);
 
+  const pdpReelCount = SCRAPSHALA_SHOP_VIDEOS.length;
+
   useEffect(() => {
     if (wildVideoIdx === null) return;
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     const onKey = (e) => {
       if (e.key === 'Escape') setWildVideoIdx(null);
+      if (e.key === 'ArrowLeft') {
+        setWildVideoIdx((i) => (i != null && i > 0 ? i - 1 : i));
+      }
+      if (e.key === 'ArrowRight') {
+        setWildVideoIdx((i) => (i != null && i < pdpReelCount - 1 ? i + 1 : i));
+      }
     };
     window.addEventListener('keydown', onKey);
     return () => {
       document.body.style.overflow = prevOverflow;
       window.removeEventListener('keydown', onKey);
     };
-  }, [wildVideoIdx]);
+  }, [wildVideoIdx, pdpReelCount]);
+
+  useEffect(() => {
+    if (wildVideoIdx !== null && pdpWildVideoRef.current) {
+      pdpWildVideoRef.current.muted = pdpWildMuted;
+    }
+  }, [wildVideoIdx, pdpWildMuted]);
 
   
   // productImages already set from passedProduct above
@@ -552,7 +576,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
         </div>
       )}
       
-      <main className="flex-1 bg-[#F0DBE3] py-6 md:py-10">
+      <main className="flex-1 bg-white py-6 md:py-10">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
 
           {/* Breadcrumb */}
@@ -641,37 +665,61 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
               {/* Title */}
               <h1 className="text-xl font-semibold leading-snug text-gray-900 md:text-2xl">{productName}</h1>
 
-              {/* Rating, stars, reviews & sold count */}
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
-                <span className="font-semibold tabular-nums text-gray-900" aria-hidden>
-                  {productRating.toFixed(1)}
-                </span>
-                <span className="flex items-center gap-0.5" aria-label={`${productRating.toFixed(1)} out of 5 stars`}>
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <svg key={i} width="15" height="15" viewBox="0 0 24 24" aria-hidden>
-                      <path
-                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                        fill={i <= Math.round(productRating) ? '#f97316' : '#e5e7eb'}
-                      />
-                    </svg>
+              {/* Rating, stars, reviews & sold count + keyword chips */}
+              <div className="flex flex-col gap-2">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                  <span className="font-semibold tabular-nums text-gray-900" aria-hidden>
+                    {productRating.toFixed(1)}
+                  </span>
+                  <span className="flex items-center gap-0.5" aria-label={`${productRating.toFixed(1)} out of 5 stars`}>
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <svg key={i} width="15" height="15" viewBox="0 0 24 24" aria-hidden>
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                          fill={i <= Math.round(productRating) ? '#f97316' : '#e5e7eb'}
+                        />
+                      </svg>
+                    ))}
+                  </span>
+                  <span className="hidden sm:inline text-gray-600" aria-hidden>
+                    ·
+                  </span>
+                  <span className="text-gray-500">
+                    {productReviews > 0
+                      ? `${Number(productReviews).toLocaleString('en-IN')} reviews`
+                      : 'No reviews'}
+                  </span>
+                  {Number(productSoldCount) > 0 && (
+                    <>
+                      <span className="hidden sm:inline text-gray-600" aria-hidden>
+                        ·
+                      </span>
+                      <span className="text-gray-500">{formatSoldLabel(productSoldCount)}</span>
+                    </>
+                  )}
+                </div>
+                <ul
+                  className="m-0 flex flex-col gap-1.5 list-none p-0 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-1.5"
+                  aria-label="Product highlights"
+                >
+                  {PDP_KEYWORD_TAGS.map((kw) => (
+                    <li key={kw} className="flex items-center gap-2 text-[13px] text-stone-700 sm:text-sm">
+                      <svg
+                        className="h-4 w-4 shrink-0 text-[#651F39]"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span>{kw}</span>
+                    </li>
                   ))}
-                </span>
-                <span className="hidden sm:inline text-gray-600" aria-hidden>
-                  ·
-                </span>
-                <span className="text-gray-500">
-                  {productReviews > 0
-                    ? `${Number(productReviews).toLocaleString('en-IN')} reviews`
-                    : 'No reviews'}
-                </span>
-                {Number(productSoldCount) > 0 && (
-                  <>
-                    <span className="hidden sm:inline text-gray-600" aria-hidden>
-                      ·
-                    </span>
-                    <span className="text-gray-500">{formatSoldLabel(productSoldCount)}</span>
-                  </>
-                )}
+                </ul>
               </div>
 
               {/* Price */}
@@ -770,27 +818,34 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
       </main>
 
 
-      {/* Reels strip — brand soft pink */}
+      {/* Reels — open full-screen reel modal (same pattern as home “Shop the Look”) */}
       {(() => {
         const WILD_VIDEOS = SCRAPSHALA_SHOP_VIDEOS;
+        const n = WILD_VIDEOS.length;
+        const idx = wildVideoIdx;
+        const canWildPrev = idx != null && idx > 0;
+        const canWildNext = idx != null && idx < n - 1;
+        const thumbImg = idx != null ? AJNAA_PRODUCT_IMAGES[idx % AJNAA_PRODUCT_IMAGES.length] : AJNAA_PRODUCT_IMAGES[0];
+        const reelLabel = idx != null ? PDP_REEL_LABELS[idx % PDP_REEL_LABELS.length] : '';
+
         return (
           <>
-            <div className="w-full border-t border-b border-gray-100/80 bg-[#F0DBE3] py-7">
+            <div className="w-full border-t border-b border-gray-100/80 bg-[#F0DBE3] py-7 md:py-8">
               <div className="w-full px-4 max-w-7xl mx-auto">
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
                   <div>
                     <h2 className="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">
                       See Ajnaa Jewels in action
                     </h2>
-                    <p className="text-xs text-gray-600 mt-1 max-w-md">
-                      Short clips — upcycled craft, behind-the-scenes making, and real customer spaces.
+                    <p className="text-xs text-gray-600 mt-1 max-w-md leading-relaxed">
+                      Short clips — styling ideas, craft moments, and real customers in our jewellery. Tap any reel for the full-screen view.
                     </p>
                   </div>
                   <a
                     href="https://www.instagram.com/ajnaajewels/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full shrink-0 bg-white/90 text-gray-800 border border-gray-200/80 shadow-sm hover:bg-white hover:border-[#651F39]/40 transition-colors"
+                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full shrink-0 bg-white text-gray-800 border border-gray-200 shadow-sm hover:bg-white hover:border-[#651F39]/40 transition-colors"
                     style={{ textDecoration: 'none' }}
                   >
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -808,7 +863,10 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         key={idx}
                         type="button"
                         className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#651F39] focus-visible:ring-offset-2 rounded-[999px] flex flex-col items-center"
-                        onClick={() => setWildVideoIdx(idx)}
+                        onClick={() => {
+                          setPdpWildMuted(false);
+                          setWildVideoIdx(idx);
+                        }}
                       >
                         <div
                           className="relative overflow-hidden shadow-md"
@@ -837,54 +895,229 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
 
             {wildVideoIdx !== null && (
               <div
-                className="fixed inset-0 z-[999] flex items-center justify-center p-4 sm:p-6 bg-stone-900/40 backdrop-blur-2xl"
+                className="fixed inset-0 z-[999] flex items-stretch md:items-center justify-center md:p-5 bg-gradient-to-b from-stone-100/90 via-stone-200/85 to-stone-400/55 backdrop-blur-2xl"
                 onClick={() => setWildVideoIdx(null)}
+                onWheel={(e) => {
+                  e.preventDefault();
+                  const now = Date.now();
+                  if (now - pdpWildLastWheel.current < 420) return;
+                  pdpWildLastWheel.current = now;
+                  const dy = e.deltaY;
+                  setWildVideoIdx((cur) => {
+                    if (cur == null) return cur;
+                    const next = dy > 0 ? Math.min(cur + 1, n - 1) : Math.max(cur - 1, 0);
+                    return next === cur ? cur : next;
+                  });
+                }}
                 role="presentation"
               >
                 <div
-                  className="relative overflow-hidden rounded-3xl bg-stone-950 shadow-[0_32px_90px_-24px_rgba(0,0,0,0.45)] ring-2 ring-white/20"
-                  style={{ width: 'min(380px, 92vw)', height: 'min(660px, 88vh)' }}
+                  className="flex w-full max-w-6xl flex-col items-stretch gap-3 md:flex-row md:items-center md:justify-center md:gap-4"
                   onClick={(e) => e.stopPropagation()}
                   role="dialog"
                   aria-modal="true"
-                  aria-label="Reel video"
+                  aria-label="Ajnaa Jewels reels"
                 >
-                  <video key={wildVideoIdx} src={WILD_VIDEOS[wildVideoIdx]} className="h-full w-full object-cover" autoPlay muted playsInline controls loop />
-                  <button
-                    type="button"
-                    className="absolute top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-white/35"
-                    onClick={() => setWildVideoIdx(null)}
-                    aria-label="Close video"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12" /></svg>
-                  </button>
-                  <button
-                    type="button"
-                    className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition-colors hover:bg-white/30"
-                    onClick={() => setWildVideoIdx((i) => (i - 1 + WILD_VIDEOS.length) % WILD_VIDEOS.length)}
-                    aria-label="Previous reel"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
-                  </button>
-                  <button
-                    type="button"
-                    className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition-colors hover:bg-white/30"
-                    onClick={() => setWildVideoIdx((i) => (i + 1) % WILD_VIDEOS.length)}
-                    aria-label="Next reel"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
-                  </button>
-                  <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5">
-                    {WILD_VIDEOS.map((_, i) => (
+                  {/* Desktop: previous preview */}
+                  <div className="hidden w-[148px] shrink-0 flex-col md:flex">
+                    {canWildPrev ? (
                       <button
-                        key={i}
                         type="button"
-                        onClick={() => setWildVideoIdx(i)}
-                        className="rounded-full transition-all"
-                        style={{ width: i === wildVideoIdx ? '22px' : '7px', height: '7px', background: i === wildVideoIdx ? '#fff' : 'rgba(255,255,255,0.4)' }}
-                        aria-label={`Reel ${i + 1}`}
-                      />
-                    ))}
+                        onClick={() => setWildVideoIdx((i) => (i != null && i > 0 ? i - 1 : i))}
+                        className="group relative w-full overflow-hidden rounded-none bg-stone-900 shadow-lg ring-2 ring-white/50 aspect-[9/16] max-h-[300px]"
+                        aria-label="Previous reel preview"
+                      >
+                        <video
+                          src={WILD_VIDEOS[idx - 1]}
+                          muted
+                          playsInline
+                          loop
+                          preload="metadata"
+                          className="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
+                        />
+                      </button>
+                    ) : (
+                      <div className="flex w-full aspect-[9/16] max-h-[300px] items-center justify-center rounded-none border border-dashed border-stone-300/80 bg-stone-200/50 text-center text-xs font-medium text-stone-500">
+                        First reel
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Main reel (phone-style) */}
+                  <div
+                    className="relative mx-auto w-full max-w-[420px] overflow-hidden shadow-[0_32px_90px_-20px_rgba(0,0,0,0.35)] ring-2 ring-white/25 rounded-none bg-stone-950 h-[100dvh] md:h-[min(88dvh,780px)] md:max-h-[88dvh]"
+                  >
+                    <video
+                      ref={pdpWildVideoRef}
+                      key={`pdp-wild-${idx}`}
+                      src={WILD_VIDEOS[idx]}
+                      className="pointer-events-none relative z-0 h-full w-full object-cover"
+                      autoPlay
+                      loop
+                      playsInline
+                      muted={pdpWildMuted}
+                    />
+
+                    <button
+                      type="button"
+                      disabled={!canWildPrev}
+                      onClick={(e) => { e.stopPropagation(); setWildVideoIdx((i) => (i != null && i > 0 ? i - 1 : i)); }}
+                      className="absolute left-2 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/25 text-white backdrop-blur-md transition-opacity md:hidden disabled:opacity-25"
+                      aria-label="Previous reel"
+                    >
+                      <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                        <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </button>
+                    <button
+                      type="button"
+                      disabled={!canWildNext}
+                      onClick={(e) => { e.stopPropagation(); setWildVideoIdx((i) => (i != null && i < n - 1 ? i + 1 : i)); }}
+                      className="absolute right-2 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/25 text-white backdrop-blur-md transition-opacity md:hidden disabled:opacity-25"
+                      aria-label="Next reel"
+                    >
+                      <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                        <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </button>
+
+                    <div
+                      className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-4 pt-5 pb-2"
+                      style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.65), transparent)' }}
+                    >
+                      <div className="flex items-center gap-2 min-w-0">
+                        <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white shrink-0 bg-stone-800">
+                          <img src={thumbImg} alt="" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-white text-sm font-semibold leading-none truncate">Ajnaa Jewels</p>
+                          <p className="text-white/75 text-xs mt-0.5 truncate">
+                            Reel {idx + 1} of {n}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setWildVideoIdx(null)}
+                        className="w-8 h-8 rounded-full bg-black/45 flex items-center justify-center text-white shrink-0"
+                        aria-label="Close reels"
+                      >
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4">
+                          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div className="absolute left-1/2 -translate-x-1/2 top-4 z-20 flex gap-1">
+                      {WILD_VIDEOS.map((_, i) => (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => setWildVideoIdx(i)}
+                          className="rounded-full transition-all"
+                          style={{
+                            width: i === idx ? '16px' : '6px',
+                            height: '6px',
+                            background: i === idx ? '#fff' : 'rgba(255,255,255,0.45)',
+                          }}
+                          aria-label={`Reel ${i + 1}`}
+                        />
+                      ))}
+                    </div>
+
+                    <div className="absolute right-3 bottom-44 z-20 flex flex-col items-center gap-5">
+                      <button type="button" onClick={() => setPdpWildLiked((l) => !l)} className="flex flex-col items-center gap-1">
+                        <div className={`w-11 h-11 rounded-full flex items-center justify-center ${pdpWildLiked ? 'bg-pink-500' : 'bg-black/40'}`}>
+                          <svg viewBox="0 0 24 24" fill={pdpWildLiked ? 'white' : 'none'} stroke="white" strokeWidth="2" className="w-5 h-5">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                          </svg>
+                        </div>
+                        <span className="text-white text-xs font-medium">{pdpWildLiked ? 'Liked' : 'Like'}</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const m = !pdpWildMuted;
+                          setPdpWildMuted(m);
+                          if (pdpWildVideoRef.current) pdpWildVideoRef.current.muted = m;
+                        }}
+                        className="flex flex-col items-center gap-1"
+                      >
+                        <div className="w-11 h-11 rounded-full bg-black/40 flex items-center justify-center">
+                          {pdpWildMuted ? (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-5 h-5">
+                              <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                              <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+                            </svg>
+                          ) : (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-5 h-5">
+                              <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                            </svg>
+                          )}
+                        </div>
+                        <span className="text-white text-xs font-medium">{pdpWildMuted ? 'Unmute' : 'Mute'}</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          navigator.share
+                            ? navigator.share({ title: 'Ajnaa Jewels', text: reelLabel, url: window.location.href })
+                            : navigator.clipboard?.writeText(window.location.href)
+                        }
+                        className="flex flex-col items-center gap-1"
+                      >
+                        <div className="w-11 h-11 rounded-full bg-black/40 flex items-center justify-center">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-5 h-5">
+                            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                          </svg>
+                        </div>
+                        <span className="text-white text-xs font-medium">Share</span>
+                      </button>
+                    </div>
+
+                    <div
+                      className="absolute bottom-0 left-0 right-0 z-20 px-4 pb-6 pt-16"
+                      style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.92) 55%, transparent)' }}
+                    >
+                      <p className="text-white text-sm font-medium mb-2 line-clamp-2">{reelLabel}</p>
+                      <a
+                        href="https://www.instagram.com/ajnaajewels/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex w-full items-center justify-center py-3 rounded-none text-sm font-bold text-white bg-[#651F39] hover:opacity-95 transition-opacity"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Follow @ajnaajewels
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Desktop: next preview */}
+                  <div className="hidden w-[148px] shrink-0 flex-col md:flex">
+                    {canWildNext ? (
+                      <button
+                        type="button"
+                        onClick={() => setWildVideoIdx((i) => (i != null && i < n - 1 ? i + 1 : i))}
+                        className="group relative aspect-[9/16] max-h-[300px] w-full overflow-hidden rounded-none bg-stone-900 shadow-lg ring-2 ring-white/50"
+                        aria-label="Next reel preview"
+                      >
+                        <video
+                          src={WILD_VIDEOS[idx + 1]}
+                          muted
+                          playsInline
+                          loop
+                          preload="metadata"
+                          className="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
+                        />
+                      </button>
+                    ) : (
+                      <div className="flex aspect-[9/16] max-h-[300px] w-full items-center justify-center rounded-none border border-dashed border-stone-300/80 bg-stone-200/50 text-center text-xs font-medium text-stone-500">
+                        Last reel
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -972,7 +1205,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           clipRule="evenodd"
                         />
                       </svg>
-                      96% would gift it
+                      96% say it’s perfect for gifting
                     </div>
                   </div>
 
@@ -991,9 +1224,9 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                           </svg>
                           <span>{item.stars}</span>
                         </div>
-                        <div className="h-2 min-w-0 flex-1 overflow-hidden rounded-[3px] bg-stone-200/90">
+                        <div className="h-3.5 min-w-0 flex-1 overflow-hidden rounded-full bg-stone-200/90">
                           <div
-                            className="h-full rounded-[3px] transition-all duration-300"
+                            className="h-full rounded-full transition-all duration-300"
                             style={{
                               width: `${item.percent}%`,
                               minWidth: item.percent ? '2px' : 0,
@@ -1014,7 +1247,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                         ),
-                        label: 'Would recommend to a friend',
+                        label: 'Would recommend for weddings & festive wear',
                         value: '96%',
                       },
                       {
@@ -1023,7 +1256,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                           </svg>
                         ),
-                        label: 'Praise unique upcycled design',
+                        label: 'Praise kundan finish & stone sparkle in person',
                         value: '9/10',
                       },
                       {
@@ -1032,7 +1265,7 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                           </svg>
                         ),
-                        label: 'Love the eco-friendly mission',
+                        label: 'Love comfort & weight — easy to wear all evening',
                         value: '98%',
                       },
                     ].map((stat, idx) => (
@@ -1052,6 +1285,38 @@ const ShopifyProductPage = ({ product: passedProduct, onHomeClick }) => {
                         </div>
                       </div>
                     ))}
+                  </div>
+
+                  <div className="mt-7 border-t border-stone-200/80 pt-6">
+                    <p className="mb-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+                      Follow us
+                    </p>
+                    <a
+                      href={AJNAA_INSTAGRAM_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 rounded-[3px] border border-stone-200/90 bg-gradient-to-br from-stone-50 to-white px-3 py-3 transition-colors hover:border-stone-300 hover:bg-stone-50/90"
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-stone-100">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+                          <rect x="2" y="2" width="20" height="20" rx="5" stroke="#651F39" strokeWidth="1.6" />
+                          <circle cx="12" cy="12" r="4.2" stroke="#651F39" strokeWidth="1.6" />
+                          <circle cx="17.5" cy="6.5" r="1.1" fill="#651F39" />
+                        </svg>
+                      </span>
+                      <div className="min-w-0 flex-1 text-left">
+                        <p className="text-sm font-semibold text-stone-900">@ajnaajewels</p>
+                        <p className="text-xs text-stone-600">
+                          <span className="font-semibold tabular-nums text-stone-800">{AJNAA_INSTAGRAM_FOLLOWERS_LABEL}</span>
+                          {' '}
+                          followers
+                        </p>
+                      </div>
+                      <svg className="h-4 w-4 shrink-0 text-stone-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
                   </div>
                 </div>
               </div>

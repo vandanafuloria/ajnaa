@@ -123,7 +123,7 @@ export default function HeaderReels({ onViewProduct }) {
 
   const openViewer = (i) => {
     setViewerIndex(i);
-    setViewerMuted(true);
+    setViewerMuted(false);
     setViewerOpen(true);
   };
 
@@ -144,7 +144,7 @@ export default function HeaderReels({ onViewProduct }) {
     }
   };
 
-  /** Autoplay center video when modal opens or reel changes (muted state comes from viewerMuted — do not reset here). */
+  /** Autoplay center video when modal opens or reel changes. */
   useEffect(() => {
     if (!viewerOpen) return;
     const v = mainVideoRef.current;
@@ -160,6 +160,13 @@ export default function HeaderReels({ onViewProduct }) {
       v.removeEventListener('loadeddata', tryPlay);
     };
   }, [viewerOpen, viewerIndex]);
+
+  useEffect(() => {
+    if (!viewerOpen) return;
+    const v = mainVideoRef.current;
+    if (!v) return;
+    v.muted = viewerMuted;
+  }, [viewerOpen, viewerIndex, viewerMuted]);
 
   useEffect(() => {
     if (!viewerOpen) return;
@@ -326,17 +333,40 @@ export default function HeaderReels({ onViewProduct }) {
                     ref={mainVideoRef}
                     key={viewerIndex}
                     src={REEL_URLS[viewerIndex]}
-                    controls
                     autoPlay
                     muted={viewerMuted}
                     playsInline
                     loop
+                    controlsList="nodownload noplaybackrate"
                     onVolumeChange={(e) => setViewerMuted(e.currentTarget.muted)}
-                    className="aspect-[9/16] max-h-[min(78dvh,720px)] w-full object-cover md:max-h-[min(72vh,680px)]"
+                    className="pointer-events-none aspect-[9/16] max-h-[min(78dvh,720px)] w-full object-cover md:max-h-[min(72vh,680px)]"
                   />
 
                   {/* Share + View details + Add to cart — bottom-right on video */}
                   <div className="pointer-events-auto absolute bottom-24 right-3 z-30 flex max-w-[11rem] flex-col items-stretch gap-2 md:bottom-28 md:right-4 md:max-w-[13rem]">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const m = !viewerMuted;
+                        setViewerMuted(m);
+                        if (mainVideoRef.current) mainVideoRef.current.muted = m;
+                      }}
+                      className="flex h-11 w-11 shrink-0 items-center justify-center self-end rounded-full bg-black/50 text-white shadow-lg backdrop-blur-sm transition hover:bg-black/60"
+                      aria-label={viewerMuted ? 'Unmute' : 'Mute'}
+                    >
+                      {viewerMuted ? (
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5" aria-hidden>
+                          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                          <line x1="23" y1="9" x2="17" y2="15" />
+                          <line x1="17" y1="9" x2="23" y2="15" />
+                        </svg>
+                      ) : (
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5" aria-hidden>
+                          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                        </svg>
+                      )}
+                    </button>
                     <button
                       type="button"
                       onClick={handleShare}
